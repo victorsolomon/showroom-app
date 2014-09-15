@@ -28,8 +28,7 @@ Very easy - head to http://nodejs.org/download/ and download the appropriate bin
 
 For auto-reload on save, install Nodemon, using NPM.
 
-```
-npm install nodemon -g
+`npm install nodemon -g`
 
 #Build and Deployment
 
