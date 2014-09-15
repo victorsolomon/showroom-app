@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"  />
+  <title>Showroom</title>
+  <script data-main="js/clientConfig" src="js/libs/require.jquery.2.0.3.js"></script>
+    <script>
+      img1 = new Image();
+      img1.src = "static/images/posterFrames/posterFrameBoba.png";
+      img1.onload = function(){ 
+        require(['modules/player/app']);
+      }
+    </script>
+    <style>
+        .loadingtrail {width: 24px;height: 24px;position: absolute;z-index: 5;left: calc( 50% - 12px );top: calc( 50% - 12px );}
+        .loadingtrail:before {display: block;width: 22px;height: 22px;border-top: 2px solid #4d9bd1;border-right: 2px solid #4d9bd1;content: "";-webkit-animation: spin 0.6s linear infinite;-moz-animation: spin 0.6s linear infinite;animation: spin 0.6s linear infinite;border-radius: 100%;}
+    </style>
+    <link rel='stylesheet' href="static/styles/module/main.css" />
+</head>
+<body>
+<div class="loadingtrail"></div>
+<div id="main"></div>
+</body>
+</html>

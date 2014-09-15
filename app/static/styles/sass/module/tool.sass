@@ -1,0 +1,39 @@
+@import "compass/css3"
+@import "compass/css3/user-interface"
+
+html,body
+	padding: 0px
+	margin: 0px
+
+%toolModule
+	position: absolute
+	border: solid 1px #333
+	min-width: 300px
+	top: 20px
+	border-radius: 3px
+	font-size: 12px
+
+	.header
+		font-weight: bold
+		padding: 5px
+		background: #ddd
+		cursor: move
+		border-bottom: solid 1px #aaa
+
+	.body
+		padding: 5px
+
+#video-list-region
+	@extend %toolModule
+
+#product-list-region
+	@extend %toolModule
+
+#tag-list-region
+	@extend %toolModule
+
+#styling-region
+	@extend %toolModule
+
+#player-region
+	@extend %toolModule

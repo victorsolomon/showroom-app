@@ -1,0 +1,128 @@
+//animations for loading and fading (not fully implemented)
+
+$close_cart_value: -26.40625%
+
+.loading
+	display: none
+	position: absolute
+	left: 920px
+	top: 500px
+	width: 80px
+	height: 80px
+	background: url('../img/loading.png') no-repeat
+	-webkit-animation: spin 1.0s linear infinite
+	-moz-animation: spin 1.0s linear infinite
+	animation: spin 1.0s linear infinite
+
+@-moz-keyframes spin 
+	100% 
+		-moz-transform: rotate(360deg)
+@-webkit-keyframes spin 
+	100% 
+		-webkit-transform: rotate(360deg)
+@keyframes spin 
+	100% 
+		-webkit-transform: rotate(360deg)
+		transform: rotate(360deg)
+
+.fadeBackgroundMaskIn
+	-webkit-animation: fadeMaskIn 0.5s 1
+	-moz-animation: fadeMaskIn 0.5s 1
+	animation: fadeMaskIn 0.5s 1
+	animation-fill-mode: forwards
+	-webkit-animation-fill-mode: forwards
+
+@-moz-keyframes fadeMaskIn 
+	100%  
+		opacity: 0.7
+@-webkit-keyframes fadeMaskIn 
+	100% 
+		opacity: 0.7
+@keyframes fadeMaskIn 
+	100% 
+		opacity: 0.7
+
+.fadeBackgroundMaskOut
+	-webkit-animation: fadeMaskOut 0.5s 1
+	-moz-animation: fadeMaskOut 0.5s 1
+	animation: fadeMaskOut 0.5s 1
+	animation-fill-mode: forwards
+	-webkit-animation-fill-mode: forwards
+
+@-moz-keyframes fadeMaskOut 
+	100% 
+		opacity: 0
+@-webkit-keyframes fadeMaskOut
+	100%
+		opacity: 0
+@keyframes fadeMaskOut
+	100% 
+		opacity: 0
+
+.activeCartSlideIn
+	-webkit-animation: activeCartSlideInKey 0.25s 1
+	-moz-animation: activeCartSlideInKey 0.25s 1
+	animation: activeCartSlideInKey 0.25s 1
+	animation-fill-mode: forwards
+	-webkit-animation-fill-mode: forwards
+
+@-moz-keyframes activeCartSlideInKey 
+	100% 
+		left: 0%
+@-webkit-keyframes activeCartSlideInKey 
+	100%
+		left: 0%
+@keyframes activeCartSlideInKey 
+	100% 
+		left: 0%
+
+.activeCartSlideOut
+	-webkit-animation: activeCartSlideOutKey 0.25s 1
+	-moz-animation: activeCartSlideOutKey 0.25s 1
+	animation: activeCartSlideOutKey 0.25s 1
+	animation-fill-mode: forwards
+	-webkit-animation-fill-mode: forwards
+
+@-moz-keyframes activeCartSlideOutKey 
+	100% 
+		left: $close_cart_value
+@-webkit-keyframes activeCartSlideOutKey 
+	100% 
+		left: $close_cart_value
+@keyframes activeCartSlideOutKey 
+	100% 
+		left: $close_cart_value
+
+.checkoutCartSlideIn
+	-webkit-animation: checkoutCartSlideInKey 0.25s 1
+	-moz-animation: checkoutCartSlideInKey 0.25s 1
+	animation: checkoutCartSlideInKey 0.25s 1
+	animation-fill-mode: forwards
+	-webkit-animation-fill-mode: forwards
+
+@-moz-keyframes checkoutCartSlideInKey
+	100%
+		right: 0%
+@-webkit-keyframes checkoutCartSlideInKey 
+	100%
+		right: 0%
+@keyframes checkoutCartSlideInKey 
+	100%
+		right: 0%
+
+.checkoutCartSlideOut
+	-webkit-animation: checkoutCartSlideOutKey 0.25s 1
+	-moz-animation: checkoutCartSlideOutKey 0.25s 1
+	animation: checkoutCartSlideOutKey 0.25s 1
+	animation-fill-mode: forwards
+	-webkit-animation-fill-mode: forwards
+
+@-moz-keyframes checkoutCartSlideOutKey 
+	100% 
+		right: $close_cart_value
+@-webkit-keyframes checkoutCartSlideOutKey 
+	100% 
+		right: $close_cart_value
+@keyframes checkoutCartSlideOutKey 
+	100% 
+		right: $close_cart_value

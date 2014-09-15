@@ -1,0 +1,115 @@
+//All styles for the right side cart (checkout cart)
+
+@import "framework"
+
+#checkout-cart-region
+	position: absolute
+	width: 29.140625%
+	height: 100%
+	top: 0px 
+	right: -26.40625%
+	background-color: #fff
+	z-index: 5
+
+#checkout-cart
+	width: 100%
+	height: 100%
+
+.checkoutButton
+	font-family: brandon
+	text-decoration: none
+	cursor: pointer
+	background: #4B9AD4
+	text-align: center
+	color: #fff
+	width: 85.480093676815%
+	margin-left: 7.259955%
+	padding: 1.388888888889% 0%
+	font-size: 2.3rem
+	letter-spacing: 0.0391rem
+	position: absolute
+	bottom: 8.472222222222%
+
+.logo
+	position: absolute
+	width: 54.4%
+	height: 2.083333333333%
+	background: url( ../../images/sprite/common/powered-by-showroom.png ) no-repeat
+	background-size: 100%
+	bottom: 4.166666666667%
+	right: 7.25996%
+
+//transparent object that is locked to the left side of the cart.  This is the clickable region which opens the cart
+.checkoutCartDrawerBar
+	position: absolute
+	height: 100%
+	z-index: 5
+	width: 8.367681498829%
+	cursor: pointer
+
+	.handle
+		position: relative
+		top: 42.41667%
+		left: 27.357142857143%
+		width: 45.714285714286%
+		height: 9.166666666667%
+		background-color: rgb( 183, 179, 179 )
+		border-radius: 5px
+
+
+//list of items that are added to the cart
+.items
+	height: 82%
+	overflow-y: auto
+	list-style: none
+	padding: 0px
+	margin: 0px
+	margin-top: 4%
+	width: 85.48009%
+	margin-left: 7.25996%
+
+	.cartItem
+		margin-bottom: 20px
+		color: #000
+		height: $checkout-item-height
+		width: 100%
+		font-size: 1.35rem
+		letter-spacing: 0.275rem
+
+		.close
+			cursor: pointer
+			color:rgba( 0, 0, 0, 0.8)
+			float: left
+
+		.cartItemImage
+			width: $checkout-item-image-width
+			background: url( '../../images/productImages/showroom/large/Green.png' )
+			height: 100%
+			float: left
+			background-position: top
+			background-size: 100%
+			background-size: contain
+			background-repeat: no-repeat
+			margin-right: 9%
+		
+		.cartItemDescription
+			float: left
+			width: 65%
+			height: 100%
+
+		.cartItemTitle
+
+		.cartItemPrice
+			margin-bottom: 5px
+
+		.itemSize
+			font-family: brandon
+			display: inline-block
+			background: #4B9AD4
+			color: #fff
+			cursor: pointer
+			padding: 3% 4%
+			width: $checkout-item-size-btn-width
+			height: 27%
+			text-align: center
+			font-size: 2.2rem

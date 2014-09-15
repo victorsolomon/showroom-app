@@ -1,0 +1,61 @@
+//This file is used to house all SASS variables that are used through the app
+//At this point, only calculations of containers are defined here as specific percentages of their parent containers
+//The variables are then used in subsequent sass files to genereate a responsive design 
+
+$base-player-width : 1280
+$base-player-height : 720 
+$cart-base-width : 373
+$cart-base-width-perc : percentage( $cart-base-width / $base-player-width )
+
+//ACTIVE CART
+//$cart-left-close-offset : percentage($cart-width - 40) / $cart-width )
+$main-slider-base-width : 307
+$main-slider-base-height : 272
+$main-slider-width-pct : percentage( $main-slider-base-width / $cart-base-width )
+$main-slider-height-pct : percentage( $main-slider-base-height / $base-player-height )
+$main-slider-left-offset : percentage( 33 / $cart-base-width )
+$main-slider-top-offset : percentage( 10 / $base-player-height )
+
+$info-and-actions-height : percentage( 156 / $base-player-height )
+$info-and-actions-top-offset : percentage( 20 / $main-slider-base-height )
+
+$arrow-width : percentage( 12 / $main-slider-base-width )
+$arrow-height : percentage( 24 / $main-slider-base-height )
+$active-arrow-top-offset : percentage( 126 / $main-slider-base-height )
+//$arrow-right-offset : percentage( 295 / $main-slider-base-width )
+
+$recommended-top-offset : percentage( 28 / $main-slider-base-height )
+$recommended-slider-base-height : 160
+$recommended-slider-height-pct : percentage( $recommended-slider-base-height / $base-player-height )
+$recommended-arrow-top-offset : percentage( 60 / $recommended-slider-base-height )
+$recommended-arrow-width : percentage( 12 / $main-slider-base-width )
+$recommended-arrow-height : percentage( 24 / $recommended-slider-base-height )
+
+//CHECKOUT CART REGION
+$checkout-item-container-height : 598
+$checkout-item-container-width : 319
+$checkout-item-height : percentage( 95 / $checkout-item-container-height )
+$checkout-item-image-width : percentage( 63 / $checkout-item-container-width )
+$checkout-item-info-width : 66%
+$checkout-item-size-btn-width : percentage( 55 / $checkout-item-container-width )
+
+//SHARE REGION
+$share-box-width : percentage( 492 / $base-player-width )
+$share-box-height : percentage( ( 222 ) / $base-player-height )
+$share-box-padding : percentage( 10 / 222 )
+$share-box-left-offset : percentage( 393 / $base-player-width )
+$share-box-margin-spacing-vertical : percentage( 8 / ( 222 / $base-player-height ) )
+$share-textarea-height : percentage( 100 / 222 )
+
+$play-button-width-pct : percentage( 90 / $base-player-width )
+$play-button-height-pct : percentage( 100 / $base-player-height )
+$play-button-left-offset : percentage( ( ( $base-player-width - 45 ) / 2 ) / $base-player-width )
+$play-button-top-offset : percentage( ( ( $base-player-height - 50 ) / 2 ) / $base-player-height )
+
+$replay-button-width-pct : percentage( 100 / $base-player-width )
+$replay-button-height-pct : percentage( 90 / $base-player-height )
+$replay-button-left-offset : percentage( ( ( $base-player-width - 80 ) / 2 ) / $base-player-width )
+$replay-button-top-offset : percentage( ( ( $base-player-height - 45 ) / 2 ) / $base-player-height )
+
+
+$scrubber-height : percentage( 16 / $base-player-height )

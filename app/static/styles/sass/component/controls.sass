@@ -1,0 +1,55 @@
+//style definitions for the controls layer which include play, pause, share, fullscreen and video scrubber widgets
+
+.playOrPause
+	width: 50px
+	cursor: pointer
+	padding-left: 15px
+	display: inline-block
+	margin-right: 30px
+
+.share
+	position: absolute 
+	bottom: 11.1111111%
+	left: 45.46875%
+	width: 3.125%
+	height: 6.25%
+	background-size: 100% 100%
+	+common-sprite(share-icn)
+	cursor: pointer
+	margin-right: 30px
+
+.fullscreen
+	display: inline-block
+	width: 44px
+	height: 44px
+	+common-sprite(fullscreen-icn)
+	opacity: 1
+	cursor: pointer
+
+.controlBarScrubber
+	position: absolute
+	bottom: 0px
+	width: 100%
+	//border-top: solid 1px #000
+
+.scrubber
+	width: 100%
+	height: 16px
+	z-index: 200
+	cursor: pointer
+	top: 100
+	left: 100
+	display: block
+
+	p
+		background: #4B9AD4
+		height: 16px
+		float: left
+		margin: 0px
+		width: 1%
+
+	div
+		background: #fff
+		height: 16px
+		float: left
+		width: 99%
