@@ -11,8 +11,7 @@ define([
 
       canPlay: false,
 
-      initialize: function() {
-      },
+      initialize: function(options) {},
 
       onShow: function() {
         app.vent.on('seek', this.onSeek, this);
@@ -53,7 +52,7 @@ define([
 
       onTimeUpdate: function(currentTime, duration) {
         app.vent.trigger('timeUpdate', { 'currentTime': currentTime, 'duration': duration });
-        $('video').show();
+        this.$('video').show();
       },
 
       onSeek: function(timeSig) {

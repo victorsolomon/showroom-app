@@ -13,8 +13,7 @@ define([
         'click': 'onSplashVideoClick'
       },
 
-      initialize: function() {
-      },
+      initialize: function(options) {},
 
       onSplashVideoClick: function() {
         app.vent.trigger('splashClick');
@@ -28,6 +27,8 @@ define([
           .append("<source src='" + app.config.mp4loaderSrc + "' type='video/mp4'></source>")
           .append("<source src='" + app.config.webmloaderSrc + "' type='video/webm'></source>");
         video.attr('loop', true);
+
+        // video.bind('canplay', function(event){ that.onCanPlay(event); }).css('opacity', 0.8);
       },
 
       onCanPlay: function() {

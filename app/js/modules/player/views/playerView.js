@@ -123,7 +123,7 @@ define([
           // this.fadeSplashPlayer();
         }
 
-        this.$('.fullscreen-icn').show();
+        $('.fullscreen-icn').show();
       },
 
       calculateContainerSize: function() {
@@ -173,7 +173,7 @@ define([
             that.onReplayClick(event);
         });
 
-        app.bindClickTouch(this.$('.play-button' ), function(event) {
+        app.bindClickTouch(this.$('.play-button'), function(event) {
           that.onMaskClick(event);
         });
 
@@ -196,6 +196,11 @@ define([
 
           $('.hotspot-container').append(hotspot);
         }
+
+        $('body').on('hover', function() {
+          $('.hotspot-container').css('display', 'block')
+          console.log('hovering!')
+        });
 
         this.applyResizeAttributes();
       },
@@ -278,8 +283,8 @@ define([
         //update scrub bar
         var currentProgress = videoTimeObj.currentTime / videoTimeObj.duration;
 
-        $('.scrubber').children('p').css('width' , currentProgress * 100 + '%');
-        $('.scrubber').children('div').css('width' , (1 - currentProgress) * 100 + '%');
+        this.$('.scrubber').children('p').css('width' , currentProgress * 100 + '%');
+        this.$('.scrubber').children('div').css('width' , (1 - currentProgress) * 100 + '%');
         this.updateTagPosition(this.currentTime, this.duration);
 
         if (currentProgress >= 1.0) {
@@ -288,8 +293,8 @@ define([
 
           app.vent.trigger('showMask', true);
 
-          $('.replay-button').show();
-          $('.play-button').hide();
+          this.$('.replay-button').show();
+          this.$('.play-button').hide();
 
           this.isEnd = true;
         } else {
@@ -298,7 +303,7 @@ define([
       },
 
       onScrubberClick: function(event) {
-        var scrubberWidth = parseInt($('.scrubber').css('width'));
+        var scrubberWidth = parseInt(this.$('.scrubber').css('width'));
 
         //for touch devices
         var pageX;
@@ -325,7 +330,7 @@ define([
       },
 
       onReplayClick: function() {
-        $('.replay-button').hide();
+        this.$('.replay-button').hide();
         app.vent.trigger('replay');
         this.onMaskClick();
       },
@@ -372,11 +377,11 @@ define([
       },
 
       showControlBar: function() {
-        $('.controlBarScrubber').fadeIn();
+        this.$('.controlBarScrubber').fadeIn();
       },
 
       hideControlBar: function() {
-        $('.controlBarScrubber').fadeOut();
+        this.$('.controlBarScrubber').fadeOut();
       },
 
       onMouseMove: function() {

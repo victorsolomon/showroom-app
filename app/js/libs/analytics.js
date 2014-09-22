@@ -277,7 +277,7 @@ define([
     },
 
     logWatchInterval : function() {
-      // return;
+      return;
       var totalSessionTime = new Date().getTime() - this.sessionStartTime;
       var currentPlaybackTime = videoController.getCurrentTime();
       var pageLevelVars = {'totalSessionTime' : totalSessionTime, 'currentPlaybackTime' : currentPlaybackTime};

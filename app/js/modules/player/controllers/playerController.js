@@ -11,7 +11,7 @@ define([
       initialize: function(options) {},
 
       openPlayer: function() {
-        var cookieObj = $.cookie('cart-boba-guys');
+        var cookieObj = $.cookie('revolver-clothing');
 
         if (cookieObj) {
           cookieObj = JSON.parse(cookieObj);

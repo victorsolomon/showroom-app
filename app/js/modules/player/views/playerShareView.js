@@ -14,51 +14,47 @@ define([
       animateOutTopValue      : '-55%',
       animateOutTopValueSmall : '-55%',
 
-      events: {
-      },
+      events: {},
 
-      initialize: function() {
-      },
+      initialize: function() {},
 
       onShow: function() {
+        $("#share-region").attr('placeholder-top', $("#share-region").css('top'));
         $('.shareInput').val(app.config.shareUrl);
         var that = this;
-        app.bindClickTouch($('.embedSelector > li'), function(event) {
+        app.bindClickTouch(this.$('.embedSelector > li'), function(event) {
           that.playerSizeSelected(event);
         });
       },
 
       onRender: function() {
-        // TODO: what is .six40 doing?
         setTimeout(function() {
           $('.six40').click()
         }, 10);
       },
 
-      openShareMenu: function() {
-      },
+      openShareMenu: function() {},
 
-      closeShareMenu: function() {
-      },
+      closeShareMenu: function() {},
 
       playerSizeSelected: function(event){
-        $('.embedSelector > li').removeClass('selected');
+        this.$('.embedSelector > li').removeClass('selected');
         $(event.currentTarget).addClass('selected');
 
         var iframeWidth  = $(event.currentTarget).attr('data-width');
         var iframeHeight = $(event.currentTarget).attr('data-height');
         var iframeCode   = "&lt;iframe width=" + iframeWidth + " height=" + iframeHeight + " src='" + app.config.shareEmbedBaseUrl + "'&gt;&lt;/iframe&gt;"
 
-        $('.shareTextArea').html(iframeCode);
+        this.$('.shareTextArea').html(iframeCode);
         this.highlightEmbedCode();
       },
 
       highlightEmbedCode: function() {
-        $('.shareTextArea')[0].select();
+        this.$('.shareTextArea')[0].select();
       },
 
       highlightShareCode: function(){
-        $('.shareInput')[0].select();
+        this.$('.shareInput')[0].select();
       },
 
       animateIn: function() {

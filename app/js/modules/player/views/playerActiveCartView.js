@@ -37,31 +37,31 @@ define([
 
         var that = this;
 
-        app.bindClickTouch($('.active-left-arrow'), function(event) {
+        app.bindClickTouch(this.$('.active-left-arrow'), function(event) {
           that.onLeftActiveArrowClick(event);
         });
 
-        app.bindClickTouch($('.active-right-arrow'), function(event) {
+        app.bindClickTouch(this.$('.active-right-arrow'), function(event) {
           that.onRightActiveArrowClick(event);
         });
 
-        app.bindClickTouch($('.recommended-left-arrow'), function(event) {
+        app.bindClickTouch(this.$('.recommended-left-arrow'), function(event) {
           that.onLeftRecommendedArrowClick(event);
         });
 
-        app.bindClickTouch($('.recommended-right-arrow'), function(event) {
+        app.bindClickTouch(this.$('.recommended-right-arrow'), function(event) {
           that.onRightRecommendedArrowClick(event);
         });
 
-        app.bindClickTouch($('.activeCartDrawerBar'), function(event) {
+        app.bindClickTouch(this.$('.activeCartDrawerBar'), function(event) {
           that.onDrawerClick(event);
         });
 
-        app.bindClickTouch($('.sizeSelector > li'), function(event) {
+        app.bindClickTouch(this.$('.sizeSelector > li'), function(event) {
           that.sizeSelected(event);
         });
 
-        app.bindClickTouch($('.addButton'), function(event) {
+        app.bindClickTouch(this.$('.addButton'), function(event) {
           that.addButtonClick(event);
         });
 
@@ -83,11 +83,11 @@ define([
       openActiveCart: function() {
         $(this.el).parent().animate({ 'left' : this.openAnimLeftValue });
 
-        $('#active-cart-main-slider, #active-cart-info-and-actions, #recommended-cart-slider, .recommendText').each(function(index, item) {
+        this.$('#active-cart-main-slider, #active-cart-info-and-actions, #recommended-cart-slider, .recommendText').each(function(index, item) {
           $(item).animate( {'opacity' : 1 }, 200 );
         });
 
-        $('.handle').animate({ 'opacity' : 0 }, 200);
+        this.$('.handle').animate({ 'opacity' : 0 }, 200);
         this.isOpen = true;
       },
 
@@ -95,11 +95,11 @@ define([
         var closeValueToUse = (app.smallMode) ? this.closeAnimLeftValueSmall : this.closeAnimLeftValue;
 
         $(this.el).parent().animate({ 'left' : closeValueToUse });
-        $('#active-cart-main-slider, #active-cart-info-and-actions, #recommended-cart-slider, .recommendText').each( function( index, item ){
+        this.$('#active-cart-main-slider, #active-cart-info-and-actions, #recommended-cart-slider, .recommendText').each( function( index, item ){
           $(item).animate({ 'opacity' : 0 }, 200);
         });
 
-        $('.handle').animate({ 'opacity' : 1 }, 200);
+        this.$('.handle').animate({ 'opacity' : 1 }, 200);
         this.isOpen = false;
       },
 
@@ -109,9 +109,9 @@ define([
         this.selectedItem   = id;
         this.mainSliderPage = 1;
 
-        $('#title').html(itemData.itemTitle);
-        $('#price').html(itemData.itemPrice);
-        $('.description-content-td').html(itemData.itemDescription);
+        this.$('#title').html(itemData.itemTitle);
+        this.$('#price').html(itemData.itemPrice);
+        this.$('.description-content-td').html(itemData.itemDescription);
 
         if (itemData.hasSize) {
           $('.sizeSelector > li').css('visibility', 'visible');
@@ -119,10 +119,10 @@ define([
           $('.sizeSelector > li').css('visibility', 'hidden');
         }
 
-        $('.active-slider-container-inner-wrap').css({ 'margin-left' : '0%' });
+        this.$('.active-slider-container-inner-wrap').css({ 'margin-left' : '0%' });
 
         var imageUrl = app.config.baseProductImagePath + "large/" + itemData.largeItemSrc1;
-        $('.image-slide').css({ 'background-image' : 'url(' + imageUrl + ")" });
+        this.$('.image-slide').css({ 'background-image' : 'url(' + imageUrl + ")" });
       },
 
       onLeftActiveArrowClick: function() {
@@ -136,7 +136,7 @@ define([
           }
 
           var offset = -(this.mainSliderPage - 1) * 100 + '%';
-          $('.active-slider-container-inner-wrap').animate({ 'margin-left' : offset });
+          this.$('.active-slider-container-inner-wrap').animate({ 'margin-left' : offset });
         }
       },
 
@@ -150,8 +150,8 @@ define([
             this.mainSliderPage = 1;
           }
 
-          var offset = -( this.mainSliderPage - 1 ) * 100 + '%';
-          $('.active-slider-container-inner-wrap').animate( { 'margin-left' : offset });
+          var offset = -(this.mainSliderPage - 1) * 100 + '%';
+          this.$('.active-slider-container-inner-wrap').animate( { 'margin-left' : offset });
         }
       },
 
@@ -176,7 +176,7 @@ define([
       },
 
       sizeSelected: function(event) {
-        $('.sizeSelector > li').removeClass('selected');
+        this.$('.sizeSelector > li').removeClass('selected');
         $(event.currentTarget).addClass('selected');
 
         app.Analytics.logAnalyticEvent(app.Analytics.AC_LRG_ITEM_SIZE_SELECT, {});
@@ -214,7 +214,7 @@ define([
         }
 
         var offset = -( this.recommendedSliderPage - 1 ) * 100 + '%';
-        $('.recommended-slider-container-inner-wrap').animate({ 'margin-left' : offset });
+        this.$('.recommended-slider-container-inner-wrap').animate({ 'margin-left' : offset });
       },
 
       populateRecommededProducts: function() {
@@ -223,8 +223,9 @@ define([
         var amountOfSlides = Math.ceil(data.length / 2);
         var sliderWidth    = 100 * amountOfSlides;
         var slideWidth     = 100 / amountOfSlides + "%";
+        var itemId;
 
-        $('.recommended-slider-container-inner-wrap').css('width' , sliderWidth + "%");
+        this.$('.recommended-slider-container-inner-wrap').css('width' , sliderWidth + "%");
 
         for (var i = 0; i < data.length; i += 2) {
 
@@ -242,7 +243,7 @@ define([
           slide.append(slide1);
 
           app.bindClickTouch(slide1, function(event) {
-            var itemId = $(event.currentTarget).attr('itemId');
+            itemId = $(event.currentTarget).attr('itemId');
             that.loadItem(itemId);
             app.Analytics.logAnalyticEvent(app.Analytics.AC_RCM_ITEM_CLICK, { 'itemId' : itemId });
           });
@@ -265,7 +266,7 @@ define([
             });
           }
 
-          $('.recommended-slider-container-inner-wrap').append(slide);
+          this.$('.recommended-slider-container-inner-wrap').append(slide);
         }
       }
   });
