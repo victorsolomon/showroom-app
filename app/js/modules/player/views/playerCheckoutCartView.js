@@ -27,20 +27,30 @@ define([
       initialize : function(options) {},
 
       onShow: function() {
+        var that = this;
+
         this.closeCheckoutCart();
         app.vent.on('itemAdded', this.renderCart, this);
         app.vent.on('itemRemoved', this.renderCart, this);
 
         if (app.config.checkoutType == "email") {
-          $('.checkoutButton').attr('href', app.config.checkoutUrl).attr('target', '_top');
+          this.$('.checkoutButton').attr('href', app.config.checkoutUrl).attr('target', '_top');
         } else {
-          $('.checkoutButton').attr('href', app.config.checkoutUrl).attr('target', '_blank');
+          this.$('.checkoutButton').attr('href', app.config.checkoutUrl).attr('target', '_blank');
         }
 
-        var that = this;
-        app.bindClickTouch($('.checkoutCartDrawerBar'), function(event) { that.onDrawerClick(event); } );
-        app.bindClickTouch($('.checkoutButton'), function(event) { that.onCheckoutButtonClick(event); } );
-        app.bindClickTouch($('.logo'), function(event) { window.open('http://www.helloshowroom.co'); } );
+
+        app.bindClickTouch(this.$('.checkoutCartDrawerBar'), function(event) {
+          that.onDrawerClick(event);
+        });
+
+        app.bindClickTouch(this.$('.checkoutButton'), function(event) {
+          that.onCheckoutButtonClick(event);
+        });
+
+        app.bindClickTouch(this.$('.logo'), function(event) {
+          window.open('http://www.helloshowroom.co');
+        });
 
         app.on('resize', this.checkClosePosition, this);
       },
@@ -52,11 +62,11 @@ define([
       renderCart : function(){
         this.openCheckoutCart();
 
-        $('.items').empty();
+        this.$('.items').empty();
 
         for (var i in app.config.cartItems) {
           var item = this.generateItem(app.config.cartItems[i], i);
-          $('.items').append(item);
+          this.$('.items').append(item);
         }
       },
 
@@ -107,24 +117,24 @@ define([
       openCheckoutCart: function() {
         $(this.el).parent().animate({ 'right' : this.openAnimRightValue });
 
-        $('.items, .logo, .checkoutButton').each(function(index, item) {
+        this.$('.items, .logo, .checkoutButton').each(function(index, item) {
           $(item).animate({'opacity' : 1}, 200);
         });
 
-        $('.handle').animate({'opacity' : 0}, 200);
+        this.$('.handle').animate({'opacity' : 0}, 200);
         this.isOpen = true;
       },
 
       closeCheckoutCart: function() {
-        var closeValueToUse = ( app.smallMode ) ? this.closeAnimRightValueSmall : this.closeAnimRightValue;
+        var closeValueToUse = (app.smallMode) ? this.closeAnimRightValueSmall : this.closeAnimRightValue;
 
         $(this.el).parent().animate({'right' : closeValueToUse});
 
-        $('.items, .logo, .checkoutButton').each(function(index, item) {
+        this.$('.items, .logo, .checkoutButton').each(function(index, item) {
           $(item).animate({'opacity' : 0}, 200);
         });
 
-        $('.handle').animate({'opacity' : 1}, 200);
+        this.$('.handle').animate({'opacity' : 1}, 200);
         this.isOpen = false;
       },
 
@@ -201,7 +211,7 @@ define([
         var domainKey = this.getCookieDomain();
 
         // TODO: is this cookie only being used on boba guys?
-        $.cookie('cart-boba-guys', cookieDataEncodeStr, {expires : 7, domain : domainKey});
+        $.cookie('revolver-build', cookieDataEncodeStr, {expires : 7, domain : domainKey});
 
         domainKey ? window.open('https://' + domainKey + '/market/shop/cart') : window.open('https://squareup.com/market/shop/cart');
       },

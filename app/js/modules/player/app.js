@@ -2,7 +2,7 @@ define([
   'application',
   'modules/player/routers/playerRouter',
   'libs/analytics',
-], function (app, PlayerRouter, Analytics ) {
+], function (app, PlayerRouter, Analytics) {
 
     app.addInitializer(function () {
 

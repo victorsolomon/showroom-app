@@ -5,29 +5,29 @@
 <script data-main="js/clientConfig" src="js/libs/require.jquery.2.0.3.js"></script>
 <title>Iframe</title>
 <style>
-iframe{
-	border: none;
-	overflow: hidden;
-	width: 480px;
-	height: 271px;
-	border: solid 1px #333;
+iframe {
+  border: none;
+  overflow: hidden;
+  width: 480px;
+  height: 271px;
+  border: solid 1px #333;
 }
 </style>
 <script>
 function changeSize(width){
-	$('iframe').css('width', width).css('height', width * (9/16) );
+  $('iframe').css('width', width).css('height', width * (9/16) );
 }
 </script>
 </head>
 <body>
 <div>
-	<input value='480' onclick="changeSize(480);" type='button' />
-	<input value='600' onclick="changeSize(600);" type='button' />
-	<input value='1000' onclick="changeSize(1000);" type='button' />
-	<input value='1280' onclick="changeSize(1280);" type='button' />
-	<input value='1650' onclick="changeSize(1650);" type='button' />
-	<input value='1920' onclick="changeSize(1920);" type='button' />
+<input value='480' onclick="changeSize(480);" type='button' />
+<input value='600' onclick="changeSize(600);" type='button' />
+<input value='1000' onclick="changeSize(1000);" type='button' />
+<input value='1280' onclick="changeSize(1280);" type='button' />
+<input value='1650' onclick="changeSize(1650);" type='button' />
+<input value='1920' onclick="changeSize(1920);" type='button' />
 </div>
-<iframe src='index.html?config=showroomConfig' AllowFullScreen /></iframe>
+<iframe src='index.html?config=revolverConfig' AllowFullScreen /></iframe>
 </body>
 </html>
