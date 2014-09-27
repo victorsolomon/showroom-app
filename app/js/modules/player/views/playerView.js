@@ -20,7 +20,9 @@ define([
       isEnd: false,
 
       events: {
-        'mousemove': 'onMouseMove'
+        'mousemove': 'onMouseMove',
+        'mouseover': 'hoverBeaconsOn',
+        'mouseout': 'hoverBeaconsOff'
       },
 
       regions: {
@@ -197,12 +199,15 @@ define([
           $('.hotspot-container').append(hotspot);
         }
 
-        $('body').on('hover', function() {
-          $('.hotspot-container').css('display', 'block')
-          console.log('hovering!')
-        });
-
         this.applyResizeAttributes();
+      },
+
+      hoverBeaconsOn: function() {
+        this.$('.hotSpot').css({display: 'block', background: 'blue'});
+      },
+
+      hoverBeaconsOff: function() {
+        this.$('.hotSpot').css({display: 'none', background: 'none'});
       },
 
       tagClick: function(event) {

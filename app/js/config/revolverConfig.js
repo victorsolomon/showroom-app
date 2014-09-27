@@ -23,7 +23,7 @@ define([
           "id"              : "1",
           "index"           : "0",
           "largeItemSrc1"   : "Shot_1_Man_1.jpg",
-          "itemImageSrc"    : "Shot_1_Man_2.jpg",
+          "itemImageSrc"    : "Shot_1_Man_1.jpg",
           "itemTitle"       : "WON HUNDRED KNIT GREY",
           "itemDescription" : "Masculine waffle knit with a scoop neck and fine tailoring. A perfect layer over a slim collared shirt.",
           "itemPrice"       : "$165",
@@ -33,30 +33,74 @@ define([
         {
           "id"              : "2",
           "index"           : "1",
+          "largeItemSrc1"   : "Shot_1_Man_2.jpg",
+          "itemImageSrc"    : "Shot_1_Man_2.jpg",
+          "itemTitle"       : "WON HUNDRED KNIT GREY",
+          "itemDescription" : "Masculine waffle knit with a scoop neck and fine tailoring. A perfect layer over a slim collared shirt.",
+          "itemPrice"       : "$165",
+          "hasSize"         : true,
+          "sizes"           : [ 36, 38, 40, 42 ]
+        },
+        {
+          "id"              : "3",
+          "index"           : "2",
+          "largeItemSrc1"   : "Shot_1_Man_3.jpg",
+          "itemImageSrc"    : "Shot_1_Man_3.jpg",
+          "itemTitle"       : "WON HUNDRED KNIT GREY",
+          "itemDescription" : "Masculine waffle knit with a scoop neck and fine tailoring. A perfect layer over a slim collared shirt.",
+          "itemPrice"       : "$165",
+          "hasSize"         : true,
+          "sizes"           : [ 36, 38, 40, 42 ]
+        },
+        {
+          "id"              : "4",
+          "index"           : "3",
           "largeItemSrc1"   : "Shot_1_Woman_1.jpg",
-          "itemImageSrc"    : "Shot_1_Woman_1.jpg",
+          "itemImageSrc"    : "Shot_1_Woman_2.jpg",
           "itemTitle"       : "FIRST RITE ROLL TUNIC",
           "itemDescription" : "The one size roll tunic was cut with an easy, oversize fit to be comfortable, versatile, and perfect for year round wear. It is cut from 100% cotton gauze with a slightly crinkled texture which has been washed and dried. The interior is finished with french seams for a clean roll at the sleeve.",
           "itemPrice"       : "$140",
-          "hasSize"         : true,
-          "sizes"           : [ 36, 38, 40, 42 ]
+          "hasSize"         : false,
+          "sizes"           : []
+        },
+        {
+          "id"              : "5",
+          "index"           : "4",
+          "largeItemSrc1"   : "Shot_1_Woman_2.jpg",
+          "itemImageSrc"    : "Shot_1_Woman_2.jpg",
+          "itemTitle"       : "FIRST RITE ROLL TUNIC",
+          "itemDescription" : "The one size roll tunic was cut with an easy, oversize fit to be comfortable, versatile, and perfect for year round wear. It is cut from 100% cotton gauze with a slightly crinkled texture which has been washed and dried. The interior is finished with french seams for a clean roll at the sleeve.",
+          "itemPrice"       : "$140",
+          "hasSize"         : false,
+          "sizes"           : []
+        },
+        {
+          "id"              : "6",
+          "index"           : "5",
+          "largeItemSrc1"   : "Shot_1_Woman_3.jpg",
+          "itemImageSrc"    : "Shot_1_Woman_3.jpg",
+          "itemTitle"       : "FIRST RITE ROLL TUNIC",
+          "itemDescription" : "The one size roll tunic was cut with an easy, oversize fit to be comfortable, versatile, and perfect for year round wear. It is cut from 100% cotton gauze with a slightly crinkled texture which has been washed and dried. The interior is finished with french seams for a clean roll at the sleeve.",
+          "itemPrice"       : "$140",
+          "hasSize"         : false,
+          "sizes"           : []
         }
       ],
 
       hotSpots: [
         {
-        "id": "3",
+        "id": "1",
         "hotSpotId":"1",
         "index": "0",
-        "startTime":"0.08",
-        "endTime":"0.22",
+        "startTime":"0.00",
+        "endTime":"0.12",
         "hotSpotStartX":"0",
         "hotSpotStartY":"545",
         "hotSpotStartWidth":"506",
         "hotSpotStartHeight":"535"
       },
       {
-        "id": "2",
+        "id": "4",
         "hotSpotId":"2",
         "index": "0",
         "startTime":"0.08",
@@ -65,7 +109,7 @@ define([
         "hotSpotStartY":"568",
         "hotSpotStartWidth":"387",
         "hotSpotStartHeight":"512"
-      },
-      ]
+      }
+      ],
     }
 });
