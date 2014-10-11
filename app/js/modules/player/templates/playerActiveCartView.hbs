@@ -6,7 +6,7 @@
   <div class='active-right-arrow'></div>
   <div class='active-slider-container-outer-wrap'>
     <div class='active-slider-container-inner-wrap'>
-      <div class='slide image-slide'></div>
+      {{!-- <div class='slide image-slide'></div> --}}
       <div class='slide description'>
         <table class='description-content'>
           <tr>
@@ -23,14 +23,17 @@
     <div id='price' class='price'>$30</div>
   </div>
   <ul class='sizeSelector'>
-  {{!-- TODO: This mucks up the CSS if spaced out on separate lines --}}
-    <li data-value="XS" class='selected'>XS</li><li data-value="S">S</li><li data-value="M">M</li><li data-value="L">L</li><li data-value="XL">XL</li>
+    <li data-value="xsmall" data-size='XS'  data-variant=''>XS</li>
+    <li data-value="small" data-size='S'  data-variant=''>S</li>
+    <li data-value="medium" data-size='M'  data-variant=''>M</li>
+    <li data-value="large" data-size='L'  data-variant=''>L</li>
+    <li data-value="xlarge" data-size='XL'  data-variant=''>XL</li>
   </ul>
   <div class='addButton'>ADD</div>
 </div>
 <div class='recommendText'>
-  <div class='line'></div>
-  <div class='text'>RECOMMENDED</div>
+  {{!-- <div class='line'></div> --}}
+  {{!-- <div class='text'>RECOMMENDED</div> --}}
 </div>
 <div id="recommended-cart-slider">
   <div class='recommended-left-arrow'></div>

@@ -207,7 +207,7 @@ define([
       this.isDebug     = isDebug;
       sessionStartTime = new Date().getTime();
       var userId       = this.getUserId();
-      var moduleName   = "mainDemo";
+      var moduleName   = "revolverDemo";
 
       if (window._gaq) {
         return;
@@ -246,8 +246,6 @@ define([
 
     logAnalyticEvent : function(eventConfig, pageLevelVars) {
 
-      // eventConfig = AnalyticsConfig.getAnalyticsEventConfig( analyticEventConfigKey );
-
       var category           = eventConfig.category;
       var action             = eventConfig.action;
       var opt_label          = eventConfig.opt_label;
@@ -257,7 +255,6 @@ define([
       opt_label = (!opt_label) ? 'default' : opt_label;
       opt_value = (!opt_value) ? 'default' : opt_value;
       opt_noninteraction = (!opt_noninteraction) ? false : opt_noninteraction;
-      console.log(pageLevelVars);
 
       for (var i in pageLevelVars) {
         this.addCustomVar(this.ROLLING_GA_INDEX, i, pageLevelVars[i], this.GA_PAGE_LEVEL_VAR_INDEX);
@@ -281,7 +278,7 @@ define([
       var totalSessionTime = new Date().getTime() - this.sessionStartTime;
       var currentPlaybackTime = videoController.getCurrentTime();
       var pageLevelVars = {'totalSessionTime' : totalSessionTime, 'currentPlaybackTime' : currentPlaybackTime};
-      this.logAnalyticEvent( AnalyticsConfig.VID_INTERVAL_EVENT, pageLevelVars );
+      this.logAnalyticEvent(this.analyticVars.VID_INTERVAL_EVENT, pageLevelVars);
     },
 
     getUserId : function() {
@@ -293,77 +290,77 @@ define([
     //GENERAL
     playButtonControlBarClick : function() {
       pageLevelVars = {};
-      this.logAnalyticEvent(AnalyticsConfig.CB_PLAYBUTTON_CLICK, pageLevelVars);
+      this.logAnalyticEvent(this.analyticVars.CB_PLAYBUTTON_CLICK, pageLevelVars);
     },
 
     pauseButtonControlBarClick : function() {
       pageLevelVars = {};
-      this.logAnalyticEvent(AnalyticsConfig.CB_PLAYBUTTON_CLICK, pageLevelVars);
+      this.logAnalyticEvent(this.analyticVars.CB_PLAYBUTTON_CLICK, pageLevelVars);
     },
 
     jumpToTimeClick : function(time) {
       pageLevelVars = { 'timeJumpedTo' : time };
-      this.logAnalyticEvent(AnalyticsConfig.CB_JUMPTOTIME_CLICK, pageLevelVars);
+      this.logAnalyticEvent(this.analyticVars.CB_JUMPTOTIME_CLICK, pageLevelVars);
     },
 
     shareButtonClick : function() {
         pageLevelVars = {};
-        this.logAnalyticEvent(AnalyticsConfig.CB_SHAREBUTTON_CLICK, pageLevelVars);
+        this.logAnalyticEvent(this.analyticVars.CB_SHAREBUTTON_CLICK, pageLevelVars);
     },
 
     fullscreenClick : function() {
       pageLevelVars = {};
-      this.logAnalyticEvent(AnalyticsConfig.CB_FULLSCREEN_CLICK, pageLevelVars);
+      this.logAnalyticEvent(this.analyticVars.CB_FULLSCREEN_CLICK, pageLevelVars);
     },
 
     activeItemScrollRightClick : function() {
       pageLevelVars = {};
-      this.logAnalyticEvent( AnalyticsConfig.AC_LRG_ITEM_SCROLL_LEFT, pageLevelVars );
+      this.logAnalyticEvent(this.analyticVars.AC_LRG_ITEM_SCROLL_LEFT, pageLevelVars);
     },
 
     activeItemScrollLeftClick : function() {
       pageLevelVars = {};
-      this.logAnalyticEvent( AnalyticsConfig.AC_LRG_ITEM_SCROLL_RIGHT, pageLevelVars );
+      this.logAnalyticEvent(this.analyticVars.AC_LRG_ITEM_SCROLL_RIGHT, pageLevelVars);
     },
 
     activeItemSizeSelectClick : function( size ) {
       pageLevelVars = { 'size' : size };
-      this.logAnalyticEvent( AnalyticsConfig.AC_LRG_ITEM_SIZE_SELECT, pageLevelVars );
+      this.logAnalyticEvent(this.analyticVars.AC_LRG_ITEM_SIZE_SELECT, pageLevelVars);
     },
 
     recommendedItemScrollRightClick : function() {
       pageLevelVars = {};
-      this.logAnalyticEvent( AnalyticsConfig.AC_RCM_ITEM_SCROLL_RIGHT, pageLevelVars );
+      this.logAnalyticEvent(this.analyticVars.AC_RCM_ITEM_SCROLL_RIGHT, pageLevelVars);
     },
 
     recommendedItemScrollLeftClick : function() {
       pageLevelVars = {};
-      this.logAnalyticEvent( AnalyticsConfig.AC_RCM_ITEM_SCROLL_LEFT, pageLevelVars );
+      this.logAnalyticEvent(this.analyticVars.AC_RCM_ITEM_SCROLL_LEFT, pageLevelVars);
     },
 
     recommendedItemClick : function() {
       pageLevelVars = { "itemId" : itemId, "itemName" : itemName };
-      this.logAnalyticEvent( AnalyticsConfig.ACR, pageLevelVars );
+      this.logAnalyticEvent(this.analyticVars.ACR, pageLevelVars);
     },
 
     checkoutItemRemovedClick : function() {
       pageLevelVars = { "itemId" : itemId, "itemName" : itemName };
-      this.logAnalyticEvent( AnalyticsConfig.CHECKOUT_ITEM_REMOVED, pageLevelVars );
+      this.logAnalyticEvent(this.analyticVars.CHECKOUT_ITEM_REMOVED, pageLevelVars);
     },
 
     tagItemControlBarClick : function(itemId, itemName) {
       pageLevelVars = { "itemId" : itemId, "itemName" : itemName };
-      this.logAnalyticEvent( AnalyticsConfig.TAG_ITEM_CLICK, pageLevelVars );
+      this.logAnalyticEvent(this.analyticVars.TAG_ITEM_CLICK, pageLevelVars);
     },
 
     addItemClick : function(itemId, itemName) {
       pageLevelVars = { "itemId" : itemId, "itemName" : itemName };
-      this.logAnalyticEvent( AnalyticsConfig.ADD_ITEM_CLICK, pageLevelVars );
+      this.logAnalyticEvent(this.analyticVars.ADD_ITEM_CLICK, pageLevelVars);
     },
 
     checkoutClick : function() {
       pageLevelVars = {};
-      this.logAnalyticEvent( AnalyticsConfig.CHECKOUT_BUTTON_CLICK, pageLevelVars );
+      this.logAnalyticEvent(this.analyticVars.CHECKOUT_BUTTON_CLICK, pageLevelVars);
     }
   }
 });

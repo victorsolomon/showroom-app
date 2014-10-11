@@ -13,16 +13,15 @@ define([
       id        : "active-cart",
       className : "active-cart",
 
-      closeAnimLeftValue      : '-26.40625%',
+      closeAnimLeftValue      : '-37.40625%',
       closeAnimLeftValueSmall : '-37.70625%',
       openAnimLeftValue       : "0%",
 
       isOpen                     : false,
       selectedItem               : 1,
       mainSliderPage             : 1,
-      mainSliderPageTotal        : 2,
+      mainSliderPageTotal        : 4,
       recommendedSliderPage      : 1,
-      recommendedSliderPageTotal : 3,
 
       events: {},
 
@@ -31,9 +30,9 @@ define([
       },
 
       onShow: function() {
-        this.loadItem( 1 );
         this.populateRecommededProducts();
         this.closeActiveCart();
+        this.recommendedSliderPageTotal = Math.ceil(app.config.itemData.length / 3)
 
         var that = this;
 
@@ -104,7 +103,8 @@ define([
       },
 
       loadItem: function(id) {
-        var itemData = app.config.itemData[id-1];
+        var itemData = app.config.itemData[id - 1];
+        var container = $('.active-slider-container-inner-wrap');
 
         this.selectedItem   = id;
         this.mainSliderPage = 1;
@@ -121,8 +121,55 @@ define([
 
         this.$('.active-slider-container-inner-wrap').css({ 'margin-left' : '0%' });
 
-        var imageUrl = app.config.baseProductImagePath + "large/" + itemData.largeItemSrc1;
-        this.$('.image-slide').css({ 'background-image' : 'url(' + imageUrl + ")" });
+
+        if (container.find('.image-slide').length === 3) {
+          container.find('.image-slide').remove();
+        }
+
+        for (var i = 0; i < itemData.allImages.length; i++) {
+          var imageUrl = app.config.baseProductImagePath + "large/" + itemData.allImages[i];
+          var imageSlide = $("<div class='slide image-slide'></div>").css({ 'background-image' : 'url(' + imageUrl + ")" });
+          container.prepend(imageSlide);
+        }
+
+        var variants = itemData.variants;
+        var sizeButton = $('.sizeSelector');
+
+        $.map($('.sizeSelector').find('li'), function(e) {
+          $(e).removeClass('unavailable');
+          if ($(e).attr('data-variant') !== '')  {
+            return $(e).attr('data-variant', '');
+          }
+        });
+
+
+        if (variants != null)  {
+          if (variants.xsmall != null) {
+            sizeButton.find('li[data-value="xsmall"]').attr('data-variant', variants.xsmall.toString())
+          }
+
+          if (variants.small != null) {
+            sizeButton.find('li[data-value="small"]').attr('data-variant', variants.small.toString())
+          }
+
+          if (variants.medium != null) {
+            sizeButton.find('li[data-value="medium"]').attr('data-variant', variants.medium.toString())
+          }
+
+          if (variants.large != null) {
+            sizeButton.find('li[data-value="large"]').attr('data-variant', variants.large.toString())
+          }
+
+          if (variants.xlarge != null) {
+            sizeButton.find('li[data-value="xlarge"]').attr('data-variant', variants.xlarge.toString())
+          }
+        }
+
+        $.map(sizeButton.find('li'), function(el) {
+          if ($(el).attr('data-variant') === '') {
+            $(el).addClass('unavailable');
+          }
+        });
       },
 
       onLeftActiveArrowClick: function() {
@@ -138,6 +185,7 @@ define([
           var offset = -(this.mainSliderPage - 1) * 100 + '%';
           this.$('.active-slider-container-inner-wrap').animate({ 'margin-left' : offset });
         }
+        app.Analytics.activeItemScrollLeftClick();
       },
 
       onRightActiveArrowClick: function() {
@@ -151,8 +199,9 @@ define([
           }
 
           var offset = -(this.mainSliderPage - 1) * 100 + '%';
-          this.$('.active-slider-container-inner-wrap').animate( { 'margin-left' : offset });
+          this.$('.active-slider-container-inner-wrap').animate({ 'margin-left' : offset });
         }
+        app.Analytics.activeItemScrollRightClick();
       },
 
       loadPrevItemInSmallMode: function() {
@@ -177,22 +226,41 @@ define([
 
       sizeSelected: function(event) {
         this.$('.sizeSelector > li').removeClass('selected');
-        $(event.currentTarget).addClass('selected');
 
-        app.Analytics.logAnalyticEvent(app.Analytics.AC_LRG_ITEM_SIZE_SELECT, {});
+        if ($(event.currentTarget).hasClass('unavailable')) {
+          return;
+        } else {
+          $(event.currentTarget).addClass('selected');
+        }
+
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_LRG_ITEM_SIZE_SELECT, {});
       },
 
       addButtonClick: function() {
-        var size = $('.sizeSelector').children('.selected').attr('data-value');
+        if (app.cartManager.getItemById(this.selectedItem).variants.oneSize) {
+          var data     = app.cartManager.getItemById(this.selectedItem);
+          var cartItem = $.extend(true, {}, data);
+          cartItem.variant = app.cartManager.getItemById(this.selectedItem).variants.oneSize[0];
 
-        var data     = app.cartManager.getItemById(this.selectedItem);
-        var cartItem = $.extend(true, {}, data);
+          app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.ADD_ITEM_CLICK, { 'itemName' : cartItem.itemTitle, 'itemId' : cartItem.id });
 
-        cartItem.size = size;
-        app.Analytics.logAnalyticEvent(app.Analytics.ADD_ITEM_CLICK, { 'itemName' : cartItem.itemTitle, 'itemId' : cartItem.id });
+          app.cartManager.addItem(cartItem);
+          app.vent.trigger('itemAdded');
+        }
 
-        app.cartManager.addItem(cartItem);
-        app.vent.trigger('itemAdded');
+
+        if ($('.sizeSelector').children().hasClass('selected')) {
+          var size         = $('.sizeSelector').children('.selected').attr('data-size');
+          var data         = app.cartManager.getItemById(this.selectedItem);
+          var cartItem     = $.extend(true, {}, data);
+          cartItem.size    = size;
+          cartItem.variant = $('.sizeSelector').children('.selected').attr('data-variant')
+
+          app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.ADD_ITEM_CLICK, { 'itemName' : cartItem.itemTitle, 'itemId' : cartItem.id });
+
+          app.cartManager.addItem(cartItem);
+          app.vent.trigger('itemAdded');
+        }
       },
 
       onLeftRecommendedArrowClick: function() {
@@ -213,7 +281,7 @@ define([
           this.recommendedSliderPage = 1;
         }
 
-        var offset = -( this.recommendedSliderPage - 1 ) * 100 + '%';
+        var offset = -(this.recommendedSliderPage - 1) * 100 + '%';
         this.$('.recommended-slider-container-inner-wrap').animate({ 'margin-left' : offset });
       },
 
@@ -227,7 +295,7 @@ define([
 
         this.$('.recommended-slider-container-inner-wrap').css('width' , sliderWidth + "%");
 
-        for (var i = 0; i < data.length; i += 2) {
+        for (var i = 0; i < data.length; i+=3) {
 
           var slide = $("<div class='slide'></div>");
           slide.css('width', slideWidth);
@@ -245,29 +313,47 @@ define([
           app.bindClickTouch(slide1, function(event) {
             itemId = $(event.currentTarget).attr('itemId');
             that.loadItem(itemId);
-            app.Analytics.logAnalyticEvent(app.Analytics.AC_RCM_ITEM_CLICK, { 'itemId' : itemId });
+            app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'itemId' : itemId });
           });
 
           if (data[i+1]) {
-            var slide2 = $("<div class='slide2'></div>");
+            var slide2 = $("<div class='slide1'></div>");
             var imgUrl = app.config.baseProductImagePath + "small/" + data[i+1].largeItemSrc1;
 
             slide2.css({
               'background-image': 'url(' + imgUrl + ')',
               'background-size': 'contain',
               'background-repeat': 'no-repeat'
-            }).attr('itemId', data[i+1].id);
+            }).attr('itemId', data[i].id);
             slide.append(slide2);
 
             app.bindClickTouch(slide2, function(event) {
               var itemId = $(event.currentTarget).attr('itemId');
               that.loadItem(itemId);
-              app.Analytics.logAnalyticEvent( app.Analytics.AC_RCM_ITEM_CLICK, { 'itemId' : itemId } );
+              app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'itemId' : itemId } );
+            });
+          }
+
+          if (data[i+2]) {
+            var slide2 = $("<div class='slide1'></div>");
+            var imgUrl = app.config.baseProductImagePath + "small/" + data[i+2].largeItemSrc1;
+
+            slide2.css({
+              'background-image': 'url(' + imgUrl + ')',
+              'background-size': 'contain',
+              'background-repeat': 'no-repeat'
+            }).attr('itemId', data[i].id);
+            slide.append(slide2);
+
+            app.bindClickTouch(slide2, function(event) {
+              var itemId = $(event.currentTarget).attr('itemId');
+              that.loadItem(itemId);
+              app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'itemId' : itemId } );
             });
           }
 
           this.$('.recommended-slider-container-inner-wrap').append(slide);
         }
       }
-  });
+    });
 });

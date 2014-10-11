@@ -36,5 +36,5 @@
     name: "modules/player/app"
   }],
 
-  fileExclusionRegExp: /\.git|.sass-cache|tool|component|sass|0328|112313|modcloth|showroom|square|config.rb|docs|index.js/
+  fileExclusionRegExp: /\.git|.sass-cache|sass|tool|component|0328|112313|modcloth|showroom|square|config.rb|docs|index.js/
 })
