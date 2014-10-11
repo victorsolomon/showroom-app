@@ -2,7 +2,7 @@ define([
   'application',
   'modules/player/routers/playerRouter',
   'libs/analytics',
-], function (app, PlayerRouter, Analytics ) {
+], function (app, PlayerRouter, Analytics) {
 
     app.addInitializer(function () {
 
@@ -25,7 +25,7 @@ define([
           $('<img />').attr('src', imgSrcLarge );
         }
 
-        Analytics.initializeAnalytics('page' , false, app.config.gaKey);
+        Analytics.initializeAnalytics('page', false, app.config.gaKey);
 
         new PlayerRouter();
         Backbone.history.start();
@@ -68,7 +68,10 @@ define([
 
     app.bindClickTouch = function(selector, callback) {
       var eventType = this.isMobileSafari() ? 'touchstart' : 'click';
-      $(selector).bind(eventType, function(event) { callback(event); });
+
+      $(selector).bind(eventType, function(event) {
+        callback(event);
+      });
     };
 
     app.start();

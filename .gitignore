@@ -1,2 +1,5 @@
 .sass-cache
 node-modules
+app/static/movies
+.tags
+.tags_sorted_by_file
