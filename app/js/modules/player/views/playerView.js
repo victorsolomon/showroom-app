@@ -9,7 +9,7 @@ define([
   'modules/player/views/playerShareView',
   'modules/player/views/playerSplashVideoView'
 ], function (Marionette, app, template, PlayerVideoView, PlayerActiveCartView,
-             PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView ) {
+             PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView) {
 
     return Marionette.Layout.extend({
       template              : template,
@@ -20,9 +20,9 @@ define([
       isEnd: false,
 
       events: {
-        'mousemove': 'onMouseMove',
-        'mouseover': 'hoverBeaconsOn',
-        'mouseout': 'hoverBeaconsOff'
+        'mousemove' : 'onMouseMove',
+        'mouseover' : 'hoverBeaconsOn',
+        'mouseout'  : 'hoverBeaconsOff'
       },
 
       regions: {
@@ -165,6 +165,7 @@ define([
 
         app.bindClickTouch(this.$('.share-icn'), function(event) {
           that.onShareClick(event);
+          app.Analytics.shareButtonClick()
         });
 
         app.bindClickTouch(this.$('.fullscreen-icn'), function(event) {
@@ -177,6 +178,7 @@ define([
 
         app.bindClickTouch(this.$('.play-button'), function(event) {
           that.onMaskClick(event);
+          app.Analytics.playButtonControlBarClick()
         });
 
         app.bindClickTouch(this.$('#mask-region'), function(event) {
@@ -187,10 +189,14 @@ define([
 
           var hotspotItemData = app.config.hotSpots[i];
 
-          var hotspot = $('<div></div>').addClass('hotSpot')
+          var beacon = $('<div class="beacon"></div>')
+
+          var hotspot =
+                $('<div class="hotSpot"></div>')
                 .attr('id', 'hotspot' + hotspotItemData.hotSpotId)
                 .attr('itemId', hotspotItemData.id)
-                .attr('hotSpotId', hotspotItemData.hotSpotId);
+                .attr('hotSpotId', hotspotItemData.hotSpotId)
+                .append(beacon);
 
           app.bindClickTouch($(hotspot), function(event) {
             that.tagClick(event);
@@ -203,18 +209,22 @@ define([
       },
 
       hoverBeaconsOn: function() {
-        this.$('.hotSpot').css({display: 'block', background: 'blue'});
+        // For testing purposes
+        // $('.hotSpot').css({display: 'block', background: 'blue'});
+        $('.beacon').css({opacity: '1'});
       },
 
       hoverBeaconsOff: function() {
-        this.$('.hotSpot').css({display: 'none', background: 'none'});
+        // For testing purposes
+        // $('.hotSpot').css({display: 'none', background: 'none'});
+        $('.beacon').css({opacity: '0'});
       },
 
       tagClick: function(event) {
         var itemId = $(event.currentTarget).attr('itemId');
         var data   = app.cartManager.getItemById(itemId);
 
-        app.Analytics.logAnalyticEvent(app.Analytics.TAG_ITEM_CLICK, { 'itemName': data.itemTitle, 'itemId': data.id });
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.TAG_ITEM_CLICK, { 'itemName': data.itemTitle, 'itemId': data.id });
         app.vent.trigger('showMask');
         app.vent.trigger('pause');
 
@@ -257,6 +267,7 @@ define([
       },
 
       onShareClick: function() {
+        app.Analytics.shareButtonClick();
         app.vent.trigger('pause');
         app.vent.trigger('showMask');
         this.playerShareView.animateIn();
@@ -292,6 +303,8 @@ define([
         this.$('.scrubber').children('div').css('width' , (1 - currentProgress) * 100 + '%');
         this.updateTagPosition(this.currentTime, this.duration);
 
+        app.Analytics.jumpToTimeClick(this.currentTime);
+
         if (currentProgress >= 1.0) {
           this.playerActiveCartView.openActiveCart();
           this.playerCheckoutCartView.openCheckoutCart();
@@ -324,6 +337,7 @@ define([
         this.playerCheckoutCartView.closeCheckoutCart();
         this.playerShareView.animateOut();
         app.vent.trigger('hideMask');
+        app.Analytics.jumpToTimeClick(seekTime);
       },
 
       onMaskClick: function() {
@@ -342,7 +356,7 @@ define([
 
       onFullscreenClick: function() {
         var id = 'showroom-player';
-        app.Analytics.logAnalyticEvent(app.Analytics.CB_FULLSCREEN_CLICK, {});
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_FULLSCREEN_CLICK, {});
 
         if (!app.isFullscreen) {
           var element = document.getElementById(id);

@@ -4,227 +4,258 @@
 @import "framework"
 
 #active-cart-region
-	position: absolute
-	width: $cart-base-width-perc
-	height: 100%
-	top: 0px
-	left: -26.40625%
-	z-index: 5
-	background-color: #fff
+  position: absolute
+  width: 35%
+  height: 100%
+  top: 0px
+  left: -26.40625%
+  z-index: 5
+  background-color: #fff
 
 #active-cart
-	width: 100%
-	height: 100%
+  width: 100%
+  height: 100%
 
 //transparent object that is locked to the right side of the cart.  This is the clickable region which opens the cart
 .activeCartDrawerBar
-	position: absolute
-	height: 100%
-	right: 0px
-	z-index: 5
-	width: 8.723860589812%
-	cursor: pointer
+  position: absolute
+  height: 100%
+  right: 0px
+  z-index: 5
+  width: 8.723860589812%
+  cursor: pointer
 
-	.handle
-		display: none
-		position: relative
-		top: 42.41667%
-		left: 34.357142857143%
-		width: 45.714285714286%
-		height: 9.166666666667%
-		background-color: rgb( 183, 179, 179 )
-		border-radius: 5px
+  .handle
+    display: none
+    position: relative
+    top: 42.41667%
+    left: 34.357142857143%
+    width: 45.714285714286%
+    height: 9.166666666667%
+    background-color: rgb( 183, 179, 179 )
+    border-radius: 5px
 
 //main item "view" region
 #active-cart-main-slider
-	height: $main-slider-height-pct
-	width: $main-slider-width-pct
-	padding-left: $main-slider-left-offset
-	padding-top: $main-slider-top-offset 
-	position: relative
-	top: 1.2%
+  height: $main-slider-height-pct
+  width: 80%
+  position: relative
+  margin: 1.2% auto
 
-	.active-left-arrow
-		position: absolute
-		background: url( ../../images/sprite/common/left-arrow-grey.png ) no-repeat
-		background-size: contain
-		background-repeat: no-repeat
-		width: $arrow-width
-		height: $arrow-height
-		top: $active-arrow-top-offset
-		cursor: pointer
+  .active-left-arrow
+    position: absolute
+    background: url( ../../images/sprite/common/left-arrow-black.png) no-repeat
+    background-size: contain
+    background-repeat: no-repeat
+    width: $arrow-width
+    height: $arrow-height
+    top: $active-arrow-top-offset
+    cursor: pointer
 
-	.active-right-arrow
-		position: absolute
-		background: url( ../../images/sprite/common/right-arrow-grey.png ) no-repeat
-		background-repeat: no-repeat
-		background-size: contain
-		width: $arrow-width
-		height: $arrow-height
-		top: $active-arrow-top-offset
-		right: 0px
-		cursor: pointer
+  .active-right-arrow
+    position: absolute
+    background: url( ../../images/sprite/common/right-arrow-black.png) no-repeat
+    background-repeat: no-repeat
+    background-size: contain
+    width: $arrow-width
+    height: $arrow-height
+    top: $active-arrow-top-offset
+    right: 0px
+    cursor: pointer
 
-	//carousel styles
-	.active-slider-container-outer-wrap
-		width: 100%
-		height: 100%
-		overflow: hidden
+  //carousel styles
+  .active-slider-container-outer-wrap
+    width: 100%
+    height: 100%
+    overflow: hidden
+    margin-top: 10%
 
-		.active-slider-container-inner-wrap
-			width: 300%
-			height: 100%
+    .active-slider-container-inner-wrap
+      width: 420%
+      height: 100%
 
-			.slide
-				width: 33.3333333333%
-				height: 100%
-				display: inline-block
-				vertical-align: top
+      .slide
+        width: 24%
+        height: 100%
+        display: inline-block
+        vertical-align: top
+        margin-left: -3px
 
-			.image-slide
-				background-size: contain
-				background-repeat: no-repeat
-				background-position: center
+      .image-slide
+        background-size: contain
+        background-repeat: no-repeat
+        background-position: center
 
-			.description-content
-				padding: 0% 10%
-				font-size: 1.4rem
-				height: 100%
+      .description-content
+        padding: 0% 10%
+        font-size: 1.4rem
+        height: 100%
 
 //item pricing and definition
 #active-cart-info-and-actions
-	text-transform: uppercase
-	width: $main-slider-width-pct	
-	height: $info-and-actions-height
-	margin-left: $main-slider-left-offset
-	margin-top : $info-and-actions-top-offset
+  // width: $main-slider-width-pct
+  width: 67.30563%
+  height: $info-and-actions-height
+  // margin-left: $main-slider-left-offset
+  // margin-top : $info-and-actions-top-offset
+  margin: 7% auto 0 auto
 
-	.titleAndPrice
-		font-size: 1.75rem
-		letter-spacing: 0.275rem
-		color: #000
+  .titleAndPrice
+    font-size: 2rem
+    letter-spacing: 0.275rem
+    color: #000
+    text-align: center
+    width: 100%
+    position: relative
 
-		.price
-			font-weight: bold
+    .price
+      font-weight: bold
+      text-align: center
+      font-style: italic
 
-	.sizeSelector
-		width: 100%
-		display: inline-block
-		list-style: none
-		padding: 0px
-		margin: percentage( 15 / 307 ) 0px
+  .sizeSelector
+    width: 100%
+    display: inline-block
+    list-style: none
+    padding: 0px
+    margin: percentage( 15 / 307 ) 0px
+    font-family: brandon
 
-		li
-			font-family: brandon
-			display: inline-block
-			background: #4B9AD4
-			color: #fff
-			cursor: pointer
-			opacity: .5
-			width: 15.5%
-			padding: 2%
-			margin-left: 0.625%
-			text-align: center
-			font-size: 2.2rem
+    li
+      display: inline
+      background: #fff
+      color: #000
+      cursor: pointer
+      width: 16%
+      margin-right: 5%
+      font-size: 2.2rem
+      border: 1px solid #A0A0A0
+      text-align: center
+      float: left
+      opacity: 0.5
 
-		li.selected
-			opacity: 1
+    li.selected
+      opacity: 1
 
-		li:first-child
-			margin-left: 0%
+    li:last-child
+      margin-right: 0%
 
-	.addButton
-		font-family: brandon
-		display: inline-block
-		background: #4B9AD4
-		color: #fff
-		cursor: pointer
-		padding: 2%
-		text-align: center
-		font-size: 2.2rem
-		cursor: pointer
-		width: 96%
+  .addButton
+    font-family: brandon
+    display: inline-block
+    background: #000
+    color: #fff
+    cursor: pointer
+    padding: 2%
+    text-align: center
+    font-size: 2.2rem
+    cursor: pointer
+    width: 100%
+    font-weight: 700
 
 .recommendText
-	text-align: center
-	color: #000
-	font-size: 2.133rem
-	letter-spacing: 0.4rem
-	width: $main-slider-width-pct
-	height: 4.8%	
-	margin-left: $main-slider-left-offset
-	margin-top: 8.99412%
+  text-align: center
+  color: #000
+  font-size: 2.133rem
+  letter-spacing: 0.4rem
+  width: $main-slider-width-pct
+  height: 4.8%
+  margin-left: $main-slider-left-offset
+  margin-top: 8.99412%
+  display: none !important
 
-	.line
-		border-top: solid 1px #666
+  .line
+    border-top: solid 1px #666
 
-	.text
-		position: relative
-		top: -41%
-		background: white
-		width: 73%
-		margin: auto
+  .text
+    position: relative
+    top: -41%
+    background: white
+    width: 73%
+    margin: auto
 
 #recommended-cart-slider
-	height: $recommended-slider-height-pct
-	//background: rgba( 100, 100, 244, 0.4 )
-	position: relative
-	width: $main-slider-width-pct
-	margin-left: $main-slider-left-offset
+  height: $recommended-slider-height-pct
+  //background: rgba( 100, 100, 244, 0.4 )
+  position: relative
+  width: $main-slider-width-pct
+  // margin-left: $main-slider-left-offset
+  margin: 10% auto
 
-	.recommended-left-arrow
-		position: absolute
-		background: url( ../../images/sprite/common/left-arrow-grey.png ) no-repeat
-		background-size: contain
-		background-repeat: no-repeat
-		width: $recommended-arrow-width
-		height: $recommended-arrow-height
-		top: $recommended-arrow-top-offset
-		cursor: pointer
+  .recommended-left-arrow
+    position: absolute
+    background: url( ../../images/sprite/common/left-arrow-black.png ) no-repeat
+    background-size: contain
+    background-repeat: no-repeat
+    width: $recommended-arrow-width
+    height: $recommended-arrow-height
+    top: $recommended-arrow-top-offset
+    cursor: pointer
 
-	.recommended-right-arrow
-		position: absolute
-		background: url( ../../images/sprite/common/right-arrow-grey.png ) no-repeat
-		background-size: contain
-		background-repeat: no-repeat
-		width: $recommended-arrow-width
-		height: $recommended-arrow-height
-		top: $recommended-arrow-top-offset
-		right: 0px
-		cursor: pointer
+  .recommended-right-arrow
+    position: absolute
+    background: url( ../../images/sprite/common/right-arrow-black.png ) no-repeat
+    background-size: contain
+    background-repeat: no-repeat
+    width: $recommended-arrow-width
+    height: $recommended-arrow-height
+    top: $recommended-arrow-top-offset
+    right: 0px
+    cursor: pointer
 
-	//recommended slider styles
-	.recommended-slider-container-outer-wrap
-		width: 100%
-		height: 100%
-		overflow: hidden
+  //recommended slider styles
+  .recommended-slider-container-outer-wrap
+    width: 100%
+    height: 100%
+    overflow: hidden
+    margin-left: 9%
 
-		.recommended-slider-container-inner-wrap
-			width: 300%
-			height: 100%
+    .recommended-slider-container-inner-wrap
+      width: 300%
+      height: 100%
 
-			.slide
-				width: 100%
-				height: 100%
-				display: inline-block
-				vertical-align: top
-				cursor: pointer
+      .slide
+        width: 100%
+        height: 100%
+        display: inline-block
+        vertical-align: top
+        cursor: pointer
 
-				.slide1
+        .slide1
+          margin: 0% 2.5%
+          width: 24%
+          height: 100%
+          background-repeat: no-repeat
+          background-position: center
+          background-size: contain
+          display: inline
+          float: left
 
-					margin: 0% 7% 0% 13%
-					width: 30%
-					height: 100%
-					background-repeat: no-repeat
-					background-position: center
-					background-size: contain
-					display: inline-block
+        .slide1:first-child
+          margin-left: 0
 
-				.slide2
-					margin: 0% 13% 0% 7%
-					width: 30%
-					height: 100%
-					background-repeat: no-repeat
-					background-position: center
-					background-size: contain
-					display: inline-block
+        .slide1:last-child
+          margin-right: 0
+
+        .slide2
+          // margin: 0% 13% 0% 7%
+          width: 30%
+          height: 100%
+          background-repeat: no-repeat
+          background-position: center
+          background-size: contain
+          display: inline
+          float: left
+
+        .slide3
+          // margin: 0% 13% 0% 7%
+          width: 10%
+          height: 100%
+          background-repeat: no-repeat
+          background-position: center
+          background-size: contain
+          display: inline
+          float: left
+
+.unavailable
+  opacity: 0.1 !important

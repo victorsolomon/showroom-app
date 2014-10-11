@@ -42,7 +42,8 @@ define([
           that.onTimeUpdate(this.currentTime, this.duration);
         });
 
-        video[0].volume = 1.0;
+        //  TODO: TURN THIS BACK UP
+        video[0].volume = 0.0;
       },
 
       onCanPlay: function() {
@@ -62,11 +63,13 @@ define([
       pause: function() {
         this.$('video')[0].pause();
         app.isPlaying = false;
+        app.Analytics.pauseButtonControlBarClick();
       },
 
       play: function() {
         this.$('video')[0].play();
         app.isPlaying = true;
+        app.Analytics.playButtonControlBarClick();
       },
 
       replay: function() {

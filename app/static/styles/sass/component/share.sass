@@ -2,106 +2,105 @@
 
 @import "framework"
 
+*
+  box-sizing: border-box
+
 //global share region
 #share-region
-	font-family: brandon
-	position: absolute
-	width: $share-box-width
-	height: 28.83333%
-	background-color: #fff
-	margin-left: $share-box-left-offset
-	z-index: 5
-	border-radius: 0px 0px 3px 3px
-	top: -33%
-	placeholder-top: -$share-box-height
+  font-family: brandon
+  position: absolute
+  width: 35%
+  height: 28.83333%
+  background-color: #fff
+  margin-left: 35.70312%
+  z-index: 5
+  border-radius: 0px 0px 3px 3px
+  top: -33%
+  placeholder-top: -$share-box-height
 
 //padding on the container
 .share-menu
-	padding: 1.5045% 4.5045% 1.5045% 4.5045%
+  padding: 1.5045% 4.5045% 1.5045% 4.5045%
 
 //for share and embed title headers
 .header
-	font-size: 2.2rem
-	color: #000
-	text-align: center
+  font-size: 2.2rem
+  color: #000
+  text-align: center
 
-.shareInput, .shareTextArea
-	width: 97.5%
-	padding: 1%
-	border: solid 1px #000
-	font-family: avenir
-	font-size: 1.4rem
+.shareInput,
+.shareTextArea
+  width: 99.5%
+  padding: 1%
+  border: solid 1px #000
+  font-family: avenir
+  font-size: 1.4rem
 
 .shareTextArea
-	resize: none
-	height: 3.3em
+  resize: none
+  height: 3.3em
 
 .embedSelector
-	position: relative
-	top: -3px
-	display: inline-block
-	width: 100%
-	list-style: none
-	padding: 0px
-	margin: 0px
+  position: relative
+  display: inline-block
+  width: 100%
+  list-style: none
+  padding: 0px
+  margin: 7px 0
 
-	li
-		display: inline-block
-		background: #4B9AD4
-		color: #fff
-		cursor: pointer
-		opacity: .3
-		width: 22%
-		padding: 0.55% 1%
-		margin-right: 1.333%
-		text-align: left
-		font-size: 2.2rem
-		vertical-align: top
+  li
+    display: inline-block
+    background: #FFF
+    color: #000
+    cursor: pointer
+    opacity: .3
+    width: 23%
+    padding: 0.55% 1%
+    margin-right: 2%
+    text-align: center
+    font-size: 2.2rem
+    vertical-align: top
+    border: 1px solid #A0A0A0
 
-		span
-			float: left
-			position: relative
-			left: 20%
+    p
+      float: right
+      border: solid 1px #fff
+      width: 20%
+      position: relative
+      margin: 0px
 
-		p
-			float: right
-			border: solid 1px #fff
-			width: 20%
-			position: relative
-			margin: 0px
-	
-	li:last-child
-		margin-right: 0%
-	
-	.selected
-		opacity: 1
+  li:last-child
+    margin-right: 0%
 
-	//specific sizing requirements for the white outlined boxes in each dimension selector button
-	.six40 
-		p
-			right: 0px
-			border: solid 1px #fff
-			padding: 8% 0%
-			margin-top: 7%
+  .selected
+    opacity: 1
 
-	.eight50 
-		p
-			right: 0px
-			border: solid 1px #fff
-			padding: 8.5% 2%
-			margin-top: 6.5%
+  //specific sizing requirements for the white outlined boxes in each dimension selector button
+  .six40
+    p
+      right: 0px
+      border: solid 1px #fff
+      padding: 8% 0%
+      margin-top: 7%
 
-	.thousand 
-		p
-			right: 0px
-			border: solid 1px #fff
-			padding: 10% 2%
-			margin-top: 4.5%
+  .eight50
+    p
+      right: 0px
+      border: solid 1px #fff
+      padding: 8.5% 2%
+      margin-top: 6.5%
 
-	.twelve80
-		p
-			right: 0px
-			border: solid 1px #fff
-			padding: 11% 4%
-			margin-top: 3%
-			margin-left: 5%
+  .thousand
+    p
+      right: 0px
+      border: solid 1px #fff
+      padding: 10% 2%
+      margin-top: 4.5%
+
+  .twelve80
+    p
+      right: 0px
+      border: solid 1px #fff
+      padding: 11% 4%
+      margin-top: 3%
+      margin-left: 5%
