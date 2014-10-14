@@ -5,11 +5,10 @@ define([
 
     window.playerConfig = {
 
-      gaKey : 'UA-55433166-1',
+      gaKey : 'UA-55667188-1',
 
-      mp4_video_src_small  : "revolverDemo1.mp4",
-      mp4_video_src_med    : "revolverDemo2.mp4",
-      mp4_video_src_lrg    : "091414_Demo_5.mp4",
+      mp4_video_src_med  : "revolverDemo1.mp4",
+      webm_video_src_med : 'revolverDemo.webm',
 
       loaderStyle: 'image',
 
@@ -25,13 +24,52 @@ define([
       shareEmbedBaseUrl : "http://www.helloshowroom.co/player/showroom/index.html?config=revolverConfig",
       splashImage       : 'static/images/posterFrames/revolver-overlay.gif',
 
+      recommended: [
+        {
+          "id"            : 1,
+          "largeItemSrc1" : "Shot_1_Man_1.jpg"
+        },
+        {
+          "id"            : 4,
+          "largeItemSrc1" : "Shot_1_Woman_1.jpg"
+        },
+        {
+          "id"            : 7,
+          "largeItemSrc1" : "Shot_2_Man_1.jpg"
+        },
+        {
+          "id"            : 10,
+          "largeItemSrc1" : "Shot_2_Woman_1.jpg"
+        },
+        {
+          "id"            : 13,
+          "largeItemSrc1" : "Shot_3_Centerman_1_1.jpg"
+        },
+        {
+          "id"            : 16,
+          "largeItemSrc1" : "Shot_3_Centerman_2_1.jpg"
+        },
+        {
+          "id"            : 19,
+          "largeItemSrc1" : "Shot_3_RightMan_1.jpg"
+        },
+        {
+          "id"            : 22,
+          "largeItemSrc1" : "Shot_3_Woman_1.jpg"
+        },
+        {
+          "id"            : 25,
+          "largeItemSrc1" : "Shot_5_Man_1.jpg"
+        }
+      ],
+
       itemData: [
         {
           "id"                 : "1",
           "index"              : "0",
           "largeItemSrc1"      : "Shot_1_Man_1.jpg",
           "itemImageSrc"       : "Shot_1_Man_1.jpg",
-          "itemTitle"          : "Won Hundred Knit Grey",
+          "itemTitle"          : "Won Hundred Knit",
           "itemDescription"    : "Masculine waffle knit with a scoop neck and fine tailoring. A perfect layer over a slim collared shirt.",
           "itemPrice"          : "$165",
           "hasSize"            : true,
@@ -48,7 +86,7 @@ define([
           "index"              : "1",
           "largeItemSrc1"      : "Shot_1_Man_2.jpg",
           "itemImageSrc"       : "Shot_1_Man_2.jpg",
-          "itemTitle"          : "Won Hundred Knit Grey",
+          "itemTitle"          : "Won Hundred Knit",
           "itemDescription"    : "Masculine waffle knit with a scoop neck and fine tailoring. A perfect layer over a slim collared shirt.",
           "itemPrice"          : "$165",
           "hasSize"            : true,
@@ -59,7 +97,7 @@ define([
           "index"              : "2",
           "largeItemSrc1"      : "Shot_1_Man_3.jpg",
           "itemImageSrc"       : "Shot_1_Man_3.jpg",
-          "itemTitle"          : "Won Hundred Knit Grey",
+          "itemTitle"          : "Won Hundred Knit",
           "itemDescription"    : "Masculine waffle knit with a scoop neck and fine tailoring. A perfect layer over a slim collared shirt.",
           "itemPrice"          : "$165",
           "hasSize"            : true,
@@ -151,11 +189,6 @@ define([
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ],
           "allImages"          : ["Shot_2_Woman_3.jpg", "Shot_2_Woman_2.jpg", "Shot_2_Woman_1.jpg"]
-          // "variants"           : {
-          //   xsmall : ['701997349'],
-          //   small  : ['701997361'],
-          //   medium : ['701997365']
-          // }
         },
         {
           "id"                 : "11",
@@ -184,14 +217,13 @@ define([
           "index"              : "12",
           "largeItemSrc1"      : "Shot_3_Centerman_1_1.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_1_1.jpg",
-          "itemTitle"          : "Denham Advisor Parka - Black",
+          "itemTitle"          : "Denham Advisor Parka",
           "itemDescription"    : "Soft hand feel stretch fabric garment dyed to achieve a perfect color saturation enriched with a soft brush effect. Full removable hood. Side flap pockets. Single vertical chest pocket. Hidden zip snap closure down the front.",
           "itemPrice"          : "$199",
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ],
           "allImages"          : ["Shot_3_Centerman_1_3.jpg", "Shot_3_Centerman_1_2.jpg", "Shot_3_Centerman_1_1.jpg"],
           "variants"           : {
-            small  : ['542750841'],
             medium : ['542750845'],
             large  : ['542750849']
           }
@@ -201,7 +233,7 @@ define([
           "index"              : "13",
           "largeItemSrc1"      : "Shot_3_Centerman_1_2.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_1_2.jpg",
-          "itemTitle"          : "Denham Advisor Parka - Black",
+          "itemTitle"          : "Denham Advisor Parka",
           "itemDescription"    : "Soft hand feel stretch fabric garment dyed to achieve a perfect color saturation enriched with a soft brush effect. Full removable hood. Side flap pockets. Single vertical chest pocket. Hidden zip snap closure down the front.",
           "itemPrice"          : "$199",
           "hasSize"            : true,
@@ -212,7 +244,7 @@ define([
           "index"              : "14",
           "largeItemSrc1"      : "Shot_3_Centerman_1_3.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_1_3.jpg",
-          "itemTitle"          : "Denham Advisor Parka - Black",
+          "itemTitle"          : "Denham Advisor Parka",
           "itemDescription"    : "Soft hand feel stretch fabric garment dyed to achieve a perfect color saturation enriched with a soft brush effect. Full removable hood. Side flap pockets. Single vertical chest pocket. Hidden zip snap closure down the front.",
           "itemPrice"          : "$199",
           "hasSize"            : true,
@@ -223,7 +255,7 @@ define([
           "index"              : "15",
           "largeItemSrc1"      : "Shot_3_Centerman_2_1.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_2_1.jpg",
-          "itemTitle"          : "Denham Simpler SCC Black",
+          "itemTitle"          : "Denham Simpler SCC",
           "itemDescription"    : "Denham is a label built on experimentation and resourceful innovation. This shirt is a versatile dress shirt with modernized military detailing. Stitched dart detailing to the chest and the back. A discrete leather Denham Logo tag on the seam. Full branded button fastening.",
           "itemPrice"          : "$169",
           "hasSize"            : true,
@@ -238,7 +270,7 @@ define([
           "index"              : "16",
           "largeItemSrc1"      : "Shot_3_Centerman_2_2.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_2_2.jpg",
-          "itemTitle"          : "Denham Simpler SCC Black",
+          "itemTitle"          : "Denham Simpler SCC",
           "itemDescription"    : "Denham is a label built on experimentation and resourceful innovation. This shirt is a versatile dress shirt with modernized military detailing. Stitched dart detailing to the chest and the back. A discrete leather Denham Logo tag on the seam. Full branded button fastening.",
           "itemPrice"          : "$169",
           "hasSize"            : true,
@@ -249,7 +281,7 @@ define([
           "index"              : "17",
           "largeItemSrc1"      : "Shot_3_Centerman_2_3.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_2_3.jpg",
-          "itemTitle"          : "Denham Simpler SCC Black",
+          "itemTitle"          : "Denham Simpler SCC",
           "itemDescription"    : "Denham is a label built on experimentation and resourceful innovation. This shirt is a versatile dress shirt with modernized military detailing. Stitched dart detailing to the chest and the back. A discrete leather Denham Logo tag on the seam. Full branded button fastening.",
           "itemPrice"          : "$169",
           "hasSize"            : true,
@@ -260,7 +292,7 @@ define([
           "index"              : "18",
           "largeItemSrc1"      : "Shot_3_RightMan_1.jpg",
           "itemImageSrc"       : "Shot_3_RightMan_1.jpg",
-          "itemTitle"          : "Denham Tailor - SG Jacket - Black",
+          "itemTitle"          : "Denham Tailor - SG Jacket",
           "itemDescription"    : "The new SG is a 2-button sport coat with unique radial seam construction combining an artisan feel with a subtly anatomical silhouette. Tailored in stretch cotton gaberdine and garment-dyed, the touch and tone are natural and the movement and comfort are modern. Spread collar. 2 button closure. Side slash pockets.",
           "itemPrice"          : "$275",
           "hasSize"            : true,
@@ -276,7 +308,7 @@ define([
           "index"              : "19",
           "largeItemSrc1"      : "Shot_3_RightMan_2.jpg",
           "itemImageSrc"       : "Shot_3_RightMan_2.jpg",
-          "itemTitle"          : "Denham Tailor - SG Jacket - Black",
+          "itemTitle"          : "Denham Tailor - SG Jacket",
           "itemDescription"    : "The new SG is a 2-button sport coat with unique radial seam construction combining an artisan feel with a subtly anatomical silhouette. Tailored in stretch cotton gaberdine and garment-dyed, the touch and tone are natural and the movement and comfort are modern. Spread collar. 2 button closure. Side slash pockets.",
           "itemPrice"          : "$275",
           "hasSize"            : true,
@@ -287,7 +319,7 @@ define([
           "index"              : "20",
           "largeItemSrc1"      : "Shot_3_RightMan_3.jpg",
           "itemImageSrc"       : "Shot_3_RightMan_3.jpg",
-          "itemTitle"          : "Denham Tailor - SG Jacket - Black",
+          "itemTitle"          : "Denham Tailor - SG Jacket",
           "itemDescription"    : "The new SG is a 2-button sport coat with unique radial seam construction combining an artisan feel with a subtly anatomical silhouette. Tailored in stretch cotton gaberdine and garment-dyed, the touch and tone are natural and the movement and comfort are modern. Spread collar. 2 button closure. Side slash pockets.",
           "itemPrice"          : "$275",
           "hasSize"            : true,
@@ -303,11 +335,7 @@ define([
           "itemPrice"          : "$150",
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ],
-          "allImages"          : ["Shot_3_Woman_3.jpg", "Shot_3_Woman_2.jpg", "Shot_3_Woman_1.jpg"],
-          "variants"           : {
-            small  : ['641248213'],
-            medium : ['641248217']
-          }
+          "allImages"          : ["Shot_3_Woman_3.jpg", "Shot_3_Woman_2.jpg", "Shot_3_Woman_1.jpg"]
         },
         {
           "id"                 : "23",
@@ -336,7 +364,7 @@ define([
           "index"              : "24",
           "largeItemSrc1"      : "Shot_5_Man_1.jpg",
           "itemImageSrc"       : "Shot_5_Man_1.jpg",
-          "itemTitle"          : "Zanerobe Seven Fit LS Shirt - Acid Black",
+          "itemTitle"          : "Zanerobe Seven Fit LS Shirt",
           "itemDescription"    : "Streamlined shirt tailored in a classic long-sleeve, button-up style. Featured in an acid black denim wash. Button down collar. Contrast button closure down the placket and cuffs. Single patch pocket with button detail on the chest. 100% cotton.",
           "itemPrice"          : "$119",
           "hasSize"            : true,
@@ -353,7 +381,7 @@ define([
           "index"              : "25",
           "largeItemSrc1"      : "Shot_5_Man_2.jpg",
           "itemImageSrc"       : "Shot_5_Man_2.jpg",
-          "itemTitle"          : "Zanerobe Seven Fit LS Shirt - Acid Black",
+          "itemTitle"          : "Zanerobe Seven Fit LS Shirt",
           "itemDescription"    : "Streamlined shirt tailored in a classic long-sleeve, button-up style. Featured in an acid black denim wash. Button down collar. Contrast button closure down the placket and cuffs. Single patch pocket with button detail on the chest. 100% cotton.",
           "itemPrice"          : "$119",
           "hasSize"            : true,
@@ -364,7 +392,7 @@ define([
           "index"              : "26",
           "largeItemSrc1"      : "Shot_5_Man_3.jpg",
           "itemImageSrc"       : "Shot_5_Man_3.jpg",
-          "itemTitle"          : "Zanerobe Seven Fit LS Shirt - Acid Black",
+          "itemTitle"          : "Zanerobe Seven Fit LS Shirt",
           "itemDescription"    : "Streamlined shirt tailored in a classic long-sleeve, button-up style. Featured in an acid black denim wash. Button down collar. Contrast button closure down the placket and cuffs. Single patch pocket with button detail on the chest. 100% cotton.",
           "itemPrice"          : "$119",
           "hasSize"            : true,

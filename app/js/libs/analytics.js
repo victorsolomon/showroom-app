@@ -282,7 +282,7 @@ define([
     },
 
     getUserId : function() {
-      return "jeremy";
+      return "dave";
     },
 
     //start custom logging
@@ -358,8 +358,8 @@ define([
       this.logAnalyticEvent(this.analyticVars.ADD_ITEM_CLICK, pageLevelVars);
     },
 
-    checkoutClick : function() {
-      pageLevelVars = {};
+    checkoutClick : function(items, date) {
+      pageLevelVars = { 'items': items, 'date': 'date'};
       this.logAnalyticEvent(this.analyticVars.CHECKOUT_BUTTON_CLICK, pageLevelVars);
     }
   }
