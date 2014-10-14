@@ -42,8 +42,7 @@ define([
           that.onTimeUpdate(this.currentTime, this.duration);
         });
 
-        //  TODO: TURN THIS BACK UP
-        video[0].volume = 0.0;
+        video[0].volume = 1.0;
       },
 
       onCanPlay: function() {

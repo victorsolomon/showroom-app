@@ -32,7 +32,8 @@ define([
       onShow: function() {
         this.populateRecommededProducts();
         this.closeActiveCart();
-        this.recommendedSliderPageTotal = Math.ceil(app.config.itemData.length / 3)
+        this.recommendedSliderPageTotal = Math.ceil(app.config.recommended.length / 3)
+        this.loadItem(1);
 
         var that = this;
 
@@ -68,7 +69,7 @@ define([
       },
 
       onDrawerClick: function() {
-        this.isOpen ? this.closeActiveCart() : this.openActiveCart;
+        this.isOpen ? this.closeActiveCart() : this.openActiveCart();
         app.vent.trigger('activeDrawerClick');
       },
 
@@ -103,6 +104,7 @@ define([
       },
 
       loadItem: function(id) {
+        this.$('.sizeSelector > li').removeClass('selected');
         var itemData = app.config.itemData[id - 1];
         var container = $('.active-slider-container-inner-wrap');
 
@@ -237,6 +239,16 @@ define([
       },
 
       addButtonClick: function() {
+        var startingData = app.config.cartItems;
+
+        if (startingData.length > 0) {
+          for (var i = 0; i < startingData.length; i++) {
+            if (startingData[i].id === this.selectedItem) {
+              return;
+            }
+          }
+        }
+
         if (app.cartManager.getItemById(this.selectedItem).variants.oneSize) {
           var data     = app.cartManager.getItemById(this.selectedItem);
           var cartItem = $.extend(true, {}, data);
@@ -246,10 +258,7 @@ define([
 
           app.cartManager.addItem(cartItem);
           app.vent.trigger('itemAdded');
-        }
-
-
-        if ($('.sizeSelector').children().hasClass('selected')) {
+        } else if ($('.sizeSelector').children().hasClass('selected')) {
           var size         = $('.sizeSelector').children('.selected').attr('data-size');
           var data         = app.cartManager.getItemById(this.selectedItem);
           var cartItem     = $.extend(true, {}, data);
@@ -286,9 +295,9 @@ define([
       },
 
       populateRecommededProducts: function() {
-        var data           = app.config.itemData;
+        var data           = app.config.recommended;
         var that           = this;
-        var amountOfSlides = Math.ceil(data.length / 2);
+        var amountOfSlides = Math.ceil(data.length / 3);
         var sliderWidth    = 100 * amountOfSlides;
         var slideWidth     = 100 / amountOfSlides + "%";
         var itemId;
@@ -324,7 +333,7 @@ define([
               'background-image': 'url(' + imgUrl + ')',
               'background-size': 'contain',
               'background-repeat': 'no-repeat'
-            }).attr('itemId', data[i].id);
+            }).attr('itemId', data[i+1].id);
             slide.append(slide2);
 
             app.bindClickTouch(slide2, function(event) {
@@ -342,7 +351,7 @@ define([
               'background-image': 'url(' + imgUrl + ')',
               'background-size': 'contain',
               'background-repeat': 'no-repeat'
-            }).attr('itemId', data[i].id);
+            }).attr('itemId', data[i+2].id);
             slide.append(slide2);
 
             app.bindClickTouch(slide2, function(event) {

@@ -12,11 +12,10 @@ define([
       tagName  : 'div',
       id       : "checkout-cart",
 
-      // TODO: why are these numbers so specific?
       closeAnimRightValue      : '-26.40625%',
       closeAnimRightValueSmall : '-35.79167%',
       openAnimRightValue       : "0%",
-
+      otherLink : '',
       isOpen : false,
 
       events: {
@@ -140,10 +139,7 @@ define([
         this.isOpen = false;
       },
 
-      // TODO: is there another way to check for shopify? string checking seems fragile
       onCheckoutButtonClick: function() {
-        app.Analytics.checkoutClick();
-
         if (app.config.checkoutType === 'shopify') {
           this.performShopifyCheckout();
         } else if (app.config.checkoutType === 'cookie') {
@@ -152,6 +148,10 @@ define([
       },
 
       performShopifyCheckout: function() {
+        if (app.config.cartItems.length === 0) {
+          return;
+        }
+
         var permalink = '';
         for (var i = 0; i < app.config.cartItems.length; i++) {
           permalink +=  app.config.cartItems[i].variant + ':1,'
@@ -159,9 +159,10 @@ define([
 
         var newDate     = new Date();
         var currentTime = (newDate.getMonth() + 1) + '-' + newDate.getDay(); + '-' + newDate.getFullYear();
-        var referral    = '?note=came-from-showroom-' + currentTime
-
-        return this.otherLink = app.config.checkoutUrl + permalink + referral;
+        var referral    = '?note=i-know-you-see-me-on-the-video' + currentTime;
+        app.Analytics.checkoutClick(app.config.cartItems, currentTime);
+        this.otherLink = app.config.checkoutUrl + permalink + referral;
+        return this.otherLink;
       },
 
 
