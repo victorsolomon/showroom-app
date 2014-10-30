@@ -20,7 +20,7 @@ define([
       checkoutCartLocation : "http://www.revolveronline.com/cart",
 
       checkoutType      : "shopify",
-      shareUrl          : "http://www.helloshowroom.co/revolver",
+      shareUrl          : "http://www.helloshowroom.co/revolver/index.html",
       shareEmbedBaseUrl : "http://www.helloshowroom.co/revolver/index.html?config=revolverConfig",
       splashImage       : 'static/images/posterFrames/revolver-overlay.gif',
 

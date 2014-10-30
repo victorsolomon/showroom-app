@@ -334,10 +334,6 @@ define([
       },
 
       populateVariantColors: function() {
-        if (app.smallMode) {
-          return;
-        }
-
         if ($('.color-selector').children().length !== 0) {
           $('.color-selector').children().remove();
         }
