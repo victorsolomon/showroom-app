@@ -43,7 +43,9 @@ define([
 
         var iframeWidth  = $(event.currentTarget).attr('data-width');
         var iframeHeight = $(event.currentTarget).attr('data-height');
-        var iframeCode   = "&lt;iframe width=" + iframeWidth + " height=" + iframeHeight + " src='" + app.config.shareEmbedBaseUrl + "'&gt;&lt;/iframe&gt;"
+        var iframeCode   = '<div id="iframe-container" style="max-width:' + iframeWidth + 'px"><div class="video-container" style="position:relative; padding-bottom:56.25%; padding-top:35px; height:0; overflow:hidden;"><iframe width=' + iframeWidth +  " height=" + iframeHeight + " src='" + app.config.shareEmbedBaseUrl + "' style='position: absolute; top:0; left:0; width:100%; height:100%;'></iframe></div></div>'";
+
+
 
         this.$('.shareTextArea').html(iframeCode);
         this.highlightEmbedCode();

@@ -1,0 +1,153 @@
+/* line 6, ../../sass/component/smallSizeFixes.sass */
+.smallApp #active-cart-region {
+  left: -37.70625%;
+  width: 41.14062%;
+}
+/* line 10, ../../sass/component/smallSizeFixes.sass */
+.smallApp #active-cart-region .recommendText {
+  display: none;
+}
+/* line 12, ../../sass/component/smallSizeFixes.sass */
+.smallApp #active-cart-region #recommended-cart-slider {
+  display: none;
+}
+/* line 15, ../../sass/component/smallSizeFixes.sass */
+.smallApp #active-cart-region #active-cart-main-slider {
+  height: 57.77778%;
+  padding-top: 0.75889%;
+}
+/* line 19, ../../sass/component/smallSizeFixes.sass */
+.smallApp #active-cart-region #active-cart-info-and-actions {
+  margin-top: 9.15294%;
+  width: 71.30563%;
+}
+/* line 23, ../../sass/component/smallSizeFixes.sass */
+.smallApp #active-cart-region #active-cart-info-and-actions .titleAndPrice {
+  font-size: 3rem;
+  letter-spacing: 0.125rem;
+}
+/* line 27, ../../sass/component/smallSizeFixes.sass */
+.smallApp #active-cart-region #active-cart-info-and-actions .titleAndPrice .title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+/* line 32, ../../sass/component/smallSizeFixes.sass */
+.smallApp #active-cart-region #active-cart-info-and-actions .sizeSelector {
+  margin: 3.5% 0%;
+}
+/* line 36, ../../sass/component/smallSizeFixes.sass */
+.smallApp #active-cart-region #active-cart-info-and-actions .sizeSelector li {
+  font-size: 3rem;
+}
+/* line 39, ../../sass/component/smallSizeFixes.sass */
+.smallApp #active-cart-region #active-cart-info-and-actions .addButton {
+  padding: 2.5% 2%;
+  font-size: 3rem;
+}
+/* line 43, ../../sass/component/smallSizeFixes.sass */
+.smallApp #checkout-cart-region {
+  width: 39.14063%;
+  right: -35.78625%;
+}
+/* line 48, ../../sass/component/smallSizeFixes.sass */
+.smallApp #checkout-cart-region .items {
+  height: 77%;
+}
+/* line 52, ../../sass/component/smallSizeFixes.sass */
+.smallApp #checkout-cart-region .items .cartItem {
+  font-size: 3rem;
+  letter-spacing: 0.175rem;
+  height: 24.88629%;
+}
+/* line 57, ../../sass/component/smallSizeFixes.sass */
+.smallApp #checkout-cart-region .items .cartItem .itemSize {
+  width: 17%;
+}
+/* line 60, ../../sass/component/smallSizeFixes.sass */
+.smallApp #checkout-cart-region .items .cartItem .cartItemDescription {
+  width: 56%;
+}
+/* line 63, ../../sass/component/smallSizeFixes.sass */
+.smallApp #checkout-cart-region .items .cartItem .cartItemTitle {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+/* line 68, ../../sass/component/smallSizeFixes.sass */
+.smallApp #checkout-cart-region .items .cartItem .cartItemImage {
+  margin-right: 3%;
+}
+/* line 71, ../../sass/component/smallSizeFixes.sass */
+.smallApp #checkout-cart-region .checkoutButton {
+  padding: 3% 0%;
+  bottom: 9.47222%;
+  font-size: 3rem;
+}
+/* line 76, ../../sass/component/smallSizeFixes.sass */
+.smallApp #checkout-cart-region .logo {
+  height: 5%;
+  background: url(../../images/sprite/common/POWER.png) no-repeat;
+  background-size: 100%;
+  bottom: 3.16667%;
+  background-position: right;
+  width: 72.4%;
+}
+/* line 84, ../../sass/component/smallSizeFixes.sass */
+.smallApp #share-region {
+  top: -55%;
+  width: 74.4375%;
+  margin-left: 12.70312%;
+  height: 54.83333%;
+}
+/* line 90, ../../sass/component/smallSizeFixes.sass */
+.smallApp #share-region .header {
+  font-size: 3.8rem;
+}
+/* line 93, ../../sass/component/smallSizeFixes.sass */
+.smallApp #share-region textarea {
+  height: 3em;
+}
+/* line 96, ../../sass/component/smallSizeFixes.sass */
+.smallApp #share-region .shareInput, .smallApp #share-region .shareTextArea {
+  font-size: 3rem;
+}
+/* line 100, ../../sass/component/smallSizeFixes.sass */
+.smallApp #share-region .embedSelector li {
+  padding: 1.55% 1%;
+  font-size: 3.5rem;
+}
+/* line 105, ../../sass/component/smallSizeFixes.sass */
+.smallApp #share-region .embedSelector .six40 p {
+  margin-top: 5%;
+}
+/* line 109, ../../sass/component/smallSizeFixes.sass */
+.smallApp #share-region .embedSelector .eight50 p {
+  margin-top: 3.5%;
+}
+/* line 113, ../../sass/component/smallSizeFixes.sass */
+.smallApp #share-region .embedSelector .thousand p {
+  margin-top: 2.5%;
+}
+/* line 117, ../../sass/component/smallSizeFixes.sass */
+.smallApp #share-region .embedSelector .twelve80 p {
+  margin-top: 2.5%;
+}
+/* line 119, ../../sass/component/smallSizeFixes.sass */
+.smallApp .play-button {
+  top: 63.52778%;
+}
+/* line 122, ../../sass/component/smallSizeFixes.sass */
+.smallApp .share-icn {
+  bottom: 1.5%;
+  background: url(../../images/sprite/common/share-icn.png) no-repeat;
+  background-position: 50%;
+  background-size: 26%;
+  width: 19.25%;
+  height: 25.5%;
+  left: 36.96875%;
+}
+/* line 130, ../../sass/component/smallSizeFixes.sass */
+.smallApp .fullscreen-icn {
+  bottom: 7.7%;
+}

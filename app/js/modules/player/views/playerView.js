@@ -78,7 +78,6 @@ define([
       },
 
       applyResizeAttributes: function() {
-
         var playerWidth = $('html').width();
 
         if (playerWidth <= 600) {
@@ -128,9 +127,10 @@ define([
         $('.fullscreen-icn').show();
       },
 
-      calculateContainerSize: function() {
+      calculateContainerSize: function(argument) {
         var windowWidth = $(window).width();
         var htmlHeight = windowWidth * (9 / 16);
+        console.log(htmlHeight);
         $('html, #showroom-player').css('width' , windowWidth).css('height' , htmlHeight);
 
         if (app.isMobileSafari()) {
@@ -173,7 +173,7 @@ define([
         });
 
         app.bindClickTouch(this.$('.replay-button'), function(event) {
-            that.onReplayClick(event);
+          that.onReplayClick(event);
         });
 
         app.bindClickTouch(this.$('.play-button'), function(event) {
@@ -185,11 +185,25 @@ define([
           that.onMaskClick(event);
         });
 
-        for (var i in app.config.hotSpots) {
+        this.createBeacons();
+        this.applyResizeAttributes();
+      },
 
+      createBeacons: function() {
+        if (app.config.hotSpots.length === $('.hotspot-container').children().length) {
+          return;
+        }
+
+        var that = this;
+
+        for (var i = 0; i < app.config.hotSpots.length; i++) {
           var hotspotItemData = app.config.hotSpots[i];
 
           var beacon = $('<div class="beacon"></div>')
+
+          if (app.config.hotspotColor != null) {
+            beacon.css('background', app.config.hotspotColor);
+          }
 
           var hotspot =
                 $('<div class="hotSpot"></div>')
@@ -204,13 +218,11 @@ define([
 
           $('.hotspot-container').append(hotspot);
         }
-
-        this.applyResizeAttributes();
       },
 
       hoverBeaconsOn: function() {
         // For testing purposes
-        // $('.hotSpot').css({display: 'block', background: 'blue'});
+        // $('.hotSpot').css({display: 'block', background: 'blue', opacity: 0.5});
         $('.beacon').css({opacity: '1'});
       },
 

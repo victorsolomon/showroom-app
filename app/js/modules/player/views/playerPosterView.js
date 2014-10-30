@@ -16,7 +16,8 @@ define([
 
       initialize: function(options) {},
 
-      onShow: function() {},
+      onShow: function() {
+      },
 
       onRender: function() {
         var that = this;

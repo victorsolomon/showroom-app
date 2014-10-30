@@ -1,0 +1,62 @@
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: portrait) {
+  /* line 6, ../../sass/component/ipad.sass */
+  html, body {
+    font-size: 36% !important;
+  }
+
+  /* line 10, ../../sass/component/ipad.sass */
+  .sizeSelector li {
+    padding: 2% 2.185% !important;
+  }
+
+  /* line 14, ../../sass/component/ipad.sass */
+  .embedSelector li {
+    margin-right: 0.8% !important;
+  }
+}
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
+  /* line 19, ../../sass/component/ipad.sass */
+  html, body {
+    font-size: 50% !important;
+  }
+
+  /* line 24, ../../sass/component/ipad.sass */
+  .ipad .embedSelector li {
+    margin-right: 0.9% !important;
+  }
+
+  /* line 28, ../../sass/component/ipad.sass */
+  .sizeSelector li {
+    padding: 2% 2.445% !important;
+    max-width: 15.116% !important;
+  }
+}
+/* line 34, ../../sass/component/ipad.sass */
+.ipad .embedSelector li {
+  padding: 0.55% 1.25%;
+}
+/* line 38, ../../sass/component/ipad.sass */
+.ipad .embedSelector .six40 p {
+  margin-top: 9%;
+}
+/* line 42, ../../sass/component/ipad.sass */
+.ipad .embedSelector .eight50 p {
+  margin-top: 8.5%;
+}
+/* line 45, ../../sass/component/ipad.sass */
+.ipad .embedSelector .thousand p {
+  margin-top: 7%;
+}
+/* line 49, ../../sass/component/ipad.sass */
+.ipad .embedSelector .twelve80 p {
+  margin-top: 6.5%;
+}
+/* line 53, ../../sass/component/ipad.sass */
+.ipad .cartItemDescription .itemSize {
+  padding: 3% 4% 5% 4% !important;
+}
+
+/* line 57, ../../sass/component/ipad.sass */
+.smallApp .ipad {
+  font-size: 30% !important;
+}

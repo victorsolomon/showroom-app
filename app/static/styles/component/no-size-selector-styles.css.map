@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,aAAa,CACZ,MAAM,CAAE,aAAa",
+"sources": ["../sass/component/no-size-selector-styles.sass"],
+"names": [],
+"file": "no-size-selector-styles.css"
+}

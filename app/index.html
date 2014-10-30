@@ -5,11 +5,6 @@
   <title>Showroom</title>
   <script data-main="js/clientConfig" src="js/libs/require.jquery.2.0.3.js"></script>
     <script>
-      //  img1 = new Image();
-      //  img1.src = "static/images/posterFrames/posterFrameBoba.png";
-      //  img1.onload = function(){
-      //   require(['modules/player/app']);
-      // }
       require(['modules/player/app']);
     </script>
     <style>
@@ -19,7 +14,8 @@
     <link rel='stylesheet' href="static/styles/module/main.css" />
 </head>
 <body>
-<div class="loadingtrail"></div>
-<div id="main"></div>
+<div id="main">
+  <iframe id="frame1" width=640 height=360 src='index.html?config=taylorStitchConfig'></iframe>
+</div>
 </body>
 </html>
