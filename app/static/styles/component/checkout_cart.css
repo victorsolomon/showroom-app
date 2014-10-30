@@ -1,2 +1,123 @@
-.common-sprite{background-image:url('../../images/sprite/common-s81162a7898.png');background-repeat:no-repeat}*{box-sizing:border-box}#checkout-cart-region{position:absolute;width:29.14063%;height:100%;top:0px;right:-26.40625%;background-color:#fff;z-index:5;border-left:6px solid #000}#checkout-cart{width:100%;height:100%}.checkoutButton{font-family:brandon;text-decoration:none;cursor:pointer;background:#000;text-align:center;color:#fff;width:85.48009%;margin-left:7.25996%;padding:1.38889% 0%;font-size:2.3rem;letter-spacing:0.0391rem;position:absolute;bottom:8.47222%}.logo{position:absolute;width:54.4%;height:2.08333%;background:url(../../images/sprite/common/POWER.png) no-repeat;background-size:100%;bottom:4.16667%;right:7.25996%}.checkoutCartDrawerBar{position:absolute;height:100%;z-index:5;width:8.36768%;cursor:pointer}.checkoutCartDrawerBar .handle{position:relative;top:42.41667%;left:-56.64286%;width:45.71429%;height:7.16667%;background-color:#000}.items{height:82%;overflow-y:auto;list-style:none;padding:0px;margin:0px;margin-top:4%;width:89.48009%;margin-left:8.25996%}.items .cartItem{margin-bottom:20px;color:#000;height:25%;width:100%;font-size:1.5rem}.items .cartItem .close{cursor:pointer;color:#a0a0a0;float:left;margin-top:15%;margin-right:5%;font-size:0.7em;font-weight:700}.items .cartItem .cartItemImage{width:30%;background:url("../../images/productImages/showroom/large/Green.png");height:100%;float:left;background-position:top;background-size:100%;background-size:contain;background-repeat:no-repeat;margin-right:5%}.items .cartItem .cartItemDescription{float:left;width:56%;height:100%}.items .cartItem .cartItemPrice{margin-bottom:5px;font-style:italic}.items .cartItem .itemSize{font-family:brandon;display:inline-block;color:#000;cursor:pointer;width:15.71429%;text-align:center;font-size:1.4rem;margin:5% 0;border:1px solid #000}
-/*# sourceMappingURL=checkout_cart.css.map */
+.common-sprite {
+  background: url('../../images/sprite/common-sce1c8b013a.png') no-repeat;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#checkout-cart-region {
+  position: absolute;
+  width: 29.14063%;
+  height: 100%;
+  top: 0px;
+  right: -26.40625%;
+  background-color: white;
+  z-index: 5;
+  border-left: 6px solid black;
+}
+
+#checkout-cart {
+  width: 100%;
+  height: 100%;
+}
+
+.checkoutButton {
+  font-family: brandon;
+  text-decoration: none;
+  cursor: pointer;
+  background: black;
+  text-align: center;
+  color: white;
+  width: 85.48009%;
+  margin-left: 7.25996%;
+  padding: 1.38889% 0%;
+  font-size: 2.3rem;
+  letter-spacing: 0.0391rem;
+  position: absolute;
+  bottom: 8.47222%;
+}
+
+.logo {
+  position: absolute;
+  width: 54.4%;
+  height: 2.08333%;
+  background: url(../../images/sprite/common/POWER.png) no-repeat;
+  background-size: 100%;
+  bottom: 4.16667%;
+  right: 7.25996%;
+}
+
+.checkoutCartDrawerBar {
+  position: absolute;
+  height: 100%;
+  z-index: 5;
+  width: 8.36768%;
+  cursor: pointer;
+}
+.checkoutCartDrawerBar .handle {
+  position: relative;
+  top: 42.41667%;
+  left: -56.64286%;
+  width: 45.71429%;
+  height: 7.16667%;
+  background-color: black;
+}
+
+.items {
+  height: 82%;
+  overflow-y: auto;
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  margin-top: 4%;
+  width: 89.48009%;
+  margin-left: 8.25996%;
+}
+.items .cartItem {
+  margin-bottom: 20px;
+  color: black;
+  height: 25%;
+  width: 100%;
+  font-size: 1.5rem;
+}
+.items .cartItem .close {
+  cursor: pointer;
+  color: #a0a0a0;
+  float: left;
+  margin-top: 15%;
+  margin-right: 5%;
+  font-size: 0.7em;
+  font-weight: 700;
+}
+.items .cartItem .cartItemImage {
+  width: 30%;
+  background: url("../../images/productImages/showroom/large/Green.png");
+  height: 100%;
+  float: left;
+  background-position: top;
+  background-size: 100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 5%;
+}
+.items .cartItem .cartItemDescription {
+  float: left;
+  width: 56%;
+  height: 100%;
+}
+.items .cartItem .cartItemPrice {
+  margin-bottom: 5px;
+  font-style: italic;
+}
+.items .cartItem .itemSize {
+  font-family: brandon;
+  display: inline-block;
+  color: black;
+  cursor: pointer;
+  width: 15.71429%;
+  text-align: center;
+  font-size: 1.4rem;
+  margin: 5% 0;
+  border: 1px solid black;
+}

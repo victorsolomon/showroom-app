@@ -20,8 +20,8 @@ define([
       checkoutCartLocation : "http://www.revolveronline.com/cart",
 
       checkoutType      : "shopify",
-      shareUrl          : "http://www.helloshowroom.co",
-      shareEmbedBaseUrl : "http://www.helloshowroom.co/player/showroom/index.html?config=revolverConfig",
+      shareUrl          : "http://www.helloshowroom.co/revolver",
+      shareEmbedBaseUrl : "http://www.helloshowroom.co/revolver/index.html?config=revolverConfig",
       splashImage       : 'static/images/posterFrames/revolver-overlay.gif',
 
       recommended: [
@@ -112,6 +112,7 @@ define([
           "itemDescription"    : "The one size roll tunic was cut with an easy, oversize fit to be comfortable, versatile, and perfect for year round wear. It is cut from 100% cotton gauze with a slightly crinkled texture which has been washed and dried. The interior is finished with french seams for a clean roll at the sleeve.",
           "itemPrice"          : "$140",
           "hasSize"            : false,
+          "soldOut"            : true,
           "sizes"              : [],
           "allImages"          : ["Shot_1_Woman_3.jpg", "Shot_1_Woman_2.jpg", "Shot_1_Woman_1.jpg"],
           "variants"           : {
@@ -187,6 +188,7 @@ define([
           "itemDescription"    : "Feather light sleeveless blouse with a loose, easy fit. Features a delicate silk fabric refined scoop collar. Rounded neckline. Asymmetrical bottom hem. Clean hem finishing. 100% silk.",
           "itemPrice"          : "$94",
           "hasSize"            : true,
+          "soldOut"            : true,
           "sizes"              : [ 36, 38, 40, 42 ],
           "allImages"          : ["Shot_2_Woman_3.jpg", "Shot_2_Woman_2.jpg", "Shot_2_Woman_1.jpg"]
         },
@@ -334,6 +336,7 @@ define([
           "itemDescription"    : "Waddi's baby sister shirt in a summer sleeveless style. Lovely loose fitting silk pullover blouse in a rich navy. Monk collar and clean neckline. Invisible button placket which continues into a pleat. Curved hem. Button barrel cuffs. 100% silk.",
           "itemPrice"          : "$150",
           "hasSize"            : true,
+          "soldOut"            : true,
           "sizes"              : [ 36, 38, 40, 42 ],
           "allImages"          : ["Shot_3_Woman_3.jpg", "Shot_3_Woman_2.jpg", "Shot_3_Woman_1.jpg"]
         },
@@ -395,6 +398,135 @@ define([
           "itemTitle"          : "Zanerobe Seven Fit LS Shirt",
           "itemDescription"    : "Streamlined shirt tailored in a classic long-sleeve, button-up style. Featured in an acid black denim wash. Button down collar. Contrast button closure down the placket and cuffs. Single patch pocket with button detail on the chest. 100% cotton.",
           "itemPrice"          : "$119",
+          "hasSize"            : true,
+          "sizes"              : [ 36, 38, 40, 42 ]
+        },
+        {
+          "id"                 : "28",
+          "index"              : "27",
+          "largeItemSrc1"      : "diamond_ring_1.jpg",
+          "itemImageSrc"       : "diamond_ring_1.jpg",
+          "itemTitle"          : "Alexes Bowyer Diamond Top Ring",
+          "itemDescription"    : "Hand carved and cast ring in sterling silver. Ring features an open design and is somewhat adjustable in size.",
+          "itemPrice"          : "$128",
+          "hasSize"            : false,
+          "sizes"              : [],
+          "allImages"          : ['diamond_ring_3.jpg', 'diamond_ring_2.jpg', 'diamond_ring_1.jpg']
+        },
+        {
+          "id"                 : "29",
+          "index"              : "28",
+          "largeItemSrc1"      : "diamond_ring_2.jpg",
+          "itemImageSrc"       : "diamond_ring_2.jpg",
+          "itemTitle"          : "Alexes Bowyer Diamond Top Ring",
+          "itemDescription"    : "Hand carved and cast ring in sterling silver. Ring features an open design and is somewhat adjustable in size.",
+          "itemPrice"          : "$128",
+          "hasSize"            : false,
+          "sizes"              : []
+        },
+        {
+          "id"                 : "30",
+          "index"              : "29",
+          "largeItemSrc1"      : "diamond_ring_3.jpg",
+          "itemImageSrc"       : "diamond_ring_3.jpg",
+          "itemTitle"          : "Alexes Bowyer Diamond Top Ring",
+          "itemDescription"    : "Hand carved and cast ring in sterling silver. Ring features an open design and is somewhat adjustable in size.",
+          "itemPrice"          : "$128",
+          "hasSize"            : false,
+          "sizes"              : []
+        },
+        {
+          "id"                 : "31",
+          "index"              : "30",
+          "largeItemSrc1"      : "selene_ring_1.jpg",
+          "itemImageSrc"       : "selene_ring_1.jpg",
+          "itemTitle"          : "Alexes Bowyer Selene Ring",
+          "itemDescription"    : "Sleek twisted barbell design. Polished to a mirror finish. Hand sculpted and cast. Each ring is twisted into shape by hand. Ring size is somewhat adjustable.",
+          "itemPrice"          : "$88",
+          "hasSize"            : false,
+          "sizes"              : [],
+          "allImages"          : ['selene_ring_2.jpg', 'selene_ring_1.jpg']
+        },
+        {
+          "id"                 : "32",
+          "index"              : "31",
+          "largeItemSrc1"      : "selene_ring_2.jpg",
+          "itemImageSrc"       : "selene_ring_2.jpg",
+          "itemTitle"          : "Alexes Bowyer Selene Ring",
+          "itemDescription"    : "Sleek twisted barbell design. Polished to a mirror finish. Hand sculpted and cast. Each ring is twisted into shape by hand. Ring size is somewhat adjustable.",
+          "itemPrice"          : "$88",
+          "hasSize"            : false,
+          "sizes"              : []
+        },
+        {
+          "id"                 : "33",
+          "index"              : "32",
+          "largeItemSrc1"      : "seashell_glasses_1.jpg",
+          "itemImageSrc"       : "seashell_glasses_1.jpg",
+          "itemTitle"          : "R.T.Co Sparrow Seashell",
+          "itemDescription"    : "Optics are anti-scratch polymere lenses provided by Carl Zeiss Vision Sunlens®, offering 100% UV protection. All components of R.T.CO sunglasses are produced and assembled in Italy.",
+          "itemPrice"          : "$195",
+          "hasSize"            : false,
+          "sizes"              : [],
+          "allImages"          : ['seashell_glasses_2.jpg', 'seashell_glasses_1.jpg']
+        },
+        {
+          "id"                 : "34",
+          "index"              : "33",
+          "largeItemSrc1"      : "seashell_glasses_2.jpg",
+          "itemImageSrc"       : "seashell_glasses_2.jpg",
+          "itemTitle"          : "R.T.Co Sparrow Seashell",
+          "itemDescription"    : "Optics are anti-scratch polymere lenses provided by Carl Zeiss Vision Sunlens®, offering 100% UV protection. All components of R.T.CO sunglasses are produced and assembled in Italy.",
+          "itemPrice"          : "$195",
+          "hasSize"            : false,
+          "sizes"              : []
+        },
+        {
+          "id"                 : "35",
+          "index"              : "34",
+          "largeItemSrc1"      : "seashell_glasses_3.jpg",
+          "itemImageSrc"       : "seashell_glasses_3.jpg",
+          "itemTitle"          : "R.T.Co Sparrow Seashell",
+          "itemDescription"    : "Optics are anti-scratch polymere lenses provided by Carl Zeiss Vision Sunlens®, offering 100% UV protection. All components of R.T.CO sunglasses are produced and assembled in Italy.",
+          "itemPrice"          : "$195",
+          "hasSize"            : false,
+          "sizes"              : []
+        },
+        {
+          "id"                 : "36",
+          "index"              : "35",
+          "largeItemSrc1"      : "blazer_1.jpg",
+          "itemImageSrc"       : "blazer_1.jpg",
+          "itemTitle"          : "Shades of Grey Knit Blazer",
+          "itemDescription"    : "Shades of Grey Knit Blazer",
+          "itemPrice"          : "$179",
+          "hasSize"            : true,
+          "sizes"              : [ 36, 38, 40, 42 ],
+          "allImages"          : ['blazer_3.jpg', 'blazer_2.jpg', 'blazer_1.jpg'],
+          "variants"           : {
+            small: ['609719081'],
+            large: ['609719089']
+          }
+        },
+        {
+          "id"                 : "37",
+          "index"              : "36",
+          "largeItemSrc1"      : "blazer_2.jpg",
+          "itemImageSrc"       : "blazer_2.jpg",
+          "itemTitle"          : "Shades of Grey Knit Blazer",
+          "itemDescription"    : "Shades of Grey Knit Blazer",
+          "itemPrice"          : "$179",
+          "hasSize"            : true,
+          "sizes"              : [ 36, 38, 40, 42 ]
+        },
+        {
+          "id"                 : "38",
+          "index"              : "37",
+          "largeItemSrc1"      : "blazer_3.jpg",
+          "itemImageSrc"       : "blazer_3.jpg",
+          "itemTitle"          : "Shades of Grey Knit Blazer",
+          "itemDescription"    : "Shades of Grey Knit Blazer",
+          "itemPrice"          : "$179",
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ]
         }
@@ -609,30 +741,6 @@ define([
           "hotSpotStartWidth"  : "600",
           "hotSpotStartHeight" : "600"
         },
-        // {
-        //   "id"                 : "7", // shot 10 man (same as shot 2)
-        //   "hotSpotId"          : "20",
-        //   "index"              : "0",
-        //   "startTime"          : "0.60",
-        //   "endTime"            : "0.63",
-        //   "hotSpotStartX"      : "100",
-        //   "hotSpotStartY"      : "545",
-        //   "hotSpotStartWidth"  : "600",
-        //   "hotSpotStartHeight" : "600",
-        //   "beaconMoves"        : true
-        // },
-        // {
-        //   "id"                 : "10", // shot 10 woman (same as shot 2)
-        //   "hotSpotId"          : "21",
-        //   "index"              : "0",
-        //   "startTime"          : "0.60",
-        //   "endTime"            : "0.63",
-        //   "hotSpotStartX"      : "600",
-        //   "hotSpotStartY"      : "400",
-        //   "hotSpotStartWidth"  : "600",
-        //   "hotSpotStartHeight" : "600",
-        //   "beaconMoves"        : true
-        // },
         {
           "id"                 : "13", // shot 11 centerman jacket (same as shot 4)
           "hotSpotId"          : "20",
@@ -641,7 +749,7 @@ define([
           "endTime"            : "0.71",
           "hotSpotStartX"      : "1300",
           "hotSpotStartY"      : "700",
-          "hotSpotStartWidth"  : "400",
+          "hotSpotStartWidth"  : "300",
           "hotSpotStartHeight" : "400"
         },
         {
@@ -652,7 +760,7 @@ define([
           "endTime"            : "0.71",
           "hotSpotStartX"      : "850",
           "hotSpotStartY"      : "900",
-          "hotSpotStartWidth"  : "400",
+          "hotSpotStartWidth"  : "200",
           "hotSpotStartHeight" : "200"
         },
         {
@@ -721,6 +829,61 @@ define([
           "hotSpotStartWidth"  : "550",
           "hotSpotStartHeight" : "350"
         },
+        {
+          "id"                 : "28", // diamond ring
+          "hotSpotId"          : "28",
+          "index"              : "0",
+          "startTime"          : "0.765",
+          "endTime"            : "0.82",
+          "hotSpotStartX"      : "850",
+          "hotSpotStartY"      : "500",
+          "hotSpotStartWidth"  : "550",
+          "hotSpotStartHeight" : "350"
+        },
+        {
+          "id"                 : "31", // selene ring
+          "hotSpotId"          : "29",
+          "index"              : "0",
+          "startTime"          : "0.69",
+          "endTime"            : "0.71",
+          "hotSpotStartX"      : "425",
+          "hotSpotStartY"      : "800",
+          "hotSpotStartWidth"  : "200",
+          "hotSpotStartHeight" : "300"
+        },
+        {
+          "id"                 : "31", // selene ring
+          "hotSpotId"          : "30",
+          "index"              : "0",
+          "startTime"          : "0.21",
+          "endTime"            : "0.26",
+          "hotSpotStartX"      : "425",
+          "hotSpotStartY"      : "510",
+          "hotSpotStartWidth"  : "100",
+          "hotSpotStartHeight" : "100"
+        },
+        {
+          "id"                 : "33", // seashell glasses
+          "hotSpotId"          : "31",
+          "index"              : "0",
+          "startTime"          : "0.44",
+          "endTime"            : "0.485",
+          "hotSpotStartX"      : "1650",
+          "hotSpotStartY"      : "250",
+          "hotSpotStartWidth"  : "200",
+          "hotSpotStartHeight" : "200"
+        },
+        {
+          "id"                 : "36", // blazer
+          "hotSpotId"          : "32",
+          "index"              : "0",
+          "startTime"          : "0.655",
+          "endTime"            : "0.71",
+          "hotSpotStartX"      : "1050",
+          "hotSpotStartY"      : "900",
+          "hotSpotStartWidth"  : "200",
+          "hotSpotStartHeight" : "200"
+        }
       ],
 
     cartItems : []

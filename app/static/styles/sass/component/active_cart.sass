@@ -1,6 +1,6 @@
 //Style definitions for the active cart that is to the left hand side
 
-@import "sprite/common/*.png"
+@import "/sprite/common/*.png"
 @import "framework"
 
 #active-cart-region
@@ -79,7 +79,7 @@
         height: 100%
         display: inline-block
         vertical-align: top
-        margin-left: -3px
+        margin-left: 3px
 
       .image-slide
         background-size: contain
@@ -99,6 +99,7 @@
   // margin-left: $main-slider-left-offset
   // margin-top : $info-and-actions-top-offset
   margin: 7% auto 0 auto
+  overflow: visible
 
   .titleAndPrice
     font-size: 2rem
@@ -107,6 +108,7 @@
     text-align: center
     width: 100%
     position: relative
+    margin-bottom: 7px
 
     .price
       font-weight: bold
@@ -120,6 +122,7 @@
     padding: 0px
     margin: percentage( 15 / 307 ) 0px
     font-family: brandon
+    position: relative
 
     li
       display: inline
@@ -181,7 +184,7 @@
   position: relative
   width: $main-slider-width-pct
   // margin-left: $main-slider-left-offset
-  margin: 10% auto
+  margin: 0 auto
 
   .recommended-left-arrow
     position: absolute
@@ -260,3 +263,32 @@
 
 .unavailable
   opacity: 0.1 !important
+
+.color-selector
+  width: 59%
+  margin: 0 auto
+  height: 15%
+
+.color-selector-item
+  float: left
+  display: inline-block
+  width: 26%
+  height: 100%
+  margin: 0 5%
+  border: 1px solid #000
+  cursor: pointer
+
+  &:first-child
+    margin-left: 0
+
+  &:last-child
+    margin-right: 0
+
+.sold-out
+  position: absolute
+  width: 100%
+  font-size: 3em
+  color: black
+  text-align: center
+  margin: 0 auto
+  top: -3px

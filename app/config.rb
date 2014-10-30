@@ -12,7 +12,7 @@ javascripts_dir = "js"
 # output_style = :expanded or :nested or :compact or :compressed
 # output_style = (environment == :production) ? :compressed : :expanded
 #output_style = :expanded
-output_style = :compressed
+output_style = :expanded
 
 # sass_options = {:debug_info=>(environment == :production) ? false : true}
 # sass_options = {:debug_info=>true}

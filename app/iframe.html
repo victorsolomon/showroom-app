@@ -18,6 +18,7 @@ function changeSize(width){
   $('iframe').css('width', width).css('height', width * (9/16) );
 }
 </script>
+<link rel='stylesheet' href="static/styles/module/main.css" />
 </head>
 <body>
 <div>
@@ -28,6 +29,7 @@ function changeSize(width){
 <input value='1650' onclick="changeSize(1650);" type='button' />
 <input value='1920' onclick="changeSize(1920);" type='button' />
 </div>
-<iframe src='index.html?config=revolverConfig' AllowFullScreen /></iframe>
+<iframe id="iframe1" src='index.html?config=taylorStitchConfig' AllowFullScreen /></iframe>
+<!-- <iframe src='index.html?config=revolverConfig' AllowFullScreen /></iframe> -->
 </body>
 </html>
