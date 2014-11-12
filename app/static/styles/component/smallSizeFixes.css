@@ -1,3 +1,7 @@
+.smallApp .beacon {
+  width: 10px;
+  height: 10px;
+}
 .smallApp #active-cart-region {
   left: -37.70625%;
   width: 41.14062%;

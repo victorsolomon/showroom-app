@@ -198,7 +198,7 @@ define([
 
     userProfile      : "",
     moduleName       : "",
-    isDebug          : false,
+    isDebug          : true,
     sessionStartTime : "",
 
 
@@ -323,8 +323,8 @@ define([
       this.logAnalyticEvent(this.analyticVars.AC_LRG_ITEM_SCROLL_RIGHT, pageLevelVars);
     },
 
-    activeItemSizeSelectClick : function( size ) {
-      pageLevelVars = { 'size' : size };
+    activeItemSizeSelectClick : function(size, item) {
+      pageLevelVars = { 'size' : size, 'item' : item };
       this.logAnalyticEvent(this.analyticVars.AC_LRG_ITEM_SIZE_SELECT, pageLevelVars);
     },
 

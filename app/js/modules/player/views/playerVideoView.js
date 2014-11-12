@@ -30,8 +30,8 @@ define([
         }
 
         video
-          .append("<source src='static/movies/" + app.config.mp4_video_src_med + "' type='video/mp4'></source>")
-          .append("<source src='static/movies/" + app.config.webm_video_src_med + "' type='video/webm'></source>");
+          .append("<source src='static/movies/" + app.config.mp4_video_src_med + "' type='video/mp4' webkit-playsinline></source>")
+          .append("<source src='static/movies/" + app.config.webm_video_src_med + "' type='video/webm' webkit-playsinline></source>");
 
         // this.video.bind('loadeddata', function(event){ that.onCanPlay(); });
         video.bind('canplay', function(event) {

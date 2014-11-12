@@ -116,7 +116,7 @@
   font-family: brandon;
   position: absolute;
   width: 35%;
-  height: 27.83333%;
+  height: auto;
   background-color: white;
   margin-left: 35.70312%;
   z-index: 5;
@@ -509,7 +509,7 @@
 }
 .items .cartItem .cartItemDescription {
   float: left;
-  width: 56%;
+  width: 55%;
   height: 100%;
 }
 .items .cartItem .cartItemPrice {
@@ -821,6 +821,10 @@
   top: -3px;
 }
 
+.smallApp .beacon {
+  width: 10px;
+  height: 10px;
+}
 .smallApp #active-cart-region {
   left: -37.70625%;
   width: 41.14062%;
@@ -991,6 +995,10 @@ video {
   height: 100%;
   overflow: hidden;
 }
+#showroom-player:hover .beacon {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
 
 #mask-region {
   position: relative;
@@ -1112,6 +1120,7 @@ video {
   height: 20px;
   border-radius: 10px;
   margin: auto;
+  transition: opacity 0.5s;
 }
 
 @font-face {
@@ -1167,7 +1176,7 @@ html.fullscreen {
   background-position: 50%;
   cursor: pointer;
   margin-right: 30px;
-  z-index: 5;
+  z-index: 15;
 }
 
 .fullscreen-icn {
@@ -1181,7 +1190,7 @@ html.fullscreen {
   background-position: 50%;
   cursor: pointer;
   margin-right: 30px;
-  z-index: 5;
+  z-index: 6;
 }
 
 .play-button {
