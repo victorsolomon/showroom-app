@@ -223,13 +223,13 @@ define([
       hoverBeaconsOn: function() {
         // For testing purposes
         // $('.hotSpot').css({display: 'block', background: 'blue', opacity: 0.5});
-        $('.beacon').css({opacity: '1'});
+        // $('.beacon').css({opacity: '1'});
       },
 
       hoverBeaconsOff: function() {
         // For testing purposes
         // $('.hotSpot').css({display: 'none', background: 'none'});
-        $('.beacon').css({opacity: '0'});
+        // $('.beacon').css({opacity: '0'});
       },
 
       tagClick: function(event) {
@@ -314,8 +314,6 @@ define([
         this.$('.scrubber').children('p').css('width' , currentProgress * 100 + '%');
         this.$('.scrubber').children('div').css('width' , (1 - currentProgress) * 100 + '%');
         this.updateTagPosition(this.currentTime, this.duration);
-
-        app.Analytics.jumpToTimeClick(this.currentTime);
 
         if (currentProgress >= 1.0) {
           this.playerActiveCartView.openActiveCart();

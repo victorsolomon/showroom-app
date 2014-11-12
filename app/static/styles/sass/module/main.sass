@@ -43,6 +43,11 @@ video
   height: 100%
   overflow: hidden
 
+  &:hover
+    .beacon
+      opacity: 1
+      transition: opacity 0.5s
+
 #mask-region
   position: relative
   z-index: 3
@@ -157,6 +162,7 @@ video
   height: 20px
   border-radius: 10px
   margin: auto
+  transition: opacity 0.5s
 
 @font-face
   font-family: avenir
@@ -204,7 +210,7 @@ html.fullscreen
   background-position: 50%
   cursor: pointer
   margin-right: 30px
-  z-index: 5
+  z-index: 15
 
 .fullscreen-icn
   position: absolute
@@ -217,7 +223,7 @@ html.fullscreen
   background-position: 50%
   cursor: pointer
   margin-right: 30px
-  z-index: 5
+  z-index: 6
 
 .play-button
   position: absolute

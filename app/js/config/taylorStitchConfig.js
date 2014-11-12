@@ -29,6 +29,14 @@ define([
 
       recommended : [
         {
+          "id"            : '4',
+          "largeItemSrc1" : 'denim_glacier_1.jpg'
+        },
+        {
+          "id"            : '5',
+          "largeItemSrc1" : 'twill_glacier_1.jpg'
+        },
+        {
           "id"            : '1',
           "largeItemSrc1" : "Blue_1.jpg"
         },
@@ -39,18 +47,6 @@ define([
         {
           "id"            : '3',
           "largeItemSrc1" : "Charcoal_1.jpg"
-        },
-        {
-          "id"            : '4',
-          "largeItemSrc1" : 'midnight_trousers_1.jpg'
-        },
-        {
-          "id"            : '5',
-          "largeItemSrc1" : 'pine_trousers_1.jpg'
-        },
-        {
-          "id"            : '6',
-          "largeItemSrc1" : 'driftwood_trousers_1.jpg'
         }
       ],
 
@@ -118,62 +114,43 @@ define([
         {
           "id"                 : "4",
           "index"              : "3",
-          "largeItemSrc1"      : "midnight_trousers_1.jpg",
-          "itemImageSrc"       : "midnight_trousers_1.jpg",
-          "itemTitle"          : "Vintner's Chore Pant",
-          "itemDescription"    : "10 Oz. Compact Woven Army Canvas. Double Reinforced Knee. Pencil Slot. Button Fly Closure. Democratic Fit. Pre-Shrunk. Made in California.",
-          "itemPrice"          : "$128",
+          "largeItemSrc1"      : "denim_glacier_1.jpg",
+          "itemImageSrc"       : "denim_glacier_1.jpg",
+          "itemTitle"          : "Denim Glacier Shirt",
+          "itemDescription"    : "The Glacier Shirt is a collaboration with our favorite hat makers, FairEnds. A modern take on the western classic, the inspiration behind this shirt is Glacier National Park. It is equally at home casting dry flies from an empty bank as it is on a hike under the big sky.",
+          "itemPrice"          : "$125",
           "hasSize"            : true,
           "hasColor"           : true,
           "colorBlockId"       : '2',
           "sizes"              : [ 36, 38, 40, 42, 44 ],
-          "allImages"          : ["midnight_trousers_3.jpg", "midnight_trousers_2.jpg", "midnight_trousers_1.jpg"],
+          "allImages"          : ["denim_glacier_2.jpg", "denim_glacier_1.jpg"],
           "variants"           : {
-            xsmall : ['812064149'],
-            small  : ['812064157'],
-            medium : ['812064233'],
-            large  : ['812064497'],
-            xlarge : ['812065001']
+            xsmall : ['986914052'],
+            small  : ['986914056'],
+            medium : ['986914060'],
+            large  : ['986914064'],
+            xlarge : ['986914068']
           }
         },
         {
           "id"                 : "5",
           "index"              : "4",
-          "largeItemSrc1"      : "pine_trousers_1.jpg",
-          "itemImageSrc"       : "pine_trousers_1.jpg",
-          "itemTitle"          : "Vintner's Chore Pant",
-          "itemDescription"    : "10 Oz. Compact Woven Army Canvas. Double Reinforced Knee. Pencil Slot. Button Fly Closure. Democratic Fit. Pre-Shrunk. Made in California.",
-          "itemPrice"          : "$128",
+          "largeItemSrc1"      : "twill_glacier_1.jpg",
+          "itemImageSrc"       : "twill_glacier_1.jpg",
+          "itemTitle"          : "Twill Glacier Shirt",
+          "itemDescription"    : "The Glacier Shirt is a collaboration with our favorite hat makers, FairEnds. A modern take on the western classic, the inspiration behind this shirt is Glacier National Park. It is equally at home casting dry flies from an empty bank as it is on a hike under the big sky.",
+          "itemPrice"          : "$125",
           "hasSize"            : true,
           "hasColor"           : true,
           "colorBlockId"       : '2',
           "sizes"              : [ 36, 38, 40, 42, 44 ],
-          "allImages"          : ["pine_trousers_3.jpg", "pine_trousers_2.jpg", "pine_trousers_1.jpg"],
+          "allImages"          : ["twill_glacier_2.jpg", "twill_glacier_1.jpg"],
           "variants"           : {
-            xsmall : ['812173405'],
-            small  : ['812064157'],
-            medium : ['812064233'],
-            large  : ['812064497'],
-            xlarge : ['812065001']
-          }
-        },
-        {
-          "id"                 : "6",
-          "index"              : "5",
-          "largeItemSrc1"      : "driftwood_trousers_1.jpg",
-          "itemImageSrc"       : "driftwood_trousers_1.jpg",
-          "itemTitle"          : "Vintner's Chore Pant",
-          "itemDescription"    : "10 Oz. Compact Woven Army Canvas. Double Reinforced Knee. Pencil Slot. Button Fly Closure. Democratic Fit. Pre-Shrunk. Made in California.",
-          "itemPrice"          : "$128",
-          "hasSize"            : true,
-          "hasColor"           : true,
-          "colorBlockId"       : '2',
-          "sizes"              : [ 36, 38, 40, 42, 44 ],
-          "allImages"          : ["driftwood_trousers_3.jpg", "driftwood_trousers_2.jpg", "driftwood_trousers_1.jpg"],
-          "variants"           : {
-            xsmall : ['812031425'],
-            large  : ['812173429'],
-            xlarge : ['812173437']
+            xsmall : ['986909080'],
+            small  : ['986909084'],
+            medium : ['986909088'],
+            large  : ['986909092'],
+            xlarge : ['986909096']
           }
         },
 
@@ -205,11 +182,6 @@ define([
           "colorSrc"     : "#3b3b2f",
           "colorBlockId" : '2'
         },
-        {
-          "id"           : '6',
-          "colorSrc"     : "#9f9a94",
-          "colorBlockId" : '2'
-        }
       ],
 
       hotSpots: [
@@ -300,18 +272,7 @@ define([
           "hotSpotStartY"      : "100",
           "hotSpotStartWidth"  : "400",
           "hotSpotStartHeight" : "400"
-        },
-        {
-          "id"                 : "4",
-          "hotSpotId"          : "9",
-          "index"              : "0",
-          "startTime"          : "0.055",
-          "endTime"            : "0.13",
-          "hotSpotStartX"      : "1050",
-          "hotSpotStartY"      : "590",
-          "hotSpotStartWidth"  : "200",
-          "hotSpotStartHeight" : "200"
-        },
+        }
       ],
 
       cartItems:[]

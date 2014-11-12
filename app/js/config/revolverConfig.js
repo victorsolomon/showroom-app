@@ -55,12 +55,25 @@ define([
         },
         {
           "id"            : 22,
-          "largeItemSrc1" : "Shot_3_Woman_1.jpg"
+          "largeItemSrc1" : "Shot_5_Man_1.jpg"
         },
         {
-          "id"            : 25,
-          "largeItemSrc1" : "Shot_5_Man_1.jpg"
+          "id"            : '25',
+          "largeItemSrc1" : "diamond_ring_1.jpg"
+        },
+        {
+          "id"            : '28',
+          'largeItemSrc1' : "selene_ring_1.jpg",
+        },
+        {
+          "id"            : '30',
+          "largeItemSrc1" : "seashell_glasses_1.jpg"
+        },
+        {
+          "id"            : '33',
+          'largeItemSrc1' : "blazer_1.jpg"
         }
+
       ],
 
       itemData: [
@@ -108,25 +121,22 @@ define([
           "index"              : "3",
           "largeItemSrc1"      : "Shot_1_Woman_1.jpg",
           "itemImageSrc"       : "Shot_1_Woman_1.jpg",
-          "itemTitle"          : "First Rite Roll Tunic",
-          "itemDescription"    : "The one size roll tunic was cut with an easy, oversize fit to be comfortable, versatile, and perfect for year round wear. It is cut from 100% cotton gauze with a slightly crinkled texture which has been washed and dried. The interior is finished with french seams for a clean roll at the sleeve.",
-          "itemPrice"          : "$140",
+          "itemTitle"          : "WayWay Frankie Top",
+          "itemDescription"    : "Beautifully crafted kimono top in a weighty linen fabric. Drapes beautifully on any body type. Boatneck. Box fit. Dropped short sleeves. 100% linen.",
+          "itemPrice"          : "$99",
           "hasSize"            : false,
           "soldOut"            : true,
           "sizes"              : [],
-          "allImages"          : ["Shot_1_Woman_3.jpg", "Shot_1_Woman_2.jpg", "Shot_1_Woman_1.jpg"],
-          "variants"           : {
-            oneSize: ['894150389', 'white']
-          }
+          "allImages"          : ["Shot_1_Woman_3.jpg", "Shot_1_Woman_2.jpg", "Shot_1_Woman_1.jpg"]
         },
         {
           "id"                 : "5",
           "index"              : "4",
           "largeItemSrc1"      : "Shot_1_Woman_2.jpg",
           "itemImageSrc"       : "Shot_1_Woman_2.jpg",
-          "itemTitle"          : "First Rite Roll Tunic",
-          "itemDescription"    : "The one size roll tunic was cut with an easy, oversize fit to be comfortable, versatile, and perfect for year round wear. It is cut from 100% cotton gauze with a slightly crinkled texture which has been washed and dried. The interior is finished with french seams for a clean roll at the sleeve.",
-          "itemPrice"          : "$140",
+          "itemTitle"          : "WayWay Frankie Top",
+          "itemDescription"    : "Beautifully crafted kimono top in a weighty linen fabric. Drapes beautifully on any body type. Boatneck. Box fit. Dropped short sleeves. 100% linen.",
+          "itemPrice"          : "$99",
           "hasSize"            : false,
           "sizes"              : []
         },
@@ -135,9 +145,9 @@ define([
           "index"              : "5",
           "largeItemSrc1"      : "Shot_1_Woman_3.jpg",
           "itemImageSrc"       : "Shot_1_Woman_3.jpg",
-          "itemTitle"          : "First Rite Roll Tunic",
-          "itemDescription"    : "The one size roll tunic was cut with an easy, oversize fit to be comfortable, versatile, and perfect for year round wear. It is cut from 100% cotton gauze with a slightly crinkled texture which has been washed and dried. The interior is finished with french seams for a clean roll at the sleeve.",
-          "itemPrice"          : "$140",
+          "itemTitle"          : "WayWay Frankie Top",
+          "itemDescription"    : "Beautifully crafted kimono top in a weighty linen fabric. Drapes beautifully on any body type. Boatneck. Box fit. Dropped short sleeves. 100% linen.",
+          "itemPrice"          : "$99",
           "hasSize"            : false,
           "sizes"              : []
         },
@@ -184,9 +194,9 @@ define([
           "index"              : "9",
           "largeItemSrc1"      : "Shot_2_Woman_1.jpg",
           "itemImageSrc"       : "Shot_2_Woman_1.jpg",
-          "itemTitle"          : "Kaarem Cat Lan Tops",
-          "itemDescription"    : "Feather light sleeveless blouse with a loose, easy fit. Features a delicate silk fabric refined scoop collar. Rounded neckline. Asymmetrical bottom hem. Clean hem finishing. 100% silk.",
-          "itemPrice"          : "$94",
+          "itemTitle"          : "Samsoe Samsoe Emaj Top",
+          "itemDescription"    : "Delicate tank top in a soft tencel fabric. We love to pair this soft basic tucked into some high waisted trousers and with a chunky sandal for summer. Deep-v Neckline. 100% tencel.",
+          "itemPrice"          : "$75",
           "hasSize"            : true,
           "soldOut"            : true,
           "sizes"              : [ 36, 38, 40, 42 ],
@@ -197,9 +207,9 @@ define([
           "index"              : "10",
           "largeItemSrc1"      : "Shot_2_Woman_2.jpg",
           "itemImageSrc"       : "Shot_2_Woman_2.jpg",
-          "itemTitle"          : "Kaarem Cat Lan Tops",
-          "itemDescription"    : "Feather light sleeveless blouse with a loose, easy fit. Features a delicate silk fabric refined scoop collar. Rounded neckline. Asymmetrical bottom hem. Clean hem finishing. 100% silk.",
-          "itemPrice"          : "$94",
+          "itemTitle"          : "Samsoe Samsoe Emaj Top",
+          "itemDescription"    : "Delicate tank top in a soft tencel fabric. We love to pair this soft basic tucked into some high waisted trousers and with a chunky sandal for summer. Deep-v Neckline. 100% tencel.",
+          "itemPrice"          : "$75",
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ]
         },
@@ -208,9 +218,9 @@ define([
           "index"              : "11",
           "largeItemSrc1"      : "Shot_2_Woman_3.jpg",
           "itemImageSrc"       : "Shot_2_Woman_3.jpg",
-          "itemTitle"          : "Kaarem Cat Lan Tops",
-          "itemDescription"    : "Feather light sleeveless blouse with a loose, easy fit. Features a delicate silk fabric refined scoop collar. Rounded neckline. Asymmetrical bottom hem. Clean hem finishing. 100% silk.",
-          "itemPrice"          : "$94",
+          "itemTitle"          : "Samsoe Samsoe Emaj Top",
+          "itemDescription"    : "Delicate tank top in a soft tencel fabric. We love to pair this soft basic tucked into some high waisted trousers and with a chunky sandal for summer. Deep-v Neckline. 100% tencel.",
+          "itemPrice"          : "$75",
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ]
         },
@@ -327,44 +337,12 @@ define([
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ]
         },
+
+
+
         {
           "id"                 : "22",
           "index"              : "21",
-          "largeItemSrc1"      : "Shot_3_Woman_1.jpg",
-          "itemImageSrc"       : "Shot_3_Woman_1.jpg",
-          "itemTitle"          : "Samsoe Waddi SS Shirt",
-          "itemDescription"    : "Waddi's baby sister shirt in a summer sleeveless style. Lovely loose fitting silk pullover blouse in a rich navy. Monk collar and clean neckline. Invisible button placket which continues into a pleat. Curved hem. Button barrel cuffs. 100% silk.",
-          "itemPrice"          : "$150",
-          "hasSize"            : true,
-          "soldOut"            : true,
-          "sizes"              : [ 36, 38, 40, 42 ],
-          "allImages"          : ["Shot_3_Woman_3.jpg", "Shot_3_Woman_2.jpg", "Shot_3_Woman_1.jpg"]
-        },
-        {
-          "id"                 : "23",
-          "index"              : "22",
-          "largeItemSrc1"      : "Shot_3_Woman_2.jpg",
-          "itemImageSrc"       : "Shot_3_Woman_2.jpg",
-          "itemTitle"          : "Samsoe Waddi SS Shirt",
-          "itemDescription"    : "Waddi's baby sister shirt in a summer sleeveless style. Lovely loose fitting silk pullover blouse in a rich navy. Monk collar and clean neckline. Invisible button placket which continues into a pleat. Curved hem. Button barrel cuffs. 100% silk.",
-          "itemPrice"          : "$150",
-          "hasSize"            : true,
-          "sizes"              : [ 36, 38, 40, 42 ]
-        },
-        {
-          "id"                 : "24",
-          "index"              : "23",
-          "largeItemSrc1"      : "Shot_3_Woman_3.jpg",
-          "itemImageSrc"       : "Shot_3_Woman_3.jpg",
-          "itemTitle"          : "Samsoe Waddi SS Shirt",
-          "itemDescription"    : "Waddi's baby sister shirt in a summer sleeveless style. Lovely loose fitting silk pullover blouse in a rich navy. Monk collar and clean neckline. Invisible button placket which continues into a pleat. Curved hem. Button barrel cuffs. 100% silk.",
-          "itemPrice"          : "$150",
-          "hasSize"            : true,
-          "sizes"              : [ 36, 38, 40, 42 ]
-        },
-        {
-          "id"                 : "25",
-          "index"              : "24",
           "largeItemSrc1"      : "Shot_5_Man_1.jpg",
           "itemImageSrc"       : "Shot_5_Man_1.jpg",
           "itemTitle"          : "Zanerobe Seven Fit LS Shirt",
@@ -380,8 +358,8 @@ define([
           }
         },
         {
-          "id"                 : "26",
-          "index"              : "25",
+          "id"                 : "23",
+          "index"              : "22",
           "largeItemSrc1"      : "Shot_5_Man_2.jpg",
           "itemImageSrc"       : "Shot_5_Man_2.jpg",
           "itemTitle"          : "Zanerobe Seven Fit LS Shirt",
@@ -391,8 +369,8 @@ define([
           "sizes"              : [ 36, 38, 40, 42 ]
         },
         {
-          "id"                 : "27",
-          "index"              : "26",
+          "id"                 : "24",
+          "index"              : "23",
           "largeItemSrc1"      : "Shot_5_Man_3.jpg",
           "itemImageSrc"       : "Shot_5_Man_3.jpg",
           "itemTitle"          : "Zanerobe Seven Fit LS Shirt",
@@ -402,8 +380,8 @@ define([
           "sizes"              : [ 36, 38, 40, 42 ]
         },
         {
-          "id"                 : "28",
-          "index"              : "27",
+          "id"                 : "25",
+          "index"              : "24",
           "largeItemSrc1"      : "diamond_ring_1.jpg",
           "itemImageSrc"       : "diamond_ring_1.jpg",
           "itemTitle"          : "Alexes Bowyer Diamond Top Ring",
@@ -411,11 +389,14 @@ define([
           "itemPrice"          : "$128",
           "hasSize"            : false,
           "sizes"              : [],
-          "allImages"          : ['diamond_ring_3.jpg', 'diamond_ring_2.jpg', 'diamond_ring_1.jpg']
+          "allImages"          : ['diamond_ring_3.jpg', 'diamond_ring_2.jpg', 'diamond_ring_1.jpg'],
+          "variants"           : {
+            "oneSize" : ['896299173']
+          }
         },
         {
-          "id"                 : "29",
-          "index"              : "28",
+          "id"                 : "26",
+          "index"              : "25",
           "largeItemSrc1"      : "diamond_ring_2.jpg",
           "itemImageSrc"       : "diamond_ring_2.jpg",
           "itemTitle"          : "Alexes Bowyer Diamond Top Ring",
@@ -425,8 +406,8 @@ define([
           "sizes"              : []
         },
         {
-          "id"                 : "30",
-          "index"              : "29",
+          "id"                 : "27",
+          "index"              : "26",
           "largeItemSrc1"      : "diamond_ring_3.jpg",
           "itemImageSrc"       : "diamond_ring_3.jpg",
           "itemTitle"          : "Alexes Bowyer Diamond Top Ring",
@@ -436,8 +417,8 @@ define([
           "sizes"              : []
         },
         {
-          "id"                 : "31",
-          "index"              : "30",
+          "id"                 : "28",
+          "index"              : "27",
           "largeItemSrc1"      : "selene_ring_1.jpg",
           "itemImageSrc"       : "selene_ring_1.jpg",
           "itemTitle"          : "Alexes Bowyer Selene Ring",
@@ -445,11 +426,14 @@ define([
           "itemPrice"          : "$88",
           "hasSize"            : false,
           "sizes"              : [],
-          "allImages"          : ['selene_ring_2.jpg', 'selene_ring_1.jpg']
+          "allImages"          : ['selene_ring_2.jpg', 'selene_ring_1.jpg'],
+          "variants"           : {
+            "oneSize" : ['896303521']
+          }
         },
         {
-          "id"                 : "32",
-          "index"              : "31",
+          "id"                 : "29",
+          "index"              : "28",
           "largeItemSrc1"      : "selene_ring_2.jpg",
           "itemImageSrc"       : "selene_ring_2.jpg",
           "itemTitle"          : "Alexes Bowyer Selene Ring",
@@ -459,8 +443,8 @@ define([
           "sizes"              : []
         },
         {
-          "id"                 : "33",
-          "index"              : "32",
+          "id"                 : "30",
+          "index"              : "29",
           "largeItemSrc1"      : "seashell_glasses_1.jpg",
           "itemImageSrc"       : "seashell_glasses_1.jpg",
           "itemTitle"          : "R.T.Co Sparrow Seashell",
@@ -468,11 +452,14 @@ define([
           "itemPrice"          : "$195",
           "hasSize"            : false,
           "sizes"              : [],
-          "allImages"          : ['seashell_glasses_2.jpg', 'seashell_glasses_1.jpg']
+          "allImages"          : ['seashell_glasses_2.jpg', 'seashell_glasses_1.jpg'],
+          "variants"           : {
+            "oneSize" : ['894256081']
+          }
         },
         {
-          "id"                 : "34",
-          "index"              : "33",
+          "id"                 : "31",
+          "index"              : "30",
           "largeItemSrc1"      : "seashell_glasses_2.jpg",
           "itemImageSrc"       : "seashell_glasses_2.jpg",
           "itemTitle"          : "R.T.Co Sparrow Seashell",
@@ -482,8 +469,8 @@ define([
           "sizes"              : []
         },
         {
-          "id"                 : "35",
-          "index"              : "34",
+          "id"                 : "32",
+          "index"              : "31",
           "largeItemSrc1"      : "seashell_glasses_3.jpg",
           "itemImageSrc"       : "seashell_glasses_3.jpg",
           "itemTitle"          : "R.T.Co Sparrow Seashell",
@@ -493,8 +480,8 @@ define([
           "sizes"              : []
         },
         {
-          "id"                 : "36",
-          "index"              : "35",
+          "id"                 : "33",
+          "index"              : "32",
           "largeItemSrc1"      : "blazer_1.jpg",
           "itemImageSrc"       : "blazer_1.jpg",
           "itemTitle"          : "Shades of Grey Knit Blazer",
@@ -509,8 +496,8 @@ define([
           }
         },
         {
-          "id"                 : "37",
-          "index"              : "36",
+          "id"                 : "34",
+          "index"              : "33",
           "largeItemSrc1"      : "blazer_2.jpg",
           "itemImageSrc"       : "blazer_2.jpg",
           "itemTitle"          : "Shades of Grey Knit Blazer",
@@ -520,8 +507,8 @@ define([
           "sizes"              : [ 36, 38, 40, 42 ]
         },
         {
-          "id"                 : "38",
-          "index"              : "37",
+          "id"                 : "35",
+          "index"              : "34",
           "largeItemSrc1"      : "blazer_3.jpg",
           "itemImageSrc"       : "blazer_3.jpg",
           "itemTitle"          : "Shades of Grey Knit Blazer",
@@ -610,17 +597,6 @@ define([
           "hotSpotStartHeight" : "600"
         },
         {
-          "id"                 : "22", // shot 3 left woman
-          "hotSpotId"          : "8",
-          "index"              : "0",
-          "startTime"          : "0.21",
-          "endTime"            : "0.26",
-          "hotSpotStartX"      : "100",
-          "hotSpotStartY"      : "545",
-          "hotSpotStartWidth"  : "300",
-          "hotSpotStartHeight" : "500"
-        },
-        {
           "id"                 : "13", // shot 4 centerman jacket
           "hotSpotId"          : "9",
           "index"              : "0",
@@ -643,7 +619,7 @@ define([
           "hotSpotStartHeight" : "200"
         },
         {
-          "id"                 : "25", // shot 5 man 1
+          "id"                 : "22", // shot 5 man 1
           "hotSpotId"          : "11",
           "index"              : "0",
           "startTime"          : "0.32",
@@ -654,7 +630,7 @@ define([
           "hotSpotStartHeight" : "175"
         },
         {
-          "id"                 : "25", // shot 6 man 1 (shot 5 image)
+          "id"                 : "22", // shot 6 man 1 (shot 5 image)
           "hotSpotId"          : "12",
           "index"              : "0",
           "startTime"          : "0.375",
@@ -665,7 +641,7 @@ define([
           "hotSpotStartHeight" : "650"
         },
         {
-          "id"                 : "13", // (same as shot 3) shot 7 centerman jacket right side
+          "id"                 : "33", // (same as shot 3) shot 7 centerman jacket right side
           "hotSpotId"          : "13",
           "index"              : "0",
           "startTime"          : "0.44",
@@ -707,17 +683,6 @@ define([
           "hotSpotStartY"      : "400",
           "hotSpotStartWidth"  : "250",
           "hotSpotStartHeight" : "600"
-        },
-        {
-          "id"                 : "22", // (same as shot 3) shot 7 left woman
-          "hotSpotId"          : "17",
-          "index"              : "0",
-          "startTime"          : "0.44",
-          "endTime"            : "0.485",
-          "hotSpotStartX"      : "500",
-          "hotSpotStartY"      : "500",
-          "hotSpotStartWidth"  : "245",
-          "hotSpotStartHeight" : "700"
         },
         {
           "id"                 : "7", // shot 9 man (same as shot 2)
@@ -830,7 +795,7 @@ define([
           "hotSpotStartHeight" : "350"
         },
         {
-          "id"                 : "28", // diamond ring
+          "id"                 : "25", // diamond ring
           "hotSpotId"          : "28",
           "index"              : "0",
           "startTime"          : "0.765",
@@ -841,7 +806,7 @@ define([
           "hotSpotStartHeight" : "350"
         },
         {
-          "id"                 : "31", // selene ring
+          "id"                 : "28", // selene ring
           "hotSpotId"          : "29",
           "index"              : "0",
           "startTime"          : "0.69",
@@ -852,7 +817,7 @@ define([
           "hotSpotStartHeight" : "300"
         },
         {
-          "id"                 : "31", // selene ring
+          "id"                 : "28", // selene ring
           "hotSpotId"          : "30",
           "index"              : "0",
           "startTime"          : "0.21",
@@ -863,7 +828,7 @@ define([
           "hotSpotStartHeight" : "100"
         },
         {
-          "id"                 : "33", // seashell glasses
+          "id"                 : "30", // seashell glasses
           "hotSpotId"          : "31",
           "index"              : "0",
           "startTime"          : "0.44",
@@ -874,7 +839,7 @@ define([
           "hotSpotStartHeight" : "200"
         },
         {
-          "id"                 : "36", // blazer
+          "id"                 : "33", // blazer
           "hotSpotId"          : "32",
           "index"              : "0",
           "startTime"          : "0.655",

@@ -270,7 +270,9 @@ define([
           $(event.currentTarget).addClass('selected');
         }
 
-        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_LRG_ITEM_SIZE_SELECT, {});
+        var selectedSize = event.currentTarget.innerHTML;
+        var selectedItem = app.config.itemData[this.selectedItem - 1].itemTitle;
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_LRG_ITEM_SIZE_SELECT, { size: selectedItem, item: selectedSize });
       },
 
       addButtonClick: function() {
@@ -289,8 +291,8 @@ define([
         }
 
         if (app.cartManager.getItemById(this.selectedItem).variants.oneSize) {
-          var data     = app.cartManager.getItemById(this.selectedItem);
-          var cartItem = $.extend(true, {}, data);
+          var data         = app.cartManager.getItemById(this.selectedItem);
+          var cartItem     = $.extend(true, {}, data);
           cartItem.variant = app.cartManager.getItemById(this.selectedItem).variants.oneSize[0];
 
           app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.ADD_ITEM_CLICK, { 'itemName' : cartItem.itemTitle, 'itemId' : cartItem.id });
@@ -370,6 +372,10 @@ define([
                 app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'itemId' : itemId } );
               });
             }
+          }
+
+          if (colorSelector.children().length < 3) {
+            $('.color-selector-item:first-child').css('margin-left', '15%');
           }
         }
       },
