@@ -1,8 +1,9 @@
 define([
   'jquery',
+  'velocity',
   'underscore',
   'marionette'
-], function ($, _, Marionette ) {
+], function ($, Velocity, _, Marionette ) {
 
     "use strict";
 
@@ -10,6 +11,11 @@ define([
 
     app.addRegions({
       mainRegion : "#main"
+    });
+
+    $(window).on('resize', function() {
+      var windowWidth = $(window).width();
+      $('#frame1').width(windowWidth).height(windowWidth * (9 / 16));
     });
 
     return app;

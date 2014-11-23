@@ -17,11 +17,11 @@ define([
       closeAnimLeftValueSmall : '-37.70625%',
       openAnimLeftValue       : "0%",
 
-      isOpen                     : false,
-      selectedItem               : 1,
-      mainSliderPage             : 1,
-      mainSliderPageTotal        : 4,
-      recommendedSliderPage      : 1,
+      isOpen                : false,
+      selectedItem          : 1,
+      mainSliderPage        : 1,
+      mainSliderPageTotal   : 3,
+      recommendedSliderPage : 1,
 
       events: {},
 
@@ -30,9 +30,14 @@ define([
       },
 
       onShow: function() {
+        if (app.config.variantColors) {
+          this.colorOptions = app.config.variantColors.length;
+        }
+
         this.populateRecommededProducts();
         this.closeActiveCart();
-        this.recommendedSliderPageTotal = Math.ceil(app.config.itemData.length / 3)
+        this.recommendedSliderPageTotal = Math.ceil(app.config.recommended.length / 3)
+        this.loadItem(1);
 
         var that = this;
 
@@ -68,7 +73,7 @@ define([
       },
 
       onDrawerClick: function() {
-        this.isOpen ? this.closeActiveCart() : this.openActiveCart;
+        this.isOpen ? this.closeActiveCart() : this.openActiveCart();
         app.vent.trigger('activeDrawerClick');
       },
 
@@ -102,38 +107,70 @@ define([
         this.isOpen = false;
       },
 
-      loadItem: function(id) {
-        var itemData = app.config.itemData[id - 1];
-        var container = $('.active-slider-container-inner-wrap');
+      removeRecommendedArrows: function() {
+        if ($('.recommended-slider-container-inner-wrap .slide').children().length <= 3) {
+          $('.recommended-left-arrow').hide();
+          $('.recommended-right-arrow').hide();
+        }
+      },
 
+      loadItem: function(id) {
+        var itemData        = app.config.itemData[id - 1];
+        var container       = $('.active-slider-container-inner-wrap');
+        var slideWidth      = 94.5 / (itemData.allImages.length + 1);
+        var variants        = itemData.variants;
+        var sizeButton      = $('.sizeSelector');
         this.selectedItem   = id;
         this.mainSliderPage = 1;
 
-        this.$('#title').html(itemData.itemTitle);
-        this.$('#price').html(itemData.itemPrice);
-        this.$('.description-content-td').html(itemData.itemDescription);
+        if (app.config.variantColors) {
+          this.populateVariantColors();
+        }
 
-        if (itemData.hasSize) {
+        if (itemData.soldOut === true) {
+          $('.sizeSelector').prepend('<div class="sold-out">Sold Out</div');
+        } else {
+          $('.sold-out').remove();
+        }
+
+        this.removeRecommendedArrows();
+
+        this.$('.sizeSelector > li').removeClass('selected');
+        $('#title').html(itemData.itemTitle);
+        $('#price').html(itemData.itemPrice);
+        $('.description-content-td').html(itemData.itemDescription);
+        $('.description').css('width', slideWidth + '%');
+        $('.color-selector-item[itemid=' + this.selectedItem + ']').css('border', '3px solid black');
+
+        if (itemData.hasSize && itemData.soldOut !== true) {
           $('.sizeSelector > li').css('visibility', 'visible');
         } else {
           $('.sizeSelector > li').css('visibility', 'hidden');
         }
 
-        this.$('.active-slider-container-inner-wrap').css({ 'margin-left' : '0%' });
+        if (itemData.hasColor === false) {
+          $('.color-selector').hide();
+        } else {
+          $('.color-selector').show();
+        }
 
+        this.$('.active-slider-container-inner-wrap').css({
+          'margin-left' : '0%',
+          'width'       : (itemData.allImages.length + 1) * 100 + '%'
+        });
 
-        if (container.find('.image-slide').length === 3) {
+        if (container.find('.image-slide').length) {
           container.find('.image-slide').remove();
         }
 
         for (var i = 0; i < itemData.allImages.length; i++) {
           var imageUrl = app.config.baseProductImagePath + "large/" + itemData.allImages[i];
-          var imageSlide = $("<div class='slide image-slide'></div>").css({ 'background-image' : 'url(' + imageUrl + ")" });
+          var imageSlide = $("<div class='slide image-slide'></div>").css({
+            'background-image' : 'url(' + imageUrl + ")",
+            'width'            : slideWidth + '%'
+          });
           container.prepend(imageSlide);
         }
-
-        var variants = itemData.variants;
-        var sizeButton = $('.sizeSelector');
 
         $.map($('.sizeSelector').find('li'), function(e) {
           $(e).removeClass('unavailable');
@@ -141,7 +178,6 @@ define([
             return $(e).attr('data-variant', '');
           }
         });
-
 
         if (variants != null)  {
           if (variants.xsmall != null) {
@@ -192,13 +228,14 @@ define([
         if (app.smallMode) {
           this.loadNextItemInSmallMode();
         } else {
+          var items = app.config.itemData[this.selectedItem - 1];
           this.mainSliderPage += 1;
 
-          if (this.mainSliderPage > this.mainSliderPageTotal) {
+          if (this.mainSliderPage > (items.allImages.length + 1)) {
             this.mainSliderPage = 1;
           }
 
-          var offset = -(this.mainSliderPage - 1) * 100 + '%';
+          var offset = -(this.mainSliderPage - 1) * 95 + '%';
           this.$('.active-slider-container-inner-wrap').animate({ 'margin-left' : offset });
         }
         app.Analytics.activeItemScrollRightClick();
@@ -233,23 +270,36 @@ define([
           $(event.currentTarget).addClass('selected');
         }
 
-        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_LRG_ITEM_SIZE_SELECT, {});
+        var selectedSize = event.currentTarget.innerHTML;
+        var selectedItem = app.config.itemData[this.selectedItem - 1].itemTitle;
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_LRG_ITEM_SIZE_SELECT, { size: selectedItem, item: selectedSize });
       },
 
       addButtonClick: function() {
+        var startingData = app.config.cartItems;
+
+        if (app.config.itemData[this.selectedItem - 1].soldOut === true) {
+          return;
+        }
+
+        if (startingData.length > 0) {
+          for (var i = 0; i < startingData.length; i++) {
+            if (startingData[i].id === this.selectedItem) {
+              return;
+            }
+          }
+        }
+
         if (app.cartManager.getItemById(this.selectedItem).variants.oneSize) {
-          var data     = app.cartManager.getItemById(this.selectedItem);
-          var cartItem = $.extend(true, {}, data);
+          var data         = app.cartManager.getItemById(this.selectedItem);
+          var cartItem     = $.extend(true, {}, data);
           cartItem.variant = app.cartManager.getItemById(this.selectedItem).variants.oneSize[0];
 
           app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.ADD_ITEM_CLICK, { 'itemName' : cartItem.itemTitle, 'itemId' : cartItem.id });
 
           app.cartManager.addItem(cartItem);
           app.vent.trigger('itemAdded');
-        }
-
-
-        if ($('.sizeSelector').children().hasClass('selected')) {
+        } else if ($('.sizeSelector').children().hasClass('selected')) {
           var size         = $('.sizeSelector').children('.selected').attr('data-size');
           var data         = app.cartManager.getItemById(this.selectedItem);
           var cartItem     = $.extend(true, {}, data);
@@ -272,6 +322,7 @@ define([
 
         var offset = -(this.recommendedSliderPage - 1) * 100 + '%';
         this.$('.recommended-slider-container-inner-wrap').animate( { 'margin-left' : offset });
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_SCROLL_LEFT);
       },
 
       onRightRecommendedArrowClick: function() {
@@ -283,12 +334,63 @@ define([
 
         var offset = -(this.recommendedSliderPage - 1) * 100 + '%';
         this.$('.recommended-slider-container-inner-wrap').animate({ 'margin-left' : offset });
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_SCROLL_RIGHT);
+      },
+
+      populateVariantColors: function() {
+        if (app.config.variantColors.length === 0) {
+          return;
+        }
+
+        if ($('.color-selector').children().length !== 0) {
+          $('.color-selector').children().remove();
+        }
+
+        var that          = this;
+        var data          = app.config.variantColors;
+        var colorSelector = $('.color-selector');
+
+        if (data.length === 0) {
+          return;
+        } else {
+          for (var i = 0; i < data.length; i++) {
+            if (app.config.itemData[this.selectedItem - 1].colorBlockId === app.config.variantColors[i].colorBlockId) {
+              var color      = data[i].colorSrc ? data[i].colorSrc : app.config.colorVariantsImagePath + data[i].colorImgSrc;
+              var colorBlock = $('<div class="color-selector-item"></div>');
+
+              if (data[i].colorSrc) {
+                colorBlock.css('background', color).attr('itemId', data[i].id);;
+              } else {
+                colorSelector.css('height', '23%');
+                colorBlock.css({
+                  'background-image'  : ('url(' + color + ')'),
+                  'background-repeat' : 'no-repeat',
+                  'background-size'   : '100%',
+                  "border"            : "none"
+                });
+              }
+
+              colorSelector.append(colorBlock);
+
+              app.bindClickTouch(colorBlock, function(event) {
+                var itemId = $(event.currentTarget).attr('itemId');
+                that.loadItem(itemId);
+                var item = app.config.itemData[itemId].itemTitle;
+                app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.COLOR_CLICK, { 'itemId' : itemId } );
+              });
+            }
+          }
+
+          if (colorSelector.children().length < 3) {
+            $('.color-selector-item:first-child').css('margin-left', '15%');
+          }
+        }
       },
 
       populateRecommededProducts: function() {
-        var data           = app.config.itemData;
+        var data           = app.config.recommended;
         var that           = this;
-        var amountOfSlides = Math.ceil(data.length / 2);
+        var amountOfSlides = Math.ceil(data.length / 3);
         var sliderWidth    = 100 * amountOfSlides;
         var slideWidth     = 100 / amountOfSlides + "%";
         var itemId;
@@ -313,7 +415,8 @@ define([
           app.bindClickTouch(slide1, function(event) {
             itemId = $(event.currentTarget).attr('itemId');
             that.loadItem(itemId);
-            app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'itemId' : itemId });
+            var item = app.config.itemData[that.selectedItem - 1].itemTitle;
+            app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'item' : item });
           });
 
           if (data[i+1]) {
@@ -324,13 +427,14 @@ define([
               'background-image': 'url(' + imgUrl + ')',
               'background-size': 'contain',
               'background-repeat': 'no-repeat'
-            }).attr('itemId', data[i].id);
+            }).attr('itemId', data[i+1].id);
             slide.append(slide2);
 
             app.bindClickTouch(slide2, function(event) {
               var itemId = $(event.currentTarget).attr('itemId');
               that.loadItem(itemId);
-              app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'itemId' : itemId } );
+              var item = app.config.itemData[that.selectedItem - 1].itemTitle;
+              app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'item' : item });
             });
           }
 
@@ -342,13 +446,14 @@ define([
               'background-image': 'url(' + imgUrl + ')',
               'background-size': 'contain',
               'background-repeat': 'no-repeat'
-            }).attr('itemId', data[i].id);
+            }).attr('itemId', data[i+2].id);
             slide.append(slide2);
 
             app.bindClickTouch(slide2, function(event) {
               var itemId = $(event.currentTarget).attr('itemId');
               that.loadItem(itemId);
-              app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'itemId' : itemId } );
+              var item = app.config.itemData[that.selectedItem - 1].itemTitle;
+              app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'item' : item });
             });
           }
 

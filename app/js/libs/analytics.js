@@ -282,7 +282,7 @@ define([
     },
 
     getUserId : function() {
-      return "jeremy";
+      return "dave";
     },
 
     //start custom logging
@@ -323,8 +323,8 @@ define([
       this.logAnalyticEvent(this.analyticVars.AC_LRG_ITEM_SCROLL_RIGHT, pageLevelVars);
     },
 
-    activeItemSizeSelectClick : function( size ) {
-      pageLevelVars = { 'size' : size };
+    activeItemSizeSelectClick : function(size, item) {
+      pageLevelVars = { 'size' : size, 'item' : item };
       this.logAnalyticEvent(this.analyticVars.AC_LRG_ITEM_SIZE_SELECT, pageLevelVars);
     },
 
@@ -358,8 +358,8 @@ define([
       this.logAnalyticEvent(this.analyticVars.ADD_ITEM_CLICK, pageLevelVars);
     },
 
-    checkoutClick : function() {
-      pageLevelVars = {};
+    checkoutClick : function(items, date) {
+      pageLevelVars = { 'items': items, 'date': 'date'};
       this.logAnalyticEvent(this.analyticVars.CHECKOUT_BUTTON_CLICK, pageLevelVars);
     }
   }

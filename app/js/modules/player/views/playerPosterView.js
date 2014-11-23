@@ -16,13 +16,13 @@ define([
 
       initialize: function(options) {},
 
-      onShow: function() {},
+      onShow: function() {
+      },
 
       onRender: function() {
         var that = this;
-        // $(this.el).css('background-image', 'url(' + app.config.splashImage + ')');
-        $(this.el).css('background', 'url(' + app.config.splashImage + ') 100%');
-        $(this.el).css('background-size', '100%');
+        $(this.el).css('background', 'url(' + app.config.splashImage + ') no-repeat center center');
+        $(this.el).css('background-size', 'cover');
 
         if (app.isMobileSafari()) {
           $(this.el)[0].onclick = function() {

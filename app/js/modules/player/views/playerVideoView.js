@@ -30,8 +30,8 @@ define([
         }
 
         video
-          .append("<source src='static/movies/" + app.config.mp4_video_src_med + "' type='video/mp4'></source>")
-          .append("<source src='static/movies/" + app.config.webm_video_src_med + "' type='video/webm'></source>");
+          .append("<source src='static/movies/" + app.config.mp4_video_src_med + "' type='video/mp4' webkit-playsinline></source>")
+          .append("<source src='static/movies/" + app.config.webm_video_src_med + "' type='video/webm' webkit-playsinline></source>");
 
         // this.video.bind('loadeddata', function(event){ that.onCanPlay(); });
         video.bind('canplay', function(event) {
@@ -42,8 +42,7 @@ define([
           that.onTimeUpdate(this.currentTime, this.duration);
         });
 
-        //  TODO: TURN THIS BACK UP
-        video[0].volume = 0.0;
+        video[0].volume = 1.0;
       },
 
       onCanPlay: function() {
@@ -69,7 +68,7 @@ define([
       play: function() {
         this.$('video')[0].play();
         app.isPlaying = true;
-        app.Analytics.playButtonControlBarClick();
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_PLAYBUTTON_CLICK, { 'vendor' : app.config.gaVendorName });
       },
 
       replay: function() {

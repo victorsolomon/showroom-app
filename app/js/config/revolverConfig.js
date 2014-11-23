@@ -5,11 +5,10 @@ define([
 
     window.playerConfig = {
 
-      gaKey : 'UA-55433166-1',
+      gaKey : 'UA-55667188-1',
 
-      mp4_video_src_small  : "revolverDemo1.mp4",
-      mp4_video_src_med    : "revolverDemo2.mp4",
-      mp4_video_src_lrg    : "091414_Demo_5.mp4",
+      mp4_video_src_med  : "revolverDemo1.mp4",
+      webm_video_src_med : 'revolverDemo.webm',
 
       loaderStyle: 'image',
 
@@ -21,9 +20,61 @@ define([
       checkoutCartLocation : "http://www.revolveronline.com/cart",
 
       checkoutType      : "shopify",
-      shareUrl          : "http://www.helloshowroom.co",
-      shareEmbedBaseUrl : "http://www.helloshowroom.co/player/showroom/index.html?config=revolverConfig",
+      shareUrl          : "http://www.helloshowroom.co/revolver/index.html",
+      shareEmbedBaseUrl : "http://www.helloshowroom.co/revolver/index.html?config=revolverConfig",
       splashImage       : 'static/images/posterFrames/revolver-overlay.gif',
+
+      recommended: [
+        {
+          "id"            : 1,
+          "largeItemSrc1" : "Shot_1_Man_1.jpg"
+        },
+        {
+          "id"            : 4,
+          "largeItemSrc1" : "Shot_1_Woman_1.jpg"
+        },
+        {
+          "id"            : 7,
+          "largeItemSrc1" : "Shot_2_Man_1.jpg"
+        },
+        {
+          "id"            : 10,
+          "largeItemSrc1" : "Shot_2_Woman_1.jpg"
+        },
+        {
+          "id"            : 13,
+          "largeItemSrc1" : "Shot_3_Centerman_1_1.jpg"
+        },
+        {
+          "id"            : 16,
+          "largeItemSrc1" : "Shot_3_Centerman_2_1.jpg"
+        },
+        {
+          "id"            : 19,
+          "largeItemSrc1" : "Shot_3_RightMan_1.jpg"
+        },
+        {
+          "id"            : 22,
+          "largeItemSrc1" : "Shot_5_Man_1.jpg"
+        },
+        {
+          "id"            : '25',
+          "largeItemSrc1" : "diamond_ring_1.jpg"
+        },
+        {
+          "id"            : '28',
+          'largeItemSrc1' : "selene_ring_1.jpg",
+        },
+        {
+          "id"            : '30',
+          "largeItemSrc1" : "seashell_glasses_1.jpg"
+        },
+        {
+          "id"            : '33',
+          'largeItemSrc1' : "blazer_1.jpg"
+        }
+
+      ],
 
       itemData: [
         {
@@ -31,7 +82,7 @@ define([
           "index"              : "0",
           "largeItemSrc1"      : "Shot_1_Man_1.jpg",
           "itemImageSrc"       : "Shot_1_Man_1.jpg",
-          "itemTitle"          : "Won Hundred Knit Grey",
+          "itemTitle"          : "Won Hundred Knit",
           "itemDescription"    : "Masculine waffle knit with a scoop neck and fine tailoring. A perfect layer over a slim collared shirt.",
           "itemPrice"          : "$165",
           "hasSize"            : true,
@@ -48,7 +99,7 @@ define([
           "index"              : "1",
           "largeItemSrc1"      : "Shot_1_Man_2.jpg",
           "itemImageSrc"       : "Shot_1_Man_2.jpg",
-          "itemTitle"          : "Won Hundred Knit Grey",
+          "itemTitle"          : "Won Hundred Knit",
           "itemDescription"    : "Masculine waffle knit with a scoop neck and fine tailoring. A perfect layer over a slim collared shirt.",
           "itemPrice"          : "$165",
           "hasSize"            : true,
@@ -59,7 +110,7 @@ define([
           "index"              : "2",
           "largeItemSrc1"      : "Shot_1_Man_3.jpg",
           "itemImageSrc"       : "Shot_1_Man_3.jpg",
-          "itemTitle"          : "Won Hundred Knit Grey",
+          "itemTitle"          : "Won Hundred Knit",
           "itemDescription"    : "Masculine waffle knit with a scoop neck and fine tailoring. A perfect layer over a slim collared shirt.",
           "itemPrice"          : "$165",
           "hasSize"            : true,
@@ -70,24 +121,22 @@ define([
           "index"              : "3",
           "largeItemSrc1"      : "Shot_1_Woman_1.jpg",
           "itemImageSrc"       : "Shot_1_Woman_1.jpg",
-          "itemTitle"          : "First Rite Roll Tunic",
-          "itemDescription"    : "The one size roll tunic was cut with an easy, oversize fit to be comfortable, versatile, and perfect for year round wear. It is cut from 100% cotton gauze with a slightly crinkled texture which has been washed and dried. The interior is finished with french seams for a clean roll at the sleeve.",
-          "itemPrice"          : "$140",
+          "itemTitle"          : "WayWay Frankie Top",
+          "itemDescription"    : "Beautifully crafted kimono top in a weighty linen fabric. Drapes beautifully on any body type. Boatneck. Box fit. Dropped short sleeves. 100% linen.",
+          "itemPrice"          : "$99",
           "hasSize"            : false,
+          "soldOut"            : true,
           "sizes"              : [],
-          "allImages"          : ["Shot_1_Woman_3.jpg", "Shot_1_Woman_2.jpg", "Shot_1_Woman_1.jpg"],
-          "variants"           : {
-            oneSize: ['894150389', 'white']
-          }
+          "allImages"          : ["Shot_1_Woman_3.jpg", "Shot_1_Woman_2.jpg", "Shot_1_Woman_1.jpg"]
         },
         {
           "id"                 : "5",
           "index"              : "4",
           "largeItemSrc1"      : "Shot_1_Woman_2.jpg",
           "itemImageSrc"       : "Shot_1_Woman_2.jpg",
-          "itemTitle"          : "First Rite Roll Tunic",
-          "itemDescription"    : "The one size roll tunic was cut with an easy, oversize fit to be comfortable, versatile, and perfect for year round wear. It is cut from 100% cotton gauze with a slightly crinkled texture which has been washed and dried. The interior is finished with french seams for a clean roll at the sleeve.",
-          "itemPrice"          : "$140",
+          "itemTitle"          : "WayWay Frankie Top",
+          "itemDescription"    : "Beautifully crafted kimono top in a weighty linen fabric. Drapes beautifully on any body type. Boatneck. Box fit. Dropped short sleeves. 100% linen.",
+          "itemPrice"          : "$99",
           "hasSize"            : false,
           "sizes"              : []
         },
@@ -96,9 +145,9 @@ define([
           "index"              : "5",
           "largeItemSrc1"      : "Shot_1_Woman_3.jpg",
           "itemImageSrc"       : "Shot_1_Woman_3.jpg",
-          "itemTitle"          : "First Rite Roll Tunic",
-          "itemDescription"    : "The one size roll tunic was cut with an easy, oversize fit to be comfortable, versatile, and perfect for year round wear. It is cut from 100% cotton gauze with a slightly crinkled texture which has been washed and dried. The interior is finished with french seams for a clean roll at the sleeve.",
-          "itemPrice"          : "$140",
+          "itemTitle"          : "WayWay Frankie Top",
+          "itemDescription"    : "Beautifully crafted kimono top in a weighty linen fabric. Drapes beautifully on any body type. Boatneck. Box fit. Dropped short sleeves. 100% linen.",
+          "itemPrice"          : "$99",
           "hasSize"            : false,
           "sizes"              : []
         },
@@ -145,26 +194,22 @@ define([
           "index"              : "9",
           "largeItemSrc1"      : "Shot_2_Woman_1.jpg",
           "itemImageSrc"       : "Shot_2_Woman_1.jpg",
-          "itemTitle"          : "Kaarem Cat Lan Tops",
-          "itemDescription"    : "Feather light sleeveless blouse with a loose, easy fit. Features a delicate silk fabric refined scoop collar. Rounded neckline. Asymmetrical bottom hem. Clean hem finishing. 100% silk.",
-          "itemPrice"          : "$94",
+          "itemTitle"          : "Samsoe Samsoe Emaj Top",
+          "itemDescription"    : "Delicate tank top in a soft tencel fabric. We love to pair this soft basic tucked into some high waisted trousers and with a chunky sandal for summer. Deep-v Neckline. 100% tencel.",
+          "itemPrice"          : "$75",
           "hasSize"            : true,
+          "soldOut"            : true,
           "sizes"              : [ 36, 38, 40, 42 ],
           "allImages"          : ["Shot_2_Woman_3.jpg", "Shot_2_Woman_2.jpg", "Shot_2_Woman_1.jpg"]
-          // "variants"           : {
-          //   xsmall : ['701997349'],
-          //   small  : ['701997361'],
-          //   medium : ['701997365']
-          // }
         },
         {
           "id"                 : "11",
           "index"              : "10",
           "largeItemSrc1"      : "Shot_2_Woman_2.jpg",
           "itemImageSrc"       : "Shot_2_Woman_2.jpg",
-          "itemTitle"          : "Kaarem Cat Lan Tops",
-          "itemDescription"    : "Feather light sleeveless blouse with a loose, easy fit. Features a delicate silk fabric refined scoop collar. Rounded neckline. Asymmetrical bottom hem. Clean hem finishing. 100% silk.",
-          "itemPrice"          : "$94",
+          "itemTitle"          : "Samsoe Samsoe Emaj Top",
+          "itemDescription"    : "Delicate tank top in a soft tencel fabric. We love to pair this soft basic tucked into some high waisted trousers and with a chunky sandal for summer. Deep-v Neckline. 100% tencel.",
+          "itemPrice"          : "$75",
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ]
         },
@@ -173,9 +218,9 @@ define([
           "index"              : "11",
           "largeItemSrc1"      : "Shot_2_Woman_3.jpg",
           "itemImageSrc"       : "Shot_2_Woman_3.jpg",
-          "itemTitle"          : "Kaarem Cat Lan Tops",
-          "itemDescription"    : "Feather light sleeveless blouse with a loose, easy fit. Features a delicate silk fabric refined scoop collar. Rounded neckline. Asymmetrical bottom hem. Clean hem finishing. 100% silk.",
-          "itemPrice"          : "$94",
+          "itemTitle"          : "Samsoe Samsoe Emaj Top",
+          "itemDescription"    : "Delicate tank top in a soft tencel fabric. We love to pair this soft basic tucked into some high waisted trousers and with a chunky sandal for summer. Deep-v Neckline. 100% tencel.",
+          "itemPrice"          : "$75",
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ]
         },
@@ -184,14 +229,13 @@ define([
           "index"              : "12",
           "largeItemSrc1"      : "Shot_3_Centerman_1_1.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_1_1.jpg",
-          "itemTitle"          : "Denham Advisor Parka - Black",
+          "itemTitle"          : "Denham Advisor Parka",
           "itemDescription"    : "Soft hand feel stretch fabric garment dyed to achieve a perfect color saturation enriched with a soft brush effect. Full removable hood. Side flap pockets. Single vertical chest pocket. Hidden zip snap closure down the front.",
           "itemPrice"          : "$199",
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ],
           "allImages"          : ["Shot_3_Centerman_1_3.jpg", "Shot_3_Centerman_1_2.jpg", "Shot_3_Centerman_1_1.jpg"],
           "variants"           : {
-            small  : ['542750841'],
             medium : ['542750845'],
             large  : ['542750849']
           }
@@ -201,7 +245,7 @@ define([
           "index"              : "13",
           "largeItemSrc1"      : "Shot_3_Centerman_1_2.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_1_2.jpg",
-          "itemTitle"          : "Denham Advisor Parka - Black",
+          "itemTitle"          : "Denham Advisor Parka",
           "itemDescription"    : "Soft hand feel stretch fabric garment dyed to achieve a perfect color saturation enriched with a soft brush effect. Full removable hood. Side flap pockets. Single vertical chest pocket. Hidden zip snap closure down the front.",
           "itemPrice"          : "$199",
           "hasSize"            : true,
@@ -212,7 +256,7 @@ define([
           "index"              : "14",
           "largeItemSrc1"      : "Shot_3_Centerman_1_3.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_1_3.jpg",
-          "itemTitle"          : "Denham Advisor Parka - Black",
+          "itemTitle"          : "Denham Advisor Parka",
           "itemDescription"    : "Soft hand feel stretch fabric garment dyed to achieve a perfect color saturation enriched with a soft brush effect. Full removable hood. Side flap pockets. Single vertical chest pocket. Hidden zip snap closure down the front.",
           "itemPrice"          : "$199",
           "hasSize"            : true,
@@ -223,7 +267,7 @@ define([
           "index"              : "15",
           "largeItemSrc1"      : "Shot_3_Centerman_2_1.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_2_1.jpg",
-          "itemTitle"          : "Denham Simpler SCC Black",
+          "itemTitle"          : "Denham Simpler SCC",
           "itemDescription"    : "Denham is a label built on experimentation and resourceful innovation. This shirt is a versatile dress shirt with modernized military detailing. Stitched dart detailing to the chest and the back. A discrete leather Denham Logo tag on the seam. Full branded button fastening.",
           "itemPrice"          : "$169",
           "hasSize"            : true,
@@ -238,7 +282,7 @@ define([
           "index"              : "16",
           "largeItemSrc1"      : "Shot_3_Centerman_2_2.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_2_2.jpg",
-          "itemTitle"          : "Denham Simpler SCC Black",
+          "itemTitle"          : "Denham Simpler SCC",
           "itemDescription"    : "Denham is a label built on experimentation and resourceful innovation. This shirt is a versatile dress shirt with modernized military detailing. Stitched dart detailing to the chest and the back. A discrete leather Denham Logo tag on the seam. Full branded button fastening.",
           "itemPrice"          : "$169",
           "hasSize"            : true,
@@ -249,7 +293,7 @@ define([
           "index"              : "17",
           "largeItemSrc1"      : "Shot_3_Centerman_2_3.jpg",
           "itemImageSrc"       : "Shot_3_Centerman_2_3.jpg",
-          "itemTitle"          : "Denham Simpler SCC Black",
+          "itemTitle"          : "Denham Simpler SCC",
           "itemDescription"    : "Denham is a label built on experimentation and resourceful innovation. This shirt is a versatile dress shirt with modernized military detailing. Stitched dart detailing to the chest and the back. A discrete leather Denham Logo tag on the seam. Full branded button fastening.",
           "itemPrice"          : "$169",
           "hasSize"            : true,
@@ -260,7 +304,7 @@ define([
           "index"              : "18",
           "largeItemSrc1"      : "Shot_3_RightMan_1.jpg",
           "itemImageSrc"       : "Shot_3_RightMan_1.jpg",
-          "itemTitle"          : "Denham Tailor - SG Jacket - Black",
+          "itemTitle"          : "Denham Tailor - SG Jacket",
           "itemDescription"    : "The new SG is a 2-button sport coat with unique radial seam construction combining an artisan feel with a subtly anatomical silhouette. Tailored in stretch cotton gaberdine and garment-dyed, the touch and tone are natural and the movement and comfort are modern. Spread collar. 2 button closure. Side slash pockets.",
           "itemPrice"          : "$275",
           "hasSize"            : true,
@@ -276,7 +320,7 @@ define([
           "index"              : "19",
           "largeItemSrc1"      : "Shot_3_RightMan_2.jpg",
           "itemImageSrc"       : "Shot_3_RightMan_2.jpg",
-          "itemTitle"          : "Denham Tailor - SG Jacket - Black",
+          "itemTitle"          : "Denham Tailor - SG Jacket",
           "itemDescription"    : "The new SG is a 2-button sport coat with unique radial seam construction combining an artisan feel with a subtly anatomical silhouette. Tailored in stretch cotton gaberdine and garment-dyed, the touch and tone are natural and the movement and comfort are modern. Spread collar. 2 button closure. Side slash pockets.",
           "itemPrice"          : "$275",
           "hasSize"            : true,
@@ -287,56 +331,21 @@ define([
           "index"              : "20",
           "largeItemSrc1"      : "Shot_3_RightMan_3.jpg",
           "itemImageSrc"       : "Shot_3_RightMan_3.jpg",
-          "itemTitle"          : "Denham Tailor - SG Jacket - Black",
+          "itemTitle"          : "Denham Tailor - SG Jacket",
           "itemDescription"    : "The new SG is a 2-button sport coat with unique radial seam construction combining an artisan feel with a subtly anatomical silhouette. Tailored in stretch cotton gaberdine and garment-dyed, the touch and tone are natural and the movement and comfort are modern. Spread collar. 2 button closure. Side slash pockets.",
           "itemPrice"          : "$275",
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ]
         },
+
+
+
         {
           "id"                 : "22",
           "index"              : "21",
-          "largeItemSrc1"      : "Shot_3_Woman_1.jpg",
-          "itemImageSrc"       : "Shot_3_Woman_1.jpg",
-          "itemTitle"          : "Samsoe Waddi SS Shirt",
-          "itemDescription"    : "Waddi's baby sister shirt in a summer sleeveless style. Lovely loose fitting silk pullover blouse in a rich navy. Monk collar and clean neckline. Invisible button placket which continues into a pleat. Curved hem. Button barrel cuffs. 100% silk.",
-          "itemPrice"          : "$150",
-          "hasSize"            : true,
-          "sizes"              : [ 36, 38, 40, 42 ],
-          "allImages"          : ["Shot_3_Woman_3.jpg", "Shot_3_Woman_2.jpg", "Shot_3_Woman_1.jpg"],
-          "variants"           : {
-            small  : ['641248213'],
-            medium : ['641248217']
-          }
-        },
-        {
-          "id"                 : "23",
-          "index"              : "22",
-          "largeItemSrc1"      : "Shot_3_Woman_2.jpg",
-          "itemImageSrc"       : "Shot_3_Woman_2.jpg",
-          "itemTitle"          : "Samsoe Waddi SS Shirt",
-          "itemDescription"    : "Waddi's baby sister shirt in a summer sleeveless style. Lovely loose fitting silk pullover blouse in a rich navy. Monk collar and clean neckline. Invisible button placket which continues into a pleat. Curved hem. Button barrel cuffs. 100% silk.",
-          "itemPrice"          : "$150",
-          "hasSize"            : true,
-          "sizes"              : [ 36, 38, 40, 42 ]
-        },
-        {
-          "id"                 : "24",
-          "index"              : "23",
-          "largeItemSrc1"      : "Shot_3_Woman_3.jpg",
-          "itemImageSrc"       : "Shot_3_Woman_3.jpg",
-          "itemTitle"          : "Samsoe Waddi SS Shirt",
-          "itemDescription"    : "Waddi's baby sister shirt in a summer sleeveless style. Lovely loose fitting silk pullover blouse in a rich navy. Monk collar and clean neckline. Invisible button placket which continues into a pleat. Curved hem. Button barrel cuffs. 100% silk.",
-          "itemPrice"          : "$150",
-          "hasSize"            : true,
-          "sizes"              : [ 36, 38, 40, 42 ]
-        },
-        {
-          "id"                 : "25",
-          "index"              : "24",
           "largeItemSrc1"      : "Shot_5_Man_1.jpg",
           "itemImageSrc"       : "Shot_5_Man_1.jpg",
-          "itemTitle"          : "Zanerobe Seven Fit LS Shirt - Acid Black",
+          "itemTitle"          : "Zanerobe Seven Fit LS Shirt",
           "itemDescription"    : "Streamlined shirt tailored in a classic long-sleeve, button-up style. Featured in an acid black denim wash. Button down collar. Contrast button closure down the placket and cuffs. Single patch pocket with button detail on the chest. 100% cotton.",
           "itemPrice"          : "$119",
           "hasSize"            : true,
@@ -349,24 +358,162 @@ define([
           }
         },
         {
-          "id"                 : "26",
-          "index"              : "25",
+          "id"                 : "23",
+          "index"              : "22",
           "largeItemSrc1"      : "Shot_5_Man_2.jpg",
           "itemImageSrc"       : "Shot_5_Man_2.jpg",
-          "itemTitle"          : "Zanerobe Seven Fit LS Shirt - Acid Black",
+          "itemTitle"          : "Zanerobe Seven Fit LS Shirt",
           "itemDescription"    : "Streamlined shirt tailored in a classic long-sleeve, button-up style. Featured in an acid black denim wash. Button down collar. Contrast button closure down the placket and cuffs. Single patch pocket with button detail on the chest. 100% cotton.",
           "itemPrice"          : "$119",
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ]
         },
         {
-          "id"                 : "27",
-          "index"              : "26",
+          "id"                 : "24",
+          "index"              : "23",
           "largeItemSrc1"      : "Shot_5_Man_3.jpg",
           "itemImageSrc"       : "Shot_5_Man_3.jpg",
-          "itemTitle"          : "Zanerobe Seven Fit LS Shirt - Acid Black",
+          "itemTitle"          : "Zanerobe Seven Fit LS Shirt",
           "itemDescription"    : "Streamlined shirt tailored in a classic long-sleeve, button-up style. Featured in an acid black denim wash. Button down collar. Contrast button closure down the placket and cuffs. Single patch pocket with button detail on the chest. 100% cotton.",
           "itemPrice"          : "$119",
+          "hasSize"            : true,
+          "sizes"              : [ 36, 38, 40, 42 ]
+        },
+        {
+          "id"                 : "25",
+          "index"              : "24",
+          "largeItemSrc1"      : "diamond_ring_1.jpg",
+          "itemImageSrc"       : "diamond_ring_1.jpg",
+          "itemTitle"          : "Alexes Bowyer Diamond Top Ring",
+          "itemDescription"    : "Hand carved and cast ring in sterling silver. Ring features an open design and is somewhat adjustable in size.",
+          "itemPrice"          : "$128",
+          "hasSize"            : false,
+          "sizes"              : [],
+          "allImages"          : ['diamond_ring_3.jpg', 'diamond_ring_2.jpg', 'diamond_ring_1.jpg'],
+          "variants"           : {
+            "oneSize" : ['896299173']
+          }
+        },
+        {
+          "id"                 : "26",
+          "index"              : "25",
+          "largeItemSrc1"      : "diamond_ring_2.jpg",
+          "itemImageSrc"       : "diamond_ring_2.jpg",
+          "itemTitle"          : "Alexes Bowyer Diamond Top Ring",
+          "itemDescription"    : "Hand carved and cast ring in sterling silver. Ring features an open design and is somewhat adjustable in size.",
+          "itemPrice"          : "$128",
+          "hasSize"            : false,
+          "sizes"              : []
+        },
+        {
+          "id"                 : "27",
+          "index"              : "26",
+          "largeItemSrc1"      : "diamond_ring_3.jpg",
+          "itemImageSrc"       : "diamond_ring_3.jpg",
+          "itemTitle"          : "Alexes Bowyer Diamond Top Ring",
+          "itemDescription"    : "Hand carved and cast ring in sterling silver. Ring features an open design and is somewhat adjustable in size.",
+          "itemPrice"          : "$128",
+          "hasSize"            : false,
+          "sizes"              : []
+        },
+        {
+          "id"                 : "28",
+          "index"              : "27",
+          "largeItemSrc1"      : "selene_ring_1.jpg",
+          "itemImageSrc"       : "selene_ring_1.jpg",
+          "itemTitle"          : "Alexes Bowyer Selene Ring",
+          "itemDescription"    : "Sleek twisted barbell design. Polished to a mirror finish. Hand sculpted and cast. Each ring is twisted into shape by hand. Ring size is somewhat adjustable.",
+          "itemPrice"          : "$88",
+          "hasSize"            : false,
+          "sizes"              : [],
+          "allImages"          : ['selene_ring_2.jpg', 'selene_ring_1.jpg'],
+          "variants"           : {
+            "oneSize" : ['896303521']
+          }
+        },
+        {
+          "id"                 : "29",
+          "index"              : "28",
+          "largeItemSrc1"      : "selene_ring_2.jpg",
+          "itemImageSrc"       : "selene_ring_2.jpg",
+          "itemTitle"          : "Alexes Bowyer Selene Ring",
+          "itemDescription"    : "Sleek twisted barbell design. Polished to a mirror finish. Hand sculpted and cast. Each ring is twisted into shape by hand. Ring size is somewhat adjustable.",
+          "itemPrice"          : "$88",
+          "hasSize"            : false,
+          "sizes"              : []
+        },
+        {
+          "id"                 : "30",
+          "index"              : "29",
+          "largeItemSrc1"      : "seashell_glasses_1.jpg",
+          "itemImageSrc"       : "seashell_glasses_1.jpg",
+          "itemTitle"          : "R.T.Co Sparrow Seashell",
+          "itemDescription"    : "Optics are anti-scratch polymere lenses provided by Carl Zeiss Vision Sunlens®, offering 100% UV protection. All components of R.T.CO sunglasses are produced and assembled in Italy.",
+          "itemPrice"          : "$195",
+          "hasSize"            : false,
+          "sizes"              : [],
+          "allImages"          : ['seashell_glasses_2.jpg', 'seashell_glasses_1.jpg'],
+          "variants"           : {
+            "oneSize" : ['894256081']
+          }
+        },
+        {
+          "id"                 : "31",
+          "index"              : "30",
+          "largeItemSrc1"      : "seashell_glasses_2.jpg",
+          "itemImageSrc"       : "seashell_glasses_2.jpg",
+          "itemTitle"          : "R.T.Co Sparrow Seashell",
+          "itemDescription"    : "Optics are anti-scratch polymere lenses provided by Carl Zeiss Vision Sunlens®, offering 100% UV protection. All components of R.T.CO sunglasses are produced and assembled in Italy.",
+          "itemPrice"          : "$195",
+          "hasSize"            : false,
+          "sizes"              : []
+        },
+        {
+          "id"                 : "32",
+          "index"              : "31",
+          "largeItemSrc1"      : "seashell_glasses_3.jpg",
+          "itemImageSrc"       : "seashell_glasses_3.jpg",
+          "itemTitle"          : "R.T.Co Sparrow Seashell",
+          "itemDescription"    : "Optics are anti-scratch polymere lenses provided by Carl Zeiss Vision Sunlens®, offering 100% UV protection. All components of R.T.CO sunglasses are produced and assembled in Italy.",
+          "itemPrice"          : "$195",
+          "hasSize"            : false,
+          "sizes"              : []
+        },
+        {
+          "id"                 : "33",
+          "index"              : "32",
+          "largeItemSrc1"      : "blazer_1.jpg",
+          "itemImageSrc"       : "blazer_1.jpg",
+          "itemTitle"          : "Shades of Grey Knit Blazer",
+          "itemDescription"    : "Shades of Grey Knit Blazer",
+          "itemPrice"          : "$179",
+          "hasSize"            : true,
+          "sizes"              : [ 36, 38, 40, 42 ],
+          "allImages"          : ['blazer_3.jpg', 'blazer_2.jpg', 'blazer_1.jpg'],
+          "variants"           : {
+            small: ['609719081'],
+            large: ['609719089']
+          }
+        },
+        {
+          "id"                 : "34",
+          "index"              : "33",
+          "largeItemSrc1"      : "blazer_2.jpg",
+          "itemImageSrc"       : "blazer_2.jpg",
+          "itemTitle"          : "Shades of Grey Knit Blazer",
+          "itemDescription"    : "Shades of Grey Knit Blazer",
+          "itemPrice"          : "$179",
+          "hasSize"            : true,
+          "sizes"              : [ 36, 38, 40, 42 ]
+        },
+        {
+          "id"                 : "35",
+          "index"              : "34",
+          "largeItemSrc1"      : "blazer_3.jpg",
+          "itemImageSrc"       : "blazer_3.jpg",
+          "itemTitle"          : "Shades of Grey Knit Blazer",
+          "itemDescription"    : "Shades of Grey Knit Blazer",
+          "itemPrice"          : "$179",
           "hasSize"            : true,
           "sizes"              : [ 36, 38, 40, 42 ]
         }
@@ -450,17 +597,6 @@ define([
           "hotSpotStartHeight" : "600"
         },
         {
-          "id"                 : "22", // shot 3 left woman
-          "hotSpotId"          : "8",
-          "index"              : "0",
-          "startTime"          : "0.21",
-          "endTime"            : "0.26",
-          "hotSpotStartX"      : "100",
-          "hotSpotStartY"      : "545",
-          "hotSpotStartWidth"  : "300",
-          "hotSpotStartHeight" : "500"
-        },
-        {
           "id"                 : "13", // shot 4 centerman jacket
           "hotSpotId"          : "9",
           "index"              : "0",
@@ -483,7 +619,7 @@ define([
           "hotSpotStartHeight" : "200"
         },
         {
-          "id"                 : "25", // shot 5 man 1
+          "id"                 : "22", // shot 5 man 1
           "hotSpotId"          : "11",
           "index"              : "0",
           "startTime"          : "0.32",
@@ -494,7 +630,7 @@ define([
           "hotSpotStartHeight" : "175"
         },
         {
-          "id"                 : "25", // shot 6 man 1 (shot 5 image)
+          "id"                 : "22", // shot 6 man 1 (shot 5 image)
           "hotSpotId"          : "12",
           "index"              : "0",
           "startTime"          : "0.375",
@@ -505,7 +641,7 @@ define([
           "hotSpotStartHeight" : "650"
         },
         {
-          "id"                 : "13", // (same as shot 3) shot 7 centerman jacket right side
+          "id"                 : "33", // (same as shot 3) shot 7 centerman jacket right side
           "hotSpotId"          : "13",
           "index"              : "0",
           "startTime"          : "0.44",
@@ -549,17 +685,6 @@ define([
           "hotSpotStartHeight" : "600"
         },
         {
-          "id"                 : "22", // (same as shot 3) shot 7 left woman
-          "hotSpotId"          : "17",
-          "index"              : "0",
-          "startTime"          : "0.44",
-          "endTime"            : "0.485",
-          "hotSpotStartX"      : "500",
-          "hotSpotStartY"      : "500",
-          "hotSpotStartWidth"  : "245",
-          "hotSpotStartHeight" : "700"
-        },
-        {
           "id"                 : "7", // shot 9 man (same as shot 2)
           "hotSpotId"          : "18",
           "index"              : "0",
@@ -581,30 +706,6 @@ define([
           "hotSpotStartWidth"  : "600",
           "hotSpotStartHeight" : "600"
         },
-        // {
-        //   "id"                 : "7", // shot 10 man (same as shot 2)
-        //   "hotSpotId"          : "20",
-        //   "index"              : "0",
-        //   "startTime"          : "0.60",
-        //   "endTime"            : "0.63",
-        //   "hotSpotStartX"      : "100",
-        //   "hotSpotStartY"      : "545",
-        //   "hotSpotStartWidth"  : "600",
-        //   "hotSpotStartHeight" : "600",
-        //   "beaconMoves"        : true
-        // },
-        // {
-        //   "id"                 : "10", // shot 10 woman (same as shot 2)
-        //   "hotSpotId"          : "21",
-        //   "index"              : "0",
-        //   "startTime"          : "0.60",
-        //   "endTime"            : "0.63",
-        //   "hotSpotStartX"      : "600",
-        //   "hotSpotStartY"      : "400",
-        //   "hotSpotStartWidth"  : "600",
-        //   "hotSpotStartHeight" : "600",
-        //   "beaconMoves"        : true
-        // },
         {
           "id"                 : "13", // shot 11 centerman jacket (same as shot 4)
           "hotSpotId"          : "20",
@@ -613,7 +714,7 @@ define([
           "endTime"            : "0.71",
           "hotSpotStartX"      : "1300",
           "hotSpotStartY"      : "700",
-          "hotSpotStartWidth"  : "400",
+          "hotSpotStartWidth"  : "300",
           "hotSpotStartHeight" : "400"
         },
         {
@@ -624,7 +725,7 @@ define([
           "endTime"            : "0.71",
           "hotSpotStartX"      : "850",
           "hotSpotStartY"      : "900",
-          "hotSpotStartWidth"  : "400",
+          "hotSpotStartWidth"  : "200",
           "hotSpotStartHeight" : "200"
         },
         {
@@ -693,6 +794,61 @@ define([
           "hotSpotStartWidth"  : "550",
           "hotSpotStartHeight" : "350"
         },
+        {
+          "id"                 : "25", // diamond ring
+          "hotSpotId"          : "28",
+          "index"              : "0",
+          "startTime"          : "0.765",
+          "endTime"            : "0.82",
+          "hotSpotStartX"      : "850",
+          "hotSpotStartY"      : "500",
+          "hotSpotStartWidth"  : "550",
+          "hotSpotStartHeight" : "350"
+        },
+        {
+          "id"                 : "28", // selene ring
+          "hotSpotId"          : "29",
+          "index"              : "0",
+          "startTime"          : "0.69",
+          "endTime"            : "0.71",
+          "hotSpotStartX"      : "425",
+          "hotSpotStartY"      : "800",
+          "hotSpotStartWidth"  : "200",
+          "hotSpotStartHeight" : "300"
+        },
+        {
+          "id"                 : "28", // selene ring
+          "hotSpotId"          : "30",
+          "index"              : "0",
+          "startTime"          : "0.21",
+          "endTime"            : "0.26",
+          "hotSpotStartX"      : "425",
+          "hotSpotStartY"      : "510",
+          "hotSpotStartWidth"  : "100",
+          "hotSpotStartHeight" : "100"
+        },
+        {
+          "id"                 : "30", // seashell glasses
+          "hotSpotId"          : "31",
+          "index"              : "0",
+          "startTime"          : "0.44",
+          "endTime"            : "0.485",
+          "hotSpotStartX"      : "1650",
+          "hotSpotStartY"      : "250",
+          "hotSpotStartWidth"  : "200",
+          "hotSpotStartHeight" : "200"
+        },
+        {
+          "id"                 : "33", // blazer
+          "hotSpotId"          : "32",
+          "index"              : "0",
+          "startTime"          : "0.655",
+          "endTime"            : "0.71",
+          "hotSpotStartX"      : "1050",
+          "hotSpotStartY"      : "900",
+          "hotSpotStartWidth"  : "200",
+          "hotSpotStartHeight" : "200"
+        }
       ],
 
     cartItems : []

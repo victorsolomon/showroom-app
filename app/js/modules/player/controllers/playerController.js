@@ -1,14 +1,16 @@
 define([
   'jquery',
+  'velocity',
   'backbone',
   'application',
   'modules/player/views/playerView',
   'libs/jcookie'
-], function ($, Backbone, app, MainView, jcookie) {
+], function ($, Velocity, Backbone, app, MainView, jcookie) {
 
     return Marionette.Controller.extend({
 
-      initialize: function(options) {},
+      initialize: function(options) {
+      },
 
       openPlayer: function() {
         var cookieObj = $.cookie('revolver-clothing');

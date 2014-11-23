@@ -10,7 +10,7 @@
   font-family: brandon
   position: absolute
   width: 35%
-  height: 28.83333%
+  height: auto
   background-color: #fff
   margin-left: 35.70312%
   z-index: 5
@@ -46,17 +46,18 @@
   width: 100%
   list-style: none
   padding: 0px
-  margin: 7px 0
+  margin: 2% 0
 
   li
-    display: inline-block
+    float: left
+    display: inline
     background: #FFF
     color: #000
     cursor: pointer
     opacity: .3
-    width: 23%
+    width: 23.8%
     padding: 0.55% 1%
-    margin-right: 2%
+    margin-right: 1.5%
     text-align: center
     font-size: 2.2rem
     vertical-align: top
@@ -104,3 +105,8 @@
       padding: 11% 4%
       margin-top: 3%
       margin-left: 5%
+
+@media (max-width: 710px) and (min-width: 600px)
+  .shareTextArea
+    height: 2.5em
+

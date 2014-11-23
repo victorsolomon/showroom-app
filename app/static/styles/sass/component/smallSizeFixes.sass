@@ -3,6 +3,10 @@
 
 .smallApp
 
+  .beacon
+    width: 10px
+    height: 10px
+
   #active-cart-region
     left: -37.70625%
     width: 41.14062%
@@ -16,13 +20,20 @@
       height: 57.77778%
       padding-top: 0.758889%
 
+      .slide
+        margin-left: 6px
+
+      .active-slider-container-outer-wrap
+        margin-top: 0
+
     #active-cart-info-and-actions
-      margin-top: 9.15294%
+      margin-top: 0
       width: 71.30563%
 
       .titleAndPrice
         font-size: 3.0rem
         letter-spacing: 0.125rem
+        margin-bottom: 5px
 
         .title
           white-space: nowrap
@@ -30,8 +41,7 @@
           overflow: hidden
 
       .sizeSelector
-
-        margin: 3.5% 0%
+        margin: 3.5% 0 1% 0
 
         li
           font-size: 3.0rem
@@ -75,7 +85,7 @@
 
     .logo
       height: 5.0%
-      background: url( ../../images/sprite/common/powered-small.png ) no-repeat
+      background: url( ../../images/sprite/common/POWER.png ) no-repeat
       background-size: 100%
       bottom: 3.166666666667%
       background-position: right
@@ -93,7 +103,8 @@
     textarea
       height: 3em
 
-    .shareInput, .shareTextArea
+    .shareInput,
+    .shareTextArea
       font-size: 3.0rem
 
     .embedSelector
@@ -120,8 +131,12 @@
     top: 63.52778%
 
   .share-icn
-    bottom: 7.7%
-    background: url( ../../images/sprite/common/share-icn-heavy.png ) no-repeat
+    bottom: 1.5%
+    background: url( ../../images/sprite/common/share-icn.png ) no-repeat
     background-position: 50%
+    background-size: 26%
+    width: 19.25%
+    height: 25.5%
+    left: 36.96875%
   .fullscreen-icn
     bottom: 7.7%
