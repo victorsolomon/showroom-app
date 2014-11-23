@@ -222,14 +222,12 @@ define([
 
       hoverBeaconsOn: function() {
         // For testing purposes
-        // $('.hotSpot').css({display: 'block', background: 'blue', opacity: 0.5});
-        // $('.beacon').css({opacity: '1'});
+        // $('.hotSpot').css({display: 'block', background: 'blue', opacity: 0.1});
       },
 
       hoverBeaconsOff: function() {
         // For testing purposes
         // $('.hotSpot').css({display: 'none', background: 'none'});
-        // $('.beacon').css({opacity: '0'});
       },
 
       tagClick: function(event) {
@@ -260,9 +258,11 @@ define([
           var hotSpot = app.config.hotSpots[i];
 
           if (currentTime >= hotSpot.startTime && currentTime <= hotSpot.endTime) {
-            var percentThroughAnim = (currentTime - hotSpot.startTime) / (hotSpot.endTime - hotSpot.startTime);
+            var percentThroughAnim = (currentTime - hotSpot.startTime) / (hotSpot.endTime - hotSpot.startTime) * 100000;
             var posX   = hotSpot.hotSpotStartX;
             var posY   = hotSpot.hotSpotStartY;
+            var endX   = hotSpot.hotSpotEndX;
+            var endY   = hotSpot.hotSpotEndY;
             var width  = hotSpot.hotSpotStartWidth;
             var height = hotSpot.hotSpotStartHeight;
 
@@ -272,6 +272,18 @@ define([
             height *= ratio;
 
             $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : posX, 'top' : posY, 'width' : width, 'height' : height });
+
+            // // TODO: animation prototype
+            // if (endX != null && endY != null) {
+            //   $('#hotspot' + hotSpot.hotSpotId).Velocity({
+            //     left : endX,
+            //     top  : endY
+            //   }, percentThroughAnim, function() {
+            //     $('#hotspot' + hotSpot.hotSpotId).css({ left : posX, top : posY });
+            //   });
+            // }
+
+
           } else {
             $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : -2000 });
           }
@@ -279,7 +291,8 @@ define([
       },
 
       onShareClick: function() {
-        app.Analytics.shareButtonClick();
+        var vendor = app.config.gaVendorName;
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_SHAREBUTTON_CLICK, { 'vendor' : vendor });
         app.vent.trigger('pause');
         app.vent.trigger('showMask');
         this.playerShareView.animateIn();
@@ -335,10 +348,12 @@ define([
 
         //for touch devices
         var pageX;
-        if (event.originalEvent.touches && event.originalEvent.touches[0].pageX)
+        if (event.originalEvent.touches && event.originalEvent.touches[0].pageX) {
           pageX = event.originalEvent.touches[0].pageX;
-        else
+        }
+        else {
           pageX = (( event.pageX ) ? event.pageX : event.x);
+        }
 
         var seekTime = pageX / scrubberWidth * this.duration;
         app.vent.trigger('seek', seekTime);
@@ -347,7 +362,7 @@ define([
         this.playerCheckoutCartView.closeCheckoutCart();
         this.playerShareView.animateOut();
         app.vent.trigger('hideMask');
-        app.Analytics.jumpToTimeClick(seekTime);
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_JUMPTOTIME_CLICK, { 'timeJumpedTo' : seekTime });
       },
 
       onMaskClick: function() {

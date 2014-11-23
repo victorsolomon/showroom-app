@@ -1,6 +1,7 @@
 require.config({
   'paths': {
     'jquery': 'libs/jquery-2.0.3',
+    'velocity': 'libs/velocity.min',
     'underscore': 'libs/lodash-1.3.1',
     'backbone': 'libs/backbone-1.1.0',
     'hbs': 'libs/hbs',
@@ -21,6 +22,9 @@ require.config({
     },
     marionette: {
       deps: ['backbone']
+    },
+    velocity: {
+      deps: ["jquery"]
     }
   },
 

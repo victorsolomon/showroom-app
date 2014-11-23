@@ -1,8 +1,9 @@
 define([
   'jquery',
+  'velocity',
   'underscore',
   'marionette'
-], function ($, _, Marionette ) {
+], function ($, Velocity, _, Marionette ) {
 
     "use strict";
 

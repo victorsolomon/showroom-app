@@ -198,7 +198,7 @@ define([
 
     userProfile      : "",
     moduleName       : "",
-    isDebug          : true,
+    isDebug          : false,
     sessionStartTime : "",
 
 
