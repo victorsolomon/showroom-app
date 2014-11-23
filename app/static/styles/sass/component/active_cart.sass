@@ -98,22 +98,8 @@
   height: $info-and-actions-height
   // margin-left: $main-slider-left-offset
   // margin-top : $info-and-actions-top-offset
-  margin: 7% auto 0 auto
+  margin: 3% auto 0 auto
   overflow: visible
-
-  .titleAndPrice
-    font-size: 2rem
-    letter-spacing: 0.275rem
-    color: #000
-    text-align: center
-    width: 100%
-    position: relative
-    margin-bottom: 7px
-
-    .price
-      font-weight: bold
-      text-align: center
-      font-style: italic
 
   .sizeSelector
     width: 100%
@@ -292,3 +278,22 @@
   text-align: center
   margin: 0 auto
   top: -3px
+
+.titleAndPrice
+  font-size: 2rem
+  letter-spacing: 0.275rem
+  color: #000
+  text-align: center
+  margin-top: 5%
+
+  .title
+    max-width: 70%
+    margin: 0 auto
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  .price
+    font-weight: bold
+    text-align: center
+    font-style: italic

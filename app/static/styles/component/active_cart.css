@@ -93,23 +93,9 @@
 
 #active-cart-info-and-actions {
   width: 67.30563%;
-  height: 34.02778%;
-  margin: 7% auto 0 auto;
+  height: 23.05556%;
+  margin: 3% auto 0 auto;
   overflow: visible;
-}
-#active-cart-info-and-actions .titleAndPrice {
-  font-size: 2rem;
-  letter-spacing: 0.275rem;
-  color: black;
-  text-align: center;
-  width: 100%;
-  position: relative;
-  margin-bottom: 7px;
-}
-#active-cart-info-and-actions .titleAndPrice .price {
-  font-weight: bold;
-  text-align: center;
-  font-style: italic;
 }
 #active-cart-info-and-actions .sizeSelector {
   width: 100%;
@@ -189,7 +175,7 @@
   background-repeat: no-repeat;
   width: 3.90879%;
   height: 21.81818%;
-  top: 54.54545%;
+  top: 40%;
   cursor: pointer;
 }
 #recommended-cart-slider .recommended-right-arrow {
@@ -199,7 +185,7 @@
   background-repeat: no-repeat;
   width: 3.90879%;
   height: 21.81818%;
-  top: 54.54545%;
+  top: 40%;
   right: 0px;
   cursor: pointer;
 }
@@ -289,4 +275,24 @@
   text-align: center;
   margin: 0 auto;
   top: -3px;
+}
+
+.titleAndPrice {
+  font-size: 2rem;
+  letter-spacing: 0.275rem;
+  color: black;
+  text-align: center;
+  margin-top: 5%;
+}
+.titleAndPrice .title {
+  max-width: 70%;
+  margin: 0 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.titleAndPrice .price {
+  font-weight: bold;
+  text-align: center;
+  font-style: italic;
 }

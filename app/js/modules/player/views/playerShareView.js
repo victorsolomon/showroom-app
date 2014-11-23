@@ -26,7 +26,7 @@ define([
         var iframeWidth      = '800';
         var iframeHeight     = '450';
         var outeriFrameWidth = '90%';
-        var iframeCode       = '<div id="iframe-container" style="max-width:' + outeriFrameWidth + '"><div class="video-container" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;"><iframe width="' + iframeWidth +  '" height="' + iframeHeight + '" src="' + app.config.shareEmbedBaseUrl + '" style="position: absolute; top:0; left:0; width:100%; height:100%;" AllowFullScreen></iframe></div></div>';
+        var iframeCode       = '<div class="video-container" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;"><iframe width="' + iframeWidth +  '" height="' + iframeHeight + '" src="' + app.config.shareEmbedBaseUrl + '" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" AllowFullScreen></iframe></div>';
 
         this.$('.shareTextArea').html(iframeCode);
         this.highlightEmbedCode();

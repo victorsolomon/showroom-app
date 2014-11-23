@@ -68,7 +68,7 @@ define([
       play: function() {
         this.$('video')[0].play();
         app.isPlaying = true;
-        app.Analytics.playButtonControlBarClick();
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_PLAYBUTTON_CLICK, { 'vendor' : app.config.gaVendorName });
       },
 
       replay: function() {

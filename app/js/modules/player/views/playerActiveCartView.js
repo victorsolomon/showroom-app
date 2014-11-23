@@ -322,6 +322,7 @@ define([
 
         var offset = -(this.recommendedSliderPage - 1) * 100 + '%';
         this.$('.recommended-slider-container-inner-wrap').animate( { 'margin-left' : offset });
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_SCROLL_LEFT);
       },
 
       onRightRecommendedArrowClick: function() {
@@ -333,9 +334,14 @@ define([
 
         var offset = -(this.recommendedSliderPage - 1) * 100 + '%';
         this.$('.recommended-slider-container-inner-wrap').animate({ 'margin-left' : offset });
+        app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_SCROLL_RIGHT);
       },
 
       populateVariantColors: function() {
+        if (app.config.variantColors.length === 0) {
+          return;
+        }
+
         if ($('.color-selector').children().length !== 0) {
           $('.color-selector').children().remove();
         }
@@ -369,7 +375,8 @@ define([
               app.bindClickTouch(colorBlock, function(event) {
                 var itemId = $(event.currentTarget).attr('itemId');
                 that.loadItem(itemId);
-                app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'itemId' : itemId } );
+                var item = app.config.itemData[itemId].itemTitle;
+                app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.COLOR_CLICK, { 'itemId' : itemId } );
               });
             }
           }
@@ -408,7 +415,8 @@ define([
           app.bindClickTouch(slide1, function(event) {
             itemId = $(event.currentTarget).attr('itemId');
             that.loadItem(itemId);
-            app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'itemId' : itemId });
+            var item = app.config.itemData[that.selectedItem - 1].itemTitle;
+            app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'item' : item });
           });
 
           if (data[i+1]) {
@@ -425,7 +433,8 @@ define([
             app.bindClickTouch(slide2, function(event) {
               var itemId = $(event.currentTarget).attr('itemId');
               that.loadItem(itemId);
-              app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'itemId' : itemId } );
+              var item = app.config.itemData[that.selectedItem - 1].itemTitle;
+              app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'item' : item });
             });
           }
 
@@ -443,7 +452,8 @@ define([
             app.bindClickTouch(slide2, function(event) {
               var itemId = $(event.currentTarget).attr('itemId');
               that.loadItem(itemId);
-              app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'itemId' : itemId } );
+              var item = app.config.itemData[that.selectedItem - 1].itemTitle;
+              app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'item' : item });
             });
           }
 
