@@ -72,20 +72,37 @@ define([
       },
 
       generateItem: function(itemData, index) {
-        var imgUrl = app.config.baseProductImagePath + "small/" + itemData.largeItemSrc1;
-        var title  = itemData.itemTitle;
-        var size   = itemData.size;
-        var price  = itemData.itemPrice;
-        var item = $("<li class='cartItem'>" +
-                      "<div class='close' data-index='" + index + "'>X</div>" +
-                      "<div class='cartItemImage' style='background-image:url(" + imgUrl + ");'></div>" +
-                      "<div class='cartItemDescription'>" +
-                        "<div class='cartItemTitle'>" + title + "</div>" +
-                        ((itemData.hasSize) ? "<div class='itemSize'>" + size + "</div>" : "" ) +
-                        "<div class='cartItemPrice'>" + price + "</div>" +
-                      "</div>" +
-                      "<div class='clear'></div>" +
-                    "</li>");
+        var imgUrl     = app.config.baseProductImagePath + "small/" + itemData.largeItemSrc1;
+        var title      = itemData.itemTitle;
+        var size       = itemData.size;
+        var price      = itemData.itemPrice || itemData.price;
+        var optionType = itemData.variantOptionName;
+        var item;
+
+        if (app.config.checkoutType !== 'minted') {
+          item = $("<li class='cartItem'>" +
+                    "<div class='close' data-index='" + index + "'>X</div>" +
+                    "<div class='cartItemImage' style='background-image:url(" + imgUrl + ");'></div>" +
+                    "<div class='cartItemDescription'>" +
+                      "<div class='cartItemTitle'>" + title + "</div>" +
+                      ((itemData.hasSize) ? "<div class='itemSize'>" + size + "</div>" : "" ) +
+                      "<div class='cartItemPrice'>" + price + "</div>" +
+                    "</div>" +
+                    "<div class='clear'></div>" +
+                  "</li>");
+        } else {
+          item = $("<li class='cartItem'>" +
+                    "<div class='close' data-index='" + index + "'>X</div>" +
+                    "<div class='cartItemImage' style='background-image:url(" + imgUrl + ");'></div>" +
+                    "<div class='cartItemDescription'>" +
+                      "<div class='cartItemTitle'>" + title + "</div>" +
+                      "<div class='itemOptionSize'>" + (size ? size : '') + "</div>" +
+                      "<div class='itemOptionType'>" + (optionType ? optionType : '') + "</div>" +
+                      "<div class='cartItemPrice'>" + (price ? price : '') + "</div>" +
+                    "</div>" +
+                    "<div class='clear'></div>" +
+                  "</li>");
+        }
 
 
         var that = this;
@@ -94,7 +111,32 @@ define([
           that.onCloseClick(event);
         });
 
+        this.customMintedCheckout(itemData);
+
         return item;
+      },
+
+      customMintedCheckout: function(item) {
+        if (app.config.checkoutType !== 'minted') {
+          return;
+        } else {
+          $('#other-iframe').remove();
+
+          var color = 0;
+          var sku = item.variant;
+
+          if (item.optionChoice != null) {
+            var paperChoice = item.optionChoice.paperChoice || 62; //default color
+            var frameChoice = item.optionChoice.mintedFrameColor;
+          } else {
+            var paperChoice = 62; //default color
+            var frameChoice = 0;
+          }
+
+          $('<iframe id="other-iframe"/>').appendTo('body').contents().find('body')
+          .append('<form action="http://www.minted.com/product/wall-art-prints/addToCart" method="POST" id="addToCartForm"><input type="hidden" name="colorChoiceIdx" id="colorChoiceIdx" value="' + color + '">  <input type="hidden" name="sku" id="sku" value="' + sku + '">  <input type="hidden" name="paperChoice" id="paperChoice" value="' + paperChoice + '">  <input type="hidden" id="frameChoiceIdx" name="frameChoiceIdx" value="' + frameChoice + '"> </form>');
+          $('#other-iframe').contents().find('body').find('form').submit()
+        }
       },
 
       onCloseClick: function(event) {
@@ -144,6 +186,8 @@ define([
           this.performShopifyCheckout();
         } else if (app.config.checkoutType === 'cookie') {
           this.performCookieCheckout();
+        } else if (app.config.checkoutType === 'minted') {
+          window.open('http://www.minted.com/cart');
         }
       },
 
