@@ -28,47 +28,49 @@ define([
     TAG_ITEM_CLICK                 : "TAG_ITEM_CLICK",
     ADD_ITEM_CLICK                 : "ADD_ITEM_CLICK",
     VID_INTERVAL_EVENT             : "VID_INTERVAL_EVENT",
+    COLOR_CLICK                    : 'COLOR_VARIANT_CLICK',
+    OTHER_OPTION_CLICK             : 'OTHER_OPTION_CLICK',
 
     analyticVars : {
 
       INITIAL_PLAY : {
-        'category' : 'initialPlay',
-        'action' : 'play',
-        'opt_label' : 'label',
+        'category'  : 'initialPlay',
+        'action'    : 'play',
+        'opt_label' : 'initialPlayClick',
         'opt_value' : 'value'
       },
 
       OPEN_ACTIVE_DRAWER_CLICK : {
-        'category' : 'activeDrawer',
-        'action' : 'openActiveDrawer',
+        'category'  : 'activeDrawer',
+        'action'    : 'openActiveDrawer',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       OPEN_RECOMMENDED_DRAWER_CLICK : {
-        'category' : 'recommendedDrawer',
-        'action' : 'openRecommendedDrawer',
+        'category'  : 'recommendedDrawer',
+        'action'    : 'openRecommendedDrawer',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       CLOSE_RECOMMENDED_DRAWER_CLICK : {
-        'category' : 'recommendedDrawer',
-        'action' : 'closeRecommendedDrawer',
+        'category'  : 'recommendedDrawer',
+        'action'    : 'closeRecommendedDrawer',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       CLOSE_ACTIVE_DRAWER_CLICK : {
-        'category' : 'activeDrawer',
-        'action' : 'closeActiveDrawer',
+        'category'  : 'activeDrawer',
+        'action'    : 'closeActiveDrawer',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       CB_SHAREBUTTON_CLICK : {
-        'category' : 'controlBar',
-        'action' : 'shareButtonClick',
+        'category'  : 'controlBar',
+        'action'    : 'shareButtonClick',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
@@ -81,100 +83,112 @@ define([
       },
 
       AC_LRG_ITEM_SCROLL_RIGHT : {
-        'category' : 'activeItem',
-        'action' : 'activeItemScrollRight',
+        'category'  : 'activeItem',
+        'action'    : 'activeItemScrollRight',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       AC_LRG_ITEM_SCROLL_LEFT : {
-        'category' : 'activeItem',
-        'action' : 'activeItemScrollLeft',
+        'category'  : 'activeItem',
+        'action'    : 'activeItemScrollLeft',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       AC_LRG_ITEM_SIZE_SELECT : {
-        'category' : 'activeItem',
-        'action' : 'sizeSelect',
+        'category'  : 'activeItem',
+        'action'    : 'sizeSelect',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       AC_RCM_ITEM_SCROLL_RIGHT : {
-        'category' : 'recommendedItem',
-        'action' : 'recommendedItemScrollRight',
+        'category'  : 'recommendedItem',
+        'action'    : 'recommendedItemScrollRight',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       AC_RCM_ITEM_SCROLL_LEFT : {
-        'category' : 'recommendedItem',
-        'action' : 'recommendedItemScrollLeft',
+        'category'  : 'recommendedItem',
+        'action'    : 'recommendedItemScrollLeft',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       AC_RCM_ITEM_CLICK : {
-        'category' : 'recommendedItem',
-        'action' : 'recommendedItemClick',
+        'category'  : 'recommendedItem',
+        'action'    : 'recommendedItemClick',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       CHECKOUT_ITEM_REMOVED : {
-        'category' : 'checkoutCart',
-        'action' : 'checkoutItemRemovedClick',
+        'category'  : 'checkoutCart',
+        'action'    : 'checkoutItemRemovedClick',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       //General/Global Events
       CB_PLAYBUTTON_CLICK : {
-        'category' : 'controlBar',
-        'action' : 'playButtonClick',
+        'category'  : 'controlBar',
+        'action'    : 'playButtonClick',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       CB_PAUSEBUTTON_CLICK : {
-        'category' : 'controlBar',
-        'action' : 'pauseButtonClick',
+        'category'  : 'controlBar',
+        'action'    : 'pauseButtonClick',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       CB_JUMPTOTIME_CLICK : {
-        'category' : 'controlBar',
-        'action' : 'jumpToTime',
+        'category'  : 'controlBar',
+        'action'    : 'jumpToTime',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       TAG_ITEM_CLICK : {
-        'category' : 'tag',
-        'action' : 'tagClick',
-        'opt_label' : 'label',
-        'opt_value' : 'value'
+        'category'  : 'tag',
+        'action'    : 'tagClick'
       },
 
       ADD_ITEM_CLICK : {
-        'category' : 'cart',
-        'action' : 'addItem',
+        'category'  : 'cart',
+        'action'    : 'addItem',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       CHECKOUT_BUTTON_CLICK : {
-        'category' : 'cart',
-        'action' : 'checkoutItemClick',
+        'category'  : 'cart',
+        'action'    : 'checkoutItemClick',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
 
       VID_INTERVAL_EVENT : {
-        'category' : 'vidInterval',
-        'action' : 'none',
+        'category'  : 'vidInterval',
+        'action'    : 'none',
+        'opt_label' : 'label',
+        'opt_value' : 'value'
+      },
+
+      COLOR_CLICK : {
+        'category'  : 'colorVariantClick',
+        'action'    : 'colorClick',
+        'opt_label' : 'label',
+        'opt_value' : 'value'
+      },
+
+      OTHER_OPTION_CLICK : {
+        'category'  : 'otherOptionClick',
+        'action'    : 'otherOptionClick',
         'opt_label' : 'label',
         'opt_value' : 'value'
       },
@@ -207,7 +221,7 @@ define([
       this.isDebug     = isDebug;
       sessionStartTime = new Date().getTime();
       var userId       = this.getUserId();
-      var moduleName   = "revolverDemo";
+      var moduleName   = "zeroUVDemo";
 
       if (window._gaq) {
         return;
@@ -244,12 +258,12 @@ define([
       this.ROLLING_GA_INDEX--;
     },
 
-    logAnalyticEvent : function(eventConfig, pageLevelVars) {
+    logAnalyticEvent : function(eventConfig, pageLevelVars, optionName, optionValue) {
 
       var category           = eventConfig.category;
       var action             = eventConfig.action;
-      var opt_label          = eventConfig.opt_label;
-      var opt_value          = eventConfig.opt_value;
+      var opt_label          = optionName ? optionName : eventConfig.opt_label;
+      var opt_value          = optionValue ? optionValue: eventConfig.opt_value;
       var opt_noninteraction = eventConfig.opt_noninteraction;
 
       opt_label = (!opt_label) ? 'default' : opt_label;
@@ -339,23 +353,24 @@ define([
     },
 
     recommendedItemClick : function() {
-      pageLevelVars = { "itemId" : itemId, "itemName" : itemName };
+      pageLevelVars = { "itemName" : itemName };
       this.logAnalyticEvent(this.analyticVars.ACR, pageLevelVars);
     },
 
     checkoutItemRemovedClick : function() {
-      pageLevelVars = { "itemId" : itemId, "itemName" : itemName };
+      pageLevelVars = { "itemName" : itemName };
       this.logAnalyticEvent(this.analyticVars.CHECKOUT_ITEM_REMOVED, pageLevelVars);
     },
 
-    tagItemControlBarClick : function(itemId, itemName) {
-      pageLevelVars = { "itemId" : itemId, "itemName" : itemName };
+    tagItemControlBarClick : function(itemName) {
+      pageLevelVars = { "itemName" : itemName };
       this.logAnalyticEvent(this.analyticVars.TAG_ITEM_CLICK, pageLevelVars);
     },
 
-    addItemClick : function(itemId, itemName) {
-      pageLevelVars = { "itemId" : itemId, "itemName" : itemName };
-      this.logAnalyticEvent(this.analyticVars.ADD_ITEM_CLICK, pageLevelVars);
+    addItemClick : function(itemName) {
+      pageLevelVars = itemName;
+      item = itemName.itemName;
+      this.logAnalyticEvent(this.analyticVars.ADD_ITEM_CLICK, pageLevelVars, item, item);
     },
 
     checkoutClick : function(items, date) {

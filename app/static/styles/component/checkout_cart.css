@@ -1,5 +1,5 @@
 .common-sprite {
-  background: url('../../images/sprite/common-sce1c8b013a.png') no-repeat;
+  background: url('../../images/sprite/common-s5457b93a66.png') no-repeat;
 }
 
 * {
@@ -104,7 +104,7 @@
 .items .cartItem .cartItemDescription {
   float: left;
   width: 55%;
-  height: 100%;
+  margin-top: 3%;
 }
 .items .cartItem .cartItemPrice {
   margin-bottom: 5px;
@@ -120,4 +120,9 @@
   font-size: 1.4rem;
   margin: 5% 0;
   border: 1px solid black;
+}
+
+.itemOptionSize,
+.itemOptionType {
+  font-style: italic;
 }

@@ -72,6 +72,8 @@ define([
           that.applyResizeAttributes();
         });
 
+        this.addSpaceBarClick();
+
         setTimeout(function() {
           that.applyResizeAttributes();
         }, 200);
@@ -176,6 +178,10 @@ define([
           that.onReplayClick(event);
         });
 
+        app.bindClickTouch(this.$('.pause-button'), function(event) {
+          that.onPauseClick(event);
+        });
+
         app.bindClickTouch(this.$('.play-button'), function(event) {
           that.onMaskClick(event);
           app.Analytics.playButtonControlBarClick()
@@ -223,11 +229,24 @@ define([
       hoverBeaconsOn: function() {
         // For testing purposes
         // $('.hotSpot').css({display: 'block', background: 'blue', opacity: 0.1});
+        $('.pause-button').show();
+
+        if (app.isPlaying === false) {
+          $('.pause-button').hide();
+        }
+
+        if (app.config.beaconPlacement === 'top')  {
+          $('.beacon').css({
+            bottom : 'auto',
+            top    : '10px'
+          });
+        }
       },
 
       hoverBeaconsOff: function() {
         // For testing purposes
         // $('.hotSpot').css({display: 'none', background: 'none'});
+        $('.pause-button').hide();
       },
 
       tagClick: function(event) {
@@ -243,7 +262,6 @@ define([
       },
 
       updateTagPosition: function(timeSig, duration) {
-
         var currentTime = timeSig / duration;
         var ratioComparisonWidth = 1920;
 
@@ -377,6 +395,26 @@ define([
         this.$('.replay-button').hide();
         app.vent.trigger('replay');
         this.onMaskClick();
+      },
+
+      onPauseClick: function(event) {
+        $('.play-button').show();
+        $('.pause-button').hide();
+        app.vent.trigger('pause');
+      },
+
+      addSpaceBarClick: function() {
+        var that = this;
+
+        $(window).keyup(function(event) {
+          if (event.keyCode === 32) {
+            if (app.isPlaying === true) {
+              that.onPauseClick(event);
+            } else {
+              that.onMaskClick(event);
+            }
+          }
+        });
       },
 
       onFullscreenClick: function() {
