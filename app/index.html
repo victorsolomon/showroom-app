@@ -9,8 +9,16 @@
     <script data-main="js/clientConfig" src="js/libs/require.jquery.2.0.3.js"></script>
     <script>
       require(['modules/player/app']);
-    </script>
 
+      $(document).ready(function() {
+        var isiPhone = function() {
+          return (navigator.userAgent.match(/(iPod|iPhone)/) && navigator.userAgent.match(/AppleWebKit/));
+        }
+
+        isiPhone() ? $('#iframe-container').css('max-width', '100%') : $('#iframe-container').css('max-width', '90%');
+      });
+
+    </script>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 

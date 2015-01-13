@@ -66,6 +66,10 @@ define([
       return (navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/));
     };
 
+    app.isiPhone = function() {
+      return (navigator.userAgent.match(/(iPod|iPhone)/) && navigator.userAgent.match(/AppleWebKit/));
+    };
+
     app.bindClickTouch = function(selector, callback) {
       var eventType = this.isMobileSafari() ? 'touchstart' : 'click';
 

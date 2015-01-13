@@ -5,19 +5,21 @@
   removeCombined: true,
   //- this is the directory that the new files will be. it will be created if it doesn't exist
   dir: "../../builds/showroomBuild",
+  // optimize: 'none',
   paths: {
-    'jquery': 'libs/jquery-2.0.3',
-    'underscore': 'libs/lodash-1.3.1',
-    'backbone': 'libs/backbone-1.1.0',
-    'hbs': 'libs/hbs',
-    'Handlebars' : 'libs/Handlebars',
-    'marionette': 'libs/backbone.marionette',
-    'serializeObject': 'libs/serializeObject',
-    'i18nprecompile' : 'libs/hbs/i18nprecompile',
-    'json2' : 'libs/hbs/json2',
-    'backbone.wreqr': 'libs/backbone.wreqr',
-    'backbone.eventbinder': 'libs/backbone.eventbinder',
-    'backbone.babysitter': 'libs/backbone.babysitter'
+    'jquery'               : 'libs/jquery-2.0.3',
+    'underscore'           : 'libs/lodash-1.3.1',
+    'backbone'             : 'libs/backbone-1.1.0',
+    'hbs'                  : 'libs/hbs',
+    'Handlebars'           : 'libs/Handlebars',
+    'marionette'           : 'libs/backbone.marionette',
+    'serializeObject'      : 'libs/serializeObject',
+    'i18nprecompile'       : 'libs/hbs/i18nprecompile',
+    'json2'                : 'libs/hbs/json2',
+    'backbone.wreqr'       : 'libs/backbone.wreqr',
+    'backbone.eventbinder' : 'libs/backbone.eventbinder',
+    'backbone.babysitter'  : 'libs/backbone.babysitter',
+    'jsmpeg'                : 'libs/jsmpeg'
   },
 
   shim: {
@@ -35,5 +37,5 @@
     name: "modules/player/app"
   }],
 
-  fileExclusionRegExp: /\.git|.sass-cache|sass|tool|component|0328|112313|revolverBuild|revolver|modcloth|square|config.rb|docs|index.js/
+  fileExclusionRegExp: /\.git|.sass-cache|sass|tool|component|0328|112313|teacollection|midnightrider|minted|revolver|modcloth|square|ballandbuck|brooktide|zerouv|nylon|config.rb|docs|index.js/
 })
