@@ -428,8 +428,11 @@ define([
           cartItem.variant           = selectedChildren.attr('data-variant')
           cartItem.size              = selectedChildren.attr('data-size') || selectedChildren.text();
           cartItem.variantOptionName = $('.other-option-selector').children('.chosen').attr('itemname');
-          cartItem.optionChoice      = app.config.variantOptions[selectedOptionId - 1];
           cartItem.price             = selectedChildren.attr('data-price');
+
+          if (app.config.variantOptions != null) {
+            cartItem.optionChoice      = app.config.variantOptions[selectedOptionId - 1]
+          }
 
           // app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.ADD_ITEM_CLICK, { 'itemName' : cartItem.itemTitle });
           app.Analytics.addItemClick({ 'itemName' : cartItem.itemTitle });

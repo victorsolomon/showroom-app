@@ -47,3 +47,17 @@
 .smallApp .ipad {
   font-size: 30% !important;
 }
+
+.iphone-portrait .titleAndPrice {
+  margin-top: 0;
+  margin-bottom: 3%;
+}
+.iphone-portrait .color-selector {
+  margin: 0 auto 6% auto;
+  height: 30%;
+}
+
+.iphone-portrait .beacon,
+.iphone-landscape .beacon {
+  width: 20px;
+}

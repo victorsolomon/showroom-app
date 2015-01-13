@@ -52,9 +52,19 @@ define([
 
           that.isEnd = isEnd;
 
-          if (!that.isEnd) {
-            $('.play-button, .share-icn, .fullscreen-icn').show();
+          if (app.isiPhone()) {
+            $('.share-icn').hide();
+            $('.fullscreen-icn').hide();
+
+            if (!that.isEnd) {
+              $('.play-button').show();
+            }
+          } else {
+            if (!that.isEnd) {
+              $('.play-button, .share-icn, .fullscreen-icn').show();
+            }
           }
+
         });
 
         app.vent.on('hideMask', function() {
@@ -90,10 +100,6 @@ define([
           $('body').removeClass('smallApp');
         }
 
-        if (app.isMobileSafari()) {
-          this.calculateContainerSize();
-        }
-
         app.trigger('resize');
         this.checkCartStatus();
 
@@ -113,17 +119,11 @@ define([
 
         this.playerPosterRegion.$el.css('z-index', 10);
 
-        if (app.isMobileSafari()) {
-          $('body,html').addClass('ipad');
-
-          this.showMainPlayer();
+        if (app.isiPhone()) {
           this.calculateContainerSize();
-          // $('.fullscreen').remove();
-        } else {
-          // $('html').resizable({
-          //     aspectRatio: 16 / 9, minWidth: 640, maxWidth: 1920, resize : this.onResize
-          // });
-          // this.fadeSplashPlayer();
+        } else if (app.isMobileSafari()) {
+          $('body,html').addClass('ipad');
+          this.calculateContainerSize();
         }
 
         $('.fullscreen-icn').show();
@@ -131,11 +131,20 @@ define([
 
       calculateContainerSize: function(argument) {
         var windowWidth = $(window).width();
-        var htmlHeight = windowWidth * (9 / 16);
-        console.log(htmlHeight);
+        var htmlHeight  = windowWidth * (9 / 16);
+
         $('html, #showroom-player').css('width' , windowWidth).css('height' , htmlHeight);
 
-        if (app.isMobileSafari()) {
+        if (app.isiPhone()) {
+          $('html, #showroom-player').css('width', '100%');
+
+          if (window.orientation === 90 || window.orientation === -90) {
+            $('html, body').addClass('iphone-landscape').removeClass('iphone-portrait');
+          } else {
+            $('html, body').addClass('iphone-portrait').removeClass('iphone-landscape');
+          }
+
+        } else if (app.isMobileSafari()) {
           var baseWidth = 1280;
           var newFontPct = windowWidth / baseWidth * 62.5;
           $('html').attr('style', 'width:' + windowWidth + ';height:' + htmlHeight + ';font-size:' + newFontPct + '% !important;');
@@ -143,7 +152,10 @@ define([
       },
 
       fadeSplashPlayer: function() {
-        $(this.playerPosterRegion.el).hide();
+        if (!app.isiPhone()) {
+          $(this.playerPosterRegion.el).hide();
+        }
+
         this.showMainPlayer();
 
         if (!app.isMobileSafari()) {
@@ -212,6 +224,9 @@ define([
             $('.beacon-path').attr('fill', app.config.hotspotColor);
           }
 
+          // TODO: set conditional iPhone class and move this into the new styles
+
+
           var hotspot =
                 $('<div class="hotSpot"></div>')
                 .attr('id', 'hotspot' + hotspotItemData.hotSpotId)
@@ -228,8 +243,6 @@ define([
       },
 
       hoverBeaconsOn: function() {
-        // For testing purposes
-        // $('.hotSpot').css({display: 'block', background: 'blue', opacity: 0.1});
         $('.pause-button').show();
 
         if (app.isPlaying === false) {
@@ -251,8 +264,6 @@ define([
       },
 
       hoverBeaconsOff: function() {
-        // For testing purposes
-        // $('.hotSpot').css({display: 'none', background: 'none'});
         $('.pause-button').hide();
       },
 
@@ -270,6 +281,7 @@ define([
 
       updateTagPosition: function(timeSig, duration) {
         var currentTime = timeSig / duration;
+
         var ratioComparisonWidth = 1920;
 
         if (app.config.baseTaggingDimensionWidth) {
@@ -337,11 +349,20 @@ define([
         //update scrub bar
         var currentProgress = videoTimeObj.currentTime / videoTimeObj.duration;
 
-        this.$('.scrubber').children('p').css('width' , currentProgress * 100 + '%');
-        this.$('.scrubber').children('div').css('width' , (1 - currentProgress) * 100 + '%');
-        this.updateTagPosition(this.currentTime, this.duration);
+        if (app.isiPhone()) {
+          if (currentProgress >= 0.993) {
+            this.playerActiveCartView.openActiveCart();
+            this.playerCheckoutCartView.openCheckoutCart();
 
-        if (currentProgress >= 1.0) {
+            app.vent.trigger('showMask', true);
+
+            this.$('.replay-button').show();
+            this.$('.play-button').hide();
+
+            this.isEnd = true;
+          }
+        } else {
+          if (currentProgress >= 1.0) {
           this.playerActiveCartView.openActiveCart();
           this.playerCheckoutCartView.openCheckoutCart();
 
@@ -350,10 +371,15 @@ define([
           this.$('.replay-button').show();
           this.$('.play-button').hide();
 
-          this.isEnd = true;
-        } else {
-          this.isEnd = false;
+            this.isEnd = true;
+          } else {
+            this.isEnd = false;
+          }
         }
+
+        this.$('.scrubber').children('p').css('width' , currentProgress * 100 + '%');
+        this.$('.scrubber').children('div').css('width' , (1 - currentProgress) * 100 + '%');
+        this.updateTagPosition(this.currentTime, this.duration);
       },
 
       onScrubberClick: function(event) {

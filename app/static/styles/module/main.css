@@ -52,6 +52,20 @@
   font-size: 30% !important;
 }
 
+.iphone-portrait .titleAndPrice {
+  margin-top: 0;
+  margin-bottom: 3%;
+}
+.iphone-portrait .color-selector {
+  margin: 0 auto 6% auto;
+  height: 30%;
+}
+
+.iphone-portrait .beacon,
+.iphone-landscape .beacon {
+  width: 20px;
+}
+
 .playOrPause {
   width: 50px;
   cursor: pointer;
@@ -844,8 +858,9 @@
   height: 12%;
 }
 
-.smallApp .beacon {
-  width: 10%;
+.smallApp canvas {
+  width: 360px;
+  height: 203px;
 }
 .smallApp #active-cart-region {
   width: 41.14062%;
@@ -1045,6 +1060,52 @@ video {
   left: 0px;
   z-index: 10;
   background-color: white;
+}
+
+.spinner {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100000;
+}
+
+.top-left-path {
+  -webkit-animation: hideshow 4s ease infinite;
+}
+
+.top-right-path {
+  -webkit-animation: hideshow 4s 1s ease infinite;
+  opacity: 0;
+}
+
+.bottom-right-path {
+  -webkit-animation: hideshow 4s 2s ease infinite;
+  opacity: 0;
+}
+
+.bottom-left-path {
+  -webkit-animation: hideshow 4s 3s ease infinite;
+  opacity: 0;
+}
+
+@-webkit-keyframes hideshow {
+  0% {
+    opacity: 1;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  15% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 #video-region {
