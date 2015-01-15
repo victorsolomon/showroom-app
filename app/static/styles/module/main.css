@@ -1141,7 +1141,7 @@ video {
   left: 0;
   bottom: 0;
   right: 0;
-  width: 10%;
+  width: 35px;
   margin: auto;
   transition: opacity 0.5s;
 }
