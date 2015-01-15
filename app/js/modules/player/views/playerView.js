@@ -205,10 +205,11 @@ define([
         for (var i = 0; i < app.config.hotSpots.length; i++) {
           var hotspotItemData = app.config.hotSpots[i];
 
-          var beacon = $('<div class="beacon"></div>')
+          var beacon = $('<svg version="1.1" class="beacon" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="52px" height="54px" viewBox="0 0 52 54" enable-background="new 0 0 52 54" xml:space="preserve" type="image/svg+xml"><g><circle class="beacon-circle" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="26" cy="27" r="19.358"/><g><path class="beacon-path" fill="#FFFFFF" d="M24.771,28.259H14.457c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V15.426c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H27.29v10.254c0,0.42-0.36,0.78-0.78,0.78H25.55c-0.42,0-0.779-0.36-0.779-0.78V28.259z"/></g></g><g><circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="88.71" cy="25.533" r="19.358"/><g><path fill="#FFFFFF" d="M87.481,26.792H77.167c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V13.959c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H90v10.254c0,0.42-0.36,0.78-0.78,0.78h-0.959c-0.42,0-0.779-0.36-0.779-0.78V26.792z"/></g></g></svg>');
 
           if (app.config.hotspotColor != null) {
-            beacon.css('background', app.config.hotspotColor);
+            $('.beacon-circle').attr('stroke', app.config.hotspotColor);
+            $('.beacon-path').attr('fill', app.config.hotspotColor);
           }
 
           var hotspot =
@@ -290,18 +291,6 @@ define([
             height *= ratio;
 
             $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : posX, 'top' : posY, 'width' : width, 'height' : height });
-
-            // // TODO: animation prototype
-            // if (endX != null && endY != null) {
-            //   $('#hotspot' + hotSpot.hotSpotId).Velocity({
-            //     left : endX,
-            //     top  : endY
-            //   }, percentThroughAnim, function() {
-            //     $('#hotspot' + hotSpot.hotSpotId).css({ left : posX, top : posY });
-            //   });
-            // }
-
-
           } else {
             $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : -2000 });
           }

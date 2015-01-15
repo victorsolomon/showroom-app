@@ -169,6 +169,7 @@ define([
 
         var container       = $('.active-slider-container-inner-wrap');
         var slideWidth      = 94.5 / (itemData.allImages.length + 1);
+        // debugger;
         var variants        = itemData.variants;
         var sizeButton      = $('.sizeSelector');
         var that            = this;
@@ -247,11 +248,17 @@ define([
             return $(e).attr('data-variant', '');
           }
         });
-
         for (var key in variants) {
           sizeButton.css('visibility', 'visible');
           if (key !== 'oneSize') {
-            var listItem = $('<li data-value="' + key.replace(/"/g, " ").replace(/ /g, '') + '" data-variant="' + variants[key][0].toString() + '" data-price="' + (variants[key][1] ? variants[key][1] : undefined)   + '">' + key +'</li>');
+            var newKey = null;
+
+            // in case sizes are mixed numbers and letters
+            if (key[0] === '0') {
+              newKey = key.replace('0', '');
+            }
+
+            var listItem = $('<li data-value="' + key.replace(/"/g, " ").replace(/ /g, '') + '" data-variant="' + variants[key][0].toString() + '" data-price="' + (variants[key][1] ? variants[key][1] : undefined)   + '">' + (newKey ? newKey : key) +'</li>');
             app.bindClickTouch(listItem, function(event) {
               that.sizeSelected(event);
             });
@@ -275,7 +282,9 @@ define([
           $('.sizeSelector').find('li[data-value=' + this.currentlySelectedItem + ']').addClass('selected');
         }
 
-        this.toggleOptions(event);
+        if (window.event != null) {
+          this.toggleOptions(window.event);
+        }
       },
 
       onLeftActiveArrowClick: function() {
@@ -355,6 +364,8 @@ define([
 
       toggleOptions: function(event) {
         if ($.isEmptyObject(app.config.variantOptions) || app.config.variantOptions.length === 0) {
+          $('.other-option-selector').css('height', '0.5%');
+          $('#active-cart-info-and-actions').css('height', '20.5%');
           return;
         }
         // MINTED
