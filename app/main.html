@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript">
+    // window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+    // heap.load("2950534362");
+  </script>
+  <script type="text/javascript">
+    dataLayer = [];
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"  />
+  <title>Showroom</title>
+  <script data-main="js/clientConfig" src="js/libs/require.jquery.2.0.3.js"></script>
+    <script>
+      require(['modules/player/app']);
+    </script>
+    <style>
+        .loadingtrail {width: 24px;height: 24px;position: absolute;z-index: 5;left: calc( 50% - 12px );top: calc( 50% - 12px );}
+        .loadingtrail:before {display: block;width: 22px;height: 22px;border-top: 2px solid #4d9bd1;border-right: 2px solid #4d9bd1;content: "";-webkit-animation: spin 0.6s linear infinite;-moz-animation: spin 0.6s linear infinite;animation: spin 0.6s linear infinite;border-radius: 100%;}
+    </style>
+    <link rel='stylesheet' href="static/styles/module/main.css" />
+</head>
+<body>
+<div id="main">
+  <div id="iframe-container"><div class="video-container" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;"><iframe width=640 height=360 src='main.html?config=storqConfig' style='position: absolute; top:0; left:0; width:100%; height:100%; border:0;' AllowFullScreen></iframe></div></div>
+</div>
+</body>
+</html>

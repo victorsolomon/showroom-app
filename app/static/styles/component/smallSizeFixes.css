@@ -1,9 +1,7 @@
 .smallApp .beacon {
-  width: 10px;
-  height: 10px;
+  width: 10%;
 }
 .smallApp #active-cart-region {
-  left: -37.70625%;
   width: 41.14062%;
 }
 .smallApp #active-cart-region .recommendText {
@@ -13,14 +11,14 @@
   display: none;
 }
 .smallApp #active-cart-region #active-cart-main-slider {
-  height: 57.77778%;
+  height: 56.2%;
   padding-top: 0.75889%;
 }
 .smallApp #active-cart-region #active-cart-main-slider .slide {
-  margin-left: 6px;
+  height: 85%;
 }
 .smallApp #active-cart-region #active-cart-main-slider .active-slider-container-outer-wrap {
-  margin-top: 0;
+  margin-top: 6%;
 }
 .smallApp #active-cart-region #active-cart-info-and-actions {
   margin-top: 0;
@@ -118,7 +116,8 @@
   margin-top: 2.5%;
 }
 .smallApp .play-button {
-  top: 63.52778%;
+  top: 42.52778%;
+  left: 45.24219%;
 }
 .smallApp .share-icn {
   bottom: 1.5%;
