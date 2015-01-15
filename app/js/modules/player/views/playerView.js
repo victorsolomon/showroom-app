@@ -241,6 +241,12 @@ define([
             bottom : 'auto',
             top    : '10px'
           });
+        } else if (app.config.beaconPlacement === 'topLeft') {
+          $('.beacon').css({
+            bottom : 'auto',
+            top    : '10px',
+            left   : '-30%'
+          });
         }
       },
 

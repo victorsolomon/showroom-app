@@ -613,10 +613,10 @@
   height: 100%;
   display: inline-block;
   vertical-align: top;
-  margin-left: 3px;
+  margin-left: 5px;
 }
 #active-cart-main-slider .active-slider-container-outer-wrap .active-slider-container-inner-wrap .image-slide {
-  background-size: contain;
+  background-size: 95%;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -1141,7 +1141,7 @@ video {
   left: 0;
   bottom: 0;
   right: 0;
-  width: 10%;
+  width: 35px;
   margin: auto;
   transition: opacity 0.5s;
 }
