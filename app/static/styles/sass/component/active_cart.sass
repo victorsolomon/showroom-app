@@ -35,12 +35,14 @@
     background-color: rgb( 183, 179, 179 )
     border-radius: 5px
 
+
 //main item "view" region
 #active-cart-main-slider
   height: $main-slider-height-pct
   width: 80%
   position: relative
-  margin: 1.2% auto
+  // margin: 1% auto
+  margin: -1.8% auto //minted
 
   .active-left-arrow
     position: absolute
@@ -75,7 +77,7 @@
       height: 100%
 
       .slide
-        width: 24%
+        width: 23%
         height: 100%
         display: inline-block
         vertical-align: top
@@ -98,7 +100,8 @@
   height: $info-and-actions-height
   // margin-left: $main-slider-left-offset
   // margin-top : $info-and-actions-top-offset
-  margin: 3% auto 0 auto
+  // margin: 3% auto 0 auto minted build
+  margin: 6% auto 0 auto //zerouv build
   overflow: visible
 
   .sizeSelector
@@ -107,20 +110,19 @@
     list-style: none
     padding: 0px
     margin: percentage( 15 / 307 ) 0px
-    font-family: brandon
+    font-family: avenir
     position: relative
+    text-align: center
 
     li
-      display: inline
+      display: inline-block
       background: #fff
       color: #000
       cursor: pointer
       width: 16%
       margin-right: 5%
-      font-size: 2.2rem
+      font-size: 1.65rem
       border: 1px solid #A0A0A0
-      text-align: center
-      float: left
 
     li.selected
       background: #000
@@ -273,7 +275,8 @@
 .sold-out
   position: absolute
   width: 100%
-  font-size: 3em
+  font-size: 2.5em
+  text-transform: uppercase
   color: black
   text-align: center
   margin: 0 auto
@@ -284,7 +287,7 @@
   letter-spacing: 0.275rem
   color: #000
   text-align: center
-  margin-top: 5%
+  margin-top: 10%
 
   .title
     max-width: 70%
@@ -297,3 +300,58 @@
     font-weight: bold
     text-align: center
     font-style: italic
+
+.option-selector-title
+  text-align: center
+  font-size: 1.4em
+
+.other-option-selector
+  width: 100%
+  margin: 5px auto 5% auto
+  padding: 0
+  height: 12%
+
+// // Minted Specific
+// .variant-option-type
+//   float: left
+//   display: inline-block
+//   width: 7.3%
+//   height: 100%
+//   margin: 0 1.5%
+//   cursor: pointer
+
+//   &:first-child
+//     margin-left: 0
+
+//   &:last-child
+//     margin-right: 0
+
+
+// .sizeSelector
+//   width: 101% !important
+//   margin: 1.88599% 0px 4.88599% 0px !important
+
+//   li
+//     font-size: 1.1em !important
+//     width: 48% !important
+//     margin-right: 3px !important
+//     margin-top: 3px !important
+//     overflow: hidden
+//     text-overflow: ellipsis
+//     white-space: nowrap
+//     padding: 2%
+
+//     &:nth-child(2n+1)
+//       margin-left: 0 !important
+
+//     &:nth-child(2n+2)
+//       margin-right: 0 !important
+
+// .other-option-selector
+//   margin: 4% auto 8% auto
+
+// // #recommended-cart-slider
+// //   margin: 11% auto
+
+// #active-cart-main-slider
+//   margin: -5.8% auto //minted

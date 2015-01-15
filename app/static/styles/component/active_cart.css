@@ -1,5 +1,5 @@
 .common-sprite {
-  background: url(/sprite/common-se656861eff.png) no-repeat;
+  background: url(/sprite/common-s6acec41908.png) no-repeat;
 }
 
 #active-cart-region {
@@ -40,7 +40,7 @@
   height: 37.77778%;
   width: 80%;
   position: relative;
-  margin: 1.2% auto;
+  margin: -1.8% auto;
 }
 #active-cart-main-slider .active-left-arrow {
   position: absolute;
@@ -74,7 +74,7 @@
   height: 100%;
 }
 #active-cart-main-slider .active-slider-container-outer-wrap .active-slider-container-inner-wrap .slide {
-  width: 24%;
+  width: 23%;
   height: 100%;
   display: inline-block;
   vertical-align: top;
@@ -94,7 +94,7 @@
 #active-cart-info-and-actions {
   width: 67.30563%;
   height: 23.05556%;
-  margin: 3% auto 0 auto;
+  margin: 6% auto 0 auto;
   overflow: visible;
 }
 #active-cart-info-and-actions .sizeSelector {
@@ -103,20 +103,19 @@
   list-style: none;
   padding: 0px;
   margin: 4.88599% 0px;
-  font-family: brandon;
+  font-family: avenir;
   position: relative;
+  text-align: center;
 }
 #active-cart-info-and-actions .sizeSelector li {
-  display: inline;
+  display: inline-block;
   background: white;
   color: black;
   cursor: pointer;
   width: 16%;
   margin-right: 5%;
-  font-size: 2.2rem;
+  font-size: 1.65rem;
   border: 1px solid #a0a0a0;
-  text-align: center;
-  float: left;
 }
 #active-cart-info-and-actions .sizeSelector li.selected {
   background: black;
@@ -270,7 +269,8 @@
 .sold-out {
   position: absolute;
   width: 100%;
-  font-size: 3em;
+  font-size: 2.5em;
+  text-transform: uppercase;
   color: black;
   text-align: center;
   margin: 0 auto;
@@ -282,7 +282,7 @@
   letter-spacing: 0.275rem;
   color: black;
   text-align: center;
-  margin-top: 5%;
+  margin-top: 10%;
 }
 .titleAndPrice .title {
   max-width: 70%;
@@ -295,4 +295,16 @@
   font-weight: bold;
   text-align: center;
   font-style: italic;
+}
+
+.option-selector-title {
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.other-option-selector {
+  width: 100%;
+  margin: 5px auto 5% auto;
+  padding: 0;
+  height: 12%;
 }

@@ -1,21 +1,105 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"  />
-  <title>Showroom</title>
-  <script data-main="js/clientConfig" src="js/libs/require.jquery.2.0.3.js"></script>
+<html lang='en'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Showroom - Shoppable Video</title>
+
+    <script data-main="js/clientConfig" src="js/libs/require.jquery.2.0.3.js"></script>
     <script>
       require(['modules/player/app']);
     </script>
-    <style>
-        .loadingtrail {width: 24px;height: 24px;position: absolute;z-index: 5;left: calc( 50% - 12px );top: calc( 50% - 12px );}
-        .loadingtrail:before {display: block;width: 22px;height: 22px;border-top: 2px solid #4d9bd1;border-right: 2px solid #4d9bd1;content: "";-webkit-animation: spin 0.6s linear infinite;-moz-animation: spin 0.6s linear infinite;animation: spin 0.6s linear infinite;border-radius: 100%;}
-    </style>
-    <link rel='stylesheet' href="static/styles/module/main.css" />
-</head>
-<body>
-<div id="main">
-  <div id="iframe-container" style="max-width:90%"><div class="video-container" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;"><iframe width=640 height=360 src='index.html?config=midnightRiderConfig' style='position: absolute; top:0; left:0; width:100%; height:100%; border:0;' AllowFullScreen></iframe></div></div>'
-</div>
-</body>
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="brand-page-wrapper">
+      <header>
+        <div class="showroom-title">
+          <img src="images/showroom-logo-white.png">
+        </div>
+        <div class="showroom-icon">
+          <img src="images/showroom-icon.png" />
+        </div>
+        <ul class='nav-list'>
+          <a href="http://www.helloshowroom.co/#bottom"><li class="nav-item">ABOUT</li></a>
+          <a href="http://blog.helloshowroom.co" target="_blank"><li class="nav-item">JOURNAL</li></a>
+          <a href="mailto:we@helloshowroom.co?subject=Showroom - Shop Video&body=Let’s activate video."><li class="nav-item nav-item-right">CONTACT</li></a>
+        </ul>
+      </header>
+
+      <div class="showroom-nav-break"></div>
+
+      <div class="row showroom-video-container">
+        <div id="iframe-container" style="max-width:65%; margin: 0 auto;">
+          <div class="video-container" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden;">
+            <iframe width="800" height="450" src="main.html?config=storqConfig" style="position: absolute; top:0; left:0; width:100%; height:100%; border:0;" AllowFullScreen></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="showroom-video-gif">
+        <a href="mailto:we@helloshowroom.co?subject=Showroom - Shoppable Video&body=Let’s activate video.">
+          <img src="landingimages/storq.png" />
+        </a>
+      </div>
+
+      <div class="vendor-info-container">
+        <div class="vendor-info-panels">
+          <div class="vendor-info-left-panel">
+            <img src="landingimages/storqlogo.png" alt="Storq Logo">
+            <!-- <div class="vendor-info-name">Storq</div> -->
+            <a href="http://www.storq.com" target="_blank"><div class="vendor-info-url">www.storq.com</div></a>
+          </div>
+          <!-- <div class="vendor-info-right-panel">
+            <div>SHARE</div>
+          </div> -->
+        </div>
+      </div>
+
+
+      <div class="vendor-description-container">
+        <div class="vendor-description-info">
+          <h1>Storq</h1>
+          <p class="vendor-description">
+            Armed with the basics and a closet full of clothes, Fern demonstrates how to make the most of what you've got. At 31 weeks pregnant, she's totally kicking ass. Pregnant or not, we could all learn a thing or two from Fern.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="showroom-logo-bottom">
+        <img class="showroom-logo-bottom-image" src="images/showroom-logo-footer.png" alt="Showroom Logo" />
+      </div>
+      <ul class='nav-list'>
+        <a href="http://www.helloshowroom.co/#bottom"><li class="nav-item">ABOUT</li></a>
+        <a href="http://blog.helloshowroom.co" target="_blank"><li class="nav-item">JOURNAL</li></a>
+        <a href="mailto:we@helloshowroom.co?subject=Showroom - Shoppable Video&body=Let’s activate video."><li class="nav-item nav-item-right">CONTACT</li></a>
+      </ul>
+    </footer>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-44967985-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </body>
 </html>

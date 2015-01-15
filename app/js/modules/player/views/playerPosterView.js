@@ -21,15 +21,18 @@ define([
 
       onRender: function() {
         var that = this;
-        $(this.el).css('background', 'url(' + app.config.splashImage + ') no-repeat center center');
-        $(this.el).css('background-size', 'cover');
 
-        if (app.isMobileSafari()) {
-          $(this.el)[0].onclick = function() {
+        if (app.isMobileSafari() && app.config.customSplashImage != null) {
+          $(that.el).css('background', 'url(' + app.config.customSplashImage + ') no-repeat center center');
+          $(that.el).css('background-size', 'cover');
+
+          $(that.el)[0].onclick = function() {
             $('#player-poster-region').hide();
             $('#video-region').find('video')[0].play();
           };
         } else {
+          $(that.el).css('background', 'url(' + app.config.splashImage + ') no-repeat center center');
+          $(that.el).css('background-size', 'cover');
           app.bindClickTouch(this.$('.poster-frame-image'), function(event) {
             that.onSplashClick(event);
           });
