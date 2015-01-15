@@ -4,7 +4,7 @@
   baseUrl: "js/",
   removeCombined: true,
   //- this is the directory that the new files will be. it will be created if it doesn't exist
-  dir: "../../builds/storq",
+  dir: "../../builds/poler",
   // optimize: 'none',
   paths: {
     'jquery'               : 'libs/jquery-2.0.3',
