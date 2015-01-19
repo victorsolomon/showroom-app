@@ -71,6 +71,39 @@ video
   z-index: 10
   background-color: #fff
 
+.spinner
+  position: absolute
+  bottom: 0
+  top: 0
+  left: 0
+  right: 0
+  z-index: 100000
+
+.top-left-path
+  -webkit-animation: hideshow 4s ease infinite
+
+.top-right-path
+  -webkit-animation: hideshow 4s 1s ease infinite
+  opacity: 0
+
+.bottom-right-path
+  -webkit-animation: hideshow 4s 2s ease infinite
+  opacity: 0
+
+.bottom-left-path
+  -webkit-animation: hideshow 4s 3s ease infinite
+  opacity: 0
+
+@-webkit-keyframes hideshow
+  0%
+    opacity: 1
+  10%
+    opacity: 1
+  15%
+    opacity: 0
+  100%
+    opacity: 0
+
 #video-region
   position: absolute
   width: 100%

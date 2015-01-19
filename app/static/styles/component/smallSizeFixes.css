@@ -1,5 +1,6 @@
-.smallApp .beacon {
-  width: 10%;
+.smallApp canvas {
+  width: 360px;
+  height: 203px;
 }
 .smallApp #active-cart-region {
   width: 41.14062%;

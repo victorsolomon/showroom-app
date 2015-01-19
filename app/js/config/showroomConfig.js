@@ -9,7 +9,9 @@ define([
 
       mp4_video_src_med  : 'showroom/showroom.mp4',
       webm_video_src_med : 'showroom/showroom-webm.webm',
-      loaderStyle: 'image',
+      iphone_video_src   : 'showroom/midtest.mpg',
+      iphone_audio_src   : 'showroom/soundtrack.mp3',
+      loaderStyle        : 'image',
 
       baseVideoPath          : "static/movies/",
       baseProductImagePath   : "static/images/productImages/taylorStitch/",
@@ -23,6 +25,7 @@ define([
       shareEmbedBaseUrl : "http://www.helloshowroom.co/showroom/index.html?config=showroomConfig",
       splashImage       : 'static/images/posterFrames/taylorStitchOverlay.gif',
       hotspotColor      : 'white',
+      spinnerColor      : null,
 
       recommended : [
         {
@@ -61,11 +64,11 @@ define([
           "sizes"              : [ 36, 38, 40, 42, 44 ],
           "allImages"          : ["Blue_2.jpg", "Blue_1.jpg"],
           "variants" : {
-            xsmall : ['812187233'],
-            small  : ['812187237'],
-            medium : ['812187241'],
-            large  : ['812187245'],
-            xlarge : ['812187249']
+            XS : ['812187233'],
+            S  : ['812187237'],
+            M : ['812187241'],
+            L  : ['812187245'],
+            XL : ['812187249']
           }
         },
         {
@@ -81,11 +84,11 @@ define([
           "sizes"              : [ 36, 38, 40, 42, 44 ],
           "allImages"          : ["White_2.jpg", "White_1.jpg"],
           "variants" : {
-            xsmall : ['812192337'],
-            small  : ['812192369'],
-            medium : ['812192737'],
-            large  : ['812192741'],
-            xlarge : ['812192745']
+            XS : ['812192337'],
+            S  : ['812192369'],
+            M : ['812192737'],
+            L  : ['812192741'],
+            XL : ['812192745']
           }
         },
         {
@@ -101,11 +104,11 @@ define([
           "sizes"              : [ 36, 38, 40, 42, 44 ],
           "allImages"          : ["Charcoal_2.jpg", "Charcoal_1.jpg"],
           "variants" : {
-            xsmall : ['812189549'],
-            small  : ['812189829'],
-            medium : ['812189833'],
-            large  : ['812189837'],
-            xlarge : ['812189841']
+            XS : ['812189549'],
+            S  : ['812189829'],
+            M : ['812189833'],
+            L  : ['812189837'],
+            XL : ['812189841']
           }
         },
         {
@@ -122,11 +125,11 @@ define([
           "sizes"              : [ 36, 38, 40, 42, 44 ],
           "allImages"          : ["denim_glacier_2.jpg", "denim_glacier_1.jpg"],
           "variants"           : {
-            xsmall : ['986914052'],
-            small  : ['986914056'],
-            medium : ['986914060'],
-            large  : ['986914064'],
-            xlarge : ['986914068']
+            XS : ['986914052'],
+            S  : ['986914056'],
+            M : ['986914060'],
+            L  : ['986914064'],
+            XL : ['986914068']
           }
         },
         {
@@ -143,11 +146,11 @@ define([
           "sizes"              : [ 36, 38, 40, 42, 44 ],
           "allImages"          : ["twill_glacier_2.jpg", "twill_glacier_1.jpg"],
           "variants"           : {
-            xsmall : ['986909080'],
-            small  : ['986909084'],
-            medium : ['986909088'],
-            large  : ['986909092'],
-            xlarge : ['986909096']
+            XS : ['986909080'],
+            S  : ['986909084'],
+            M : ['986909088'],
+            L  : ['986909092'],
+            XL : ['986909096']
           }
         },
 
@@ -208,7 +211,7 @@ define([
           "id"                 : "1",
           "hotSpotId"          : "3",
           "index"              : "0",
-          "startTime"          : "0.235",
+          "startTime"          : "0.239",
           "endTime"            : "0.31",
           "hotSpotStartX"      : "100",
           "hotSpotStartY"      : "200",
@@ -230,7 +233,7 @@ define([
           "id"                 : "1",
           "hotSpotId"          : "5",
           "index"              : "0",
-          "startTime"          : "0.39",
+          "startTime"          : "0.393",
           "endTime"            : "0.56",
           "hotSpotStartX"      : "1000",
           "hotSpotStartY"      : "300",
@@ -241,7 +244,7 @@ define([
           "id"                 : "1",
           "hotSpotId"          : "6",
           "index"              : "0",
-          "startTime"          : "0.56",
+          "startTime"          : "0.566",
           "endTime"            : "0.675",
           "hotSpotStartX"      : "100",
           "hotSpotStartY"      : "0",
@@ -263,7 +266,7 @@ define([
           "id"                 : "1",
           "hotSpotId"          : "8",
           "index"              : "0",
-          "startTime"          : "0.785",
+          "startTime"          : "0.788",
           "endTime"            : "0.89",
           "hotSpotStartX"      : "450",
           "hotSpotStartY"      : "100",

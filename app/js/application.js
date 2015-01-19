@@ -1,8 +1,9 @@
 define([
   'jquery',
   'underscore',
+  'jsmpeg',
   'marionette'
-], function ($, _, Marionette ) {
+], function ($, _, jsmpeg, Marionette) {
 
     "use strict";
 
