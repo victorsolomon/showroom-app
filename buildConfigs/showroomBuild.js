@@ -5,7 +5,7 @@
   removeCombined: true,
   //- this is the directory that the new files will be. it will be created if it doesn't exist
   dir: "../../builds/showroomBuild",
-  // optimize: 'none',
+  optimize: 'none',
   paths: {
     'jquery'               : 'libs/jquery-2.0.3',
     'underscore'           : 'libs/lodash-1.3.1',
@@ -19,7 +19,9 @@
     'backbone.wreqr'       : 'libs/backbone.wreqr',
     'backbone.eventbinder' : 'libs/backbone.eventbinder',
     'backbone.babysitter'  : 'libs/backbone.babysitter',
-    'jsmpeg'                : 'libs/jsmpeg'
+    'jsmpeg'               : 'libs/jsmpeg',
+    'keyframes'            : 'libs/keyframes'
+
   },
 
   shim: {

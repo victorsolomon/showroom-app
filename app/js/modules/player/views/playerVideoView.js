@@ -75,9 +75,13 @@ define([
           that.onCanPlay();
         });
 
-        video.bind("timeupdate", function(event) {
-          that.onTimeUpdate(this.currentTime, this.duration);
-        });
+        window.setInterval(function(){
+          that.onTimeUpdate(that.currentTime, that.duration);
+        }, 1);
+
+        // video.bind("timeupdate", function(event) {
+        //   that.onTimeUpdate(this.currentTime, this.duration);
+        // });
 
         video[0].volume = 1.0;
       },
@@ -109,6 +113,9 @@ define([
       },
 
       onTimeUpdate: function(currentTime, duration) {
+        var that        = this;
+        var currentTime = currentTime || $('video')[0].currentTime;
+        var duration    = duration || $('video')[0].duration;
         app.vent.trigger('timeUpdate', { 'currentTime': currentTime, 'duration': duration });
         this.$('video').show();
       },
