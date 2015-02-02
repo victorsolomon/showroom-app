@@ -13,7 +13,8 @@ require.config({
     'backbone.eventbinder' : 'libs/backbone.eventbinder',
     'backbone.babysitter'  : 'libs/backbone.babysitter',
     'jsmpeg'               : 'libs/jsmpeg',
-    'keyframes'            : 'libs/keyframes'
+    'keyframes'            : 'libs/keyframes',
+    'pathfinder'           : 'libs/keyframes.pathfinder'
   },
 
   shim: {
