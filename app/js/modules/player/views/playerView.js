@@ -226,7 +226,7 @@ define([
           }
 
           // TODO: set conditional iPhone class and move this into the new styles
-
+          this.removeKeyframes(hotspotItemData.pathName);
 
           var hotspot =
                 $('<div class="hotSpot"></div>')
@@ -280,167 +280,104 @@ define([
         this.playerActiveCartView.openActiveCart();
       },
 
-      updateTagPosition: function(timeSig, duration) {
-        var currentTime = timeSig / duration;
-        var ratioComparisonWidth = 1920;
-        var ratio = $('html').width() / ratioComparisonWidth;
-
-        for (var i in app.config.hotSpots) {
-
-          var hotSpot = app.config.hotSpots[i];
-
-          if (currentTime >= hotSpot.startTime && currentTime <= hotSpot.endTime) {
-            var percentThroughAnim = (currentTime - hotSpot.startTime) / (hotSpot.endTime - hotSpot.startTime) * 100000;
-            var posX = hotSpot.hotSpotStartX;
-            var posY = hotSpot.hotSpotStartY;
-            var endX = hotSpot.hotSpotEndX;
-            var endY = hotSpot.hotSpotEndY;
-            var width  = hotSpot.hotSpotStartWidth;
-            var height = hotSpot.hotSpotStartHeight;
-
-            posX *= ratio;
-            posY *= ratio;
-            width *= ratio;
-            height *= ratio;
-            endX *= ratio;
-            endY *= ratio;
-
-            var allSeconds = [];
-            var start = hotSpot.startTime;
-            var end   = hotSpot.endTime;
-            var totalSteps = end - start;
-            var countSteps = totalSteps / Math.pow(10, -2);
-            allSeconds.push(Number(start) + 1);
-
-            for (var i = 0; i < countSteps - 1; i++) {
-              var actualNum = Number(allSeconds[i]);
-              allSeconds.push(Math.floor(actualNum += 1));
-            }
-
-            var totalXCoordinate = endX - posX;
-            var totalYCoordinate = endY - posY;
-
-            var totalXAmount = totalXCoordinate / countSteps;
-            var totalYAmount = totalYCoordinate / countSteps;
-
-            var keyFrameObject = {
-              name: 'beacon-move'
-            };
-
-            var xCoordinate = posX;
-            var yCoordinate = posY;
-
-            for (var i = 0; i < allSeconds.length; i++) {
-              var calculatePercent = allSeconds[i] / totalSteps;
-              var percent = Math.floor(calculatePercent) + '%';
-              xCoordinate += totalXAmount;
-              yCoordinate += totalYAmount;
-
-              keyFrameObject[percent] = {
-                'top'  : yCoordinate + 'px',
-                'left' : xCoordinate + 'px'
-              }
-            }
-
-            $.keyframe.define([keyFrameObject]);
-
-            var duration = (totalSteps * 10) - 3;
-            $('#hotspot' + hotSpot.hotSpotId)
-              .css({ 'left' : posX, 'top' : posY, 'width' : width, 'height' : height })
-              .playKeyframe({
-                name: 'beacon-move',
-                duration: duration + 's',
-                timingFunction: 'ease',
-                iterationCount: 1,
-                direction: 'normal',
-                fillMode: 'none',
-                complete: function() {
-                  $(this).css({'left' : -2000})
-                }
-              });
-          }
-          else {
-            $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : -200000 });
-          }
+      removeKeyframes: function(pathName) {
+        if ($('.keyframe-style' + '#' + pathName).length > 0) {
+          $('.keyframe-style' + '#' + pathName).remove();
         }
       },
 
-      updateFrame: function() {
+      updateTagPosition: function(timeSig, duration, newTime) {
+        var currentTime          = timeSig / duration;
+        var ratioComparisonWidth = 1920;
+        var ratio                = $('html').width() / ratioComparisonWidth;
+
         for (var i in app.config.hotSpots) {
 
           var hotSpot = app.config.hotSpots[i];
 
           if (currentTime >= hotSpot.startTime && currentTime <= hotSpot.endTime) {
-            var percentThroughAnim = (currentTime - hotSpot.startTime) / (hotSpot.endTime - hotSpot.startTime) * 100000;
-            var posX = hotSpot.hotSpotStartX;
-            var posY = hotSpot.hotSpotStartY;
-            var endX = hotSpot.hotSpotEndX;
-            var endY = hotSpot.hotSpotEndY;
-            var width  = hotSpot.hotSpotStartWidth;
-            var height = hotSpot.hotSpotStartHeight;
+            var startX      = hotSpot.hotSpotStartX;
+            var startY      = hotSpot.hotSpotStartY;
+            var width       = hotSpot.hotSpotStartWidth;
+            var height      = hotSpot.hotSpotStartHeight;
+            // var normalSteps = 0;
+            // var totalSteps  = 0;
+            // var newPath     = [0, 0];
+            // var newStartX   = 0;
+            // var newStartY   = 0;
 
-            posX *= ratio;
-            posY *= ratio;
-            width *= ratio;
+            startX *= ratio;
+            startY *= ratio;
+            width  *= ratio;
             height *= ratio;
-            endX *= ratio;
-            endY *= ratio;
 
-            var allSeconds = [];
-            var start = hotSpot.startTime;
-            var end   = hotSpot.endTime;
-            var totalSteps = end - start;
-            var countSteps = totalSteps / Math.pow(10, -2);
-            allSeconds.push(Number(start) + 1);
+            if (hotSpot.movingBeacon === true && app.isiPhone === false) {
 
-            for (var i = 0; i < countSteps - 1; i++) {
-              var actualNum = Number(allSeconds[i]);
-              allSeconds.push(Math.floor(actualNum += 1));
-            }
+              if ($('.keyframe-style' + '#' + hotSpot.pathName).length === 0) {
 
-            var totalXCoordinate = endX - posX;
-            var totalYCoordinate = endY - posY;
+                // if (newTime != null && app.isiPhone() === false) {
+                //   normalSteps = hotSpot.endTime - hotSpot.startTime;
+                //   totalSteps  = normalSteps - (newTime / duration);
 
-            var totalXAmount = totalXCoordinate / countSteps;
-            var totalYAmount = totalYCoordinate / countSteps;
+                //   newPath[0]  = hotSpot.bezierMoveXY[0] * ((hotSpot.bezierMoveXY[0] * totalSteps) / (hotSpot.bezierMoveXY[0] * normalSteps));
+                //   newPath[1]  = hotSpot.bezierMoveXY[1] * ((hotSpot.bezierMoveXY[1] * totalSteps) / (hotSpot.bezierMoveXY[1] * normalSteps));
+                //   newStartX   = startX + (hotSpot.bezierMoveXY[0] - newPath[0]);
+                //   newStartY   = startY + (hotSpot.bezierMoveXY[1] - newPath[1]);
 
-            var keyFrameObject = {
-              name: 'beacon-move'
-            };
+                // } else {
+                //   var totalSteps = hotSpot.endTime - hotSpot.startTime;
+                // }
 
-            var xCoordinate = posX;
-            var yCoordinate = posY;
+                // if (app.isiPhone()) {
 
-            for (var i = 0; i < allSeconds.length; i++) {
-              var calculatePercent = allSeconds[i] / totalSteps;
-              var percent = Math.floor(calculatePercent) + '%';
-              xCoordinate += totalXAmount;
-              yCoordinate += totalYAmount;
+                //   if (window.orientation === 90 || window.orientation === -90) {
+                //     hotSpot.bezierMoveXY[0] = hotSpot.bezierMoveXY[0] / 2;
+                //     hotSpot.bezierMoveXY[1] = hotSpot.bezierMoveXY[1] / 2;
+                //     hotSpot.firstPull[0]    = hotSpot.firstPull[0] / 2;
+                //     hotSpot.firstPull[1]    = hotSpot.firstPull[1] / 2;
+                //   } else {
+                //     hotSpot.bezierMoveXY[0] = hotSpot.bezierMoveXY[0] / 4;
+                //     hotSpot.bezierMoveXY[1] = hotSpot.bezierMoveXY[1] / 4;
+                //     hotSpot.firstPull[0]    = hotSpot.firstPull[0] / 4;
+                //     hotSpot.firstPull[1]    = hotSpot.firstPull[1] / 4;
+                //   }
+                // }
 
-              keyFrameObject[percent] = {
-                'top'  : yCoordinate + 'px',
-                'left' : xCoordinate + 'px'
-              }
-            }
+                var totalSteps  = hotSpot.endTime - hotSpot.startTime;
 
-            $.keyframe.define([keyFrameObject]);
-
-            var duration = (totalSteps * 10) - 3;
-            $('#hotspot' + hotSpot.hotSpotId)
-              .css({ 'left' : posX, 'top' : posY, 'width' : width, 'height' : height })
-              .playKeyframe({
-                name: 'beacon-move',
-                duration: duration + 's',
-                timingFunction: 'ease',
-                iterationCount: 1,
-                direction: 'normal',
-                fillMode: 'none',
-                complete: function() {
-                  $(this).css({'left' : -2000})
+                if (hotSpot.pathType === 'regular') {
+                  var rules = $.keyframe.bezierPath( { name: hotSpot.pathName } , hotSpot.bezierStartXY, hotSpot.bezierMoveXY, hotSpot.firstPull);
+                } else if (hotSpot.pathType === 'advanced') {
+                  var rules = $.keyframe.bezierPath( { name: hotSpot.pathName } , hotSpot.bezierStartXY, hotSpot.bezierMoveXY, hotSpot.firstPull, hotSpot.secondPull);
+                } else if (hotSpot.pathType === 'circular' && hotSpot.circularCentersXY != null && hotSpot.radius != null) {
+                  var rules = $.keyframe.circlePath( { name: hotSpot.pathName } , hotSpot.circularCentersXY, hotSpot.radius );
                 }
-              });
-          }
-          else {
+
+                $.keyframe.define([rules]);
+
+                var duration = Math.abs(totalSteps * hotSpot.durationMultiple);
+                // console.log(duration);
+
+                $('#hotspot' + hotSpot.hotSpotId)
+                .css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
+                .playKeyframe({
+                  name: hotSpot.pathName,
+                  duration: duration + 's',
+                  timingFunction: hotSpot.timingType || 'linear',
+                  iterationCount: hotSpot.iterationCount,
+                  direction: 'normal',
+                  fillMode: 'none',
+                  complete: function() {
+                    $(this).css({'left' : -2000});
+                  }
+                });
+              } else {
+                return;
+              }
+            } else {
+              $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
+            }
+          } else {
             $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : -200000 });
           }
         }
@@ -531,6 +468,11 @@ define([
         this.playerActiveCartView.closeActiveCart();
         this.playerCheckoutCartView.closeCheckoutCart();
         this.playerShareView.animateOut();
+
+        $('.hotSpot').remove();
+        this.createBeacons();
+        this.updateTagPosition(this.currentTime, this.duration, seekTime);
+
         app.vent.trigger('hideMask');
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_JUMPTOTIME_CLICK, { 'timeJumpedTo' : seekTime });
       },
@@ -546,6 +488,8 @@ define([
       onReplayClick: function() {
         this.$('.replay-button').hide();
         app.vent.trigger('replay');
+        $('.hotSpot').remove();
+        app.vent.trigger('splashClick');
         this.onMaskClick();
       },
 

@@ -4,7 +4,7 @@
   baseUrl: "js/",
   removeCombined: true,
   //- this is the directory that the new files will be. it will be created if it doesn't exist
-  dir: "../../builds/showroomBuild",
+  dir: "../../builds/bucketfeet",
   optimize: 'none',
   paths: {
     'jquery'               : 'libs/jquery-2.0.3',
@@ -22,7 +22,6 @@
     'jsmpeg'               : 'libs/jsmpeg',
     'keyframes'            : 'libs/keyframes',
     'pathfinder'           : 'libs/keyframes.pathfinder'
-
   },
 
   shim: {

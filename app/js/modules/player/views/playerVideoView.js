@@ -75,13 +75,13 @@ define([
           that.onCanPlay();
         });
 
-        window.setInterval(function(){
-          that.onTimeUpdate(that.currentTime, that.duration);
-        }, 1);
+        // window.setInterval(function(){
+        //   that.onTimeUpdate(that.currentTime, that.duration);
+        // }, 500);
 
-        // video.bind("timeupdate", function(event) {
-        //   that.onTimeUpdate(this.currentTime, this.duration);
-        // });
+        video.bind("timeupdate", function(event) {
+          that.onTimeUpdate(this.currentTime, this.duration);
+        });
 
         video[0].volume = 1.0;
       },
@@ -113,7 +113,6 @@ define([
       },
 
       onTimeUpdate: function(currentTime, duration) {
-        var that        = this;
         var currentTime = currentTime || $('video')[0].currentTime;
         var duration    = duration || $('video')[0].duration;
         app.vent.trigger('timeUpdate', { 'currentTime': currentTime, 'duration': duration });
@@ -125,27 +124,29 @@ define([
       },
 
       pause: function() {
-        var that = this;
+        $('.hotSpot.boostKeyframe').pauseKeyframe();
+        console.log($('.hotSpot.boostKeyframe').pauseKeyframe());
 
         if (app.isiPhone()) {
-          that.player.pause();
+          this.player.pause();
         } else {
-          that.$('video')[0].pause();
+          this.$('video')[0].pause();
           app.isPlaying = false;
         }
+
 
         app.Analytics.pauseButtonControlBarClick();
       },
 
       play: function() {
-        var that = this;
 
         if (app.isiPhone()) {
-          that.player.play();
+          this.player.play();
         } else {
-          that.$('video')[0].play();
+          this.$('video')[0].play();
         }
 
+        $('.hotSpot.boostKeyframe').resumeKeyframe();
         $('.play-button').hide();
         $('.replay-button').hide();
         app.isPlaying = true;
@@ -153,13 +154,12 @@ define([
       },
 
       replay: function() {
-        var that = this;
 
         if (app.isiPhone()) {
-          that.player.restart();
+          this.player.restart();
         } else {
-          that.onSeek(0.0);
-          that.play();
+          this.onSeek(0.0);
+          this.play();
         }
       }
     });
