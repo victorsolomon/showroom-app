@@ -125,7 +125,6 @@ define([
 
       pause: function() {
         $('.hotSpot.boostKeyframe').pauseKeyframe();
-        console.log($('.hotSpot.boostKeyframe').pauseKeyframe());
 
         if (app.isiPhone()) {
           this.player.pause();

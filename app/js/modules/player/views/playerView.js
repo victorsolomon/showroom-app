@@ -106,7 +106,9 @@ define([
 
         var baseWidth = 1280;
         var newFontPct = playerWidth / baseWidth * 62.5;
-        $('html').css( 'font-size' , newFontPct + '%', 'important' );
+        $('html').css('font-size' , newFontPct + '%', 'important');
+        $('.hotSpot').remove();
+        this.createBeacons();
       },
 
       onShow: function() {
@@ -130,7 +132,7 @@ define([
         $('.fullscreen-icn').show();
       },
 
-      calculateContainerSize: function(argument) {
+      calculateContainerSize: function() {
         var windowWidth = $(window).width();
         var htmlHeight  = windowWidth * (9 / 16);
 
@@ -144,7 +146,6 @@ define([
           } else {
             $('html, body').addClass('iphone-portrait').removeClass('iphone-landscape');
           }
-
         } else if (app.isMobileSafari()) {
           var baseWidth = 1280;
           var newFontPct = windowWidth / baseWidth * 62.5;
@@ -217,6 +218,7 @@ define([
 
         for (var i = 0; i < app.config.hotSpots.length; i++) {
           var hotspotItemData = app.config.hotSpots[i];
+          this.removeKeyframes(hotspotItemData.pathName);
 
           var beacon = $('<svg version="1.1" class="beacon" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="52px" height="54px" viewBox="0 0 52 54" enable-background="new 0 0 52 54" xml:space="preserve" type="image/svg+xml"><g><circle class="beacon-circle" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="26" cy="27" r="19.358"/><g><path class="beacon-path" fill="#FFFFFF" d="M24.771,28.259H14.457c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V15.426c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H27.29v10.254c0,0.42-0.36,0.78-0.78,0.78H25.55c-0.42,0-0.779-0.36-0.779-0.78V28.259z"/></g></g><g><circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="88.71" cy="25.533" r="19.358"/><g><path fill="#FFFFFF" d="M87.481,26.792H77.167c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V13.959c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H90v10.254c0,0.42-0.36,0.78-0.78,0.78h-0.959c-0.42,0-0.779-0.36-0.779-0.78V26.792z"/></g></g></svg>');
 
@@ -224,9 +226,6 @@ define([
             $('.beacon-circle').attr('stroke', app.config.hotspotColor);
             $('.beacon-path').attr('fill', app.config.hotspotColor);
           }
-
-          // TODO: set conditional iPhone class and move this into the new styles
-          this.removeKeyframes(hotspotItemData.pathName);
 
           var hotspot =
                 $('<div class="hotSpot"></div>')
@@ -281,8 +280,8 @@ define([
       },
 
       removeKeyframes: function(pathName) {
-        if ($('.keyframe-style' + '#' + pathName).length > 0) {
-          $('.keyframe-style' + '#' + pathName).remove();
+        if ($('.keyframe-style#' + pathName).length > 0) {
+          $('.keyframe-style#' + pathName).remove();
         }
       },
 
@@ -300,36 +299,38 @@ define([
             var startY      = hotSpot.hotSpotStartY;
             var width       = hotSpot.hotSpotStartWidth;
             var height      = hotSpot.hotSpotStartHeight;
-            // var normalSteps = 0;
-            // var totalSteps  = 0;
-            // var newPath     = [0, 0];
-            // var newStartX   = 0;
-            // var newStartY   = 0;
+            var totalSteps  = 0;
 
             startX *= ratio;
             startY *= ratio;
             width  *= ratio;
             height *= ratio;
 
-            if (hotSpot.movingBeacon === true && app.isiPhone === false) {
+            if (hotSpot.movingBeacon === true && app.isiPhone() === null) {
 
-              if ($('.keyframe-style' + '#' + hotSpot.pathName).length === 0) {
+              if ($('.keyframe-style#' + hotSpot.pathName).length === 0) {
 
-                // if (newTime != null && app.isiPhone() === false) {
-                //   normalSteps = hotSpot.endTime - hotSpot.startTime;
-                //   totalSteps  = normalSteps - (newTime / duration);
+                // if (newTime != null) {
+                //   var newCurrentTime = newTime / duration;
 
-                //   newPath[0]  = hotSpot.bezierMoveXY[0] * ((hotSpot.bezierMoveXY[0] * totalSteps) / (hotSpot.bezierMoveXY[0] * normalSteps));
-                //   newPath[1]  = hotSpot.bezierMoveXY[1] * ((hotSpot.bezierMoveXY[1] * totalSteps) / (hotSpot.bezierMoveXY[1] * normalSteps));
-                //   newStartX   = startX + (hotSpot.bezierMoveXY[0] - newPath[0]);
-                //   newStartY   = startY + (hotSpot.bezierMoveXY[1] - newPath[1]);
-
+                //   if (newCurrentTime > hotSpot.startTime) {
+                //     var oldSteps             = hotSpot.endTime - hotSpot.startTime;
+                //     var diff                 = newCurrentTime - hotSpot.startTime;
+                //     var percentage           = diff / oldSteps;
+                //     totalSteps               = hotSpot.endTime - newCurrentTime;
+                //     hotSpot.bezierStartXY[0] = (hotSpot.bezierMoveXY[0] - hotSpot.bezierStartXY[0]) * (diff / oldSteps);
+                //     console.log(hotSpot.bezierStartXY);
+                //   }
                 // } else {
-                //   var totalSteps = hotSpot.endTime - hotSpot.startTime;
+                  totalSteps = hotSpot.endTime - hotSpot.startTime;
                 // }
 
-                // if (app.isiPhone()) {
 
+                hotSpot.bezierStartXY[0] *= ratio;
+                hotSpot.bezierStartXY[1] *= ratio;
+
+                // TODO: Add back in once iPhone beacons are in place.
+                // if (app.isiPhone()) {
                 //   if (window.orientation === 90 || window.orientation === -90) {
                 //     hotSpot.bezierMoveXY[0] = hotSpot.bezierMoveXY[0] / 2;
                 //     hotSpot.bezierMoveXY[1] = hotSpot.bezierMoveXY[1] / 2;
@@ -342,8 +343,6 @@ define([
                 //     hotSpot.firstPull[1]    = hotSpot.firstPull[1] / 4;
                 //   }
                 // }
-
-                var totalSteps  = hotSpot.endTime - hotSpot.startTime;
 
                 if (hotSpot.pathType === 'regular') {
                   var rules = $.keyframe.bezierPath( { name: hotSpot.pathName } , hotSpot.bezierStartXY, hotSpot.bezierMoveXY, hotSpot.firstPull);
@@ -371,8 +370,6 @@ define([
                     $(this).css({'left' : -2000});
                   }
                 });
-              } else {
-                return;
               }
             } else {
               $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
@@ -454,12 +451,10 @@ define([
         var scrubberWidth = parseInt(this.$('.scrubber').css('width'));
 
         //for touch devices
-        var pageX;
         if (event.originalEvent.touches && event.originalEvent.touches[0].pageX) {
-          pageX = event.originalEvent.touches[0].pageX;
-        }
-        else {
-          pageX = (( event.pageX ) ? event.pageX : event.x);
+          var pageX = event.originalEvent.touches[0].pageX;
+        } else {
+          var pageX = (( event.pageX ) ? event.pageX : event.x);
         }
 
         var seekTime = pageX / scrubberWidth * this.duration;
