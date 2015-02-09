@@ -414,18 +414,6 @@ footer .nav-item {
 }
 
 @media(max-width: 655px) {
-  .showroom-video-container {
-    display: none;
-  }
-
-  .showroom-video-gif {
-    display: block;
-  }
-
-  .showroom-video-gif img {
-    max-width: 100%;
-  }
-
   .brand-container {
     height: auto;
     padding-top: 20px;

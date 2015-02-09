@@ -30,23 +30,23 @@ define([
       recommended : [
         {
           "id"            : '4',
-          "largeItemSrc1" : 'denim_glacier_1.jpg'
+          "itemImageSrc" : 'denim_glacier_1.jpg'
         },
         {
           "id"            : '5',
-          "largeItemSrc1" : 'twill_glacier_1.jpg'
+          "itemImageSrc" : 'twill_glacier_1.jpg'
         },
         {
           "id"            : '1',
-          "largeItemSrc1" : "Blue_1.jpg"
+          "itemImageSrc" : "Blue_1.jpg"
         },
         {
           "id"            : '2',
-          "largeItemSrc1" : "White_1.jpg"
+          "itemImageSrc" : "White_1.jpg"
         },
         {
           "id"            : '3',
-          "largeItemSrc1" : "Charcoal_1.jpg"
+          "itemImageSrc" : "Charcoal_1.jpg"
         }
       ],
 
@@ -54,7 +54,6 @@ define([
         {
           "id"                 : "1",
           "index"              : "0",
-          "largeItemSrc1"      : "Blue_1.jpg",
           "itemImageSrc"       : "Blue_1.jpg",
           "itemTitle"          : "The Blue Everyday Oxford Jack",
           "itemDescription"    : "The Everyday Oxford is our calling card. If you could only own one shirt, this would be it. At any given day at the shop, at least one of us has one on. It is never overdressed or underdressed, and it looks perfectly fine with a few wrinkles.",
@@ -74,7 +73,6 @@ define([
         {
           "id"                 : "2",
           "index"              : "1",
-          "largeItemSrc1"      : "White_1.jpg",
           "itemImageSrc"       : "White_1.jpg",
           "itemTitle"          : "The White Everyday Oxford Jack",
           "itemDescription"    : "The Everyday Oxford is our calling card. If you could only own one shirt, this would be it. At any given day at the shop, at least one of us has one on. It is never overdressed or underdressed, and it looks perfectly fine with a few wrinkles.",
@@ -94,7 +92,6 @@ define([
         {
           "id"                 : "3",
           "index"              : "2",
-          "largeItemSrc1"      : "Charcoal_1.jpg",
           "itemImageSrc"       : "Charcoal_1.jpg",
           "itemTitle"          : "The Charcoal Everyday Oxford Jack",
           "itemDescription"    : "The Everyday Oxford is our calling card. If you could only own one shirt, this would be it. At any given day at the shop, at least one of us has one on. It is never overdressed or underdressed, and it looks perfectly fine with a few wrinkles.",
@@ -114,7 +111,6 @@ define([
         {
           "id"                 : "4",
           "index"              : "3",
-          "largeItemSrc1"      : "denim_glacier_1.jpg",
           "itemImageSrc"       : "denim_glacier_1.jpg",
           "itemTitle"          : "Denim Glacier Shirt",
           "itemDescription"    : "The Glacier Shirt is a collaboration with our favorite hat makers, FairEnds. A modern take on the western classic, the inspiration behind this shirt is Glacier National Park. It is equally at home casting dry flies from an empty bank as it is on a hike under the big sky.",
@@ -135,7 +131,6 @@ define([
         {
           "id"                 : "5",
           "index"              : "4",
-          "largeItemSrc1"      : "twill_glacier_1.jpg",
           "itemImageSrc"       : "twill_glacier_1.jpg",
           "itemTitle"          : "Twill Glacier Shirt",
           "itemDescription"    : "The Glacier Shirt is a collaboration with our favorite hat makers, FairEnds. A modern take on the western classic, the inspiration behind this shirt is Glacier National Park. It is equally at home casting dry flies from an empty bank as it is on a hike under the big sky.",

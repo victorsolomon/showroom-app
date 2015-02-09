@@ -219,7 +219,7 @@ define([
         if (Object.prototype.toString.call(itemData.allImages) === '[object Object]') {
           $('.active-slider-container-inner-wrap').children().remove();
 
-          var imageUrl = app.config.baseProductImagePath + "large/" + itemData.largeItemSrc1;
+          var imageUrl = app.config.baseProductImagePath + itemData.itemImageSrc;
           var imageSlide = $("<div class='slide image-slide'></div>").css({
             'background-image' : 'url(' + imageUrl + ")"
           });
@@ -238,7 +238,7 @@ define([
           }
 
           for (var i = 0; i < itemData.allImages.length; i++) {
-            var imageUrl = app.config.baseProductImagePath + "large/" + itemData.allImages[i];
+            var imageUrl = app.config.baseProductImagePath + itemData.allImages[i];
             var imageSlide = $("<div class='slide image-slide'></div>").css({
               'background-image' : 'url(' + imageUrl + ")",
               'width'            : slideWidth + '%'
@@ -370,7 +370,7 @@ define([
 
       toggleOptions: function(event) {
         if ($.isEmptyObject(app.config.variantOptions) || app.config.variantOptions.length === 0) {
-          $('.other-option-selector').css('height', '0.5%');
+          $('.other-option-selector').hide();
           $('#active-cart-info-and-actions').css('height', '20.5%');
           return;
         }
@@ -520,7 +520,7 @@ define([
         $('.variant-option-type').css('border', 'none');
 
         container.children().remove();
-        var imageUrl = app.config.baseProductImagePath + "large/" + (currentItem.allImages[optionId] || currentItem.largeItemSrc1);
+        var imageUrl = app.config.baseProductImagePath + (currentItem.allImages[optionId] || currentItem.itemImageSrc);
         var imageSlide = $("<div class='slide image-slide'></div>").css({
           'background-image' : 'url(' + imageUrl + ")"
         });
@@ -601,7 +601,7 @@ define([
           slide.css('width', slideWidth);
 
           var slide1 = $("<div class='slide1'></div>");
-          var imgUrl = app.config.baseProductImagePath + "small/" + data[i].largeItemSrc1;
+          var imgUrl = app.config.baseProductImagePath + data[i].itemImageSrc;
 
           slide1.css({
             'background-image': 'url(' + imgUrl + ')',
@@ -619,7 +619,7 @@ define([
 
           if (data[i+1]) {
             var slide2 = $("<div class='slide1'></div>");
-            var imgUrl = app.config.baseProductImagePath + "small/" + data[i+1].largeItemSrc1;
+            var imgUrl = app.config.baseProductImagePath + data[i+1].itemImageSrc;
 
             slide2.css({
               'background-image': 'url(' + imgUrl + ')',
@@ -638,7 +638,7 @@ define([
 
           if (data[i+2]) {
             var slide2 = $("<div class='slide1'></div>");
-            var imgUrl = app.config.baseProductImagePath + "small/" + data[i+2].largeItemSrc1;
+            var imgUrl = app.config.baseProductImagePath + data[i+2].itemImageSrc;
 
             slide2.css({
               'background-image': 'url(' + imgUrl + ')',

@@ -1,0 +1,27 @@
+{
+  "name": "Showroom",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/victorsolomon/showroom-app",
+  "authors": [
+    "David Gonzalez <gonzalez.dalex@gmail.com>"
+  ],
+  "description": "showroom-app",
+  "moduleType": [
+    "amd",
+    "es6",
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react.backbone": "~0.6.0"
+  }
+}

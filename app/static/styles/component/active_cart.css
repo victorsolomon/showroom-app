@@ -1,5 +1,5 @@
 .common-sprite {
-  background: url(/sprite/common-s6acec41908.png) no-repeat;
+  background: url(/sprite/common-s08f35e8a4c.png) no-repeat;
 }
 
 #active-cart-region {
@@ -102,7 +102,7 @@
   display: inline-block;
   list-style: none;
   padding: 0px;
-  margin: 4.88599% 0px;
+  margin: 6.88599% 0px;
   font-family: avenir;
   position: relative;
   text-align: center;
@@ -267,7 +267,7 @@
 }
 
 .sold-out {
-  position: absolute;
+  position: relative;
   width: 100%;
   font-size: 2.5em;
   text-transform: uppercase;
@@ -275,6 +275,7 @@
   text-align: center;
   margin: 0 auto;
   top: -3px;
+  height: 23px;
 }
 
 .titleAndPrice {
@@ -290,6 +291,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-transform: uppercase;
 }
 .titleAndPrice .price {
   font-weight: bold;

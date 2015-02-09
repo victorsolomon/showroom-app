@@ -8,11 +8,11 @@ define([
   'modules/player/views/playerPosterView',
   'modules/player/views/playerShareView',
   'modules/player/views/playerSplashVideoView',
-  'keyframes'
+  'keyframes',
 ], function (Marionette, app, template, PlayerVideoView, PlayerActiveCartView,
              PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView, keyframes) {
 
-    return Marionette.Layout.extend({
+    return Marionette.LayoutView.extend({
       template              : template,
       tagName               : 'div',
       id                    : "showroom-player",
@@ -181,7 +181,7 @@ define([
 
         app.bindClickTouch(this.$('.share-icn'), function(event) {
           that.onShareClick(event);
-          app.Analytics.shareButtonClick()
+          // app.Analytics.shareButtonClick();
         });
 
         app.bindClickTouch(this.$('.fullscreen-icn'), function(event) {
@@ -289,6 +289,7 @@ define([
         var currentTime          = timeSig / duration;
         var ratioComparisonWidth = 1920;
         var ratio                = $('html').width() / ratioComparisonWidth;
+        // console.log(currentTime);
 
         for (var i in app.config.hotSpots) {
 
@@ -383,6 +384,7 @@ define([
       onShareClick: function() {
         var vendor = app.config.gaVendorName;
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_SHAREBUTTON_CLICK, { 'vendor' : vendor });
+
         app.vent.trigger('pause');
         app.vent.trigger('showMask');
         this.playerShareView.animateIn();
