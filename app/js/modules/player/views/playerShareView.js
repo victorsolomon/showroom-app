@@ -78,4 +78,4 @@ define([
         $("#share-region").animate({top: hiddenTopValueToUse}, 500);
       }
   });
-});
+ });

@@ -72,7 +72,7 @@ define([
       },
 
       generateItem: function(itemData, index) {
-        var imgUrl     = app.config.baseProductImagePath + "small/" + itemData.largeItemSrc1;
+        var imgUrl     = app.config.baseProductImagePath + itemData.itemImageSrc;
         var title      = itemData.itemTitle;
         var size       = itemData.size;
         var price      = itemData.itemPrice || itemData.price;
