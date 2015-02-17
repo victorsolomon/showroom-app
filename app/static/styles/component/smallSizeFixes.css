@@ -84,51 +84,18 @@
   background-position: right;
   width: 72.4%;
 }
-.smallApp #share-region {
-  top: -55%;
-  width: 74.4375%;
-  margin-left: 12.70312%;
-  height: 54.83333%;
-}
 .smallApp #share-region .header {
-  font-size: 3.8rem;
+  margin-top: 0.75%;
 }
-.smallApp #share-region textarea {
-  height: 3em;
+.smallApp #share-region .close-share-panel {
+  padding-top: 0.85%;
 }
-.smallApp #share-region .shareInput,
-.smallApp #share-region .shareTextArea {
-  font-size: 3rem;
+.smallApp .embed-text,
+.smallApp .share-text {
+  left: 49%;
 }
-.smallApp #share-region .embedSelector li {
-  padding: 1.55% 1%;
-  font-size: 3.5rem;
+.smallApp .cart-items {
+  height: 75%;
 }
-.smallApp #share-region .embedSelector .six40 p {
-  margin-top: 5%;
-}
-.smallApp #share-region .embedSelector .eight50 p {
-  margin-top: 3.5%;
-}
-.smallApp #share-region .embedSelector .thousand p {
-  margin-top: 2.5%;
-}
-.smallApp #share-region .embedSelector .twelve80 p {
-  margin-top: 2.5%;
-}
-.smallApp .play-button {
-  top: 42.52778%;
-  left: 45.24219%;
-}
-.smallApp .share-icn {
-  bottom: 1.5%;
-  background: url(../../images/sprite/common/share-icn.png) no-repeat;
-  background-position: 50%;
-  background-size: 26%;
-  width: 19.25%;
-  height: 25.5%;
-  left: 36.96875%;
-}
-.smallApp .fullscreen-icn {
-  bottom: 7.7%;
-}
+
+/*# sourceMappingURL=smallSizeFixes.css.map */

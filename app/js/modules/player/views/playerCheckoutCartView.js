@@ -3,24 +3,23 @@ define([
   'marionette',
   'application',
   'hbs!modules/player/templates/playerCheckoutCartView',
-  'modules/player/views/playerCheckoutCartItemView',
   'libs/jcookie'
-], function ($, Marionette, app, template, PlayerCheckoutCartItemView, jcookie) {
+], function ($, Marionette, app, template, jcookie) {
 
     return Marionette.ItemView.extend({
       template : template,
       tagName  : 'div',
       id       : "checkout-cart",
 
-      closeAnimRightValue      : '-26.40625%',
-      closeAnimRightValueSmall : '-35.79167%',
+      closeAnimRightValue      : '-34.40625%',
+      closeAnimRightValueSmall : '-38.79167%',
       openAnimRightValue       : "0%",
       otherLink : '',
       isOpen : false,
 
       events: {
         // 'click .checkoutCartDrawerBar' : 'onDrawerClick',
-        'click .checkoutButton' : 'onCheckoutButtonClick'
+        'click .checkout-button' : 'onCheckoutButtonClick'
       },
 
       initialize : function(options) {
@@ -28,28 +27,26 @@ define([
       },
 
       onShow: function() {
-        var that = this;
-
         this.closeCheckoutCart();
         app.vent.on('itemAdded', this.renderCart, this);
         app.vent.on('itemRemoved', this.renderCart, this);
 
         if (app.config.checkoutType === "email") {
-          this.$('.checkoutButton').attr('href', app.config.checkoutUrl).attr('target', '_top');
+          this.$('.checkout-button').attr('href', app.config.checkoutUrl).attr('target', '_top');
         }
 
-        app.bindClickTouch(this.$('.checkoutCartDrawerBar'), function(event) {
-          that.onDrawerClick(event);
-        });
+        app.bindClickTouch(this.$('.checkout-cart-drawer-bar'), function(event) {
+          this.onDrawerClick(event);
+        }.bind(this));
 
-        app.bindClickTouch(this.$('.checkoutButton'), function(event) {
+        app.bindClickTouch(this.$('.checkout-button'), function(event) {
           if (app.config.checkoutType === 'shopify') {
-            that.performShopifyCheckout();
-            window.open(that.otherLink);
+            this.performShopifyCheckout();
+            window.open(this.otherLink);
           }
-        });
+        }.bind(this));
 
-        app.bindClickTouch(this.$('.logo'), function(event) {
+        app.bindClickTouch($('.showroom-checkout-logo'), function(event) {
           window.open('http://www.helloshowroom.co');
         });
 
@@ -62,12 +59,11 @@ define([
 
       renderCart : function(){
         this.openCheckoutCart();
-
-        this.$('.items').empty();
+        $('.cart-items').empty();
 
         for (var i in app.config.cartItems) {
           var item = this.generateItem(app.config.cartItems[i], i);
-          this.$('.items').append(item);
+          $('.cart-items').append(item);
         }
       },
 
@@ -77,39 +73,31 @@ define([
         var size       = itemData.size;
         var price      = itemData.itemPrice || itemData.price;
         var optionType = itemData.variantOptionName;
-        var item;
 
         if (app.config.checkoutType !== 'minted') {
-          item = $("<li class='cartItem'>" +
-                    "<div class='close' data-index='" + index + "'>X</div>" +
-                    "<div class='cartItemImage' style='background-image:url(" + imgUrl + ");'></div>" +
-                    "<div class='cartItemDescription'>" +
-                      "<div class='cartItemTitle'>" + title + "</div>" +
-                      ((itemData.hasSize) ? "<div class='itemSize'>" + size + "</div>" : "" ) +
-                      "<div class='cartItemPrice'>" + price + "</div>" +
-                    "</div>" +
-                    "<div class='clear'></div>" +
-                  "</li>");
+          var item = $("<li class='cart-item'>" +
+                        "<div class='cart-remove-button' data-index='" + index + "'>X</div>" +
+                        "<div class='cart-item-image' style='background-image:url(" + imgUrl + ");'></div>" +
+                        "<div class='cart-item-description'>" +
+                          "<div class='cart-item-title'>" + title + "</div>" +
+                          ((itemData.hasSize) ? "<div class='cart-item-size'>" + size + "</div>" : "" ) +
+                          "<div class='cart-item-price'>" + price + "</div>" +
+                        "</div>" +
+                      "</li>");
         } else {
-          item = $("<li class='cartItem'>" +
-                    "<div class='close' data-index='" + index + "'>X</div>" +
-                    "<div class='cartItemImage' style='background-image:url(" + imgUrl + ");'></div>" +
-                    "<div class='cartItemDescription'>" +
-                      "<div class='cartItemTitle'>" + title + "</div>" +
-                      "<div class='itemOptionSize'>" + (size ? size : '') + "</div>" +
-                      "<div class='itemOptionType'>" + (optionType ? optionType : '') + "</div>" +
-                      "<div class='cartItemPrice'>" + (price ? price : '') + "</div>" +
-                    "</div>" +
-                    "<div class='clear'></div>" +
-                  "</li>");
+          var item = $("<li class='cart-item'>" +
+                        "<div class='cart-remove-button' data-index='" + index + "'>X</div>" +
+                        "<div class='cart-item-image' style='background-image:url(" + imgUrl + ");'></div>" +
+                        "<div class='cart-item-title'>" + title + "</div>" +
+                        "<div class='item-option-size'>" + (size ? size : '') + "</div>" +
+                        "<div class='item-option-type'>" + (optionType ? optionType : '') + "</div>" +
+                        "<div class='cart-item-price'>" + (price ? price : '') + "</div>" +
+                      "</li>");
         }
 
-
-        var that = this;
-
-        app.bindClickTouch(item.find('.close'), function(event) {
-          that.onCloseClick(event);
-        });
+        app.bindClickTouch($('.cart-remove-button'), function(event) {
+          this.onCloseClick(event);
+        }.bind(this));
 
         this.customMintedCheckout(itemData);
 
@@ -160,11 +148,7 @@ define([
       openCheckoutCart: function() {
         $(this.el).parent().animate({ 'right' : this.openAnimRightValue });
 
-        this.$('.items, .logo, .checkoutButton').each(function(index, item) {
-          $(item).animate({'opacity' : 1}, 200);
-        });
-
-        this.$('.handle').animate({'opacity' : 0}, 200);
+        $('.checkout-cart-handle').animate({'opacity' : 0}, 200);
         this.isOpen = true;
       },
 
@@ -173,11 +157,7 @@ define([
 
         $(this.el).parent().animate({'right' : closeValueToUse});
 
-        this.$('.items, .logo, .checkoutButton').each(function(index, item) {
-          $(item).animate({'opacity' : 0}, 200);
-        });
-
-        this.$('.handle').animate({'opacity' : 1}, 200);
+        $('.checkout-cart-handle').animate({'opacity' : 1}, 200);
         this.isOpen = false;
       },
 

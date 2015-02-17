@@ -54,7 +54,6 @@ define([
           that.isEnd = isEnd;
 
           if (app.isiPhone()) {
-            $('.share-icn').hide();
             $('.fullscreen-icn').hide();
 
             if (!that.isEnd) {
@@ -62,7 +61,7 @@ define([
             }
           } else {
             if (!that.isEnd) {
-              $('.play-button, .share-icn, .fullscreen-icn').show();
+              $('.play-button, .share-icn, .share-text, .embed-text, .embed-icn').show();
             }
           }
 
@@ -70,7 +69,7 @@ define([
 
         app.vent.on('hideMask', function() {
           $('#mask-region').animate({ 'opacity' : 0.0 }, 400).css('z-index', 2);
-          $('.play-button, .share-icn, .fullscreen-icn').hide();
+          $('.play-button, .share-icn, .share-text, .embed-text, .embed-icn').hide();
         });
 
         app.vent.on('checkoutDrawerClick', this.checkCartStatus, this);
@@ -128,8 +127,6 @@ define([
           $('body,html').addClass('ipad');
           this.calculateContainerSize();
         }
-
-        $('.fullscreen-icn').show();
       },
 
       calculateContainerSize: function() {
@@ -179,7 +176,7 @@ define([
           that.onScrubberClick(event);
         });
 
-        app.bindClickTouch(this.$('.share-icn'), function(event) {
+        app.bindClickTouch(this.$('.share-icn, .share-text, .embed-text, .embed-icn'), function(event) {
           that.onShareClick(event);
           // app.Analytics.shareButtonClick();
         });
@@ -243,10 +240,10 @@ define([
       },
 
       hoverBeaconsOn: function() {
-        $('.pause-button').show();
+        $('.pause-button, .fullscreen-icn').show();
 
         if (app.isPlaying === false) {
-          $('.pause-button').hide();
+          $('.pause-button, .fullscreen-icn').hide();
         }
 
         if (app.config.beaconPlacement === 'top')  {
@@ -264,7 +261,7 @@ define([
       },
 
       hoverBeaconsOff: function() {
-        $('.pause-button').hide();
+        $('.pause-button, .fullscreen-icn').hide();
       },
 
       tagClick: function(event) {
@@ -393,6 +390,12 @@ define([
           this.playerActiveCartView.closeActiveCart();
           this.playerCheckoutCartView.closeCheckoutCart();
         }
+      },
+
+      closeSharePanel: function() {
+        this.playerShareView.animateOut();
+        this.playerActiveCartView.closeActiveCart();
+        this.playerCheckoutCartView.closeCheckoutCart();
       },
 
       checkCartStatus: function() {
