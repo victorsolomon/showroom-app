@@ -83,12 +83,9 @@ define([
 
       openActiveCart: function() {
         $(this.el).parent().animate({ 'left' : this.openAnimLeftValue });
+        $(this.el).children().animate({ 'opacity': 1 }, 200);
+        $('.active-cart-handle').animate({ 'opacity' : 0 }, 200);
 
-        this.$('#active-cart-main-slider, #active-cart-info-and-actions, #recommended-cart-slider, .recommendText').each(function(index, item) {
-          $(item).animate( {'opacity' : 1 }, 200 );
-        });
-
-        this.$('.handle').animate({ 'opacity' : 0 }, 200);
         this.isOpen = true;
       },
 
@@ -96,18 +93,15 @@ define([
         var closeValueToUse = (app.smallMode) ? this.closeAnimLeftValueSmall : this.closeAnimLeftValue;
 
         $(this.el).parent().animate({ 'left' : closeValueToUse });
-        this.$('#active-cart-main-slider, #active-cart-info-and-actions, #recommended-cart-slider, .recommendText').each( function( index, item ){
-          $(item).animate({ 'opacity' : 0 }, 200);
-        });
+        $(this.el).children().animate({ 'opacity': 0 }, 200);
+        $('.active-cart-handle').animate({ 'opacity' : 1 }, 200);
 
-        this.$('.handle').animate({ 'opacity' : 1 }, 200);
         this.isOpen = false;
       },
 
       removeRecommendedArrows: function() {
-        if ($('.recommended-slider-container-inner-wrap .slide').children().length <= 3) {
-          $('.recommended-left-arrow').hide();
-          $('.recommended-right-arrow').hide();
+        if ($('.recommended-slider-container-inner-wrap .recommended-item-slide').children().length <= 3) {
+          $('.recommended-left-arrow, .recommended-right-arrow').hide();
         }
       },
 
@@ -115,17 +109,15 @@ define([
         var items = app.config.itemData[id - 1];
 
         if (items.itemDescription === null && (items.allImages.length === 1 || items.allImages.length == null)) {
-          $('.active-left-arrow').hide();
-          $('.active-right-arrow').hide();
+          $('.active-left-arrow, .active-right-arrow').hide();
         } else {
-          $('.active-left-arrow').show();
-          $('.active-right-arrow').show();
+          $('.active-left-arrow, .active-right-arrow').show();
         }
       },
 
       checkIfSoldOut: function(item) {
         if (item.soldOut === true) {
-          $('.sizeSelector').prepend('<div class="sold-out">Sold Out</div');
+          $('.size-selector').prepend('<div class="sold-out">Sold Out</div');
         } else {
           $('.sold-out').remove();
         }
@@ -133,8 +125,8 @@ define([
 
       resetSizeOptions: function() {
         // TODO: refactor this into childrenRemove function
-        if ($('.sizeSelector').children().length !== 0) {
-          $('.sizeSelector').children().remove();
+        if ($('.size-selector').children().length !== 0) {
+          $('.size-selector').children().remove();
         }
       },
 
@@ -162,19 +154,16 @@ define([
       },
 
       loadItem: function(id, optionSelector) {
-        var itemData;
-
         if (optionSelector != null) {
-          itemData = app.config.itemData[id];
+          var itemData = app.config.itemData[id];
         } else {
-          itemData = app.config.itemData[id - 1];
+          var itemData = app.config.itemData[id - 1];
         }
 
         var container       = $('.active-slider-container-inner-wrap');
         var slideWidth      = 94.5 / (itemData.allImages.length + 1);
-
         var variants        = itemData.variants;
-        var sizeButton      = $('.sizeSelector');
+        var sizeButton      = $('.size-selector');
         var that            = this;
         this.selectedItem   = id;
         this.mainSliderPage = 1;
@@ -189,7 +178,7 @@ define([
         this.removeDescriptionArrows(id);
 
         if (itemData.itemDescription != null) {
-          $('.description-content-td').html(itemData.itemDescription);
+          $('.description-content-block').html(itemData.itemDescription);
           $('.description').css({
             'width'   : slideWidth + '%',
             'display' : 'inline-block'
@@ -198,7 +187,7 @@ define([
           $('.description').css('display', 'none');
         }
 
-        this.$('.sizeSelector > li').removeClass('selected');
+        this.$('.size-selector > li').removeClass('selected');
         $('#title').html(itemData.itemTitle);
         $('#price').html(itemData.itemPrice);
         $('.color-selector-item[itemid=' + this.selectedItem + ']').css('border', '1.5px solid black');
@@ -209,9 +198,9 @@ define([
         }
 
         if (itemData.hasSize && itemData.soldOut !== true) {
-          $('.sizeSelector > li').css('visibility', 'visible');
+          $('.size-selector > li').css('visibility', 'visible');
         } else {
-          $('.sizeSelector > li').css('visibility', 'hidden');
+          $('.size-selector > li').css('visibility', 'hidden');
         }
 
         this.checkColorOptions(itemData);
@@ -220,7 +209,7 @@ define([
           $('.active-slider-container-inner-wrap').children().remove();
 
           var imageUrl = app.config.baseProductImagePath + itemData.itemImageSrc;
-          var imageSlide = $("<div class='slide image-slide'></div>").css({
+          var imageSlide = $("<div class='active-item-slide active-item-image-slide'></div>").css({
             'background-image' : 'url(' + imageUrl + ")"
           });
 
@@ -233,13 +222,13 @@ define([
             'width'       : (itemData.allImages.length + 1) * 100 + '%'
           });
 
-          if (container.find('.image-slide').length) {
-            container.find('.image-slide').remove();
+          if (container.find('.active-item-image-slide').length) {
+            container.find('.active-item-image-slide').remove();
           }
 
           for (var i = 0; i < itemData.allImages.length; i++) {
             var imageUrl = app.config.baseProductImagePath + itemData.allImages[i];
-            var imageSlide = $("<div class='slide image-slide'></div>").css({
+            var imageSlide = $("<div class='active-item-slide active-item-image-slide'></div>").css({
               'background-image' : 'url(' + imageUrl + ")",
               'width'            : slideWidth + '%'
             });
@@ -248,14 +237,16 @@ define([
           }
         }
 
-        _.map($('.sizeSelector').find('li'), function(e) {
+        _.map($('.size-selector').find('li'), function(e) {
           $(e).removeClass('unavailable');
           if ($(e).attr('data-variant') !== '')  {
             return $(e).attr('data-variant', '');
           }
         });
+
         for (var key in variants) {
           sizeButton.css('visibility', 'visible');
+
           if (key !== 'oneSize') {
             var newKey = null;
 
@@ -285,7 +276,7 @@ define([
         });
 
         if (this.currentlySelectedItem != null) {
-          $('.sizeSelector').find('li[data-value=' + this.currentlySelectedItem + ']').addClass('selected');
+          $('.size-selector').find('li[data-value=' + this.currentlySelectedItem + ']').addClass('selected');
         }
 
         if (window.event != null) {
@@ -348,7 +339,7 @@ define([
 
       sizeSelected: function(event) {
         this.currentlySelectedItem = $(event.currentTarget).data('value');
-        this.$('.sizeSelector > li').removeClass('selected');
+        this.$('.size-selector > li').removeClass('selected');
 
         if ($(event.currentTarget).hasClass('unavailable')) {
           return;
@@ -379,7 +370,7 @@ define([
         var currentItem   = app.config.itemData[this.selectedItem - 1];
         var variantChoice = $('.variant-option-type');
 
-        if ($(event.currentTarget).text().indexOf('Unframed') > -1 || $('.sizeSelector').children('.selected').length === 0) {
+        if ($(event.currentTarget).text().indexOf('Unframed') > -1 || $('.size-selector').children('.selected').length === 0) {
           variantChoice.unbind();
           variantChoice.css('opacity', '0.1');
           that.loadImage(currentItem, 0);
@@ -419,10 +410,10 @@ define([
 
           app.cartManager.addItem(cartItem);
           app.vent.trigger('itemAdded');
-        } else if ($('.sizeSelector').children().hasClass('selected')) {
+        } else if ($('.size-selector').children().hasClass('selected')) {
           var data             = app.cartManager.getItemById(this.selectedItem);
           var cartItem         = $.extend(true, {}, data);
-          var selectedChildren = $('.sizeSelector').children('.selected')
+          var selectedChildren = $('.size-selector').children('.selected')
           var selectedOptionId = $('.other-option-selector').children('.chosen').attr('itemid');
 
           cartItem.variant           = selectedChildren.attr('data-variant')
@@ -521,7 +512,7 @@ define([
 
         container.children().remove();
         var imageUrl = app.config.baseProductImagePath + (currentItem.allImages[optionId] || currentItem.itemImageSrc);
-        var imageSlide = $("<div class='slide image-slide'></div>").css({
+        var imageSlide = $("<div class='active-item-slide active-item-image-slide'></div>").css({
           'background-image' : 'url(' + imageUrl + ")"
         });
 
@@ -537,70 +528,60 @@ define([
       populateVariantColors: function() {
         if (app.config.variantColors.length === 0) {
           return;
+        } else {
+          var colorSelector = $('.color-selector');
         }
+        var data = app.config.variantColors;
 
         // TODO: refactor this into childrenRemove function
-        if ($('.color-selector').children().length !== 0) {
-          $('.color-selector').children().remove();
+        if (colorSelector.children().length !== 0) {
+          colorSelector.children().remove();
         }
 
-        var that          = this;
-        var data          = app.config.variantColors;
-        var colorSelector = $('.color-selector');
+        for (var i = 0; i < data.length; i++) {
+          if (app.config.itemData[this.selectedItem - 1].colorBlockId === data[i].colorBlockId) {
+            var color      = data[i].colorSrc ? data[i].colorSrc : app.config.colorVariantsImagePath + data[i].colorImgSrc;
+            var colorBlock = $('<li class="color-selector-item">XX</li>');
 
-        if (data.length === 0) {
-          return;
-        } else {
-          for (var i = 0; i < data.length; i++) {
-            if (app.config.itemData[this.selectedItem - 1].colorBlockId === data[i].colorBlockId) {
-              var color      = data[i].colorSrc ? data[i].colorSrc : app.config.colorVariantsImagePath + data[i].colorImgSrc;
-              var colorBlock = $('<div class="color-selector-item"></div>');
-
-              if (data[i].colorSrc) {
-                colorBlock.css('background', color).attr('itemId', data[i].id);;
-              } else {
-                colorSelector.css('height', '23%');
-                colorBlock.css({
-                  'background-image'  : ('url(' + color + ')'),
-                  'background-repeat' : 'no-repeat',
-                  'background-size'   : '100%',
-                  "border"            : "none"
-                });
-              }
-
-              colorSelector.append(colorBlock);
-
-              app.bindClickTouch(colorBlock, function(event) {
-                var itemId = $(event.currentTarget).attr('itemId');
-                that.loadItem(itemId);
-                var item = app.config.itemData[itemId].itemTitle;
-                app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.OTHER_OPTION_CLICK, { 'item' : item } );
+            if (data[i].colorSrc) {
+              colorBlock.css('background', color).attr('itemId', data[i].id);;
+            } else {
+              colorSelector.css('height', '23%');
+              colorBlock.css({
+                'background-image'  : ('url(' + color + ')'),
+                'background-repeat' : 'no-repeat',
+                'background-size'   : '100%',
+                "border"            : "none"
               });
             }
-          }
 
-          if (colorSelector.children().length < 3) {
-            $('.color-selector-item:first-child').css('margin-left', '15%');
+            colorSelector.append(colorBlock);
+
+            app.bindClickTouch(colorBlock, function(event) {
+              var itemId = $(event.currentTarget).attr('itemId');
+              this.loadItem(itemId);
+              var item = app.config.itemData[itemId].itemTitle;
+              app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.OTHER_OPTION_CLICK, { 'item' : item } );
+            }.bind(this));
           }
         }
       },
 
       populateRecommededProducts: function() {
         var data           = app.config.recommended;
-        var that           = this;
         var amountOfSlides = Math.ceil(data.length / 3);
         var sliderWidth    = 100 * amountOfSlides;
         var slideWidth     = 100 / amountOfSlides + "%";
         var itemId;
 
-        this.$('.recommended-slider-container-inner-wrap').css('width' , sliderWidth + "%");
+        $('.recommended-slider-container-inner-wrap').css('width' , sliderWidth + "%");
 
         for (var i = 0; i < data.length; i+=3) {
 
-          var slide = $("<div class='slide'></div>");
+          var slide = $("<div class='recommended-item-slide'></div>");
           slide.css('width', slideWidth);
 
-          var slide1 = $("<div class='slide1'></div>");
+          var slide1 = $("<div class='slide-inner-item'></div>");
           var imgUrl = app.config.baseProductImagePath + data[i].itemImageSrc;
 
           slide1.css({
@@ -612,13 +593,13 @@ define([
 
           app.bindClickTouch(slide1, function(event) {
             itemId = $(event.currentTarget).attr('itemId');
-            that.loadItem(itemId);
-            var item = app.config.itemData[that.selectedItem - 1].itemTitle;
+            this.loadItem(itemId);
+            var item = app.config.itemData[this.selectedItem - 1].itemTitle;
             app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'item' : item });
-          });
+          }.bind(this));
 
           if (data[i+1]) {
-            var slide2 = $("<div class='slide1'></div>");
+            var slide2 = $("<div class='slide-inner-item'></div>");
             var imgUrl = app.config.baseProductImagePath + data[i+1].itemImageSrc;
 
             slide2.css({
@@ -630,14 +611,14 @@ define([
 
             app.bindClickTouch(slide2, function(event) {
               var itemId = $(event.currentTarget).attr('itemId');
-              that.loadItem(itemId);
-              var item = app.config.itemData[that.selectedItem - 1].itemTitle;
+              this.loadItem(itemId);
+              var item = app.config.itemData[this.selectedItem - 1].itemTitle;
               app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'item' : item });
-            });
+            }.bind(this));
           }
 
           if (data[i+2]) {
-            var slide2 = $("<div class='slide1'></div>");
+            var slide2 = $("<div class='slide-inner-item'></div>");
             var imgUrl = app.config.baseProductImagePath + data[i+2].itemImageSrc;
 
             slide2.css({
@@ -649,13 +630,13 @@ define([
 
             app.bindClickTouch(slide2, function(event) {
               var itemId = $(event.currentTarget).attr('itemId');
-              that.loadItem(itemId);
-              var item = app.config.itemData[that.selectedItem - 1].itemTitle;
+              this.loadItem(itemId);
+              var item = app.config.itemData[this.selectedItem - 1].itemTitle;
               app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_CLICK, { 'item' : item });
-            });
+            }.bind(this));
           }
 
-          this.$('.recommended-slider-container-inner-wrap').append(slide);
+          $('.recommended-slider-container-inner-wrap').append(slide);
         }
       }
     });

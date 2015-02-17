@@ -240,35 +240,57 @@ html.fullscreen
 .share-icn
   display: none
   position: absolute
-  bottom: 9.6%
-  left: 40.96875%
-  width: 9.25%
+  top: 14.6%
+  left: 43.6%
+  width: 16.15%
   height: 12.5%
-  background: url( ../../images/sprite/common/share-icn.png) no-repeat
+  // background: url( ../../images/sprite/common/share-icon.png) no-repeat
   background-size: 47%
   background-position: 50%
   cursor: pointer
   margin-right: 30px
   z-index: 15
 
-.embed-icon
+.share-text
   display: none
   position: absolute
-  bottom: 9.6%
-  left: 41.96875%
-  width: 18.25%
+  top: 10%
+  left: 50%
+  cursor: pointer
+  margin-right: 30px
+  z-index: 15
+  font-size: 1.4em
+  color: white
+
+.embed-icn
+  display: none
+  position: absolute
+  bottom: 14.6%
+  left: 43.6%
+  width: 16.15%
   height: 12.5%
-  background: url( ../../images/sprite/common/smarter.png) no-repeat
+  // background: url( ../../images/sprite/common/embed-icon.png) no-repeat
   background-size: 47%
   background-position: 50%
   cursor: pointer
   margin-right: 30px
   z-index: 15
+
+.embed-text
+  display: none
+  position: absolute
+  bottom: 29%
+  left: 50%
+  cursor: pointer
+  margin-right: 30px
+  z-index: 15
+  font-size: 1.4em
+  color: white
 
 .fullscreen-icn
   position: absolute
-  bottom: 9.1111111%
-  left: 52.96875%
+  bottom: 0%
+  right: -3%
   width: 9.25%
   height: 12.5%
   background: url( ../../images/sprite/common/fullscreen-icn.png ) no-repeat
@@ -280,7 +302,7 @@ html.fullscreen
 
 .play-button
   position: absolute
-  top: $play-button-top-offset
+  top: 43.13889%
   left: $play-button-left-offset
   width: $play-button-width-pct
   height: $play-button-height-pct
@@ -342,3 +364,8 @@ html.fullscreen
     height: 100%
     float: left
     width: 99%
+
+@media (max-width: 767px)
+  .share-text,
+  .embed-text
+    left: 49.5%

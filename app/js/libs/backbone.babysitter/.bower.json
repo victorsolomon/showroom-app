@@ -35,6 +35,7 @@
     "commit": "13af3ea9675368ba34b3aff3ba8ff0ecb03461c4"
   },
   "_source": "git://github.com/marionettejs/backbone.babysitter.git",
-  "_target": "^0.1.0",
-  "_originalSource": "backbone.babysitter"
+  "_target": "~0.1.6",
+  "_originalSource": "backbone.babysitter",
+  "_direct": true
 }
