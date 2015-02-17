@@ -3,3 +3,12 @@ node-modules
 app/static/movies
 .tags
 .tags_sorted_by_file
+app/js/libs/backbone
+app/js/libs/backbone.babysitter
+app/js/libs/backbone.wreqr
+app/js/libs/handlebars
+app/js/libs/hbs
+app/js/libs/jquery
+app/js/libs/marionette
+app/js/libs/react
+app/js/libs/underscore
