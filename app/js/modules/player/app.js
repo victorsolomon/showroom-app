@@ -1,7 +1,7 @@
 define([
   'application',
   'modules/player/routers/playerRouter',
-  'libs/analytics',
+  'libs/analytics'
 ], function (app, PlayerRouter, Analytics) {
 
     app.addInitializer(function () {
@@ -19,10 +19,8 @@ define([
 
         //preload images
         for (var i in app.config.itemData) {
-          imgSrcSmall = app.config.baseProductImagePath + "small/" + app.config.itemData[i].largeItemSrc1;
-          imgSrcLarge = app.config.baseProductImagePath + "large/" + app.config.itemData[i].largeItemSrc1;
-          $('<img />').attr('src', imgSrcSmall );
-          $('<img />').attr('src', imgSrcLarge );
+          imageSource = app.config.baseProductImagePath + app.config.itemData[i].itemImageSrc;
+          $('<img />').attr('src', imageSource );
         }
 
         Analytics.initializeAnalytics('page', false, app.config.gaKey);

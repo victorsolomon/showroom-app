@@ -9,104 +9,47 @@
 #share-region
   font-family: brandon
   position: absolute
-  width: 35%
+  width: 100%
   height: auto
   background-color: #fff
-  margin-left: 35.70312%
   z-index: 5
   border-radius: 0px 0px 3px 3px
-  top: -33%
-  placeholder-top: -$share-box-height
+  top: -$share-box-height
 
 //padding on the container
-.share-menu
-  padding: 1.5045% 4.5045% 1.5045% 4.5045%
+.showroom-share-menu
+  padding: 0.5% 1.5% 0.5% 0%
+  overflow: hidden
 
 //for share and embed title headers
 .header
   font-size: 2.2rem
+  width: 10%
   color: #000
   text-align: center
+  margin-top: 0.25%
+  float: left
 
 .shareInput,
 .shareTextArea
-  width: 99.5%
-  padding: 1%
+  width: 85%
+  padding: 0.5%
   border: solid 1px #000
   font-family: avenir
   font-size: 1.4rem
+  float: left
 
-.shareTextArea
-  resize: none
-  height: 3.3em
-
-.embedSelector
-  position: relative
-  display: inline-block
+.showroom-share-panel,
+.showroom-embed-panel
+  overflow: hidden
   width: 100%
-  list-style: none
-  padding: 0px
-  margin: 2% 0
 
-  li
-    float: left
-    display: inline
-    background: #FFF
-    color: #000
-    cursor: pointer
-    opacity: .3
-    width: 23.8%
-    padding: 0.55% 1%
-    margin-right: 1.5%
-    text-align: center
-    font-size: 2.2rem
-    vertical-align: top
-    border: 1px solid #A0A0A0
-
-    p
-      float: right
-      border: solid 1px #fff
-      width: 20%
-      position: relative
-      margin: 0px
-
-  li:last-child
-    margin-right: 0%
-
-  .selected
-    opacity: 1
-
-  //specific sizing requirements for the white outlined boxes in each dimension selector button
-  .six40
-    p
-      right: 0px
-      border: solid 1px #fff
-      padding: 8% 0%
-      margin-top: 7%
-
-  .eight50
-    p
-      right: 0px
-      border: solid 1px #fff
-      padding: 8.5% 2%
-      margin-top: 6.5%
-
-  .thousand
-    p
-      right: 0px
-      border: solid 1px #fff
-      padding: 10% 2%
-      margin-top: 4.5%
-
-  .twelve80
-    p
-      right: 0px
-      border: solid 1px #fff
-      padding: 11% 4%
-      margin-top: 3%
-      margin-left: 5%
+.close-share-panel
+  float: left
+  padding: 0.25% 1.5%
+  font-size: 2em
+  cursor: pointer
 
 @media (max-width: 710px) and (min-width: 600px)
   .shareTextArea
     height: 2.5em
-

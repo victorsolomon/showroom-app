@@ -8,11 +8,11 @@ define([
   'modules/player/views/playerPosterView',
   'modules/player/views/playerShareView',
   'modules/player/views/playerSplashVideoView',
-  'keyframes'
+  'keyframes',
 ], function (Marionette, app, template, PlayerVideoView, PlayerActiveCartView,
              PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView, keyframes) {
 
-    return Marionette.Layout.extend({
+    return Marionette.LayoutView.extend({
       template              : template,
       tagName               : 'div',
       id                    : "showroom-player",
@@ -54,7 +54,6 @@ define([
           that.isEnd = isEnd;
 
           if (app.isiPhone()) {
-            $('.share-icn').hide();
             $('.fullscreen-icn').hide();
 
             if (!that.isEnd) {
@@ -62,7 +61,7 @@ define([
             }
           } else {
             if (!that.isEnd) {
-              $('.play-button, .share-icn, .fullscreen-icn').show();
+              $('.play-button, .share-icn, .share-text, .embed-text, .embed-icn').show();
             }
           }
 
@@ -70,7 +69,7 @@ define([
 
         app.vent.on('hideMask', function() {
           $('#mask-region').animate({ 'opacity' : 0.0 }, 400).css('z-index', 2);
-          $('.play-button, .share-icn, .fullscreen-icn').hide();
+          $('.play-button, .share-icn, .share-text, .embed-text, .embed-icn').hide();
         });
 
         app.vent.on('checkoutDrawerClick', this.checkCartStatus, this);
@@ -128,8 +127,6 @@ define([
           $('body,html').addClass('ipad');
           this.calculateContainerSize();
         }
-
-        $('.fullscreen-icn').show();
       },
 
       calculateContainerSize: function() {
@@ -179,9 +176,9 @@ define([
           that.onScrubberClick(event);
         });
 
-        app.bindClickTouch(this.$('.share-icn'), function(event) {
+        app.bindClickTouch(this.$('.share-icn, .share-text, .embed-text, .embed-icn'), function(event) {
           that.onShareClick(event);
-          app.Analytics.shareButtonClick()
+          // app.Analytics.shareButtonClick();
         });
 
         app.bindClickTouch(this.$('.fullscreen-icn'), function(event) {
@@ -243,10 +240,10 @@ define([
       },
 
       hoverBeaconsOn: function() {
-        $('.pause-button').show();
+        $('.pause-button, .fullscreen-icn').show();
 
         if (app.isPlaying === false) {
-          $('.pause-button').hide();
+          $('.pause-button, .fullscreen-icn').hide();
         }
 
         if (app.config.beaconPlacement === 'top')  {
@@ -264,7 +261,7 @@ define([
       },
 
       hoverBeaconsOff: function() {
-        $('.pause-button').hide();
+        $('.pause-button, .fullscreen-icn').hide();
       },
 
       tagClick: function(event) {
@@ -289,6 +286,7 @@ define([
         var currentTime          = timeSig / duration;
         var ratioComparisonWidth = 1920;
         var ratio                = $('html').width() / ratioComparisonWidth;
+        // console.log(currentTime);
 
         for (var i in app.config.hotSpots) {
 
@@ -383,6 +381,7 @@ define([
       onShareClick: function() {
         var vendor = app.config.gaVendorName;
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_SHAREBUTTON_CLICK, { 'vendor' : vendor });
+
         app.vent.trigger('pause');
         app.vent.trigger('showMask');
         this.playerShareView.animateIn();
@@ -391,6 +390,12 @@ define([
           this.playerActiveCartView.closeActiveCart();
           this.playerCheckoutCartView.closeCheckoutCart();
         }
+      },
+
+      closeSharePanel: function() {
+        this.playerShareView.animateOut();
+        this.playerActiveCartView.closeActiveCart();
+        this.playerCheckoutCartView.closeCheckoutCart();
       },
 
       checkCartStatus: function() {

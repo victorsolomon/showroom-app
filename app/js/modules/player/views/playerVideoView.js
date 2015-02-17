@@ -48,8 +48,6 @@ define([
         $(loader).appendTo('#player-poster-region');
         this.repaintSpinner();
 
-        // ctx.fillText('Something...', canvasEl.width/2-30, canvasEl.height/3);
-
         video.css({
           width: '100%',
           height: '100%'
@@ -83,7 +81,7 @@ define([
           that.onTimeUpdate(this.currentTime, this.duration);
         });
 
-        video[0].volume = 1.0;
+        video[0].volume = 0.0;
       },
 
       repaintSpinner: function() {

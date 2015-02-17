@@ -8,10 +8,9 @@
 
 #checkout-cart-region
   position: absolute
-  width: 29.140625%
+  width: 34.40625%,
   height: 100%
   top: 0px
-  right: -26.40625%
   background-color: #fff
   z-index: 5
   border-left: 6px solid black
@@ -20,108 +19,118 @@
   width: 100%
   height: 100%
 
-.checkoutButton
+.checkout-button
   font-family: brandon
-  text-decoration: none
-  cursor: pointer
-  background: #000
-  text-align: center
+  display: inline-block
+  background: #656A6F
   color: #fff
-  width: 85.480093676815%
-  margin-left: 7.259955%
-  padding: 1.388888888889% 0%
-  font-size: 2.3rem
-  letter-spacing: 0.0391rem
-  position: absolute
-  bottom: 8.472222222222%
+  cursor: pointer
+  padding: 3%
+  text-align: center
+  font-size: 2.2rem
+  cursor: pointer
+  width: 100%
+  font-weight: 400
+  margin: 2.88599% 0 0 0
+  text-decoration: none
+  letter-spacing: 1px
 
-.logo
-  position: absolute
-  width: 54.4%
-  height: 2.083333333333%
-  background: url( ../../images/sprite/common/POWER.png ) no-repeat
-  background-size: 100%
-  bottom: 4.166666666667%
-  right: 7.25996%
+// .showroom-checkout-logo
+//   position: absolute
+//   width: 54.4%
+//   height: 2.083333333333%
+//   background: url( ../../images/sprite/common/POWER.png ) no-repeat
+//   background-size: 100%
+//   bottom: 4.166666666667%
+//   right: 7.25996%
 
 //transparent object that is locked to the left side of the cart.  This is the clickable region which opens the cart
-.checkoutCartDrawerBar
+.checkout-cart-drawer-bar
   position: absolute
   height: 100%
   z-index: 5
   width: 8.367681498829%
   cursor: pointer
 
-  .handle
-    position: relative
-    top: 42.41667%
-    left: -56.64286%
-    width: 45.71429%
-    height: 7.16667%
-    background-color: #000
+.checkout-cart-handle
+  position: relative
+  top: 42.41667%
+  left: -56.64286%
+  width: 45.71429%
+  height: 7.16667%
+  background-color: #000
 
 
 //list of items that are added to the cart
-.items
-  height: 82%
+.cart-items
+  height: 78%
   overflow-y: auto
   list-style: none
   padding: 0px
   margin: 0px
   margin-top: 4%
   width: 89.48009%
-  margin-left: 8.25996%
+  margin-left: 5.25996%
 
-  .cartItem
-    margin-bottom: 20px
-    color: #000
-    height: $checkout-item-height
-    width: 100%
-    font-size: 1.5rem
+.cart-item
+  margin-bottom: 20px
+  color: #000
+  height: $checkout-item-height
+  width: 100%
+  font-size: 1.3rem
 
-    .close
-      cursor: pointer
-      color: rgba(160, 160, 160, 1)
-      float: left
-      margin-top: 15%
-      margin-right: 5%
-      font-size: 0.7em
-      font-weight: 700
+.cart-remove-button
+  cursor: pointer
+  color: rgba(160, 160, 160, 1)
+  float: left
+  margin-top: 15%
+  margin-right: 5%
+  font-size: 0.7em
+  font-weight: 700
 
-    .cartItemImage
-      width: $checkout-item-image-width
-      background: url( '../../images/productImages/showroom/large/Green.png' )
-      height: 100%
-      float: left
-      background-position: top
-      background-size: 100%
-      background-size: contain
-      background-repeat: no-repeat
-      margin-right: 5%
+.cart-item-image
+  width: $checkout-item-image-width
+  background: url( '../../images/productImages/showroom/large/Green.png' )
+  height: 100%
+  float: left
+  background-position: top
+  background-size: 100%
+  background-size: contain
+  background-repeat: no-repeat
+  margin-right: 5%
 
-    .cartItemDescription
-      float: left
-      width: 55%
-      // height: 100%
-      margin-top: 3%
+.cart-item-description
+  float: left
+  width: 55%
+  margin-top: 3%
 
-    .cartItemPrice
-      margin-bottom: 5px
-      font-style: italic
+.cart-item-price
+  margin-bottom: 5px
+  font-style: italic
 
-    .itemSize
-      font-family: brandon
-      display: inline-block
-      color: #000
-      cursor: pointer
-      width: $checkout-item-size-btn-width
-      text-align: center
-      font-size: 1.4rem
-      margin: 5% 0
-      border: 1px solid #000
+.cart-item-size
+  font-family: brandon
+  display: inline-block
+  color: #000
+  width: $checkout-item-size-btn-width
+  text-align: center
+  font-size: 1.4rem
+  margin: 5% 0
+  border: 1px solid #000
 
+.showroom-checkout-text
+  width: 50%
+  margin: 3% auto 0 auto
+  text-align: center
+  font-size: 1.7em
+
+.showroom-checkout-text-top
+  font-style: italic
+
+.showroom-checkout-text-bottom
+  letter-spacing: 5px
 
 // Minted Build
-.itemOptionSize,
-.itemOptionType
+.item-option-size,
+.item-option-type
   font-style: italic

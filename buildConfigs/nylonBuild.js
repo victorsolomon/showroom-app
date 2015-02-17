@@ -5,21 +5,17 @@
   removeCombined: true,
   //- this is the directory that the new files will be. it will be created if it doesn't exist
   dir: "../../builds/nylon",
-  optimize: 'none',
+  // optimize: 'none',
   paths: {
-    'jquery': 'libs/jquery-2.0.3',
-    'velocity': 'libs/velocity.min',
-    'underscore': 'libs/lodash-1.3.1',
-    'backbone': 'libs/backbone-1.1.0',
-    'hbs': 'libs/hbs',
-    'Handlebars' : 'libs/Handlebars',
-    'marionette': 'libs/backbone.marionette',
-    'serializeObject': 'libs/serializeObject',
-    'i18nprecompile' : 'libs/hbs/i18nprecompile',
-    'json2' : 'libs/hbs/json2',
-    'backbone.wreqr': 'libs/backbone.wreqr',
-    'backbone.eventbinder': 'libs/backbone.eventbinder',
-    'backbone.babysitter': 'libs/backbone.babysitter'
+    'jquery'        : 'libs/jquery/dist/jquery',
+    'underscore'    : 'libs/lodash-3.1.0',
+    'backbone'      : 'libs/backbone/backbone',
+    'hbs'           : 'libs/hbs/hbs',
+    'Handlebars'    : 'libs/handlebars/handlebars',
+    'marionette'    : 'libs/marionette/lib/backbone.marionette',
+    'jsmpeg'        : 'libs/jsmpeg',
+    'keyframes'     : 'libs/keyframes',
+    'pathfinder'    : 'libs/keyframes.pathfinder'
   },
 
   shim: {
@@ -29,9 +25,6 @@
     },
     marionette: {
       deps: ['backbone']
-    },
-    velocity: {
-      deps: ["jquery"]
     }
   },
 
@@ -40,5 +33,6 @@
     name: "modules/player/app"
   }],
 
-  fileExclusionRegExp: /\.git|.sass-cache|sass|tool|component|0328|112313|brooktide|ballandbuck|zerouv|minted|revolverBuild|revolver|taylorstitch|taylorStitch|midnightrider|teacollection|modcloth|showroom|square|config.rb|docs|index.js/
+  fileExclusionRegExp: /\.git|.sass-cache|sass|tool|component|0328|112313|teacollection|midnightrider|minted|revolver|modcloth|square|ballandbuck|brooktide|zerouv|poler|converse|bucketfeet|jimmychoo|penguin|square|storq|config.rb|docs|index.js/
 })
+

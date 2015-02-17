@@ -1,23 +1,27 @@
 require.config({
-  'paths': {
-    'jquery'               : 'libs/jquery-2.0.3',
-    'underscore'           : 'libs/lodash-1.3.1',
-    'backbone'             : 'libs/backbone-1.1.0',
-    'hbs'                  : 'libs/hbs',
-    'Handlebars'           : 'libs/Handlebars',
-    'marionette'           : 'libs/backbone.marionette',
-    'serializeObject'      : 'libs/serializeObject',
-    'i18nprecompile'       : 'libs/hbs/i18nprecompile',
-    'json2'                : 'libs/hbs/json2',
-    'backbone.wreqr'       : 'libs/backbone.wreqr',
-    'backbone.eventbinder' : 'libs/backbone.eventbinder',
-    'backbone.babysitter'  : 'libs/backbone.babysitter',
-    'jsmpeg'               : 'libs/jsmpeg',
-    'keyframes'            : 'libs/keyframes',
-    'pathfinder'           : 'libs/keyframes.pathfinder'
+  paths: {
+    'jquery'        : 'libs/jquery/dist/jquery',
+    'underscore'    : 'libs/lodash-3.1.0',
+    'backbone'      : 'libs/backbone/backbone',
+    'hbs'           : 'libs/hbs/hbs',
+    'Handlebars'    : 'libs/handlebars/handlebars',
+    'marionette'    : 'libs/marionette/lib/backbone.marionette',
+    'jsmpeg'        : 'libs/jsmpeg',
+    'keyframes'     : 'libs/keyframes',
+    'pathfinder'    : 'libs/keyframes.pathfinder',
+    JSXTransformer  : 'libs/react/JSXTransformer',
+    jsx             : "libs/jsx",
+    react           : 'libs/react/react'
+  },
+
+  jsx : {
+    fileExtension: '.jsx'
   },
 
   shim: {
+    JSXTransformer: {
+      exports: 'JSXTransformer'
+    },
     backbone: {
       exports: 'Backbone',
       deps: ['jquery', 'underscore']
@@ -35,3 +39,4 @@ require.config({
     disableI18n: true
   }
 });
+
