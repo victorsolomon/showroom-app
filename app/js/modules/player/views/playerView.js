@@ -7,9 +7,10 @@ define([
   'modules/player/views/playerCheckoutCartView',
   'modules/player/views/playerPosterView',
   'modules/player/views/playerShareView',
-  'modules/player/views/playerSplashVideoView'
+  'modules/player/views/playerSplashVideoView',
+  'keyframes'
 ], function (Marionette, app, template, PlayerVideoView, PlayerActiveCartView,
-             PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView) {
+             PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView, keyframes) {
 
     return Marionette.Layout.extend({
       template              : template,
@@ -105,7 +106,9 @@ define([
 
         var baseWidth = 1280;
         var newFontPct = playerWidth / baseWidth * 62.5;
-        $('html').css( 'font-size' , newFontPct + '%', 'important' );
+        $('html').css('font-size' , newFontPct + '%', 'important');
+        $('.hotSpot').remove();
+        this.createBeacons();
       },
 
       onShow: function() {
@@ -129,7 +132,7 @@ define([
         $('.fullscreen-icn').show();
       },
 
-      calculateContainerSize: function(argument) {
+      calculateContainerSize: function() {
         var windowWidth = $(window).width();
         var htmlHeight  = windowWidth * (9 / 16);
 
@@ -143,7 +146,6 @@ define([
           } else {
             $('html, body').addClass('iphone-portrait').removeClass('iphone-landscape');
           }
-
         } else if (app.isMobileSafari()) {
           var baseWidth = 1280;
           var newFontPct = windowWidth / baseWidth * 62.5;
@@ -216,6 +218,7 @@ define([
 
         for (var i = 0; i < app.config.hotSpots.length; i++) {
           var hotspotItemData = app.config.hotSpots[i];
+          this.removeKeyframes(hotspotItemData.pathName);
 
           var beacon = $('<svg version="1.1" class="beacon" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="52px" height="54px" viewBox="0 0 52 54" enable-background="new 0 0 52 54" xml:space="preserve" type="image/svg+xml"><g><circle class="beacon-circle" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="26" cy="27" r="19.358"/><g><path class="beacon-path" fill="#FFFFFF" d="M24.771,28.259H14.457c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V15.426c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H27.29v10.254c0,0.42-0.36,0.78-0.78,0.78H25.55c-0.42,0-0.779-0.36-0.779-0.78V28.259z"/></g></g><g><circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="88.71" cy="25.533" r="19.358"/><g><path fill="#FFFFFF" d="M87.481,26.792H77.167c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V13.959c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H90v10.254c0,0.42-0.36,0.78-0.78,0.78h-0.959c-0.42,0-0.779-0.36-0.779-0.78V26.792z"/></g></g></svg>');
 
@@ -223,9 +226,6 @@ define([
             $('.beacon-circle').attr('stroke', app.config.hotspotColor);
             $('.beacon-path').attr('fill', app.config.hotspotColor);
           }
-
-          // TODO: set conditional iPhone class and move this into the new styles
-
 
           var hotspot =
                 $('<div class="hotSpot"></div>')
@@ -279,38 +279,103 @@ define([
         this.playerActiveCartView.openActiveCart();
       },
 
-      updateTagPosition: function(timeSig, duration) {
-        var currentTime = timeSig / duration;
-
-        var ratioComparisonWidth = 1920;
-
-        if (app.config.baseTaggingDimensionWidth) {
-          ratioComparisonWidth = app.config.baseTaggingDimensionWidth;
+      removeKeyframes: function(pathName) {
+        if ($('.keyframe-style#' + pathName).length > 0) {
+          $('.keyframe-style#' + pathName).remove();
         }
+      },
 
-        var ratio = $('html').width() / ratioComparisonWidth;
+      updateTagPosition: function(timeSig, duration, newTime) {
+        var currentTime          = timeSig / duration;
+        var ratioComparisonWidth = 1920;
+        var ratio                = $('html').width() / ratioComparisonWidth;
 
         for (var i in app.config.hotSpots) {
 
           var hotSpot = app.config.hotSpots[i];
 
           if (currentTime >= hotSpot.startTime && currentTime <= hotSpot.endTime) {
-            var percentThroughAnim = (currentTime - hotSpot.startTime) / (hotSpot.endTime - hotSpot.startTime) * 100000;
-            var posX   = hotSpot.hotSpotStartX;
-            var posY   = hotSpot.hotSpotStartY;
-            var endX   = hotSpot.hotSpotEndX;
-            var endY   = hotSpot.hotSpotEndY;
-            var width  = hotSpot.hotSpotStartWidth;
-            var height = hotSpot.hotSpotStartHeight;
+            var startX      = hotSpot.hotSpotStartX;
+            var startY      = hotSpot.hotSpotStartY;
+            var width       = hotSpot.hotSpotStartWidth;
+            var height      = hotSpot.hotSpotStartHeight;
+            var totalSteps  = 0;
 
-            posX *= ratio;
-            posY *= ratio;
-            width *= ratio;
+            startX *= ratio;
+            startY *= ratio;
+            width  *= ratio;
             height *= ratio;
 
-            $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : posX, 'top' : posY, 'width' : width, 'height' : height });
+            if (hotSpot.movingBeacon === true && app.isiPhone() === null) {
+
+              if ($('.keyframe-style#' + hotSpot.pathName).length === 0) {
+
+                // if (newTime != null) {
+                //   var newCurrentTime = newTime / duration;
+
+                //   if (newCurrentTime > hotSpot.startTime) {
+                //     var oldSteps             = hotSpot.endTime - hotSpot.startTime;
+                //     var diff                 = newCurrentTime - hotSpot.startTime;
+                //     var percentage           = diff / oldSteps;
+                //     totalSteps               = hotSpot.endTime - newCurrentTime;
+                //     hotSpot.bezierStartXY[0] = (hotSpot.bezierMoveXY[0] - hotSpot.bezierStartXY[0]) * (diff / oldSteps);
+                //     console.log(hotSpot.bezierStartXY);
+                //   }
+                // } else {
+                  totalSteps = hotSpot.endTime - hotSpot.startTime;
+                // }
+
+
+                hotSpot.bezierStartXY[0] *= ratio;
+                hotSpot.bezierStartXY[1] *= ratio;
+
+                // TODO: Add back in once iPhone beacons are in place.
+                // if (app.isiPhone()) {
+                //   if (window.orientation === 90 || window.orientation === -90) {
+                //     hotSpot.bezierMoveXY[0] = hotSpot.bezierMoveXY[0] / 2;
+                //     hotSpot.bezierMoveXY[1] = hotSpot.bezierMoveXY[1] / 2;
+                //     hotSpot.firstPull[0]    = hotSpot.firstPull[0] / 2;
+                //     hotSpot.firstPull[1]    = hotSpot.firstPull[1] / 2;
+                //   } else {
+                //     hotSpot.bezierMoveXY[0] = hotSpot.bezierMoveXY[0] / 4;
+                //     hotSpot.bezierMoveXY[1] = hotSpot.bezierMoveXY[1] / 4;
+                //     hotSpot.firstPull[0]    = hotSpot.firstPull[0] / 4;
+                //     hotSpot.firstPull[1]    = hotSpot.firstPull[1] / 4;
+                //   }
+                // }
+
+                if (hotSpot.pathType === 'regular') {
+                  var rules = $.keyframe.bezierPath( { name: hotSpot.pathName } , hotSpot.bezierStartXY, hotSpot.bezierMoveXY, hotSpot.firstPull);
+                } else if (hotSpot.pathType === 'advanced') {
+                  var rules = $.keyframe.bezierPath( { name: hotSpot.pathName } , hotSpot.bezierStartXY, hotSpot.bezierMoveXY, hotSpot.firstPull, hotSpot.secondPull);
+                } else if (hotSpot.pathType === 'circular' && hotSpot.circularCentersXY != null && hotSpot.radius != null) {
+                  var rules = $.keyframe.circlePath( { name: hotSpot.pathName } , hotSpot.circularCentersXY, hotSpot.radius );
+                }
+
+                $.keyframe.define([rules]);
+
+                var duration = Math.abs(totalSteps * hotSpot.durationMultiple);
+                // console.log(duration);
+
+                $('#hotspot' + hotSpot.hotSpotId)
+                .css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
+                .playKeyframe({
+                  name: hotSpot.pathName,
+                  duration: duration + 's',
+                  timingFunction: hotSpot.timingType || 'linear',
+                  iterationCount: hotSpot.iterationCount,
+                  direction: 'normal',
+                  fillMode: 'none',
+                  complete: function() {
+                    $(this).css({'left' : -2000});
+                  }
+                });
+              }
+            } else {
+              $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
+            }
           } else {
-            $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : -2000 });
+            $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : -200000 });
           }
         }
       },
@@ -386,12 +451,10 @@ define([
         var scrubberWidth = parseInt(this.$('.scrubber').css('width'));
 
         //for touch devices
-        var pageX;
         if (event.originalEvent.touches && event.originalEvent.touches[0].pageX) {
-          pageX = event.originalEvent.touches[0].pageX;
-        }
-        else {
-          pageX = (( event.pageX ) ? event.pageX : event.x);
+          var pageX = event.originalEvent.touches[0].pageX;
+        } else {
+          var pageX = (( event.pageX ) ? event.pageX : event.x);
         }
 
         var seekTime = pageX / scrubberWidth * this.duration;
@@ -400,6 +463,11 @@ define([
         this.playerActiveCartView.closeActiveCart();
         this.playerCheckoutCartView.closeCheckoutCart();
         this.playerShareView.animateOut();
+
+        $('.hotSpot').remove();
+        this.createBeacons();
+        this.updateTagPosition(this.currentTime, this.duration, seekTime);
+
         app.vent.trigger('hideMask');
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_JUMPTOTIME_CLICK, { 'timeJumpedTo' : seekTime });
       },
@@ -415,6 +483,8 @@ define([
       onReplayClick: function() {
         this.$('.replay-button').hide();
         app.vent.trigger('replay');
+        $('.hotSpot').remove();
+        app.vent.trigger('splashClick');
         this.onMaskClick();
       },
 

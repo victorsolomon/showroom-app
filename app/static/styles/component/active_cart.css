@@ -75,13 +75,13 @@
 }
 #active-cart-main-slider .active-slider-container-outer-wrap .active-slider-container-inner-wrap .slide {
   width: 23%;
-  height: 100%;
+  height: 90%;
   display: inline-block;
   vertical-align: top;
   margin-left: 5px;
 }
 #active-cart-main-slider .active-slider-container-outer-wrap .active-slider-container-inner-wrap .image-slide {
-  background-size: 95%;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }

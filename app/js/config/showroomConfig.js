@@ -66,7 +66,7 @@ define([
           "variants" : {
             XS : ['812187233'],
             S  : ['812187237'],
-            M : ['812187241'],
+            M  : ['812187241'],
             L  : ['812187245'],
             XL : ['812187249']
           }
@@ -86,7 +86,7 @@ define([
           "variants" : {
             XS : ['812192337'],
             S  : ['812192369'],
-            M : ['812192737'],
+            M  : ['812192737'],
             L  : ['812192741'],
             XL : ['812192745']
           }
@@ -106,7 +106,7 @@ define([
           "variants" : {
             XS : ['812189549'],
             S  : ['812189829'],
-            M : ['812189833'],
+            M  : ['812189833'],
             L  : ['812189837'],
             XL : ['812189841']
           }
@@ -127,7 +127,7 @@ define([
           "variants"           : {
             XS : ['986914052'],
             S  : ['986914056'],
-            M : ['986914060'],
+            M  : ['986914060'],
             L  : ['986914064'],
             XL : ['986914068']
           }
@@ -148,7 +148,7 @@ define([
           "variants"           : {
             XS : ['986909080'],
             S  : ['986909084'],
-            M : ['986909088'],
+            M  : ['986909088'],
             L  : ['986909092'],
             XL : ['986909096']
           }
@@ -194,7 +194,19 @@ define([
           "hotSpotStartX"      : "1100",
           "hotSpotStartY"      : "250",
           "hotSpotStartWidth"  : "300",
-          "hotSpotStartHeight" : "300"
+          "hotSpotStartHeight" : "300",
+          "bezierStartXY"      : [1, 1],
+          'bezierMoveXY'       : [-45, 1],
+          "firstPull"          : [-45, 1],
+          "secondPull"         : null,
+          'circularCentersXY'  : null,
+          'radius'             : null,
+          'pathType'           : 'regular',  //regular, advanced, circular
+          'pathName'           : 'firstMovingBeacon',
+          'timingType'         : 'cubic-bezier(0, .96, .91, .82)',
+          'iterationCount'     : 1,
+          'movingBeacon'       : true,
+          'durationMultiple'   : 40
         },
         {
           "id"                 : "1",
@@ -204,8 +216,11 @@ define([
           "endTime"            : "0.235",
           "hotSpotStartX"      : "1155",
           "hotSpotStartY"      : "275",
+          "hotSpotEndX"        : "1300",
+          "hotSpotEndY"        : "200",
           "hotSpotStartWidth"  : "300",
-          "hotSpotStartHeight" : "300"
+          "hotSpotStartHeight" : "300",
+          'movingBeacon'       : false,
         },
         {
           "id"                 : "1",
@@ -216,7 +231,8 @@ define([
           "hotSpotStartX"      : "100",
           "hotSpotStartY"      : "200",
           "hotSpotStartWidth"  : "1300",
-          "hotSpotStartHeight" : "900"
+          "hotSpotStartHeight" : "900",
+          'movingBeacon'       : false,
         },
         {
           "id"                 : "1",
@@ -227,7 +243,8 @@ define([
           "hotSpotStartX"      : "1370",
           "hotSpotStartY"      : "240",
           "hotSpotStartWidth"  : "400",
-          "hotSpotStartHeight" : "200"
+          "hotSpotStartHeight" : "200",
+          'movingBeacon'       : false,
         },
         {
           "id"                 : "1",
@@ -235,10 +252,22 @@ define([
           "index"              : "0",
           "startTime"          : "0.393",
           "endTime"            : "0.56",
-          "hotSpotStartX"      : "1000",
+          "hotSpotStartX"      : "900",
           "hotSpotStartY"      : "300",
           "hotSpotStartWidth"  : "550",
-          "hotSpotStartHeight" : "600"
+          "hotSpotStartHeight" : "300",
+          "bezierStartXY"      : [1, 1],
+          'bezierMoveXY'       : [300, 20],
+          "firstPull"          : [300, -20],
+          "secondPull"         : null,
+          'circularCentersXY'  : null,
+          'radius'             : null,
+          'pathType'           : 'regular',  //regular, advanced, circular
+          'pathName'           : 'secondMovingBeacon',
+          'timingType'         : 'cubic-bezier(0, .96, .91, .82)',
+          'iterationCount'     : 1,
+          'movingBeacon'       : true,
+          'durationMultiple'   : 50
         },
         {
           "id"                 : "1",
