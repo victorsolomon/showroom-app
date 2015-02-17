@@ -95,6 +95,9 @@
 
 .description-content-block
   text-align: justify
+  top: 50%
+  transform: translateY(-50%)
+  position: relative
 
 //item pricing and definition
 #active-cart-info-and-actions
@@ -107,27 +110,54 @@
   margin: 6% auto 0 auto //zerouv build
   overflow: visible
 
+.titleAndPrice
+  font-size: 1.625rem
+  letter-spacing: 0.275rem
+  color: #000
+  text-align: center
+  margin-top: 7%
+  position: relative
+  width: 100%
+  height: 10%
+
+.title-and-price-container
+  width: 100%
+  position: absolute
+
+.active-item-title
+  max-width: 85%
+  margin: 0 auto
+  overflow: hidden
+  text-transform: uppercase
+
+.active-item-price
+  font-weight: bold
+  text-align: center
+  font-style: italic
+
 .size-selector
   width: 100%
   list-style: none
   padding: 0
-  margin: 4.88599% 0 0 0
   font-family: avenir
   position: relative
   text-align: center
+  margin
 
   li
     display: inline-block
     background: #fff
     color: #000
     cursor: pointer
-    width: 8%
     height: 100%
+    // width: 7%
     margin-right: 5%
-    font-size: 2rem
+    font-size: 1.6rem
     border: 1px solid #A0A0A0
-    padding-top: 0.7%
+    // padding-top: 0.3%
+    padding: 1% 2%
     font-weight: 700
+    margin-top: 2%
 
   li.selected
     background: #000
@@ -148,12 +178,11 @@
   margin-right: 5%
   display: inline-block
   color: transparent
-  width: 8%
-  height: 100%
+  width: 7%
   border: 1px solid #000
   cursor: pointer
-  font-size: 2rem
-  padding-top: 0.7%
+  font-size: 1.6rem
+  padding-top: 0.3%
 
   &:first-child
     margin-left: 0
@@ -162,7 +191,7 @@
     margin-right: 0
 
 .addButton
-  font-family: brandon
+  font-family: avenir
   display: inline-block
   background: #000
   color: #fff
@@ -180,7 +209,7 @@
   height: $recommended-slider-height-pct
   position: relative
   width: $main-slider-width-pct
-  margin: 1% auto 0 auto
+  margin: 5% auto 0 auto
 
 .recommended-left-arrow
   position: absolute
@@ -250,26 +279,6 @@
   margin: 0 auto
   top: -3px
   height: 23px
-
-.titleAndPrice
-  font-size: 2rem
-  letter-spacing: 0.275rem
-  color: #000
-  text-align: center
-  margin-top: 10%
-
-  .title
-    max-width: 70%
-    margin: 0 auto
-    overflow: hidden
-    text-overflow: ellipsis
-    white-space: nowrap
-    text-transform: uppercase
-
-  .price
-    font-weight: bold
-    text-align: center
-    font-style: italic
 
 .option-selector-title
   text-align: center

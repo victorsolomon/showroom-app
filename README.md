@@ -96,7 +96,7 @@ There are a few key things to point out (which are also better documented at the
 
 Once the configuration file is created we simply run this command:
 
-node r.js -o buildConfigs/showroom-build.js
+nodemon r.js -o buildConfigs/showroomBuild.js
 
 This will run through the optimizer and minimzer and create a fully deployable build into the specified directory.
 

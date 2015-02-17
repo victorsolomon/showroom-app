@@ -12,10 +12,6 @@
   }
 }
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation: landscape) {
-  html, body {
-    font-size: 50% !important;
-  }
-
   .ipad .embedSelector li {
     margin-right: 0.9% !important;
   }
@@ -24,21 +20,6 @@
     padding: 2% 2.445% !important;
     max-width: 15.116% !important;
   }
-}
-.ipad .embedSelector li {
-  padding: 0.55% 1.25%;
-}
-.ipad .embedSelector .six40 p {
-  margin-top: 9%;
-}
-.ipad .embedSelector .eight50 p {
-  margin-top: 8.5%;
-}
-.ipad .embedSelector .thousand p {
-  margin-top: 7%;
-}
-.ipad .embedSelector .twelve80 p {
-  margin-top: 6.5%;
 }
 .ipad .cartItemDescription .itemSize {
   padding: 3% 4% 5% 4% !important;
@@ -53,11 +34,75 @@
   margin-bottom: 3%;
 }
 .iphone-portrait .color-selector {
-  margin: 0 auto 6% auto;
+  margin: 3% auto 6% auto;
   height: 30%;
+}
+.iphone-portrait .active-item-price {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+.iphone-portrait .cart-item-size {
+  font-size: 3.4rem;
+  padding: 1% 8%;
+  margin-right: 5px;
+  display: inline;
+}
+.iphone-portrait .cart-item-price {
+  font-size: 3.4rem;
+  margin-top: 8%;
+  display: inline;
+}
+.iphone-portrait .cart-remove-button {
+  font-size: 2.5em;
+  margin-top: 8%;
+}
+.iphone-portrait .showroom-checkout-text {
+  width: 45%;
+}
+.iphone-portrait .third-panel-cart-customizers .color-selector-item {
+  border: 0.7px solid black;
+}
+
+.iphone-landscape .cart-item-size {
+  font-size: 2.4rem;
+  width: 25.71429%;
+  float: left;
+  margin-right: 15%;
+}
+.iphone-landscape .cart-item-price {
+  font-size: 2.4rem;
+  float: left;
+  margin-top: 7%;
+}
+.iphone-landscape .cart-remove-button {
+  font-size: 1.5em;
+  margin-top: 12%;
+}
+.iphone-landscape .showroom-checkout-text {
+  width: 37%;
 }
 
 .iphone-portrait .beacon,
 .iphone-landscape .beacon {
-  width: 20px;
+  width: 15px;
 }
+.iphone-portrait .fullscreen-icn,
+.iphone-landscape .fullscreen-icn {
+  display: none;
+}
+.iphone-portrait .cart-item-description,
+.iphone-landscape .cart-item-description {
+  width: 45%;
+  margin-top: 8%;
+}
+.iphone-portrait .showroom-checkout-text,
+.iphone-landscape .showroom-checkout-text {
+  font-size: 1.7em;
+  margin: 4% auto;
+}
+.iphone-portrait #checkout-cart-region,
+.iphone-landscape #checkout-cart-region {
+  border-left: 3px solid black;
+}
+
+/*# sourceMappingURL=ipad.css.map */

@@ -6,22 +6,10 @@ require.config({
     'hbs'           : 'libs/hbs/hbs',
     'Handlebars'    : 'libs/handlebars/handlebars',
     'marionette'    : 'libs/marionette/lib/backbone.marionette',
-    'jsmpeg'        : 'libs/jsmpeg',
-    'keyframes'     : 'libs/keyframes',
-    'pathfinder'    : 'libs/keyframes.pathfinder',
-    JSXTransformer  : 'libs/react/JSXTransformer',
-    jsx             : "libs/jsx",
-    react           : 'libs/react/react'
-  },
-
-  jsx : {
-    fileExtension: '.jsx'
+    'jsmpeg'        : 'libs/jsmpeg'
   },
 
   shim: {
-    JSXTransformer: {
-      exports: 'JSXTransformer'
-    },
     backbone: {
       exports: 'Backbone',
       deps: ['jquery', 'underscore']

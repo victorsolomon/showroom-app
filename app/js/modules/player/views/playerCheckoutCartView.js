@@ -7,9 +7,9 @@ define([
 ], function ($, Marionette, app, template, jcookie) {
 
     return Marionette.ItemView.extend({
-      template : template,
-      tagName  : 'div',
-      id       : "checkout-cart",
+      template   : template,
+      tagName    : 'div',
+      id         : "checkout-cart",
 
       closeAnimRightValue      : '-34.40625%',
       closeAnimRightValueSmall : '-38.79167%',
@@ -18,35 +18,30 @@ define([
       isOpen : false,
 
       events: {
-        // 'click .checkoutCartDrawerBar' : 'onDrawerClick',
         'click .checkout-button' : 'onCheckoutButtonClick'
       },
 
-      initialize : function(options) {
-        this.otherLink = '';
-      },
+      initialize : function() {},
 
       onShow: function() {
         this.closeCheckoutCart();
         app.vent.on('itemAdded', this.renderCart, this);
         app.vent.on('itemRemoved', this.renderCart, this);
 
-        if (app.config.checkoutType === "email") {
-          this.$('.checkout-button').attr('href', app.config.checkoutUrl).attr('target', '_top');
-        }
+        this.emailCheckout();
 
-        app.bindClickTouch(this.$('.checkout-cart-drawer-bar'), function(event) {
+        app.bindClickTouch($('.checkout-cart-drawer-bar'), function(event) {
           this.onDrawerClick(event);
         }.bind(this));
 
-        app.bindClickTouch(this.$('.checkout-button'), function(event) {
+        app.bindClickTouch($('.checkout-button'), function(event) {
           if (app.config.checkoutType === 'shopify') {
             this.performShopifyCheckout();
             window.open(this.otherLink);
           }
         }.bind(this));
 
-        app.bindClickTouch($('.showroom-checkout-logo'), function(event) {
+        app.bindClickTouch($('.showroom-checkout-text'), function(event) {
           window.open('http://www.helloshowroom.co');
         });
 
@@ -57,13 +52,19 @@ define([
         this.renderCart();
       },
 
-      renderCart : function(){
+      renderCart: function() {
         this.openCheckoutCart();
         $('.cart-items').empty();
 
         for (var i in app.config.cartItems) {
           var item = this.generateItem(app.config.cartItems[i], i);
           $('.cart-items').append(item);
+        }
+      },
+
+      emailCheckout: function() {
+        if (app.config.checkoutType === "email") {
+          $('.checkout-button').attr('href', app.config.checkoutUrl).attr('target', '_top');
         }
       },
 
@@ -74,7 +75,28 @@ define([
         var price      = itemData.itemPrice || itemData.price;
         var optionType = itemData.variantOptionName;
 
-        if (app.config.checkoutType !== 'minted') {
+
+        if (app.thirdPanel === true) {
+          if (app.isiPhone()) {
+            var item = $("<li class='cart-item'>" +
+                          "<div class='cart-item-image' style='background-image:url(" + imgUrl + ");'></div>" +
+                          "<div class='cart-item-description'>" +
+                            ((itemData.hasSize) ? "<div class='cart-item-size'>" + size + "</div>" : "" ) +
+                            "<div class='cart-item-price'>" + price + "</div>" +
+                          "</div>" +
+                          "<div class='cart-remove-button' data-index='" + index + "'>X</div>" +
+                        "</li>");
+          } else {
+            var item = $("<li class='cart-item'>" +
+                          "<div class='cart-remove-button' data-index='" + index + "'>X</div>" +
+                          "<div class='cart-item-image' style='background-image:url(" + imgUrl + ");'></div>" +
+                          "<div class='cart-item-description'>" +
+                            ((itemData.hasSize) ? "<div class='cart-item-size'>" + size + "</div>" : "" ) +
+                            "<div class='cart-item-price'>" + price + "</div>" +
+                          "</div>" +
+                        "</li>");
+          }
+        } else if (app.config.checkoutType !== 'minted') {
           var item = $("<li class='cart-item'>" +
                         "<div class='cart-remove-button' data-index='" + index + "'>X</div>" +
                         "<div class='cart-item-image' style='background-image:url(" + imgUrl + ");'></div>" +
@@ -95,7 +117,7 @@ define([
                       "</li>");
         }
 
-        app.bindClickTouch($('.cart-remove-button'), function(event) {
+        app.bindClickTouch(item.find('.cart-remove-button'), function(event) {
           this.onCloseClick(event);
         }.bind(this));
 
@@ -131,6 +153,10 @@ define([
         var index = parseInt($(event.currentTarget).attr('data-index'));
         app.cartManager.removeFromCart(index);
         app.vent.trigger('itemRemoved');
+
+        if (app.thirdPanel === true) {
+          this.renderCart();
+        }
       },
 
       onDrawerClick: function() {
@@ -140,8 +166,7 @@ define([
 
       checkClosePosition: function() {
         if (!this.isOpen) {
-          var closeValueToUse = (app.smallMode) ? this.closeAnimRightValueSmall : this.closeAnimRightValue;
-          $(this.el).parent().css('right', closeValueToUse);
+          $(this.el).parent().css('right', this.closeAnimRightValue);
         }
       },
 
@@ -153,9 +178,7 @@ define([
       },
 
       closeCheckoutCart: function() {
-        var closeValueToUse = (app.smallMode) ? this.closeAnimRightValueSmall : this.closeAnimRightValue;
-
-        $(this.el).parent().animate({'right' : closeValueToUse});
+        $(this.el).parent().animate({'right' : this.closeAnimRightValue});
 
         $('.checkout-cart-handle').animate({'opacity' : 1}, 200);
         this.isOpen = false;

@@ -8,9 +8,11 @@ define([
   'modules/player/views/playerPosterView',
   'modules/player/views/playerShareView',
   'modules/player/views/playerSplashVideoView',
-  'keyframes',
+  'modules/player/views/activeItemThirdPanel',
+  'modules/player/views/cartThirdPanelCustomize',
+  'oembed'
 ], function (Marionette, app, template, PlayerVideoView, PlayerActiveCartView,
-             PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView, keyframes) {
+             PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView, ActiveItemThirdPanel, CartThirdPanelCustomize, oembed) {
 
     return Marionette.LayoutView.extend({
       template              : template,
@@ -43,6 +45,8 @@ define([
         this.playerCheckoutCartView = new PlayerCheckoutCartView();
         this.playerPosterView       = new PlayerPosterView();
         this.playerShareView        = new PlayerShareView();
+        this.activeItemThirdPanel   = new ActiveItemThirdPanel();
+        this.customizePanel         = new CartThirdPanelCustomize();
 
         app.vent.on('splashClick', this.fadeSplashPlayer, this);
 
@@ -53,23 +57,27 @@ define([
 
           that.isEnd = isEnd;
 
-          if (app.isiPhone()) {
-            $('.fullscreen-icn').hide();
+          if (app.isiPhone() && !that.isEnd) {
+            $('.play-button').show();
+            $('.pause-button').hide();
+          } else if (!that.isEnd) {
+            $('.play-button, .share-icn, .embed-icn').show();
 
-            if (!that.isEnd) {
-              $('.play-button').show();
-            }
-          } else {
-            if (!that.isEnd) {
-              $('.play-button, .share-icn, .share-text, .embed-text, .embed-icn').show();
+            if (app.thirdPanel === true) {
+              $('.share-text, .embed-text').hide();
+            } else {
+              $('.share-text, .embed-text').show();
             }
           }
-
         });
 
         app.vent.on('hideMask', function() {
           $('#mask-region').animate({ 'opacity' : 0.0 }, 400).css('z-index', 2);
-          $('.play-button, .share-icn, .share-text, .embed-text, .embed-icn').hide();
+          $('.play-button, .share-icn, .share-text, .embed-text, .embed-icn, .fullscreen-icn').hide();
+
+          if (app.isiPhone()) {
+            $('.pause-button').show();
+          }
         });
 
         app.vent.on('checkoutDrawerClick', this.checkCartStatus, this);
@@ -92,19 +100,20 @@ define([
       applyResizeAttributes: function() {
         var playerWidth = $('html').width();
 
-        if (playerWidth <= 600) {
-          app.smallMode = true;
-          $('body').addClass('smallApp');
-        } else {
-          app.smallMode = false;
-          $('body').removeClass('smallApp');
-        }
-
         app.trigger('resize');
         this.checkCartStatus();
 
-        var baseWidth = 1280;
-        var newFontPct = playerWidth / baseWidth * 62.5;
+        if (playerWidth < 641 || app.isiPhone()) {
+          app.thirdPanel = true;
+          this.activeCartRegion.show(this.activeItemThirdPanel, { preventDestroy: true });
+          this.checkoutCartRegion.show(this.customizePanel, { preventDestroy: true });
+        } else {
+          app.thirdPanel = false;
+          this.activeCartRegion.show(this.playerActiveCartView, { preventDestroy: true });
+          this.checkoutCartRegion.show(this.playerCheckoutCartView, { preventDestroy: true });
+        }
+
+        var newFontPct = playerWidth / 1280 * 62.5;
         $('html').css('font-size' , newFontPct + '%', 'important');
         $('.hotSpot').remove();
         this.createBeacons();
@@ -112,14 +121,12 @@ define([
 
       onShow: function() {
         this.$('.play-button').hide();
-
-        if (app.config.loaderStyle === 'video') {
-          this.playerPosterRegion.show(this.playerSplashVideoView);
-        } else {
-          this.playerPosterRegion.show(this.playerPosterView);
-        }
-
+        this.playerPosterRegion.show(this.playerPosterView);
         this.playerPosterRegion.$el.css('z-index', 10);
+
+        if (app.isiPhone() == null) {
+          this.videoRegion.show(this.playerVideoView);
+        }
 
         if (app.isiPhone()) {
           this.calculateContainerSize();
@@ -133,7 +140,10 @@ define([
         var windowWidth = $(window).width();
         var htmlHeight  = windowWidth * (9 / 16);
 
-        $('html, #showroom-player').css('width' , windowWidth).css('height' , htmlHeight);
+        $('html, #showroom-player').css({
+          'width'  : windowWidth,
+          'height' : htmlHeight
+        });
 
         if (app.isiPhone()) {
           $('html, #showroom-player').css('width', '100%');
@@ -144,8 +154,7 @@ define([
             $('html, body').addClass('iphone-portrait').removeClass('iphone-landscape');
           }
         } else if (app.isMobileSafari()) {
-          var baseWidth = 1280;
-          var newFontPct = windowWidth / baseWidth * 62.5;
+          var newFontPct = windowWidth / 1280 * 62.5;
           $('html').attr('style', 'width:' + windowWidth + ';height:' + htmlHeight + ';font-size:' + newFontPct + '% !important;');
         }
       },
@@ -157,7 +166,7 @@ define([
 
         this.showMainPlayer();
 
-        if (!app.isMobileSafari()) {
+        if (!app.isiPhone()) {
           this.playerVideoView.play();
         }
       },
@@ -165,11 +174,11 @@ define([
       showMainPlayer: function() {
         var that = this;
 
-        this.videoRegion.show(this.playerVideoView);
-        this.videoRegion.$el.css('z-index', 1);
+        if (app.isiPhone()) {
+          this.videoRegion.show(this.playerVideoView);
+        }
 
-        this.activeCartRegion.show(this.playerActiveCartView);
-        this.checkoutCartRegion.show(this.playerCheckoutCartView);
+        this.videoRegion.$el.css('z-index', 1);
         this.shareRegion.show(this.playerShareView);
 
         app.bindClickTouch(this.$('.scrubber'), function(event) {
@@ -178,7 +187,6 @@ define([
 
         app.bindClickTouch(this.$('.share-icn, .share-text, .embed-text, .embed-icn'), function(event) {
           that.onShareClick(event);
-          // app.Analytics.shareButtonClick();
         });
 
         app.bindClickTouch(this.$('.fullscreen-icn'), function(event) {
@@ -211,169 +219,115 @@ define([
           return;
         }
 
-        var that = this;
-
         for (var i = 0; i < app.config.hotSpots.length; i++) {
           var hotspotItemData = app.config.hotSpots[i];
-          this.removeKeyframes(hotspotItemData.pathName);
-
-          var beacon = $('<svg version="1.1" class="beacon" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="52px" height="54px" viewBox="0 0 52 54" enable-background="new 0 0 52 54" xml:space="preserve" type="image/svg+xml"><g><circle class="beacon-circle" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="26" cy="27" r="19.358"/><g><path class="beacon-path" fill="#FFFFFF" d="M24.771,28.259H14.457c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V15.426c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H27.29v10.254c0,0.42-0.36,0.78-0.78,0.78H25.55c-0.42,0-0.779-0.36-0.779-0.78V28.259z"/></g></g><g><circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="88.71" cy="25.533" r="19.358"/><g><path fill="#FFFFFF" d="M87.481,26.792H77.167c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V13.959c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H90v10.254c0,0.42-0.36,0.78-0.78,0.78h-0.959c-0.42,0-0.779-0.36-0.779-0.78V26.792z"/></g></g></svg>');
-
-          if (app.config.hotspotColor != null) {
-            $('.beacon-circle').attr('stroke', app.config.hotspotColor);
-            $('.beacon-path').attr('fill', app.config.hotspotColor);
-          }
 
           var hotspot =
                 $('<div class="hotSpot"></div>')
                 .attr('id', 'hotspot' + hotspotItemData.hotSpotId)
                 .attr('itemId', hotspotItemData.id)
-                .attr('hotSpotId', hotspotItemData.hotSpotId)
-                .append(beacon);
+                .attr('hotSpotId', hotspotItemData.hotSpotId);
 
           app.bindClickTouch($(hotspot), function(event) {
-            that.tagClick(event);
-          });
+            this.tagClick(event);
+          }.bind(this));
 
           $('.hotspot-container').append(hotspot);
         }
       },
 
       hoverBeaconsOn: function() {
-        $('.pause-button, .fullscreen-icn').show();
+        if (app.isiPhone()) {
+          $('.fullscreen-icn').hide();
+        } else {
+          $('.pause-button, .fullscreen-icn').show();
+          $('#beacon-video').css('opacity', '1');
+          $('#theVideo').css('opacity', '0');
+        }
+
+        if (app.isMobileSafari()) {
+          $('.fullscreen-icn').hide();
+        }
+
+        if (app.config.devMode === true) {
+          $('.hotSpot').css({
+            'opacity'    : '0.5',
+            'background' : 'blue'
+          });
+        }
 
         if (app.isPlaying === false) {
           $('.pause-button, .fullscreen-icn').hide();
-        }
-
-        if (app.config.beaconPlacement === 'top')  {
-          $('.beacon').css({
-            bottom : 'auto',
-            top    : '10px'
-          });
-        } else if (app.config.beaconPlacement === 'topLeft') {
-          $('.beacon').css({
-            bottom : 'auto',
-            top    : '10px',
-            left   : '-30%'
-          });
         }
       },
 
       hoverBeaconsOff: function() {
         $('.pause-button, .fullscreen-icn').hide();
+        $('#beacon-video').css('opacity', '0');
+        $('#theVideo').css('opacity', '1');
+
+        if (app.config.devMode === true) {
+          $('.hotSpot').css({
+            'opacity'    : '0.0',
+            'background' : 'blue'
+          });
+        }
       },
 
       tagClick: function(event) {
         var itemId = $(event.currentTarget).attr('itemId');
         var data   = app.cartManager.getItemById(itemId);
 
+        var keenClickEvent = {
+          vendor : app.config.gaVendorName,
+          item : {
+            name  : data.itemTitle,
+            price : data.itemPrice
+          }
+        }
+
+        app.keenAnalytics.client.addEvent('itemClicked', keenClickEvent, function(err, res) {
+          if (!err) console.log(res);
+        });
+
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.TAG_ITEM_CLICK, { 'itemName': data.itemTitle, 'itemId': data.id });
         app.vent.trigger('showMask');
         app.vent.trigger('pause');
 
         this.playerActiveCartView.loadItem(itemId);
-        this.playerActiveCartView.openActiveCart();
-      },
-
-      removeKeyframes: function(pathName) {
-        if ($('.keyframe-style#' + pathName).length > 0) {
-          $('.keyframe-style#' + pathName).remove();
-        }
+        this.chooseItemPanel();
       },
 
       updateTagPosition: function(timeSig, duration, newTime) {
-        var currentTime          = timeSig / duration;
-        var ratioComparisonWidth = 1920;
-        var ratio                = $('html').width() / ratioComparisonWidth;
-        // console.log(currentTime);
+        var currentTime = timeSig / duration;
+        var ratio       = $('html').width() / 1920;
+
+        if (app.config.devMode === true) {
+          console.log(currentTime);
+        }
 
         for (var i in app.config.hotSpots) {
 
           var hotSpot = app.config.hotSpots[i];
 
           if (currentTime >= hotSpot.startTime && currentTime <= hotSpot.endTime) {
-            var startX      = hotSpot.hotSpotStartX;
-            var startY      = hotSpot.hotSpotStartY;
-            var width       = hotSpot.hotSpotStartWidth;
-            var height      = hotSpot.hotSpotStartHeight;
-            var totalSteps  = 0;
+            var startX     = hotSpot.hotSpotStartX;
+            var startY     = hotSpot.hotSpotStartY;
+            var width      = hotSpot.hotSpotStartWidth;
+            var height     = hotSpot.hotSpotStartHeight;
 
             startX *= ratio;
             startY *= ratio;
             width  *= ratio;
             height *= ratio;
 
-            if (hotSpot.movingBeacon === true && app.isiPhone() === null) {
-
-              if ($('.keyframe-style#' + hotSpot.pathName).length === 0) {
-
-                // if (newTime != null) {
-                //   var newCurrentTime = newTime / duration;
-
-                //   if (newCurrentTime > hotSpot.startTime) {
-                //     var oldSteps             = hotSpot.endTime - hotSpot.startTime;
-                //     var diff                 = newCurrentTime - hotSpot.startTime;
-                //     var percentage           = diff / oldSteps;
-                //     totalSteps               = hotSpot.endTime - newCurrentTime;
-                //     hotSpot.bezierStartXY[0] = (hotSpot.bezierMoveXY[0] - hotSpot.bezierStartXY[0]) * (diff / oldSteps);
-                //     console.log(hotSpot.bezierStartXY);
-                //   }
-                // } else {
-                  totalSteps = hotSpot.endTime - hotSpot.startTime;
-                // }
-
-
-                hotSpot.bezierStartXY[0] *= ratio;
-                hotSpot.bezierStartXY[1] *= ratio;
-
-                // TODO: Add back in once iPhone beacons are in place.
-                // if (app.isiPhone()) {
-                //   if (window.orientation === 90 || window.orientation === -90) {
-                //     hotSpot.bezierMoveXY[0] = hotSpot.bezierMoveXY[0] / 2;
-                //     hotSpot.bezierMoveXY[1] = hotSpot.bezierMoveXY[1] / 2;
-                //     hotSpot.firstPull[0]    = hotSpot.firstPull[0] / 2;
-                //     hotSpot.firstPull[1]    = hotSpot.firstPull[1] / 2;
-                //   } else {
-                //     hotSpot.bezierMoveXY[0] = hotSpot.bezierMoveXY[0] / 4;
-                //     hotSpot.bezierMoveXY[1] = hotSpot.bezierMoveXY[1] / 4;
-                //     hotSpot.firstPull[0]    = hotSpot.firstPull[0] / 4;
-                //     hotSpot.firstPull[1]    = hotSpot.firstPull[1] / 4;
-                //   }
-                // }
-
-                if (hotSpot.pathType === 'regular') {
-                  var rules = $.keyframe.bezierPath( { name: hotSpot.pathName } , hotSpot.bezierStartXY, hotSpot.bezierMoveXY, hotSpot.firstPull);
-                } else if (hotSpot.pathType === 'advanced') {
-                  var rules = $.keyframe.bezierPath( { name: hotSpot.pathName } , hotSpot.bezierStartXY, hotSpot.bezierMoveXY, hotSpot.firstPull, hotSpot.secondPull);
-                } else if (hotSpot.pathType === 'circular' && hotSpot.circularCentersXY != null && hotSpot.radius != null) {
-                  var rules = $.keyframe.circlePath( { name: hotSpot.pathName } , hotSpot.circularCentersXY, hotSpot.radius );
-                }
-
-                $.keyframe.define([rules]);
-
-                var duration = Math.abs(totalSteps * hotSpot.durationMultiple);
-                // console.log(duration);
-
-                $('#hotspot' + hotSpot.hotSpotId)
-                .css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
-                .playKeyframe({
-                  name: hotSpot.pathName,
-                  duration: duration + 's',
-                  timingFunction: hotSpot.timingType || 'linear',
-                  iterationCount: hotSpot.iterationCount,
-                  direction: 'normal',
-                  fillMode: 'none',
-                  complete: function() {
-                    $(this).css({'left' : -2000});
-                  }
-                });
-              }
-            } else {
-              $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
-            }
+            $('#hotspot' + hotSpot.hotSpotId)
+              .css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
+              .addClass('js-active-hotspot');
           } else {
-            $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : -200000 });
+            $('#hotspot' + hotSpot.hotSpotId)
+              .css({ 'left' : -200000 })
+              .removeClass('js-active-hotspot');
           }
         }
       },
@@ -382,11 +336,19 @@ define([
         var vendor = app.config.gaVendorName;
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_SHAREBUTTON_CLICK, { 'vendor' : vendor });
 
+        var keenClickEvent = {
+          vendor: vendor
+        };
+
+        app.keenAnalytics.client.addEvent('shareClicked', keenClickEvent, function(err, res) {
+          if (!err) console.log(res);
+        });
+
         app.vent.trigger('pause');
         app.vent.trigger('showMask');
         this.playerShareView.animateIn();
 
-        if (app.smallMode) {
+        if (app.thirdPanel) {
           this.playerActiveCartView.closeActiveCart();
           this.playerCheckoutCartView.closeCheckoutCart();
         }
@@ -399,7 +361,7 @@ define([
       },
 
       checkCartStatus: function() {
-        if (this.playerCheckoutCartView.isOpen || this.playerActiveCartView.isOpen || this.playerShareView.isOpen) {
+        if (this.playerCheckoutCartView.isOpen || this.playerActiveCartView.isOpen || this.playerShareView.isOpen || this.activeItemThirdPanel.isOpen) {
           app.vent.trigger('pause');
           app.vent.trigger('showMask');
 
@@ -407,8 +369,15 @@ define([
             this.playerShareView.animateOut();
           }
         } else {
-          app.vent.trigger('play');
           app.vent.trigger('hideMask');
+        }
+      },
+
+      chooseItemPanel: function() {
+        if (app.thirdPanel) {
+          this.activeItemThirdPanel.openActiveCart();
+        } else {
+          this.playerActiveCartView.openActiveCart();
         }
       },
 
@@ -421,8 +390,8 @@ define([
 
         if (app.isiPhone()) {
           if (currentProgress >= 0.993) {
-            this.playerActiveCartView.openActiveCart();
-            this.playerCheckoutCartView.openCheckoutCart();
+            this.activeItemThirdPanel.openActiveCart();
+            this.customizePanel.openCheckoutCart();
 
             app.vent.trigger('showMask', true);
 
@@ -433,7 +402,8 @@ define([
           }
         } else {
           if (currentProgress >= 1.0) {
-          this.playerActiveCartView.openActiveCart();
+
+          this.chooseItemPanel();
           this.playerCheckoutCartView.openCheckoutCart();
 
           app.vent.trigger('showMask', true);
@@ -455,13 +425,13 @@ define([
       onScrubberClick: function(event) {
         var scrubberWidth = parseInt(this.$('.scrubber').css('width'));
 
-        //for touch devices
+        //for touch devices - not ipad/iphone?
         if (event.originalEvent.touches && event.originalEvent.touches[0].pageX) {
           var pageX = event.originalEvent.touches[0].pageX;
         } else {
           var pageX = (( event.pageX ) ? event.pageX : event.x);
         }
-
+        console.log(pageX);
         var seekTime = pageX / scrubberWidth * this.duration;
         app.vent.trigger('seek', seekTime);
 
@@ -470,16 +440,32 @@ define([
         this.playerShareView.animateOut();
 
         $('.hotSpot').remove();
-        this.createBeacons();
         this.updateTagPosition(this.currentTime, this.duration, seekTime);
+        this.createBeacons();
 
         app.vent.trigger('hideMask');
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_JUMPTOTIME_CLICK, { 'timeJumpedTo' : seekTime });
+
+        var keenClickEvent = {
+          vendor       : app.config.gaVendorName,
+          currentTime  : parseInt(this.currentTime, 10) + 's',
+          timeJumpedTo : parseInt(seekTime, 10) + 's'
+        };
+
+        app.keenAnalytics.client.addEvent('timeJumpedTo', keenClickEvent, function(err, res) {
+          if (!err) console.log(res);
+        });
       },
 
       onMaskClick: function() {
-        this.playerActiveCartView.closeActiveCart();
-        this.playerCheckoutCartView.closeCheckoutCart();
+        if (app.thirdPanel === true) {
+          this.activeItemThirdPanel.closeActiveCart();
+          this.customizePanel.closeCheckoutCart();
+        } else {
+          this.playerActiveCartView.closeActiveCart();
+          this.playerCheckoutCartView.closeCheckoutCart();
+        }
+
         this.playerShareView.animateOut();
         app.vent.trigger('hideMask');
         app.vent.trigger('play');
@@ -514,11 +500,10 @@ define([
       },
 
       onFullscreenClick: function() {
-        var id = 'showroom-player';
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_FULLSCREEN_CLICK, {});
 
         if (!app.isFullscreen) {
-          var element = document.getElementById(id);
+          var element = document.getElementById('showroom-player');
 
           if (element.mozRequestFullScreen) {
             element.mozRequestFullScreen();

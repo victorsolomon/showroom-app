@@ -79,6 +79,19 @@ header {
   -o-transform: translateY(-50%);
 }
 
+.logo-text-bottom {
+  color: #939498;
+}
+
+.logo-text {
+  font-family: brandon_grotesquethin;
+  font-weight: 100;
+  letter-spacing: 7px;
+  font-size: 1.4em;
+  position: relative;
+  margin-bottom: 7px;
+}
+
 .showroom-title img {
   width: 35%;
   max-width: 220px;
@@ -174,6 +187,13 @@ header {
     width: 100%;
     transform: none;
     top: 15px;
+  }
+
+  .logo-text {
+    font-size: 1.1em;
+    position: relative;
+    margin-bottom: 0;
+    margin-left: 5px;
   }
 
   .showroom-icon {

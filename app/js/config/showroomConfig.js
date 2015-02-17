@@ -5,25 +5,29 @@ define([
 
     window.playerConfig = {
 
-      gaKey : 'UA-55667188-1',
+      gaKey        : 'UA-55667188-1',
+      gaVendorName : 'Showroom',
+      videoName    : 'showroom_1',
 
       mp4_video_src_med  : 'showroom/showroom.mp4',
       webm_video_src_med : 'showroom/showroom-webm.webm',
-      iphone_video_src   : 'showroom/midtest.mpg',
+      iphone_video_src   : 'showroom/showroom.mpg',
       iphone_audio_src   : 'showroom/soundtrack.mp3',
+      beacon_video_mp4   : 'showroom/showroomBeacon.mp4',
+      beacon_video_webm  : 'showroom/showroomBeacon.webm',
       loaderStyle        : 'image',
 
       baseVideoPath          : "static/movies/",
-      baseProductImagePath   : "static/images/productImages/taylorStitch/",
-      colorVariantsImagePath : 'static/images/productImages/taylorStitch/colorVariants/',
+      baseProductImagePath   : "static/images/productImages/showroom/",
+      colorVariantsImagePath : 'static/images/productImages/showroom/colorVariants/',
 
-      checkoutUrl : "mailto:we@helloshowroom.co?subject=Showroom - Shop Video&body=Let's activate video.",
+      checkoutUrl : "mailto:we@helloshowroom.co?subject=Showroom - Shop Video&body=Let's make video shoppable.",
 
       beaconColor       : '',
       checkoutType      : "email",
       shareUrl          : "http://www.helloshowroom.co/showroom/index.html",
       shareEmbedBaseUrl : "http://www.helloshowroom.co/showroom/index.html?config=showroomConfig",
-      splashImage       : 'static/images/posterFrames/taylorStitchOverlay.gif',
+      splashImage       : 'static/images/posterFrames/showroom.png',
       hotspotColor      : 'white',
       spinnerColor      : null,
 
@@ -50,6 +54,51 @@ define([
         }
       ],
 
+      // extraOptions: [
+      //   {
+      //     id: 1,
+      //     option1: {
+      //       title: 'something',
+      //       variants: {
+      //         XS : ['812187233'],
+      //         S  : ['812187237'],
+      //         M  : ['812187241'],
+      //         L  : ['812187245'],
+      //         XL : ['812187249']
+      //       }
+      //     },
+      //     option2: {
+      //       title: 'something else',
+      //       variants: {
+      //         1 : ['812187233'],
+      //         4 : ['812187245'],
+      //         5 : ['812187249'],
+      //         10: ['304872390847']
+      //       }
+      //     },
+      //     option3: {
+      //       title: 'lalalalala',
+      //       variants : {
+      //         'do' : ['fsdfsdf'],
+      //         're' : ['asfasd']
+      //       }
+      //     }
+      //   },
+      //   {
+      //     id: 2,
+      //     option1: {
+      //       title: 'second option',
+      //       variants: {
+      //         XS : ['812187233'],
+      //         S  : ['812187237'],
+      //         M  : ['812187241'],
+      //         L  : ['812187245'],
+      //         XL : ['812187249']
+      //       }
+      //     }
+      //   }
+      // ],
+
       itemData: [
         {
           "id"                 : "1",
@@ -68,7 +117,8 @@ define([
             M  : ['812187241'],
             L  : ['812187245'],
             XL : ['812187249']
-          }
+          },
+          otherOptionId : 1
         },
         {
           "id"                 : "2",
@@ -87,7 +137,8 @@ define([
             M  : ['812192737'],
             L  : ['812192741'],
             XL : ['812192745']
-          }
+          },
+          otherOptionId : 2
         },
         {
           "id"                 : "3",
@@ -190,18 +241,6 @@ define([
           "hotSpotStartY"      : "250",
           "hotSpotStartWidth"  : "300",
           "hotSpotStartHeight" : "300",
-          "bezierStartXY"      : [1, 1],
-          'bezierMoveXY'       : [-45, 1],
-          "firstPull"          : [-45, 1],
-          "secondPull"         : null,
-          'circularCentersXY'  : null,
-          'radius'             : null,
-          'pathType'           : 'regular',  //regular, advanced, circular
-          'pathName'           : 'firstMovingBeacon',
-          'timingType'         : 'cubic-bezier(0, .96, .91, .82)',
-          'iterationCount'     : 1,
-          'movingBeacon'       : true,
-          'durationMultiple'   : 40
         },
         {
           "id"                 : "1",
@@ -215,7 +254,6 @@ define([
           "hotSpotEndY"        : "200",
           "hotSpotStartWidth"  : "300",
           "hotSpotStartHeight" : "300",
-          'movingBeacon'       : false,
         },
         {
           "id"                 : "1",
@@ -227,7 +265,6 @@ define([
           "hotSpotStartY"      : "200",
           "hotSpotStartWidth"  : "1300",
           "hotSpotStartHeight" : "900",
-          'movingBeacon'       : false,
         },
         {
           "id"                 : "1",
@@ -239,7 +276,6 @@ define([
           "hotSpotStartY"      : "240",
           "hotSpotStartWidth"  : "400",
           "hotSpotStartHeight" : "200",
-          'movingBeacon'       : false,
         },
         {
           "id"                 : "1",
@@ -251,18 +287,6 @@ define([
           "hotSpotStartY"      : "300",
           "hotSpotStartWidth"  : "550",
           "hotSpotStartHeight" : "300",
-          "bezierStartXY"      : [1, 1],
-          'bezierMoveXY'       : [300, 20],
-          "firstPull"          : [300, -20],
-          "secondPull"         : null,
-          'circularCentersXY'  : null,
-          'radius'             : null,
-          'pathType'           : 'regular',  //regular, advanced, circular
-          'pathName'           : 'secondMovingBeacon',
-          'timingType'         : 'cubic-bezier(0, .96, .91, .82)',
-          'iterationCount'     : 1,
-          'movingBeacon'       : true,
-          'durationMultiple'   : 50
         },
         {
           "id"                 : "1",

@@ -1,0 +1,14 @@
+{
+  "name": "jquery-oembed-all",
+  "homepage": "https://github.com/nfl/jquery-oembed-all",
+  "_release": "f3b3533a88",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "f3b3533a88404574a833d5a34b2c78feca7456a3"
+  },
+  "_source": "https://github.com/nfl/jquery-oembed-all.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/nfl/jquery-oembed-all.git",
+  "_direct": true
+}

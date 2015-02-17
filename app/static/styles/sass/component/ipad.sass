@@ -16,9 +16,6 @@
 
 //for landscape orientation
 @media all and (device-width: 768px) and (device-height: 1024px) and (orientation:landscape)
-  html, body
-    font-size: 50% !important
-
   .ipad
     .embedSelector
       li
@@ -30,25 +27,6 @@
       max-width: 15.116% !important
 
 .ipad
-  .embedSelector
-    li
-      padding: 0.55% 1.25%
-
-    .six40
-      p
-        margin-top: 9%
-
-    .eight50
-      p
-        margin-top: 8.5%
-    .thousand
-      p
-        margin-top: 7%
-
-    .twelve80
-      p
-        margin-top: 6.5%
-
   .cartItemDescription
     .itemSize
       padding: 3% 4% 5% 4% !important
@@ -63,11 +41,69 @@
     margin-bottom: 3%
 
   .color-selector
-    margin: 0 auto 6% auto
+    margin: 3% auto 6% auto
     height: 30%
 
+  .active-item-price
+    font-size: 1.3rem
+    font-weight: 400
+
+  .cart-item-size
+    font-size: 3.4rem
+    padding: 1% 8%
+    margin-right: 5px
+    display: inline
+
+  .cart-item-price
+    font-size: 3.4rem
+    margin-top: 8%
+    display: inline
+
+  .cart-remove-button
+    font-size: 2.5em
+    margin-top: 8%
+
+  .showroom-checkout-text
+    width: 45%
+
+  .third-panel-cart-customizers .color-selector-item
+    border: 0.7px solid black
+
+.iphone-landscape
+  .cart-item-size
+    font-size: 2.4rem
+    width: 25.71429%
+    float: left
+    margin-right: 15%
+
+  .cart-item-price
+    font-size: 2.4rem
+    float: left
+    margin-top: 7%
+
+  .cart-remove-button
+    font-size: 1.5em
+    margin-top: 12%
+
+  .showroom-checkout-text
+    width: 37%
 
 .iphone-portrait,
 .iphone-landscape
   .beacon
-    width: 20px
+    width: 15px
+
+  .fullscreen-icn
+    display: none
+
+  .cart-item-description
+    width: 45%
+    margin-top: 8%
+
+  .showroom-checkout-text
+    font-size: 1.7em
+    margin: 4% auto
+
+
+  #checkout-cart-region
+    border-left: 3px solid black

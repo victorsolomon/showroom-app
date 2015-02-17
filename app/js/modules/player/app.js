@@ -1,8 +1,9 @@
 define([
   'application',
   'modules/player/routers/playerRouter',
-  'libs/analytics'
-], function (app, PlayerRouter, Analytics) {
+  'libs/analytics',
+  'libs/keenAnalytics'
+], function (app, PlayerRouter, Analytics, keenAnalytics) {
 
     app.addInitializer(function () {
 
@@ -58,10 +59,14 @@ define([
       }
     };
 
-    app.Analytics = Analytics;
+    app.Analytics     = Analytics;
+
+    keenAnalytics.initKeen();
+    app.keenAnalytics = keenAnalytics;
+    // debugger;
 
     app.isMobileSafari = function(argument) {
-      return (navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/));
+      return (navigator.userAgent.match(/(iPad)/) && navigator.userAgent.match(/AppleWebKit/));
     };
 
     app.isiPhone = function() {

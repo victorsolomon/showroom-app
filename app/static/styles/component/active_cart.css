@@ -50,7 +50,7 @@
   background: url(../../images/sprite/common/left-arrow-black.png) no-repeat;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 3.90879%;
+  width: 3.25733%;
   height: 8.82353%;
   top: 46.32353%;
   cursor: pointer;
@@ -61,7 +61,7 @@
   background: url(../../images/sprite/common/right-arrow-black.png) no-repeat;
   background-repeat: no-repeat;
   background-size: contain;
-  width: 3.90879%;
+  width: 3.25733%;
   height: 8.82353%;
   top: 46.32353%;
   right: 0px;
@@ -102,6 +102,9 @@
 
 .description-content-block {
   text-align: justify;
+  top: 50%;
+  transform: translateY(-50%);
+  position: relative;
 }
 
 #active-cart-info-and-actions {
@@ -111,11 +114,39 @@
   overflow: visible;
 }
 
+.titleAndPrice {
+  font-size: 1.625rem;
+  letter-spacing: 0.275rem;
+  color: #000;
+  text-align: center;
+  margin-top: 7%;
+  position: relative;
+  width: 100%;
+  height: 10%;
+}
+
+.title-and-price-container {
+  width: 100%;
+  position: absolute;
+}
+
+.active-item-title {
+  max-width: 85%;
+  margin: 0 auto;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.active-item-price {
+  font-weight: bold;
+  text-align: center;
+  font-style: italic;
+}
+
 .size-selector {
   width: 100%;
   list-style: none;
   padding: 0;
-  margin: 4.88599% 0 0 0;
   font-family: avenir;
   position: relative;
   text-align: center;
@@ -125,13 +156,13 @@
   background: #fff;
   color: #000;
   cursor: pointer;
-  width: 8%;
   height: 100%;
   margin-right: 5%;
-  font-size: 2rem;
+  font-size: 1.6rem;
   border: 1px solid #A0A0A0;
-  padding-top: 0.7%;
+  padding: 1% 2%;
   font-weight: 700;
+  margin-top: 2%;
 }
 .size-selector li.selected {
   background: #000;
@@ -154,12 +185,11 @@
   margin-right: 5%;
   display: inline-block;
   color: transparent;
-  width: 8%;
-  height: 100%;
+  width: 7%;
   border: 1px solid #000;
   cursor: pointer;
-  font-size: 2rem;
-  padding-top: 0.7%;
+  font-size: 1.6rem;
+  padding-top: 0.3%;
 }
 .color-selector-item:first-child {
   margin-left: 0;
@@ -169,7 +199,7 @@
 }
 
 .addButton {
-  font-family: brandon;
+  font-family: avenir;
   display: inline-block;
   background: #000;
   color: #fff;
@@ -188,7 +218,7 @@
   height: 15.27778%;
   position: relative;
   width: 82.30563%;
-  margin: 1% auto 0 auto;
+  margin: 5% auto 0 auto;
 }
 
 .recommended-left-arrow {
@@ -196,7 +226,7 @@
   background: url(../../images/sprite/common/left-arrow-black.png) no-repeat;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 3.90879%;
+  width: 3.25733%;
   height: 21.81818%;
   top: 40%;
   cursor: pointer;
@@ -207,7 +237,7 @@
   background: url(../../images/sprite/common/right-arrow-black.png) no-repeat;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 3.90879%;
+  width: 3.25733%;
   height: 21.81818%;
   top: 40%;
   right: 0px;
@@ -265,27 +295,6 @@
   margin: 0 auto;
   top: -3px;
   height: 23px;
-}
-
-.titleAndPrice {
-  font-size: 2rem;
-  letter-spacing: 0.275rem;
-  color: #000;
-  text-align: center;
-  margin-top: 10%;
-}
-.titleAndPrice .title {
-  max-width: 70%;
-  margin: 0 auto;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-.titleAndPrice .price {
-  font-weight: bold;
-  text-align: center;
-  font-style: italic;
 }
 
 .option-selector-title {

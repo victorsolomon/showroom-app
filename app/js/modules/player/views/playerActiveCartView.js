@@ -14,7 +14,7 @@ define([
       className : "active-cart",
 
       closeAnimLeftValue      : '-37.40625%',
-      closeAnimLeftValueSmall : '-43.70625%',
+      closeAnimLeftValueSmall : '-43.70625%', //no longer needed with third panel
       openAnimLeftValue       : "0%",
 
       isOpen                : false,
@@ -76,8 +76,7 @@ define([
 
       checkClosePosition: function() {
         if (!this.isOpen) {
-          var closeValueToUse = (app.smallMode) ? this.closeAnimLeftValueSmall : this.closeAnimLeftValue;
-          $(this.el).parent().css('left', closeValueToUse);
+          $(this.el).parent().css('left', this.closeAnimLeftValue);
         }
       },
 
@@ -90,9 +89,7 @@ define([
       },
 
       closeActiveCart: function() {
-        var closeValueToUse = (app.smallMode) ? this.closeAnimLeftValueSmall : this.closeAnimLeftValue;
-
-        $(this.el).parent().animate({ 'left' : closeValueToUse });
+        $(this.el).parent().animate({ 'left' : this.closeAnimLeftValue });
         $(this.el).children().animate({ 'opacity': 0 }, 200);
         $('.active-cart-handle').animate({ 'opacity' : 1 }, 200);
 
@@ -147,7 +144,12 @@ define([
 
       checkColorOptions: function(itemData) {
         if (itemData.hasColor === false) {
-          $('.color-selector').css('visibility', 'hidden');
+          if (app.thirdPanel === true) {
+            $('.color-selector').hide();
+            $('.options-color-title').hide();
+          } else {
+            $('.color-selector').css('visibility', 'hidden');
+          }
         } else {
           $('.color-selector').css('visibility', 'visible');
         }
@@ -161,23 +163,33 @@ define([
         }
 
         var container       = $('.active-slider-container-inner-wrap');
-        var slideWidth      = 94.5 / (itemData.allImages.length + 1);
         var variants        = itemData.variants;
-        var sizeButton      = $('.size-selector');
         var that            = this;
         this.selectedItem   = id;
         this.mainSliderPage = 1;
 
-        this.populateVariantColors();
-        // this.populateOtherOptions();
+        if (app.thirdPanel === true) {
+          var slideWidth = 94.5 / itemData.allImages.length;
+        } else {
+          var slideWidth = 94.5 / (itemData.allImages.length + 1);
+        }
 
+        if ($.isEmptyObject(app.config.variantOptions) || app.config.variantOptions.length === 0) {
+          $('.other-option-selector').hide();
+          $('#active-cart-info-and-actions').css('height', '20.5%');
+        }
+
+        this.populateVariantColors();
+        // this.generateOtherOptions();
         this.loadArtistName(itemData);
         this.resetSizeOptions();
         this.checkIfSoldOut(itemData);
         this.removeRecommendedArrows();
         this.removeDescriptionArrows(id);
 
-        if (itemData.itemDescription != null) {
+        $('.customize-button').data('item', this.selectedItem);
+
+        if (itemData.itemDescription != null && app.thirdPanel !== true) {
           $('.description-content-block').html(itemData.itemDescription);
           $('.description').css({
             'width'   : slideWidth + '%',
@@ -187,10 +199,15 @@ define([
           $('.description').css('display', 'none');
         }
 
-        this.$('.size-selector > li').removeClass('selected');
-        $('#title').html(itemData.itemTitle);
-        $('#price').html(itemData.itemPrice);
-        $('.color-selector-item[itemid=' + this.selectedItem + ']').css('border', '1.5px solid black');
+        $('.size-selector > li').removeClass('selected');
+        $('.active-item-title').html(itemData.itemTitle);
+        $('.active-item-price').html(itemData.itemPrice);
+
+        if (app.thirdPanel === true) {
+          $('.color-selector-item[itemid=' + this.selectedItem + ']').css('border', '1px solid black');
+        } else {
+          $('.color-selector-item[itemid=' + this.selectedItem + ']').css('border', '1.5px solid black');
+        }
 
         if (optionSelector != null) {
           $('.variant-option-type[itemid=' + id + ']').css('border', '1.5px solid black');
@@ -217,9 +234,25 @@ define([
           container.append(imageSlide);
 
         } else {
-          this.$('.active-slider-container-inner-wrap').css({
+
+          if (app.thirdPanel === true) {
+            var width = (itemData.allImages.length) * 100 + '%';
+          } else {
+            var width = (itemData.allImages.length + 1) * 100 + '%';
+          }
+
+          if (app.isiPhone()) {
+            if (window.orientation === 90 || window.orientation === -90) {
+              slideWidth = 94.5 / itemData.allImages.length;
+            } else {
+              slideWidth = 88 / itemData.allImages.length; //reset slideWidth for innerSlide sizes on portrait
+            }
+          }
+
+
+          $('.active-slider-container-inner-wrap').css({
             'margin-left' : '0%',
-            'width'       : (itemData.allImages.length + 1) * 100 + '%'
+            'width'       : width
           });
 
           if (container.find('.active-item-image-slide').length) {
@@ -237,12 +270,25 @@ define([
           }
         }
 
-        _.map($('.size-selector').find('li'), function(e) {
-          $(e).removeClass('unavailable');
-          if ($(e).attr('data-variant') !== '')  {
-            return $(e).attr('data-variant', '');
+        _.map($('.size-selector').find('li'), function(event) {
+          $(event).removeClass('unavailable');
+
+          if ($(event).attr('data-variant') !== '')  {
+            return $(event).attr('data-variant', '');
           }
         });
+
+        this.createSizeButtons(variants);
+
+        if (window.event != null) {
+          this.toggleOptions(window.event);
+        }
+      },
+
+      createSizeButtons: function(variants) {
+        var sizeButton = $('.size-selector');
+        var itemWidth  = 0;
+        var counter    = 0;
 
         for (var key in variants) {
           sizeButton.css('visibility', 'visible');
@@ -250,15 +296,16 @@ define([
           if (key !== 'oneSize') {
             var newKey = null;
 
-            // in case sizes are mixed numbers and letters
+            // in case sizes are mixed numbers and letters, this keeps numbers in numerical order
             if (key[0] === '0') {
               newKey = key.replace('0', '');
             }
 
             var listItem = $('<li data-value="' + key.replace(/"/g, " ").replace(/ /g, '') + '" data-variant="' + variants[key][0].toString() + '" data-price="' + (variants[key][1] ? variants[key][1] : undefined)   + '">' + (newKey ? newKey : key) +'</li>');
+
             app.bindClickTouch(listItem, function(event) {
-              that.sizeSelected(event);
-            });
+              this.sizeSelected(event);
+            }.bind(this));
 
             this.customFontSize(listItem);
             sizeButton.append(listItem);
@@ -279,67 +326,40 @@ define([
           $('.size-selector').find('li[data-value=' + this.currentlySelectedItem + ']').addClass('selected');
         }
 
-        if (window.event != null) {
-          this.toggleOptions(window.event);
-        }
       },
 
       onLeftActiveArrowClick: function() {
-        if (app.smallMode) {
-          this.loadPrevItemInSmallMode();
-        } else {
-          this.mainSliderPage -= 1;
+        this.mainSliderPage -= 1;
 
-          if (this.mainSliderPage <= 0) {
-            this.mainSliderPage = this.mainSliderPageTotal;
-          }
-
-          var offset = -(this.mainSliderPage - 1) * 100 + '%';
-          this.$('.active-slider-container-inner-wrap').animate({ 'margin-left' : offset });
+        if (this.mainSliderPage <= 0) {
+          this.mainSliderPage = this.mainSliderPageTotal;
         }
+
+        var offset = -(this.mainSliderPage - 1) * 100 + '%';
+
+        $('.active-slider-container-inner-wrap').animate({ 'margin-left' : offset });
         app.Analytics.activeItemScrollLeftClick();
       },
 
       onRightActiveArrowClick: function() {
-        if (app.smallMode) {
-          this.loadNextItemInSmallMode();
-        } else {
-          var items = app.config.itemData[this.selectedItem - 1];
-          this.mainSliderPage += 1;
+        var items = app.config.itemData[this.selectedItem - 1];
+        this.mainSliderPage += 1;
 
-          if (this.mainSliderPage > (items.allImages.length + 1)) {
-            this.mainSliderPage = 1;
-          }
-
-          var offset = -(this.mainSliderPage - 1) * 95 + '%';
-          this.$('.active-slider-container-inner-wrap').animate({ 'margin-left' : offset });
+        if (app.thirdPanel === true && this.mainSliderPage > items.allImages.length) {
+          this.mainSliderPage = 1;
+        } else if (this.mainSliderPage > (items.allImages.length + 1)) {
+          this.mainSliderPage = 1;
         }
+
+        var offset = -(this.mainSliderPage - 1) * 95 + '%';
+
+        $('.active-slider-container-inner-wrap').animate({ 'margin-left' : offset });
         app.Analytics.activeItemScrollRightClick();
-      },
-
-      loadPrevItemInSmallMode: function() {
-        this.selectedItem--;
-
-        if (this.selectedItem < 1) {
-          this.selectedItem = app.config.itemData.length;
-        }
-
-        this.loadItem(this.selectedItem);
-      },
-
-      loadNextItemInSmallMode: function() {
-        this.selectedItem++;
-
-        if (this.selectedItem > app.config.itemData.length)  {
-          this.selectedItem = 1;
-        }
-
-        this.loadItem(this.selectedItem);
       },
 
       sizeSelected: function(event) {
         this.currentlySelectedItem = $(event.currentTarget).data('value');
-        this.$('.size-selector > li').removeClass('selected');
+        $('.size-selector > li').removeClass('selected');
 
         if ($(event.currentTarget).hasClass('unavailable')) {
           return;
@@ -357,7 +377,6 @@ define([
         var selectedItem = app.config.itemData[this.selectedItem - 1].itemTitle;
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_LRG_ITEM_SIZE_SELECT, { size: selectedItem, item: selectedSize });
       },
-
 
       toggleOptions: function(event) {
         if ($.isEmptyObject(app.config.variantOptions) || app.config.variantOptions.length === 0) {
@@ -387,15 +406,25 @@ define([
 
       addButtonClick: function() {
         var startingData = app.config.cartItems;
+        var flag = null;
+
+        if (app.thirdPanel === true) {
+          this.selectedItem = $('.customize-button').data('item');
+        }
 
         if (app.config.itemData[this.selectedItem - 1].soldOut === true) {
+          flag = false;
           return;
         }
 
         if (startingData.length > 0) {
           for (var i = 0; i < startingData.length; i++) {
             if (startingData[i].id === this.selectedItem) {
-              return;
+              if (app.thirdPanel === true) {
+                app.cartManager.removeFromCart(i);
+              } else {
+                return;
+              }
             }
           }
         }
@@ -410,6 +439,8 @@ define([
 
           app.cartManager.addItem(cartItem);
           app.vent.trigger('itemAdded');
+
+          flag = true;
         } else if ($('.size-selector').children().hasClass('selected')) {
           var data             = app.cartManager.getItemById(this.selectedItem);
           var cartItem         = $.extend(true, {}, data);
@@ -422,7 +453,7 @@ define([
           cartItem.price             = selectedChildren.attr('data-price');
 
           if (app.config.variantOptions != null) {
-            cartItem.optionChoice      = app.config.variantOptions[selectedOptionId - 1]
+            cartItem.optionChoice = app.config.variantOptions[selectedOptionId - 1]
           }
 
           // app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.ADD_ITEM_CLICK, { 'itemName' : cartItem.itemTitle });
@@ -430,7 +461,11 @@ define([
 
           app.cartManager.addItem(cartItem);
           app.vent.trigger('itemAdded');
+
+          flag = true;
         }
+
+        return flag;
       },
 
       onLeftRecommendedArrowClick: function() {
@@ -457,18 +492,48 @@ define([
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_RCM_ITEM_SCROLL_RIGHT);
       },
 
-      populateOtherOptions: function() {
-        if (app.config.variantOptions.length === 0) {
+      generateOtherOptions: function() {
+        var currentItem    = app.config.itemData[this.selectedItem - 1];
+        var optionsForItem = app.config.extraOptions[currentItem.otherOptionId - 1];
+
+        // erases any previously created options
+        if ($('.product-options').children().length !== 0) {
+          $('.product-options').children().remove();
+        }
+
+        // if loaded item has no extra options, get outta here
+        if (optionsForItem == null) {
           return;
         }
 
+        var that           = this;
+        var optionSelector = $('.product-options');
+        var optionBlock;
+
+        _.each(optionsForItem, function(value, key, collection) {
+          if (value != null && value.title != null) {
+            var title = $('<div class="product-option-title">' + value.title + '</div>');
+            optionSelector.append(title);
+            var optionList = $('<ul class="product-option-list"></ul>');
+
+            for (var key in value.variants) {
+              optionBlock = $('<li class="variant-option-type">' + key + '</li>');
+              optionBlock.attr('itemId', value.variants[key]);
+              optionSelector.append(optionList);
+              optionList.append(optionBlock);
+            }
+          }
+        });
+      },
+
+      populateOtherOptions: function(itemOptions) {
         // TODO: refactor this into childrenRemove function
         if ($('.other-option-selector').children().length !== 0) {
           $('.other-option-selector').children().remove();
         }
 
         var that            = this;
-        var options         = app.config.variantOptions;
+        var options         = itemOptions;
         var optionSelector  = $('.other-option-selector');
         var currentItem     = app.config.itemData[this.selectedItem - 1];
         var optionBlock;
@@ -525,13 +590,15 @@ define([
         container.append(imageSlide);
       },
 
-      populateVariantColors: function() {
+      populateVariantColors: function(itemId) {
         if (app.config.variantColors.length === 0) {
           return;
         } else {
           var colorSelector = $('.color-selector');
         }
+
         var data = app.config.variantColors;
+
 
         // TODO: refactor this into childrenRemove function
         if (colorSelector.children().length !== 0) {
@@ -584,6 +651,10 @@ define([
           var slide1 = $("<div class='slide-inner-item'></div>");
           var imgUrl = app.config.baseProductImagePath + data[i].itemImageSrc;
 
+          if (data[i].imageTopAligned === true) {
+            slide1.css('margin-top', '7%');
+          }
+
           slide1.css({
             'background-image': 'url(' + imgUrl + ')',
             'background-size': 'contain',
@@ -602,6 +673,10 @@ define([
             var slide2 = $("<div class='slide-inner-item'></div>");
             var imgUrl = app.config.baseProductImagePath + data[i+1].itemImageSrc;
 
+            if (data[i+1].imageTopAligned === true) {
+              slide2.css('margin-top', '7%');
+            }
+
             slide2.css({
               'background-image': 'url(' + imgUrl + ')',
               'background-size': 'contain',
@@ -618,17 +693,21 @@ define([
           }
 
           if (data[i+2]) {
-            var slide2 = $("<div class='slide-inner-item'></div>");
+            var slide3 = $("<div class='slide-inner-item'></div>");
             var imgUrl = app.config.baseProductImagePath + data[i+2].itemImageSrc;
 
-            slide2.css({
+            if (data[i+2].imageTopAligned === true) {
+              slide3.css('margin-top', '7%');
+            }
+
+            slide3.css({
               'background-image': 'url(' + imgUrl + ')',
               'background-size': 'contain',
               'background-repeat': 'no-repeat'
             }).attr('itemId', data[i+2].id);
-            slide.append(slide2);
+            slide.append(slide3);
 
-            app.bindClickTouch(slide2, function(event) {
+            app.bindClickTouch(slide3, function(event) {
               var itemId = $(event.currentTarget).attr('itemId');
               this.loadItem(itemId);
               var item = app.config.itemData[this.selectedItem - 1].itemTitle;

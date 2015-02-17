@@ -23,7 +23,7 @@
 }
 
 .checkout-button {
-  font-family: brandon;
+  font-family: avenir;
   display: inline-block;
   background: #656A6F;
   color: #fff;
@@ -43,7 +43,7 @@
   position: absolute;
   height: 100%;
   z-index: 5;
-  width: 8.36768%;
+  width: 6.36768%;
   cursor: pointer;
 }
 
@@ -121,9 +121,11 @@
 
 .showroom-checkout-text {
   width: 50%;
-  margin: 3% auto 0 auto;
+  margin: 2.3% auto 0 auto;
   text-align: center;
-  font-size: 1.7em;
+  font-size: 1.3em;
+  cursor: pointer;
+  position: relative;
 }
 
 .showroom-checkout-text-top {
@@ -132,6 +134,8 @@
 
 .showroom-checkout-text-bottom {
   letter-spacing: 5px;
+  position: relative;
+  left: 3px;
 }
 
 .item-option-size,
