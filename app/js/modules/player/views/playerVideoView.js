@@ -81,7 +81,7 @@ define([
           that.onTimeUpdate(this.currentTime, this.duration);
         });
 
-        video[0].volume = 0.0;
+        video[0].volume = 1.0;
       },
 
       repaintSpinner: function() {

@@ -1,0 +1,41 @@
+.common-sprite {
+  background-image: url(/sprite/common-s1b69d7beb0.png);
+  background-repeat: no-repeat;
+}
+
+.active-item-third-panel {
+  width: 100%;
+  height: 100%;
+}
+.active-item-third-panel #active-cart-main-slider {
+  height: 41.66667%;
+}
+.active-item-third-panel .active-item-price {
+  margin-top: 7px;
+}
+.active-item-third-panel .active-slider-container-outer-wrap {
+  margin-top: 25%;
+}
+.active-item-third-panel .active-item-title {
+  max-width: 90%;
+  white-space: normal;
+  font-size: 1.3em;
+}
+.active-item-third-panel .customize-button {
+  font-family: avenir;
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  padding: 5%;
+  text-align: center;
+  font-size: 2.2rem;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 400;
+  letter-spacing: 1px;
+  position: absolute;
+  bottom: 9.3%;
+}
+
+/*# sourceMappingURL=activeItemThirdPanel.css.map */
