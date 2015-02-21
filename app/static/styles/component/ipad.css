@@ -25,21 +25,6 @@
     max-width: 15.116% !important;
   }
 }
-.ipad .embedSelector li {
-  padding: 0.55% 1.25%;
-}
-.ipad .embedSelector .six40 p {
-  margin-top: 9%;
-}
-.ipad .embedSelector .eight50 p {
-  margin-top: 8.5%;
-}
-.ipad .embedSelector .thousand p {
-  margin-top: 7%;
-}
-.ipad .embedSelector .twelve80 p {
-  margin-top: 6.5%;
-}
 .ipad .cartItemDescription .itemSize {
   padding: 3% 4% 5% 4% !important;
 }
@@ -61,3 +46,9 @@
 .iphone-landscape .beacon {
   width: 20px;
 }
+.iphone-portrait .fullscreen-icn,
+.iphone-landscape .fullscreen-icn {
+  display: none;
+}
+
+/*# sourceMappingURL=ipad.css.map */

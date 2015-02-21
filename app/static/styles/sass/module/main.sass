@@ -8,9 +8,9 @@
 @import "../component/animation"
 @import "../component/checkout_cart"
 @import "../component/active_cart"
-@import "../component/smallSizeFixes"
+@import "../component/activeItemThirdPanel"
+@import "../component/cartCustomizationPanel"
 @import "../component/buildSpecific/showroom"
-//@import "../component/no-size-selector-styles"
 
 
 html
@@ -241,21 +241,17 @@ html.fullscreen
   display: none
   position: absolute
   top: 14.6%
-  left: 43.6%
+  left: 42%
   width: 16.15%
-  height: 12.5%
-  // background: url( ../../images/sprite/common/share-icon.png) no-repeat
-  background-size: 47%
-  background-position: 50%
+  height: 10.5%
   cursor: pointer
-  margin-right: 30px
   z-index: 15
 
 .share-text
   display: none
   position: absolute
   top: 10%
-  left: 50%
+  left: 48%
   cursor: pointer
   margin-right: 30px
   z-index: 15
@@ -265,22 +261,18 @@ html.fullscreen
 .embed-icn
   display: none
   position: absolute
-  bottom: 14.6%
-  left: 43.6%
+  bottom: 16.6%
+  left: 42%
   width: 16.15%
-  height: 12.5%
-  // background: url( ../../images/sprite/common/embed-icon.png) no-repeat
-  background-size: 47%
-  background-position: 50%
+  height: 9.5%
   cursor: pointer
-  margin-right: 30px
   z-index: 15
 
 .embed-text
   display: none
   position: absolute
   bottom: 29%
-  left: 50%
+  left: 48%
   cursor: pointer
   margin-right: 30px
   z-index: 15
@@ -365,7 +357,3 @@ html.fullscreen
     float: left
     width: 99%
 
-@media (max-width: 767px)
-  .share-text,
-  .embed-text
-    left: 49.5%

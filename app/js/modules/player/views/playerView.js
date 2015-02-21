@@ -8,9 +8,11 @@ define([
   'modules/player/views/playerPosterView',
   'modules/player/views/playerShareView',
   'modules/player/views/playerSplashVideoView',
+  'modules/player/views/activeItemThirdPanel',
+  'modules/player/views/cartThirdPanelCustomize',
   'keyframes',
 ], function (Marionette, app, template, PlayerVideoView, PlayerActiveCartView,
-             PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView, keyframes) {
+             PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView, ActiveItemThirdPanel, CartThirdPanelCustomize, keyframes) {
 
     return Marionette.LayoutView.extend({
       template              : template,
@@ -43,6 +45,8 @@ define([
         this.playerCheckoutCartView = new PlayerCheckoutCartView();
         this.playerPosterView       = new PlayerPosterView();
         this.playerShareView        = new PlayerShareView();
+        this.activeItemThirdPanel   = new ActiveItemThirdPanel();
+        this.customizePanel         = new CartThirdPanelCustomize();
 
         app.vent.on('splashClick', this.fadeSplashPlayer, this);
 
@@ -53,23 +57,27 @@ define([
 
           that.isEnd = isEnd;
 
-          if (app.isiPhone()) {
-            $('.fullscreen-icn').hide();
+          if (app.isiPhone() && !that.isEnd) {
+            $('.play-button').show();
+            $('.pause-button').hide();
+          } else if (!that.isEnd) {
+            $('.play-button, .share-icn, .embed-icn').show();
 
-            if (!that.isEnd) {
-              $('.play-button').show();
-            }
-          } else {
-            if (!that.isEnd) {
-              $('.play-button, .share-icn, .share-text, .embed-text, .embed-icn').show();
+            if (app.thirdPanel === true) {
+              $('.share-text, .embed-text').hide();
+            } else {
+              $('.share-text, .embed-text').show();
             }
           }
-
         });
 
         app.vent.on('hideMask', function() {
           $('#mask-region').animate({ 'opacity' : 0.0 }, 400).css('z-index', 2);
-          $('.play-button, .share-icn, .share-text, .embed-text, .embed-icn').hide();
+          $('.play-button, .share-icn, .share-text, .embed-text, .embed-icn, .fullscreen-icn').hide();
+
+          if (app.isiPhone()) {
+            $('.pause-button').show();
+          }
         });
 
         app.vent.on('checkoutDrawerClick', this.checkCartStatus, this);
@@ -92,16 +100,18 @@ define([
       applyResizeAttributes: function() {
         var playerWidth = $('html').width();
 
-        if (playerWidth <= 600) {
-          app.smallMode = true;
-          $('body').addClass('smallApp');
-        } else {
-          app.smallMode = false;
-          $('body').removeClass('smallApp');
-        }
-
         app.trigger('resize');
         this.checkCartStatus();
+
+        if (playerWidth < 641) {
+          app.thirdPanel = true;
+          this.activeCartRegion.show(this.activeItemThirdPanel, { preventDestroy: true });
+          this.checkoutCartRegion.show(this.customizePanel, { preventDestroy: true });
+        } else {
+          app.thirdPanel = false;
+          this.activeCartRegion.show(this.playerActiveCartView, { preventDestroy: true });
+          this.checkoutCartRegion.show(this.playerCheckoutCartView, { preventDestroy: true });
+        }
 
         var baseWidth = 1280;
         var newFontPct = playerWidth / baseWidth * 62.5;
@@ -113,12 +123,7 @@ define([
       onShow: function() {
         this.$('.play-button').hide();
 
-        if (app.config.loaderStyle === 'video') {
-          this.playerPosterRegion.show(this.playerSplashVideoView);
-        } else {
-          this.playerPosterRegion.show(this.playerPosterView);
-        }
-
+        this.playerPosterRegion.show(this.playerPosterView);
         this.playerPosterRegion.$el.css('z-index', 10);
 
         if (app.isiPhone()) {
@@ -167,9 +172,6 @@ define([
 
         this.videoRegion.show(this.playerVideoView);
         this.videoRegion.$el.css('z-index', 1);
-
-        this.activeCartRegion.show(this.playerActiveCartView);
-        this.checkoutCartRegion.show(this.playerCheckoutCartView);
         this.shareRegion.show(this.playerShareView);
 
         app.bindClickTouch(this.$('.scrubber'), function(event) {
@@ -240,7 +242,11 @@ define([
       },
 
       hoverBeaconsOn: function() {
-        $('.pause-button, .fullscreen-icn').show();
+        if (app.isiPhone()) {
+          $('.fullscreen-icn').hide();
+        } else {
+          $('.pause-button, .fullscreen-icn').show();
+        }
 
         if (app.isPlaying === false) {
           $('.pause-button, .fullscreen-icn').hide();
@@ -273,7 +279,7 @@ define([
         app.vent.trigger('pause');
 
         this.playerActiveCartView.loadItem(itemId);
-        this.playerActiveCartView.openActiveCart();
+        this.chooseItemPanel();
       },
 
       removeKeyframes: function(pathName) {
@@ -386,7 +392,7 @@ define([
         app.vent.trigger('showMask');
         this.playerShareView.animateIn();
 
-        if (app.smallMode) {
+        if (app.thirdPanel) {
           this.playerActiveCartView.closeActiveCart();
           this.playerCheckoutCartView.closeCheckoutCart();
         }
@@ -399,7 +405,7 @@ define([
       },
 
       checkCartStatus: function() {
-        if (this.playerCheckoutCartView.isOpen || this.playerActiveCartView.isOpen || this.playerShareView.isOpen) {
+        if (this.playerCheckoutCartView.isOpen || this.playerActiveCartView.isOpen || this.playerShareView.isOpen || this.activeItemThirdPanel.isOpen) {
           app.vent.trigger('pause');
           app.vent.trigger('showMask');
 
@@ -409,6 +415,14 @@ define([
         } else {
           app.vent.trigger('play');
           app.vent.trigger('hideMask');
+        }
+      },
+
+      chooseItemPanel: function() {
+        if (app.thirdPanel) {
+          this.activeItemThirdPanel.openActiveCart();
+        } else {
+          this.playerActiveCartView.openActiveCart();
         }
       },
 
@@ -433,7 +447,8 @@ define([
           }
         } else {
           if (currentProgress >= 1.0) {
-          this.playerActiveCartView.openActiveCart();
+
+          this.chooseItemPanel();
           this.playerCheckoutCartView.openCheckoutCart();
 
           app.vent.trigger('showMask', true);
@@ -478,8 +493,14 @@ define([
       },
 
       onMaskClick: function() {
-        this.playerActiveCartView.closeActiveCart();
-        this.playerCheckoutCartView.closeCheckoutCart();
+        if (app.thirdPanel === true) {
+          this.activeItemThirdPanel.closeActiveCart();
+          this.customizePanel.closeCheckoutCart();
+        } else {
+          this.playerActiveCartView.closeActiveCart();
+          this.playerCheckoutCartView.closeCheckoutCart();
+        }
+
         this.playerShareView.animateOut();
         app.vent.trigger('hideMask');
         app.vent.trigger('play');
