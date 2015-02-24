@@ -158,11 +158,16 @@ define([
         }
 
         var container       = $('.active-slider-container-inner-wrap');
-        var slideWidth      = 94.5 / (itemData.allImages.length + 1);
         var variants        = itemData.variants;
         var that            = this;
         this.selectedItem   = id;
         this.mainSliderPage = 1;
+
+        if (app.thirdPanel === true) {
+          var slideWidth = 94.5 / itemData.allImages.length;
+        } else {
+          var slideWidth = 94.5 / (itemData.allImages.length + 1);
+        }
 
         this.populateVariantColors();
 
@@ -174,7 +179,7 @@ define([
 
         $('.customize-button').data('item', this.selectedItem);
 
-        if (itemData.itemDescription != null) {
+        if (itemData.itemDescription != null && app.thirdPanel !== true) {
           $('.description-content-block').html(itemData.itemDescription);
           $('.description').css({
             'width'   : slideWidth + '%',
@@ -214,9 +219,16 @@ define([
           container.append(imageSlide);
 
         } else {
+
+          if (app.thirdPanel === true) {
+            var width = (itemData.allImages.length) * 100 + '%';
+          } else {
+            var width = (itemData.allImages.length + 1) * 100 + '%';
+          }
+
           $('.active-slider-container-inner-wrap').css({
             'margin-left' : '0%',
-            'width'       : (itemData.allImages.length + 1) * 100 + '%'
+            'width'       : width
           });
 
           if (container.find('.active-item-image-slide').length) {
@@ -296,6 +308,7 @@ define([
         }
 
         var offset = -(this.mainSliderPage - 1) * 100 + '%';
+
         $('.active-slider-container-inner-wrap').animate({ 'margin-left' : offset });
         app.Analytics.activeItemScrollLeftClick();
       },
@@ -304,11 +317,14 @@ define([
         var items = app.config.itemData[this.selectedItem - 1];
         this.mainSliderPage += 1;
 
-        if (this.mainSliderPage > (items.allImages.length + 1)) {
+        if (app.thirdPanel === true && this.mainSliderPage > items.allImages.length) {
+          this.mainSliderPage = 1;
+        } else if (this.mainSliderPage > (items.allImages.length + 1)) {
           this.mainSliderPage = 1;
         }
 
         var offset = -(this.mainSliderPage - 1) * 95 + '%';
+
         $('.active-slider-container-inner-wrap').animate({ 'margin-left' : offset });
         app.Analytics.activeItemScrollRightClick();
       },

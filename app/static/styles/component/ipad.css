@@ -38,8 +38,19 @@
   margin-bottom: 3%;
 }
 .iphone-portrait .color-selector {
-  margin: 0 auto 6% auto;
+  margin: 3% auto 6% auto;
   height: 30%;
+}
+.iphone-portrait .cart-item-size {
+  font-size: 2.4rem;
+  width: 17.71429%;
+}
+.iphone-portrait .cart-item-price {
+  font-size: 2.4rem;
+}
+.iphone-portrait .cart-remove-button {
+  font-size: 1.2em;
+  margin-top: 12%;
 }
 
 .iphone-portrait .beacon,
@@ -49,6 +60,10 @@
 .iphone-portrait .fullscreen-icn,
 .iphone-landscape .fullscreen-icn {
   display: none;
+}
+.iphone-portrait #checkout-cart-region,
+.iphone-landscape #checkout-cart-region {
+  border-left: 3px solid black;
 }
 
 /*# sourceMappingURL=ipad.css.map */
