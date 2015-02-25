@@ -313,7 +313,6 @@ define([
             if (hotSpot.movingBeacon === true && app.isiPhone() === null) {
 
               if ($('.keyframe-style#' + hotSpot.pathName).length === 0) {
-
                 // if (newTime != null) {
                 //   var newCurrentTime = newTime / duration;
 
@@ -326,7 +325,7 @@ define([
                 //     console.log(hotSpot.bezierStartXY);
                 //   }
                 // } else {
-                  totalSteps = hotSpot.endTime - hotSpot.startTime;
+                totalSteps = hotSpot.endTime - hotSpot.startTime;
                 // }
 
 
@@ -485,8 +484,8 @@ define([
         this.playerShareView.animateOut();
 
         $('.hotSpot').remove();
-        this.createBeacons();
         this.updateTagPosition(this.currentTime, this.duration, seekTime);
+        this.createBeacons();
 
         app.vent.trigger('hideMask');
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.CB_JUMPTOTIME_CLICK, { 'timeJumpedTo' : seekTime });
