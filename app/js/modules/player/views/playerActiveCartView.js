@@ -192,7 +192,12 @@ define([
         $('.size-selector > li').removeClass('selected');
         $('.active-item-title').html(itemData.itemTitle);
         $('.active-item-price').html(itemData.itemPrice);
-        $('.color-selector-item[itemid=' + this.selectedItem + ']').css('border', '1.5px solid black');
+
+        if (app.thirdPanel === true) {
+          $('.color-selector-item[itemid=' + this.selectedItem + ']').css('border', '1px solid black');
+        } else {
+          $('.color-selector-item[itemid=' + this.selectedItem + ']').css('border', '1.5px solid black');
+        }
 
         if (optionSelector != null) {
           $('.variant-option-type[itemid=' + id + ']').css('border', '1.5px solid black');
@@ -225,6 +230,15 @@ define([
           } else {
             var width = (itemData.allImages.length + 1) * 100 + '%';
           }
+
+          if (app.isiPhone()) {
+            if (window.orientation === 90 || window.orientation === -90) {
+              slideWidth = 94.5 / itemData.allImages.length;
+            } else {
+              slideWidth = 88 / itemData.allImages.length; //reset slideWidth for innerSlide sizes on portrait
+            }
+          }
+
 
           $('.active-slider-container-inner-wrap').css({
             'margin-left' : '0%',

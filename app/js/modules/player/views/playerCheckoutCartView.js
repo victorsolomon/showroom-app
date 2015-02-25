@@ -77,14 +77,25 @@ define([
 
 
         if (app.thirdPanel === true) {
-          var item = $("<li class='cart-item'>" +
-                        "<div class='cart-remove-button' data-index='" + index + "'>X</div>" +
-                        "<div class='cart-item-image' style='background-image:url(" + imgUrl + ");'></div>" +
-                        "<div class='cart-item-description'>" +
-                          ((itemData.hasSize) ? "<div class='cart-item-size'>" + size + "</div>" : "" ) +
-                          "<div class='cart-item-price'>" + price + "</div>" +
-                        "</div>" +
-                      "</li>");
+          if (app.isiPhone()) {
+            var item = $("<li class='cart-item'>" +
+                          "<div class='cart-item-image' style='background-image:url(" + imgUrl + ");'></div>" +
+                          "<div class='cart-item-description'>" +
+                            ((itemData.hasSize) ? "<div class='cart-item-size'>" + size + "</div>" : "" ) +
+                            "<div class='cart-item-price'>" + price + "</div>" +
+                          "</div>" +
+                          "<div class='cart-remove-button' data-index='" + index + "'>X</div>" +
+                        "</li>");
+          } else {
+            var item = $("<li class='cart-item'>" +
+                          "<div class='cart-remove-button' data-index='" + index + "'>X</div>" +
+                          "<div class='cart-item-image' style='background-image:url(" + imgUrl + ");'></div>" +
+                          "<div class='cart-item-description'>" +
+                            ((itemData.hasSize) ? "<div class='cart-item-size'>" + size + "</div>" : "" ) +
+                            "<div class='cart-item-price'>" + price + "</div>" +
+                          "</div>" +
+                        "</li>");
+          }
         } else if (app.config.checkoutType !== 'minted') {
           var item = $("<li class='cart-item'>" +
                         "<div class='cart-remove-button' data-index='" + index + "'>X</div>" +

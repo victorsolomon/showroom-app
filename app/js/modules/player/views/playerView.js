@@ -103,7 +103,7 @@ define([
         app.trigger('resize');
         this.checkCartStatus();
 
-        if (playerWidth < 641) {
+        if (playerWidth < 641 || app.isiPhone()) {
           app.thirdPanel = true;
           this.activeCartRegion.show(this.activeItemThirdPanel, { preventDestroy: true });
           this.checkoutCartRegion.show(this.customizePanel, { preventDestroy: true });

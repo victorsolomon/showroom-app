@@ -19,6 +19,7 @@
 .third-panel-cart-customizers .color-selector-item {
   width: auto;
   padding: 2% 3%;
+  border: 1px solid black;
 }
 .third-panel-cart-customizers .size-selector li {
   font-size: 2.25rem;
@@ -36,6 +37,9 @@
 .third-panel-cart-customizers .showroom-checkout-text {
   margin: 4% auto;
   width: 50%;
+}
+.third-panel-cart-customizers .showroom-checkout-text-bottom {
+  letter-spacing: 4px;
 }
 
 .customization-panel {
