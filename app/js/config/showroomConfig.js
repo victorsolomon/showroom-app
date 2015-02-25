@@ -253,7 +253,7 @@ define([
           "hotSpotStartHeight" : "300",
           "bezierStartXY"      : [1, 1],
           'bezierMoveXY'       : [300, 20],
-          "firstPull"          : [300, -20],
+          "firstPull"          : [100, -20],
           "secondPull"         : null,
           'circularCentersXY'  : null,
           'radius'             : null,
