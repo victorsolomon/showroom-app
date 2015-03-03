@@ -21,11 +21,15 @@
   padding: 2% 3%;
   border: 1px solid black;
 }
+.third-panel-cart-customizers .size-selector {
+  padding-right: 5%;
+}
 .third-panel-cart-customizers .size-selector li {
   font-size: 2.25rem;
-  width: 13%;
-  padding: 1.2%;
+  padding: 1.5% 2.2%;
   font-weight: 400;
+  min-width: 15%;
+  margin: 4% 0 2% 5%;
 }
 .third-panel-cart-customizers .cart-items {
   height: 75%;

@@ -144,7 +144,12 @@ define([
 
       checkColorOptions: function(itemData) {
         if (itemData.hasColor === false) {
-          $('.color-selector').css('visibility', 'hidden');
+          if (app.thirdPanel === true) {
+            $('.color-selector').hide();
+            $('.options-color-title').hide();
+          } else {
+            $('.color-selector').css('visibility', 'hidden');
+          }
         } else {
           $('.color-selector').css('visibility', 'visible');
         }
@@ -167,6 +172,11 @@ define([
           var slideWidth = 94.5 / itemData.allImages.length;
         } else {
           var slideWidth = 94.5 / (itemData.allImages.length + 1);
+        }
+
+        if ($.isEmptyObject(app.config.variantOptions) || app.config.variantOptions.length === 0) {
+          $('.other-option-selector').hide();
+          $('#active-cart-info-and-actions').css('height', '20.5%');
         }
 
         this.populateVariantColors();
@@ -277,6 +287,8 @@ define([
 
       createSizeButtons: function(variants) {
         var sizeButton = $('.size-selector');
+        var itemWidth  = 0;
+        var counter    = 0;
 
         for (var key in variants) {
           sizeButton.css('visibility', 'visible');
@@ -290,6 +302,7 @@ define([
             }
 
             var listItem = $('<li data-value="' + key.replace(/"/g, " ").replace(/ /g, '') + '" data-variant="' + variants[key][0].toString() + '" data-price="' + (variants[key][1] ? variants[key][1] : undefined)   + '">' + (newKey ? newKey : key) +'</li>');
+
             app.bindClickTouch(listItem, function(event) {
               this.sizeSelected(event);
             }.bind(this));
@@ -312,6 +325,7 @@ define([
         if (this.currentlySelectedItem != null) {
           $('.size-selector').find('li[data-value=' + this.currentlySelectedItem + ']').addClass('selected');
         }
+
       },
 
       onLeftActiveArrowClick: function() {
@@ -363,7 +377,6 @@ define([
         var selectedItem = app.config.itemData[this.selectedItem - 1].itemTitle;
         app.Analytics.logAnalyticEvent(app.Analytics.analyticVars.AC_LRG_ITEM_SIZE_SELECT, { size: selectedItem, item: selectedSize });
       },
-
 
       toggleOptions: function(event) {
         if ($.isEmptyObject(app.config.variantOptions) || app.config.variantOptions.length === 0) {
@@ -604,6 +617,10 @@ define([
           var slide1 = $("<div class='slide-inner-item'></div>");
           var imgUrl = app.config.baseProductImagePath + data[i].itemImageSrc;
 
+          if (data[i].imageTopAligned === true) {
+            slide1.css('margin-top', '7%');
+          }
+
           slide1.css({
             'background-image': 'url(' + imgUrl + ')',
             'background-size': 'contain',
@@ -622,6 +639,10 @@ define([
             var slide2 = $("<div class='slide-inner-item'></div>");
             var imgUrl = app.config.baseProductImagePath + data[i+1].itemImageSrc;
 
+            if (data[i+1].imageTopAligned === true) {
+              slide2.css('margin-top', '7%');
+            }
+
             slide2.css({
               'background-image': 'url(' + imgUrl + ')',
               'background-size': 'contain',
@@ -638,17 +659,21 @@ define([
           }
 
           if (data[i+2]) {
-            var slide2 = $("<div class='slide-inner-item'></div>");
+            var slide3 = $("<div class='slide-inner-item'></div>");
             var imgUrl = app.config.baseProductImagePath + data[i+2].itemImageSrc;
 
-            slide2.css({
+            if (data[i+2].imageTopAligned === true) {
+              slide3.css('margin-top', '7%');
+            }
+
+            slide3.css({
               'background-image': 'url(' + imgUrl + ')',
               'background-size': 'contain',
               'background-repeat': 'no-repeat'
             }).attr('itemId', data[i+2].id);
-            slide.append(slide2);
+            slide.append(slide3);
 
-            app.bindClickTouch(slide2, function(event) {
+            app.bindClickTouch(slide3, function(event) {
               var itemId = $(event.currentTarget).attr('itemId');
               this.loadItem(itemId);
               var item = app.config.itemData[this.selectedItem - 1].itemTitle;
