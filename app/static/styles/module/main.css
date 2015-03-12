@@ -1016,6 +1016,14 @@ video {
   position: absolute;
 }
 
+#theVideo {
+  opacity: 0;
+}
+
+#beacon-video {
+  opacity: 1;
+}
+
 #showroom-player {
   position: relative;
   width: 100%;

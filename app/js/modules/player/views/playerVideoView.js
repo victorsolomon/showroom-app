@@ -122,15 +122,12 @@ define([
       },
 
       pause: function() {
-        $('.hotSpot.boostKeyframe').pauseKeyframe();
-
         if (app.isiPhone()) {
           this.player.pause();
         } else {
           this.$('video')[0].pause();
           app.isPlaying = false;
         }
-
 
         app.Analytics.pauseButtonControlBarClick();
       },
@@ -143,7 +140,6 @@ define([
           this.$('video')[0].play();
         }
 
-        $('.hotSpot.boostKeyframe').resumeKeyframe();
         $('.play-button').hide();
         $('.replay-button').hide();
         app.isPlaying = true;

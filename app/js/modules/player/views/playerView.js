@@ -10,9 +10,8 @@ define([
   'modules/player/views/playerSplashVideoView',
   'modules/player/views/activeItemThirdPanel',
   'modules/player/views/cartThirdPanelCustomize',
-  'keyframes',
 ], function (Marionette, app, template, PlayerVideoView, PlayerActiveCartView,
-             PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView, ActiveItemThirdPanel, CartThirdPanelCustomize, keyframes) {
+             PlayerCheckoutCartView, PlayerPosterView, PlayerShareView, PlayerSplashVideoView, ActiveItemThirdPanel, CartThirdPanelCustomize) {
 
     return Marionette.LayoutView.extend({
       template              : template,
@@ -217,9 +216,8 @@ define([
 
         for (var i = 0; i < app.config.hotSpots.length; i++) {
           var hotspotItemData = app.config.hotSpots[i];
-          this.removeKeyframes(hotspotItemData.pathName);
 
-          var beacon = $('<svg version="1.1" class="beacon" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="52px" height="54px" viewBox="0 0 52 54" enable-background="new 0 0 52 54" xml:space="preserve" type="image/svg+xml"><g><circle class="beacon-circle" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="26" cy="27" r="19.358"/><g><path class="beacon-path" fill="#FFFFFF" d="M24.771,28.259H14.457c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V15.426c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H27.29v10.254c0,0.42-0.36,0.78-0.78,0.78H25.55c-0.42,0-0.779-0.36-0.779-0.78V28.259z"/></g></g><g><circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="88.71" cy="25.533" r="19.358"/><g><path fill="#FFFFFF" d="M87.481,26.792H77.167c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V13.959c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H90v10.254c0,0.42-0.36,0.78-0.78,0.78h-0.959c-0.42,0-0.779-0.36-0.779-0.78V26.792z"/></g></g></svg>');
+          // var beacon = $('<svg version="1.1" class="beacon" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="52px" height="54px" viewBox="0 0 52 54" enable-background="new 0 0 52 54" xml:space="preserve" type="image/svg+xml"><g><circle class="beacon-circle" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="26" cy="27" r="19.358"/><g><path class="beacon-path" fill="#FFFFFF" d="M24.771,28.259H14.457c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V15.426c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H27.29v10.254c0,0.42-0.36,0.78-0.78,0.78H25.55c-0.42,0-0.779-0.36-0.779-0.78V28.259z"/></g></g><g><circle fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" cx="88.71" cy="25.533" r="19.358"/><g><path fill="#FFFFFF" d="M87.481,26.792H77.167c-0.42,0-0.779-0.36-0.779-0.779v-0.9c0-0.419,0.359-0.779,0.779-0.779h10.314V13.959c0-0.419,0.359-0.719,0.779-0.719h0.959c0.42,0,0.78,0.3,0.78,0.719v10.375h10.254c0.42,0,0.779,0.36,0.779,0.779v0.9c0,0.419-0.359,0.779-0.779,0.779H90v10.254c0,0.42-0.36,0.78-0.78,0.78h-0.959c-0.42,0-0.779-0.36-0.779-0.78V26.792z"/></g></g></svg>');
 
           if (app.config.hotspotColor != null) {
             $('.beacon-circle').attr('stroke', app.config.hotspotColor);
@@ -231,7 +229,7 @@ define([
                 .attr('id', 'hotspot' + hotspotItemData.hotSpotId)
                 .attr('itemId', hotspotItemData.id)
                 .attr('hotSpotId', hotspotItemData.hotSpotId)
-                .append(beacon);
+                // .append(beacon);
 
           app.bindClickTouch($(hotspot), function(event) {
             that.tagClick(event);
@@ -282,12 +280,6 @@ define([
         this.chooseItemPanel();
       },
 
-      removeKeyframes: function(pathName) {
-        if ($('.keyframe-style#' + pathName).length > 0) {
-          $('.keyframe-style#' + pathName).remove();
-        }
-      },
-
       updateTagPosition: function(timeSig, duration, newTime) {
         var currentTime          = timeSig / duration;
         var ratioComparisonWidth = 1920;
@@ -310,73 +302,7 @@ define([
             width  *= ratio;
             height *= ratio;
 
-            if (hotSpot.movingBeacon === true && app.isiPhone() === null) {
-
-              if ($('.keyframe-style#' + hotSpot.pathName).length === 0) {
-                // if (newTime != null) {
-                //   var newCurrentTime = newTime / duration;
-
-                //   if (newCurrentTime > hotSpot.startTime) {
-                //     var oldSteps             = hotSpot.endTime - hotSpot.startTime;
-                //     var diff                 = newCurrentTime - hotSpot.startTime;
-                //     var percentage           = diff / oldSteps;
-                //     totalSteps               = hotSpot.endTime - newCurrentTime;
-                //     hotSpot.bezierStartXY[0] = (hotSpot.bezierMoveXY[0] - hotSpot.bezierStartXY[0]) * (diff / oldSteps);
-                //     console.log(hotSpot.bezierStartXY);
-                //   }
-                // } else {
-                totalSteps = hotSpot.endTime - hotSpot.startTime;
-                // }
-
-
-                hotSpot.bezierStartXY[0] *= ratio;
-                hotSpot.bezierStartXY[1] *= ratio;
-
-                // TODO: Add back in once iPhone beacons are in place.
-                // if (app.isiPhone()) {
-                //   if (window.orientation === 90 || window.orientation === -90) {
-                //     hotSpot.bezierMoveXY[0] = hotSpot.bezierMoveXY[0] / 2;
-                //     hotSpot.bezierMoveXY[1] = hotSpot.bezierMoveXY[1] / 2;
-                //     hotSpot.firstPull[0]    = hotSpot.firstPull[0] / 2;
-                //     hotSpot.firstPull[1]    = hotSpot.firstPull[1] / 2;
-                //   } else {
-                //     hotSpot.bezierMoveXY[0] = hotSpot.bezierMoveXY[0] / 4;
-                //     hotSpot.bezierMoveXY[1] = hotSpot.bezierMoveXY[1] / 4;
-                //     hotSpot.firstPull[0]    = hotSpot.firstPull[0] / 4;
-                //     hotSpot.firstPull[1]    = hotSpot.firstPull[1] / 4;
-                //   }
-                // }
-
-                if (hotSpot.pathType === 'regular') {
-                  var rules = $.keyframe.bezierPath( { name: hotSpot.pathName } , hotSpot.bezierStartXY, hotSpot.bezierMoveXY, hotSpot.firstPull);
-                } else if (hotSpot.pathType === 'advanced') {
-                  var rules = $.keyframe.bezierPath( { name: hotSpot.pathName } , hotSpot.bezierStartXY, hotSpot.bezierMoveXY, hotSpot.firstPull, hotSpot.secondPull);
-                } else if (hotSpot.pathType === 'circular' && hotSpot.circularCentersXY != null && hotSpot.radius != null) {
-                  var rules = $.keyframe.circlePath( { name: hotSpot.pathName } , hotSpot.circularCentersXY, hotSpot.radius );
-                }
-
-                $.keyframe.define([rules]);
-
-                var duration = Math.abs(totalSteps * hotSpot.durationMultiple);
-                // console.log(duration);
-
-                $('#hotspot' + hotSpot.hotSpotId)
-                .css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
-                .playKeyframe({
-                  name: hotSpot.pathName,
-                  duration: duration + 's',
-                  timingFunction: hotSpot.timingType || 'linear',
-                  iterationCount: hotSpot.iterationCount,
-                  direction: 'normal',
-                  fillMode: 'none',
-                  complete: function() {
-                    $(this).css({'left' : -2000});
-                  }
-                });
-              }
-            } else {
-              $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
-            }
+            $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
           } else {
             $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : -200000 });
           }

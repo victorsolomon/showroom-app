@@ -2,10 +2,8 @@ define([
   'jquery',
   'underscore',
   'jsmpeg',
-  'keyframes',
-  'pathfinder',
   'marionette'
-], function ($, _, jsmpeg, keyframes, pathfinder, Marionette) {
+], function ($, _, jsmpeg, Marionette) {
 
     "use strict";
 

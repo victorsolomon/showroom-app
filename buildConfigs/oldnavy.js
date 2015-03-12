@@ -5,7 +5,7 @@
   removeCombined: true,
   //- this is the directory that the new files will be. it will be created if it doesn't exist
   dir: "../../builds/oldnavy",
-  optimize: 'uglify2',
+  optimize: 'none',
   paths: {
     'jquery'        : 'libs/jquery/dist/jquery',
     'underscore'    : 'libs/lodash-3.1.0',
@@ -13,9 +13,7 @@
     'hbs'           : 'libs/hbs/hbs',
     'Handlebars'    : 'libs/handlebars/handlebars',
     'marionette'    : 'libs/marionette/lib/backbone.marionette',
-    'jsmpeg'        : 'libs/jsmpeg',
-    'keyframes'     : 'libs/keyframes',
-    'pathfinder'    : 'libs/keyframes.pathfinder'
+    'jsmpeg'        : 'libs/jsmpeg'
   },
 
   shim: {
