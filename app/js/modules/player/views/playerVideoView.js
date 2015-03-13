@@ -21,6 +21,14 @@ define([
         app.vent.on('pause', this.pause, this);
         app.vent.on('replay', this.replay, this);
         app.vent.on('play', this.play, this);
+
+        if (app.isiPhone == null) {
+          window.requestAnimationFrame(function() {
+            if (this.$('video')[0].currentTime !== this.$('video')[1].currentTime) {
+              this.$('video')[0].currentTime = this.$('video')[1].currentTime;
+            }
+          }.bind(this));
+        }
       },
 
       onRender: function() {
@@ -63,25 +71,24 @@ define([
 
       renderRegularVideo: function() {
         var that = this;
-        var video = this.$('video');
+        var allVideos = this.$('video');
+        var mainVideo = this.$('#theVideo');
+        var beaconVideo = this.$('#beacon-video');
 
-        video
-          .append("<source src='static/movies/" + app.config.mp4_video_src_med + "' type='video/mp4' webkit-playsinline></source>")
-          .append("<source src='static/movies/" + app.config.webm_video_src_med + "' type='video/webm' webkit-playsinline></source>");
+        mainVideo
+          .append("<source src='static/movies/" + app.config.mp4_video_src_med + "' type='video/mp4'></source>")
+          .append("<source src='static/movies/" + app.config.webm_video_src_med + "' type='video/webm'></source>");
 
-        video.bind('canplay', function(event) {
-          that.onCanPlay();
-        });
+        beaconVideo
+          .append("<source src='static/movies/" + app.config.beacon_video_mp4 + "' type='video/mp4'></source>")
+          .append("<source src='static/movies/" + app.config.beacon_video_webm + "' type='video/webm'></source>");
 
-        // window.setInterval(function(){
-        //   that.onTimeUpdate(that.currentTime, that.duration);
-        // }, 500);
-
-        video.bind("timeupdate", function(event) {
+        allVideos.bind("timeupdate", function(event) {
           that.onTimeUpdate(this.currentTime, this.duration);
         });
 
-        video[0].volume = 1.0;
+        mainVideo[0].volume   = 1.0;
+        beaconVideo[0].volume = 0.0;
       },
 
       repaintSpinner: function() {
@@ -98,27 +105,16 @@ define([
         }, 200);
       },
 
-      onCanPlay: function() {
-        var that = this;
-
-        if (app.isiPhone()) {
-          $('.loadingtrail').hide();
-          that.player.play();
-        } else {
-          $('.loadingtrail').hide();
-          that.play();
-        }
-      },
-
       onTimeUpdate: function(currentTime, duration) {
-        var currentTime = currentTime || $('video')[0].currentTime;
-        var duration    = duration || $('video')[0].duration;
+        var currentTime = currentTime != null ? currentTime : $('video')[0].currentTime;
+        var duration    = duration != null ? duration : $('video')[0].duration;
         app.vent.trigger('timeUpdate', { 'currentTime': currentTime, 'duration': duration });
         this.$('video').show();
       },
 
       onSeek: function(timeSig) {
         this.$('video')[0].currentTime = timeSig;
+        this.$('video')[1].currentTime = timeSig;
       },
 
       pause: function() {
@@ -126,6 +122,7 @@ define([
           this.player.pause();
         } else {
           this.$('video')[0].pause();
+          this.$('video')[1].pause();
           app.isPlaying = false;
         }
 
@@ -133,11 +130,11 @@ define([
       },
 
       play: function() {
-
         if (app.isiPhone()) {
           this.player.play();
         } else {
           this.$('video')[0].play();
+          this.$('video')[1].play();
         }
 
         $('.play-button').hide();

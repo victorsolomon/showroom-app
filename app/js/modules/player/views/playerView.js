@@ -125,6 +125,10 @@ define([
         this.playerPosterRegion.show(this.playerPosterView);
         this.playerPosterRegion.$el.css('z-index', 10);
 
+        if (app.isiPhone() == null) {
+          this.videoRegion.show(this.playerVideoView);
+        }
+
         if (app.isiPhone()) {
           this.calculateContainerSize();
         } else if (app.isMobileSafari()) {
@@ -169,7 +173,10 @@ define([
       showMainPlayer: function() {
         var that = this;
 
-        this.videoRegion.show(this.playerVideoView);
+        if (app.isiPhone()) {
+          this.videoRegion.show(this.playerVideoView);
+        }
+
         this.videoRegion.$el.css('z-index', 1);
         this.shareRegion.show(this.playerShareView);
 
@@ -244,6 +251,8 @@ define([
           $('.fullscreen-icn').hide();
         } else {
           $('.pause-button, .fullscreen-icn').show();
+          $('#beacon-video').css('opacity', '1');
+          $('#theVideo').css('opacity', '0');
         }
 
         if (app.isPlaying === false) {
@@ -266,6 +275,8 @@ define([
 
       hoverBeaconsOff: function() {
         $('.pause-button, .fullscreen-icn').hide();
+        $('#beacon-video').css('opacity', '0');
+        $('#theVideo').css('opacity', '1');
       },
 
       tagClick: function(event) {
@@ -338,7 +349,7 @@ define([
             this.playerShareView.animateOut();
           }
         } else {
-          app.vent.trigger('play');
+          // app.vent.trigger('play');
           app.vent.trigger('hideMask');
         }
       },
@@ -360,8 +371,8 @@ define([
 
         if (app.isiPhone()) {
           if (currentProgress >= 0.993) {
-            this.playerActiveCartView.openActiveCart();
-            this.playerCheckoutCartView.openCheckoutCart();
+            this.activeItemThirdPanel.openActiveCart();
+            this.customizePanel.openCheckoutCart();
 
             app.vent.trigger('showMask', true);
 

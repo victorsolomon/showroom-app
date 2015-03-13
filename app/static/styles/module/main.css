@@ -1016,12 +1016,8 @@ video {
   position: absolute;
 }
 
-#theVideo {
-  opacity: 0;
-}
-
 #beacon-video {
-  opacity: 1;
+  opacity: 0;
 }
 
 #showroom-player {
