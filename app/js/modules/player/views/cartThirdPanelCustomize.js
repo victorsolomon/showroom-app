@@ -44,8 +44,15 @@ define([
       },
 
       openCheckoutCart: function() {
-        $('.customization-panel').slideDown();
-        $('.third-panel-checkout').slideUp();
+        var itemId = $('.customize-button').data('item');
+        var selectedItem = app.config.itemData[itemId - 1];
+
+        if (selectedItem.noOptions === true) {
+          this.addItem();
+        } else {
+          $('.customization-panel').slideDown();
+          $('.third-panel-checkout').slideUp();
+        }
 
         $(this.el).parent().animate({ 'right' : this.openAnimRightValue });
 
@@ -77,12 +84,19 @@ define([
 
       addItem: function() {
         var addValidItem = this.customizePanel.addButtonClick();
+        var itemId = $('.customize-button').data('item');
+        var selectedItem = app.config.itemData[itemId - 1];
 
         if (addValidItem === true) {
           this.checkoutCartView.renderCart();
 
-          $('.customization-panel').slideUp();
-          $('.third-panel-checkout').slideDown();
+          if (selectedItem.noOptions === true) {
+            $('.customization-panel').hide();
+            $('.third-panel-checkout').show();
+          } else {
+            $('.customization-panel').slideUp();
+            $('.third-panel-checkout').slideDown();
+          }
         }
       }
     });

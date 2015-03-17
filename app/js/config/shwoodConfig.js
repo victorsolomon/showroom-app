@@ -85,6 +85,7 @@ define([
           "itemPrice"        : "$350.00",
           "hasSize"          : false,
           "hasColor"         : false,
+          "noOptions"        : true,
           "colorBlockId"     : false,
           "variantOptionsId" : null,
           "isArt"            : false,
@@ -104,6 +105,7 @@ define([
           "itemPrice"        : "$295.00",
           "hasSize"          : false,
           "hasColor"         : false,
+          "noOptions"        : true,
           "colorBlockId"     : false,
           "variantOptionsId" : null,
           "isArt"            : false,
@@ -123,6 +125,7 @@ define([
           "itemPrice"        : "$350.00",
           "hasSize"          : false,
           "hasColor"         : false,
+          "noOptions"        : true,
           "colorBlockId"     : false,
           "variantOptionsId" : null,
           "isArt"            : false,
@@ -142,6 +145,7 @@ define([
           "itemPrice"        : "$350.00",
           "hasSize"          : false,
           "hasColor"         : false,
+          "noOptions"        : true,
           "colorBlockId"     : false,
           "variantOptionsId" : null,
           "isArt"            : false,
@@ -161,6 +165,7 @@ define([
           "itemPrice"        : "$295.00",
           "hasSize"          : false,
           "hasColor"         : false,
+          "noOptions"        : true,
           "colorBlockId"     : false,
           "variantOptionsId" : null,
           "isArt"            : false,
@@ -180,6 +185,7 @@ define([
           "itemPrice"        : "$295.00",
           "hasSize"          : false,
           "hasColor"         : false,
+          "noOptions"        : true,
           "colorBlockId"     : false,
           "variantOptionsId" : null,
           "isArt"            : false,
@@ -199,6 +205,7 @@ define([
           "itemPrice"        : "$275.00",
           "hasSize"          : false,
           "hasColor"         : false,
+          "noOptions"        : true,
           "colorBlockId"     : null,
           "variantOptionsId" : null,
           "isArt"            : false,
@@ -218,6 +225,7 @@ define([
           "itemPrice"        : "$295.00",
           "hasSize"          : false,
           "hasColor"         : false,
+          "noOptions"        : true,
           "colorBlockId"     : null,
           "variantOptionsId" : null,
           "isArt"            : false,
@@ -252,7 +260,6 @@ define([
           "hotSpotStartY"      : "200",
           "hotSpotStartWidth"  : "550",
           "hotSpotStartHeight" : "500",
-          'noOptions'          : true
         },
         {
           "id"                 : "2",
@@ -264,7 +271,6 @@ define([
           "hotSpotStartY"      : "300",
           "hotSpotStartWidth"  : "400",
           "hotSpotStartHeight" : "300",
-          'noOptions'          : true
         },
         {
           "id"                 : "3",
@@ -276,7 +282,6 @@ define([
           "hotSpotStartY"      : "200",
           "hotSpotStartWidth"  : "400",
           "hotSpotStartHeight" : "200",
-          'noOptions'          : true
         },
         {
           "id"                 : "4",
@@ -288,7 +293,6 @@ define([
           "hotSpotStartY"      : "300",
           "hotSpotStartWidth"  : "400",
           "hotSpotStartHeight" : "200",
-          'noOptions'          : true
         },
         {
           "id"                 : "5",
@@ -300,7 +304,6 @@ define([
           "hotSpotStartY"      : "120",
           "hotSpotStartWidth"  : "700",
           "hotSpotStartHeight" : "400",
-          'noOptions'          : true
         },
         {
           "id"                 : "6",
@@ -312,7 +315,6 @@ define([
           "hotSpotStartY"      : "200",
           "hotSpotStartWidth"  : "600",
           "hotSpotStartHeight" : "300",
-          'noOptions'          : true
         },
         {
           "id"                 : "7",
@@ -324,7 +326,6 @@ define([
           "hotSpotStartY"      : "270",
           "hotSpotStartWidth"  : "400",
           "hotSpotStartHeight" : "200",
-          'noOptions'          : true
         },
         {
           "id"                 : "8",
@@ -336,7 +337,6 @@ define([
           "hotSpotStartY"      : "255",
           "hotSpotStartWidth"  : "400",
           "hotSpotStartHeight" : "200",
-          'noOptions'          : true
         },
       ],
 

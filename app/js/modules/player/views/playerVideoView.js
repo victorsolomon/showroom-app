@@ -21,14 +21,7 @@ define([
         app.vent.on('pause', this.pause, this);
         app.vent.on('replay', this.replay, this);
         app.vent.on('play', this.play, this);
-
-        if (app.isiPhone == null) {
-          window.requestAnimationFrame(function() {
-            if (this.$('video')[0].currentTime !== this.$('video')[1].currentTime) {
-              this.$('video')[0].currentTime = this.$('video')[1].currentTime;
-            }
-          }.bind(this));
-        }
+        this.$('video')[0].currentTime = this.$('video')[1].currentTime;
       },
 
       onRender: function() {

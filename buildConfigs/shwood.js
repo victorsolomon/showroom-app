@@ -5,7 +5,7 @@
   removeCombined: true,
   //- this is the directory that the new files will be. it will be created if it doesn't exist
   dir: "../../builds/shwood",
-  optimize: 'none',
+  optimize: 'uglify2',
   paths: {
     'jquery'        : 'libs/jquery/dist/jquery',
     'underscore'    : 'libs/lodash-3.1.0',

@@ -255,6 +255,13 @@ define([
           $('#theVideo').css('opacity', '0');
         }
 
+        if (app.config.devMode === true) {
+          $('.hotSpot').css({
+            'opacity'    : '0.5',
+            'background' : 'blue'
+          });
+        }
+
         if (app.isPlaying === false) {
           $('.pause-button, .fullscreen-icn').hide();
         }
@@ -277,6 +284,13 @@ define([
         $('.pause-button, .fullscreen-icn').hide();
         $('#beacon-video').css('opacity', '0');
         $('#theVideo').css('opacity', '1');
+
+        if (app.config.devMode === true) {
+          $('.hotSpot').css({
+            'opacity'    : '0.0',
+            'background' : 'blue'
+          });
+        }
       },
 
       tagClick: function(event) {
@@ -295,25 +309,29 @@ define([
         var currentTime          = timeSig / duration;
         var ratioComparisonWidth = 1920;
         var ratio                = $('html').width() / ratioComparisonWidth;
-        // console.log(currentTime);
+
+        if (app.config.devMode === true) {
+          console.log(currentTime);
+        }
 
         for (var i in app.config.hotSpots) {
 
           var hotSpot = app.config.hotSpots[i];
 
           if (currentTime >= hotSpot.startTime && currentTime <= hotSpot.endTime) {
-            var startX      = hotSpot.hotSpotStartX;
-            var startY      = hotSpot.hotSpotStartY;
-            var width       = hotSpot.hotSpotStartWidth;
-            var height      = hotSpot.hotSpotStartHeight;
-            var totalSteps  = 0;
+            var startX     = hotSpot.hotSpotStartX;
+            var startY     = hotSpot.hotSpotStartY;
+            var width      = hotSpot.hotSpotStartWidth;
+            var height     = hotSpot.hotSpotStartHeight;
+            var totalSteps = 0;
 
             startX *= ratio;
             startY *= ratio;
             width  *= ratio;
             height *= ratio;
 
-            $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height})
+
+            $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : startX, 'top' : startY, 'width' : width, 'height' : height});
           } else {
             $('#hotspot' + hotSpot.hotSpotId).css({ 'left' : -200000 });
           }

@@ -693,6 +693,7 @@
   border: 1px solid #A0A0A0;
   padding: 1% 2%;
   font-weight: 700;
+  margin-top: 2%;
 }
 .size-selector li.selected {
   background: #000;
