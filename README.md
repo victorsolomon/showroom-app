@@ -557,7 +557,7 @@ define([
 
 #FFMPEG Settings to create an iPhone ready video
 
-I forked [JSMPEG](https://github.com/phoboslab/jsmpeg) and integrated [BuffAudio.js](https://github.com/eipark/buffaudio) into it in order to sync MPEG videos and their appropriate MP3 file. This allowed us to bypass the typical Quicktime behavior of iPhone video.
+I forked [JSMPEG](https://github.com/phoboslab/jsmpeg) and integrated [BuffAudio.js](https://github.com/eipark/buffaudio) into it in order to sync MPEG videos and their appropriate MP3 file. This allowed us to bypass the typical Quicktime behavior of iPhone video. The subsequent quality is not perfect, but it's what worked for the time being. Using something like [Ogv.js](https://github.com/brion/ogv.js/) could help make the video better quality (and also eliminate the need of creating an audio file/using the jsmpeg/buffaudio cocktail).
 
 When running the below commands, simply remember to change the third argument to your video folder path. The final argument is the output name of the file.
 
