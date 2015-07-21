@@ -119,35 +119,35 @@ define([
 
     window.playerConfig = {
 
-      /**
+      ************
         gaKey houses your Google Analytics and is referenced throughout
         the file. gaVendorName and videoName were used primarily for
         analytics tracking, to allow us to drive data down to the specific
         vendor, and then the specific video (as a vendor can have many videos). setting devmode to true will display the hotspots, which would otherwise be transparent.
-      **/
+      ************
       gaKey        : '',
       gaVendorName : 'Showroom',
       videoName    : 'showroom_1',
       devMode      : false
 
-      /**
+      ************
         baseVideoPath is the path from the /app folder which houses
         the videos. likewise for baseProductImagePath for any product
         images. colorVariantsImagePath was used if the product's colors
         were displayed by using an image (rare).
-      **/
+      ************
       baseVideoPath          : "static/movies/",
       baseProductImagePath   : "static/images/productImages/showroom/",
       colorVariantsImagePath : 'static/images/productImages/showroom/colorVariants/',
 
-      /**
+      ************
         mp4 and webm_video_src_med were folder paths for the basic
         videos needed for web, based off the previously mentioned
         baseVideoPath value. iphone_video_src and iphone_audio_src
         were the two files referenced when loading the videos on
         an iPhone. the two beacon_video files were the secondary
         overlay video with the beacons baked into it.
-      **/
+      ************
       mp4_video_src_med  : 'showroom/showroom.mp4',
       webm_video_src_med : 'showroom/showroom-webm.webm',
       iphone_video_src   : 'showroom/showroom.mpg',
@@ -156,13 +156,13 @@ define([
       beacon_video_webm  : 'showroom/showroomBeacon.webm',
       loaderStyle        : 'image',
 
-      /**
+      ************
         checkoutUrl could either be a mailto link or shopify checkout
         URL.
-      **/
+      ************
       checkoutUrl : "mailto:we@helloshowroom.co?subject=Showroom - Shop Video&body=Let's make video shoppable.",
 
-      /**
+      ************
         beaconColor and hotspotColor are kind of deprecated, since the
         push went towards having an overlay video with baked in beacons.
         checkoutType dictates if you'll be using a mailto link or shopify
@@ -173,7 +173,7 @@ define([
         splashImage is the posterFrame shown for the video and spinnerColor
         can take any CSS color property to re-color the spinner on an
         iPhone video.
-      **/
+      ************
       beaconColor       : '',
       checkoutType      : "email",
       shareUrl          : "http://www.helloshowroom.co/showroom/index.html",
@@ -182,14 +182,14 @@ define([
       hotspotColor      : 'white',
       spinnerColor      : null,
 
-      /**
+      ************
         recommended is an array, which takes any amount of objects. This
         housed the recommended items show in the product panel.
 
         id references the item id chosen in the itemData array.
         itemImageSrc references the item itemImageSrc path
         chosen in the itemData array.
-      **/
+      ************
       recommended : [
         {
           "id"            : '4',
@@ -213,7 +213,7 @@ define([
         }
       ],
 
-      /**
+      ************
         The extraOptions array takes objects for any extraneous
         product options, outside of the typical color/size options.
 
@@ -222,7 +222,7 @@ define([
         as shown by the option1, option2, and option 3 objects. They each
         contain a title, and variant array. The variant array expects object
         keys to have an array with value(s).
-      **/
+      ************
 
       // extraOptions: [
       //   {
@@ -269,7 +269,7 @@ define([
       //   }
       // ],
 
-      /**
+      ************
         The itemData array is where all of the product information resides.
         It expects objects with the following key/value pairs:
 
@@ -295,7 +295,7 @@ define([
         variants - primarily used for sizes, this is an object with key/value pairs. the key is the text used in the option button. the value is an array which takes the product id, for checkout processes.
 
         otherOptionId - references the option id from the extraOptions model
-      **/
+      ************
       itemData: [
         {
           "id"                 : "1",
@@ -399,7 +399,7 @@ define([
 
       ],
 
-      /**
+      ************
         This dictates the color variants for a product.
 
         id - references the id of the item stored in itemData
@@ -407,7 +407,7 @@ define([
         colorSrc - can take any CSS color property
 
         colorBlockId - references the colorBlockId of the item stored in itemData
-      **/
+      ************
       variantColors: [
         {
           "id"           : "1",
@@ -436,7 +436,7 @@ define([
         },
       ],
 
-      /**
+      ************
         This object dictates the id, startTime/endTime (for when it would be displayed in the video), and width/height of the hotspot.
 
         If using an overlay with baked in beacons, you'll still have to use
@@ -455,7 +455,7 @@ define([
         hotSpotStartWidth - the width of the hotspot box
 
         hotSpotStartHeight - the height of the hotspot box
-      **/
+      ************
       hotSpots: [
         {
           "id"                 : "1",
