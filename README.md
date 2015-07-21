@@ -557,7 +557,7 @@ define([
 
 #FFMPEG Settings to create an iPhone ready video
 
-I forked JSMPEG and integrated BuffAudio.js in order to sync MPEG videos and their appropriate MP3 file. This allowed us to bypass the typical Quicktime behavior of iPhone video.
+I forked [JSMPEG](https://github.com/phoboslab/jsmpeg) and integrated [BuffAudio.js](https://github.com/eipark/buffaudio) into it in order to sync MPEG videos and their appropriate MP3 file. This allowed us to bypass the typical Quicktime behavior of iPhone video.
 
 When running the below commands, simply remember to change the third argument to your video folder path. The final argument is the output name of the file.
 
@@ -572,3 +572,4 @@ ffmpeg -i /Users/davidgonzalez/Showroom/showroom/showroom-app/app/static/movies/
 For Video
 ----
 ffmpeg -i /Users/davidgonzalez/Showroom/showroom/showroom-app/app/static/movies/showroom/showroomMobile.mp4 -f mpeg1video -vf scale=720:-1 -b 0 showroom.mpg
+
